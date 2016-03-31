@@ -327,12 +327,12 @@ public class ppal extends javax.swing.JFrame {
     }// </editor-fold>//GEN-END:initComponents
 Compras objIC=new Compras();
 
-amArticulos objIC1=new amArticulos();
+altaModificaionArticulos objIC1=new altaModificaionArticulos();
 bajaArticulos objIC20=new bajaArticulos();
 abmclientes objIC3=new abmclientes();
 //abmusuario objIC4=new abmusuario();
-ajustecaja objIC5=new ajustecaja();
-ajusteventa objIC6=new ajusteventa();
+ajusteCaja objIC5=new ajusteCaja();
+ajusteVenta objIC6=new ajusteVenta();
 buscarfacturas objIC9=new buscarfacturas();
 cliente objIC10=new cliente();
 configsoft objIC11=new configsoft();
