@@ -275,40 +275,47 @@ public class inicio extends javax.swing.JFrame {
                         //se comparan ambas contraseñas encriptadas
                         if(nom.equals(usuario) && pass.equals(password)){
                             // se compara si el estatus es igual a TRUE
-                            if(N==0){
+                            //System.out.println(N);
+                            //if(N==0){
                                 //se carga la segunda interfaz
 
                                 ppal inter = new ppal();
                                 inter.setId(id);
+                                inter.setNivel(N);
                                 //inter.setC();
                                 inter.IDusuario = ID;
                                 //JOptionPane.showMessageDialog(rootPane, "Bienvenid@ "+nombre+" "+ap+" "+am+" \n\n Ha ingresado como: Administrador");
                                 inter.setVisible(true);
                                 this.dispose();
-                            }
-                            /*         if(N==1){
+                            //}
+//                                     if(N==1){
+//                                         moduloVenta vendedor = new moduloVenta();
+//                                         vendedor.setId(id);
+//                                         vendedor.IDusuario = ID;
+//                                         vendedor.setVisible(true);
+//                                         this.dispose();
                                 //se carga la segunda interfaz
 
-                                vendedor vende = new vendedor();
-                                vende.setId(id);
-                                vende.IDusuario = ID;
-                                JOptionPane.showMessageDialog(rootPane, "Bienvenid@ "+nombre+" "+ap+" "+am+" \n\n Ha ingresado como: Vendedor");
-                                vende.setVisible(true);
-                                this.dispose();
+                                //vendedor vende = new vendedor();
+//                                vende.setId(id);
+//                                vende.IDusuario = ID;
+//                                JOptionPane.showMessageDialog(rootPane, "Bienvenid@ "+nombre+" "+ap+" "+am+" \n\n Ha ingresado como: Vendedor");
+//                                vende.setVisible(true);
+//                                this.dispose();
                                 //apertura ape = new apertura();
                                 //ape.setVisible(true);
                                 //this.dispose();
-                            }
-                            if(N==2){
-                                //se carga la tercera interfaz
-                                capturista cap = new capturista();
-                                cap.setId(id);
-                                cap.IDusuario = ID;
-                                JOptionPane.showMessageDialog(rootPane, "Bienvenid@ "+nombre+" "+ap+" "+am+" \n\n Has entrado al sistema como: Capturista");
-                                cap.setVisible(true);
-                                this.dispose();
-                            }
-                            */
+                            //}
+//                            if(N==2){
+//                                //se carga la tercera interfaz
+//                                capturista cap = new capturista();
+//                                cap.setId(id);
+//                                cap.IDusuario = ID;
+//                                JOptionPane.showMessageDialog(rootPane, "Bienvenid@ "+nombre+" "+ap+" "+am+" \n\n Has entrado al sistema como: Capturista");
+//                                cap.setVisible(true);
+//                                this.dispose();
+//                            }
+                            
                         }
 
                         // en caso de que esten mal los datos
