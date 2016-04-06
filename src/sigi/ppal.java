@@ -86,6 +86,7 @@ public class ppal extends javax.swing.JFrame {
     ResultSet rs2;
     ResultSet rs3;
    public  int IDusuario;
+    public int priorityLevel;
     String id2="";
     /**
      * Creates new form ppal
@@ -114,7 +115,47 @@ public class ppal extends javax.swing.JFrame {
     public static int rowCount, numfac;
     public static boolean ABM_Articulo;
      public ppal() {
-      
+         System.out.println(priorityLevel);
+      //System.out.println(IDusuario);
+      if(IDusuario != 0) {
+          System.out.println(IDusuario);
+          String ax = JOptionPane.showInputDialog("Ingrese apertura caja: ", "0");
+        
+int ax1 = Integer.parseInt(ax);
+if(ax1 > 0){
+     try {
+                    // se comienza la conexion con la base de datos
+                    try {
+                        con = new Conexion();
+
+                    } catch (ClassNotFoundException ex) {
+                        Logger.getLogger(moduloVenta.class.getName()).log(Level.SEVERE, null, ex);
+                    } catch (SQLException ex) {
+                        Logger.getLogger(moduloVenta.class.getName()).log(Level.SEVERE, null, ex);
+                    } catch (InstantiationException ex) {
+                        Logger.getLogger(moduloVenta.class.getName()).log(Level.SEVERE, null, ex);
+                    } catch (IllegalAccessException ex) {
+                        Logger.getLogger(moduloVenta.class.getName()).log(Level.SEVERE, null, ex);
+                    }
+
+                    String nom= ax;
+                    String id = jTID.getText();
+                    String apertura ="INSERT INTO  `sigi`.`caja` (`apertura`, `id_usuario`)VALUES ('"+nom+"', '"+id+"')";
+                    
+                    con.ejecutar(apertura);
+
+    
+                    } catch (SQLException ex) {
+                        Logger.getLogger(moduloVenta.class.getName()).log(Level.SEVERE, null, ex);
+                    }
+        moduloVenta vta = new moduloVenta();
+         vta.setVisible(true);
+       jBvta.setEnabled(false);   
+} else {
+    ax = "0";
+    JOptionPane.showMessageDialog(null, "Debe ingresar el conteo de apertura de caja, intente nuevamente. ");
+}
+      } else{
             initComponents();
        //     h1 = new Thread(this);
 //            h1.start();
@@ -142,6 +183,7 @@ public class ppal extends javax.swing.JFrame {
    // jTcierre.setEnabled(false);
    // jBcierre.setEnabled(false);        
                                     
+     }
      }
     /**
      * This method is called from within the constructor to initialize the form.
@@ -291,6 +333,7 @@ public class ppal extends javax.swing.JFrame {
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                         .addComponent(jButton2, javax.swing.GroupLayout.PREFERRED_SIZE, 61, javax.swing.GroupLayout.PREFERRED_SIZE))
                     .addGroup(layout.createSequentialGroup()
+                        .addGap(21, 21, 21)
                         .addComponent(lbHora1)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                         .addComponent(jLabel12)
@@ -310,17 +353,17 @@ public class ppal extends javax.swing.JFrame {
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(layout.createSequentialGroup()
                         .addGap(1, 1, 1)
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                            .addComponent(jLabel12, javax.swing.GroupLayout.PREFERRED_SIZE, 20, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(lbHora1)))
-                    .addComponent(jTID, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addComponent(jLabel12, javax.swing.GroupLayout.PREFERRED_SIZE, 20, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(jTID, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(lbHora1))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
                     .addGroup(layout.createSequentialGroup()
                         .addComponent(jLabel1)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                        .addComponent(jScrollPane2, javax.swing.GroupLayout.PREFERRED_SIZE, 761, javax.swing.GroupLayout.PREFERRED_SIZE))
-                    .addComponent(desktopPane, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)))
+                        .addComponent(jScrollPane2, javax.swing.GroupLayout.PREFERRED_SIZE, 535, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(desktopPane, javax.swing.GroupLayout.PREFERRED_SIZE, 574, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGap(0, 0, Short.MAX_VALUE))
         );
 
         pack();
@@ -346,7 +389,7 @@ reportes objIC26=new reportes();
 stock objIC25=new stock();
 
     private void jTree1MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jTree1MouseClicked
-     
+        
         String menu = jTree1.getLastSelectedPathComponent().toString();
         if(menu.equals("ABM Compra")){
            if(objIC.isShowing()){
@@ -584,6 +627,9 @@ public void setT(String cad){
 public String getId(){
     cad = jTID.getText();
     return cad;
+}
+public void setNivel(int nivel) {
+    priorityLevel = nivel;
 }
 
 public String objectToString(Object o) {
