@@ -353,7 +353,7 @@ private void jMenuItem1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FI
                     //                String password = new String(messagedigest.digest());
                     //System.out.println("pass: "+password);
 
-                    String sql = "INSERT INTO `usuarios`(`nombre`, `apellido_paterno`, `apellido_materno`, `user`, `password`, `nivel`) VALUES ('"+nom+"','"+ap+"','"+am+"','"+user+"','"+pass1+"','"+nivel+"')";
+                    String sql = "INSERT INTO `usuarios`(`nombre`, `apellido_paterno`, `apellido_materno`, `user`, `pass`, `nivel`) VALUES ('"+nom+"','"+ap+"','"+am+"','"+user+"','"+pass1+"','"+nivel+"')";
 
                     con.ejecutar(sql);
                     if(nivel==0)
