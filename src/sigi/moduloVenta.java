@@ -7,6 +7,7 @@ package sigi;
 
 import Connection.Conexion;
 import java.awt.event.KeyEvent;
+import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.ResultSetMetaData;
 import java.sql.SQLException;
@@ -40,9 +41,11 @@ Conexion con,query;
     ResultSet rs;
     ResultSet rs2;
     ResultSet rs3;
+    public  int IDusuario;
+    
    static float total=0;
    static int j=0;
-   public static String id1;
+   public static String id1, id2;
     private static moduloVenta myInstance;
    public moduloVenta() {
         initComponents();
@@ -80,7 +83,8 @@ Conexion con,query;
         jLabel5 = new javax.swing.JLabel();
         jLabel7 = new javax.swing.JLabel();
         jButton4 = new javax.swing.JButton();
-        jPanel1 = new javax.swing.JPanel();
+        printTicket = new javax.swing.JCheckBox();
+        jTID = new javax.swing.JTextField();
 
         setBackground(new java.awt.Color(255, 255, 255));
         setCursor(new java.awt.Cursor(java.awt.Cursor.DEFAULT_CURSOR));
@@ -96,8 +100,8 @@ Conexion con,query;
             }
         });
         jTvscaningv.addKeyListener(new java.awt.event.KeyAdapter() {
-            public void keyPressed(java.awt.event.KeyEvent evt) {
-                jTvscaningvKeyPressed(evt);
+            public void keyReleased(java.awt.event.KeyEvent evt) {
+                jTvscaningvKeyReleased(evt);
             }
         });
         getContentPane().add(jTvscaningv, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 30, 289, 60));
@@ -135,6 +139,7 @@ Conexion con,query;
         getContentPane().add(jButton1, new org.netbeans.lib.awtextra.AbsoluteConstraints(370, 550, 60, 60));
 
         jButton2.setBackground(new java.awt.Color(255, 255, 255));
+        jButton2.setText("Imprimir");
         jButton2.setBorderPainted(false);
         jButton2.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
         jButton2.addActionListener(new java.awt.event.ActionListener() {
@@ -142,7 +147,7 @@ Conexion con,query;
                 jButton2ActionPerformed(evt);
             }
         });
-        getContentPane().add(jButton2, new org.netbeans.lib.awtextra.AbsoluteConstraints(530, 550, 60, 60));
+        getContentPane().add(jButton2, new org.netbeans.lib.awtextra.AbsoluteConstraints(530, 550, 80, 60));
 
         jBcerrar.setBackground(new java.awt.Color(255, 255, 255));
         jBcerrar.setIcon(new javax.swing.ImageIcon(getClass().getResource("/imagenes/cancel.jpg"))); // NOI18N
@@ -242,9 +247,14 @@ Conexion con,query;
         });
         getContentPane().add(jButton4, new org.netbeans.lib.awtextra.AbsoluteConstraints(610, 550, 80, 60));
 
-        jPanel1.setBackground(java.awt.SystemColor.window);
-        jPanel1.setBorder(new javax.swing.border.LineBorder(new java.awt.Color(102, 102, 102), 1, true));
-        getContentPane().add(jPanel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 890, 650));
+        printTicket.setText("Imprimit ticket");
+        printTicket.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                printTicketActionPerformed(evt);
+            }
+        });
+        getContentPane().add(printTicket, new org.netbeans.lib.awtextra.AbsoluteConstraints(30, 560, 160, 40));
+        getContentPane().add(jTID, new org.netbeans.lib.awtextra.AbsoluteConstraints(320, 10, 30, -1));
 
         pack();
         setLocationRelativeTo(null);
@@ -290,100 +300,15 @@ if(ax1 > 0){
     }//GEN-LAST:event_jBcerrarMouseClicked
 
     private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
-DefaultTableModel modelo = (DefaultTableModel)Tlistav.getModel();
-int fila = Tlistav.getSelectedRow();
-modelo.removeRow(fila);        
+        DefaultTableModel modelo = (DefaultTableModel)Tlistav.getModel();
+        int fila = Tlistav.getSelectedRow();
+        if(fila <= 0) {
+            JOptionPane.showMessageDialog(null, "Se debe seleccionar la fila a eliminar de la tabla COMPRA ACTUAL");
+        } else{
+            modelo.removeRow(fila);           
+        }
     }//GEN-LAST:event_jButton1ActionPerformed
 
-
-    private void jTvscaningvKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_jTvscaningvKeyPressed
-     
- try {
-                    // se comienza la conexion con la base de datos
-                    try {
-                        con = new Conexion();
-
-                    } catch (ClassNotFoundException ex) {
-                        Logger.getLogger(moduloVenta.class.getName()).log(Level.SEVERE, null, ex);
-                    } catch (SQLException ex) {
-                        Logger.getLogger(moduloVenta.class.getName()).log(Level.SEVERE, null, ex);
-                    } catch (InstantiationException ex) {
-                        Logger.getLogger(moduloVenta.class.getName()).log(Level.SEVERE, null, ex);
-                    } catch (IllegalAccessException ex) {
-                        Logger.getLogger(moduloVenta.class.getName()).log(Level.SEVERE, null, ex);
-                    }
-
-                    String nom= jTvscaningv.getText();
-                   // String sql ="SELECT * FROM articulos WHERE scanning LIKE '"+nom+"%' AND unidad > 0";
-                    String sql =   "SELECT descripcion_articulos.id_articulo, descripcion_articulos.scanning, descripcion_articulos.nombre_productor, descripcion_articulos.precio_venta,  stock.saldo_stock FROM descripcion_articulos INNER JOIN stock ON stock.id_articulo = descripcion_articulos.id_articulo WHERE descripcion_articulos.scanning LIKE '"+nom+"%'";
-                    rs = con.Consulta(sql);
-                    if(rs==null)
-                    JOptionPane.showMessageDialog(null, "No se encontro el scanning: "+jTvscaningv.getText()+" en la base de datos.");
-                  /*  Integer id;
-                   id = rs.getInt("id_articulo");
-                   String id1 = id.toString();
-                    String sqls ="SELECT * FROM stock WHERE id_articulo LIKE '"+id+"%'";
-                    rs2 = con.Consulta(sqls);
-                   */
- 
-                    //prueba 1
-                   
-                    // fin prueba
-                    
-                    //Para establecer el modelo al JTable
-
-                    DefaultTableModel buscar = new DefaultTableModel(){
-                        @Override
-                        public boolean isCellEditable(int rowIndex, int vColIndex) {
-                            return false;
-                        }};
-                        this.jTable1.setModel(buscar);
-                        buscar.addColumn("Codigo");
-                        buscar.addColumn("Nombre Producto");
-                        buscar.addColumn("Precio");
-                        buscar.addColumn("Cantidad");
-                        //Obteniendo la informacion de las columnas que estan siendo consultadas
-                      /*  ResultSetMetaData rsMd = rs.getMetaData();
-                        //La cantidad de columnas que tiene la consulta
-                        int cantidadColumnas = rsMd.getColumnCount();
-                        //Establecer como cabezeras el nombre de las colimnas
-                        for (int i = 1; i <= cantidadColumnas; i++) {
-                            buscar.addColumn(rsMd.getColumnLabel(i));
-                        }
-*/
-                        int y=0;
-                        while (rs.next()) {
-                            
-                           Object[] fila = new Object[4];
-
-                           //for (int i = 0; i < 3; i++) {
-//int i = 0;
-  //                            fila[i]=rs.getObject(i+1);
-                            //Object[] fila = new Object[3];//Creamos un Objeto con tantos parámetros como datos retorne cada fila 
-                                              // de la consulta
-                fila[0] = rs.getString("scanning");
-                fila[1] = rs.getString("nombre_prod");//Lo que hay entre comillas son los campos de la base de datos
-                fila[2] = rs.getFloat("precio_venta");
-                fila[3] = rs.getInt("saldo_stock");//saldo_stock
-                buscar.addRow(fila); // Añade una fila al final del modelo de la tabla
-                            //}
-                            //buscar.addRow(fila);
-                           // for(int l=0;l<7;l++)
-                           // buscar.isCellEditable(y, l);
-                           // y++;
-                       // jTable1.updateUI();
-                        }
-    
-                    } catch (SQLException ex) {
-                        Logger.getLogger(moduloVenta.class.getName()).log(Level.SEVERE, null, ex);
-                    }
-                    if(evt.getKeyCode() == KeyEvent.VK_ENTER){
-                        jTcant.requestFocusInWindow();
-                        jTable1.selectAll();
-                        jTcant.selectAll();
-                    }
-
-    }//GEN-LAST:event_jTvscaningvKeyPressed
 
     private void jTcantKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_jTcantKeyPressed
 if(evt.getKeyCode() == KeyEvent.VK_ENTER){ 
@@ -418,11 +343,11 @@ jTdesc.selectAll();
     }//GEN-LAST:event_jButton3ActionPerformed
 
     private void jButton2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton2ActionPerformed
-             if(JOptionPane.showConfirmDialog(rootPane, "Ya esta listo para imprimir el Ticket?","Imprimir Ticket",1)==0){
+            //if(JOptionPane.showConfirmDialog(rootPane, "Ya esta listo para imprimir el Ticket?","Imprimir Ticket",1)==0){
             String existe = null;
             int e;
-            String ID = null;
-            String ticket;
+            String articleId = null;
+            String ticket = "";
             String ss;
             if (j==0)
             {
@@ -437,16 +362,17 @@ jTdesc.selectAll();
                 try {
                     //se crea la conexion y las consultas
                     con = new Conexion();
-                    String pro[] = new String[100],p;
-                    String pro2[] = new String[100];
-                    int to[] = new int[100];
-                    float prec[] = new float[100];
+                    String pro[] = new String[j],p;
+                    String pro2[] = new String[j];
+                    int to[] = new int[j];
+                    float prec[] = new float[j];
                     Object ex = null,precio=null;
                     Object pros=null;
+                    
                     //System.out.println("j:" + j);
                     // se crea la sentecia sql y se ejecuta para hacer la modificacion
                     for (int i=0; i<j; i++) {
-
+                        
                         pros = Tlistav.getValueAt(i, 0);
                         pro[i] = objectToString(pros);
                         p=objectToString(Tlistav.getValueAt(i, 2));
@@ -454,17 +380,27 @@ jTdesc.selectAll();
                         ex=  Tlistav.getValueAt(i, 3);
                         String xe = objectToString(ex);
                         to[i] = Integer.parseInt(xe);
-                        String sqlc = "SELECT * FROM descripcion_articulos WHERE scanning = '"+pro[i]+"'";
+                        System.out.println("pros: " + pros);
+                        System.out.println("pro: " + pro[i]);
+                        System.out.println("p: " + p);
+                        System.out.println("prec: " + prec[i]);
+                        System.out.println("ex: " + ex);
+                        System.out.println("xe: " + xe);
+                        String sqlc = "SELECT * FROM stock t2 INNER JOIN descripcion_articulos t1 WHERE t1.scanning = '"+pro[i]+"' AND t2.id_stock = t1.stock_id_stock";
                         rs = con.Consulta(sqlc);
                         while(rs.next()){
-                            ID = rs.getString(1);
-                            existe = rs.getString(5);
+                            articleId = rs.getString(1);
+                            existe = rs.getString(3);
                         }
+                        System.out.println("articleID: " + articleId);
+                        System.out.println("existe:" + existe);
                         e = Integer.parseInt(existe);
                         // Float k = Float.parseFloat(ex[i]);
+                        System.out.println("e: " + e);
+                        System.out.println("to: " + to[i]);
                         int t = e - to[i];
                         System.out.println(t);
-                        String modifica = "UPDATE  `stock` SET  `saldo_stock` = "+t+" WHERE `id_articulo` ="+ID+"";
+                        String modifica = "UPDATE  `stock` SET  `saldo_stock` = "+t+" WHERE `id_articulo` ="+articleId+"";
                         con.ejecutar(modifica);
 
                     }
@@ -478,55 +414,57 @@ jTdesc.selectAll();
                         nombre = rs.getString(2);
                         ap = rs.getString(3);
                     }
-       
-                    Date fecha = new Date();
-                    String cadena="Kiosco Minimarket 'La esquina'\nCUIL: xx-xxxxxxxx-x\nSu dirección N°  \nMendoza \nFecha: "+fecha+"\n\nCant.\tProducto\tPrecio\n";
-                    String cade="";
-                    for (int i=0;i<j;i++){
+                    
+                   
+                        Date fecha = new Date();
+                        String cadena="Kiosco Minimarket 'La esquina'\nCUIL: xx-xxxxxxxx-x\nSu dirección N°  \nMendoza \nFecha: "+fecha+"\n\nCant.\tProducto\tPrecio\n";
+                        String cade="";
+                        for (int i=0;i<j;i++){
 
-                        pro2[i]=pro[i];
-                        if(pro[i].length()<=8)
-                        pro[i]=pro[i]+"     ";
-                        if(pro[i].length()>15){
-                            pro[i] = pro[i].substring(0, 15);
+                            pro2[i]=pro[i];
+                            if(pro[i].length()<=8)
+                            pro[i]=pro[i]+"     ";
+                            if(pro[i].length()>15){
+                                pro[i] = pro[i].substring(0, 15);
+
+                            }
+                            cade = cade+""+to[i]+"\t"+pro[i]+"\t"+prec[i]*to[i]+"\n";
 
                         }
-                        cade = cade+""+to[i]+"\t"+pro[i]+"\t"+prec[i]*to[i]+"\n";
-
-                    }
-                    String efectivo = JOptionPane.showInputDialog(null, "Venta Realizada\nTotal a Cobrar: $"+t+"\nEfectivo Recibido: ");
-                    float efe = Float.parseFloat(efectivo);
-                    float cambio = efe - tota;
-                    ticket = cadena+cade+"\nTotal: \t$"+jTtotalv.getText()+"\n\tEfectivo: $"+efectivo+"\n\tCambio: $"+cambio+"\n\n    Le atendio: "+nombre+" "+ap+"\n\n    CON EL CORAZON EN LAS MANOS\n    GRACIAS POR SU COMPRA.\n\n\n\n";
-
-                    //Cogemos el servicio de impresión por defecto (impresora por defecto)
-                    PrintService service = PrintServiceLookup.lookupDefaultPrintService();
-                    //Le decimos el tipo de datos que vamos a enviar a la impresora
-                    //Tipo: bytes Subtipo: autodetectado
-                    DocFlavor flavor = DocFlavor.BYTE_ARRAY.AUTOSENSE;
-                    //Creamos un trabajo de impresión
-                    DocPrintJob pj = service.createPrintJob();
-                    //Nuestro trabajo de impresión envía una cadena de texto
-                    ss=new String(ticket);
-                    byte[] bytes;
-                    //Transformamos el texto a bytes que es lo que soporta la impresora
-                    bytes=ss.getBytes();
-                    //Creamos un documento (Como si fuese una hoja de Word para imprimir)
-                    Doc doc=new SimpleDoc(bytes,flavor,null);
-                    //PrintRequestAttributeSet aset = new HashPrintRequestHashAttributeSet();
-                    //aset.add(MediaSizeName.ISO_A4);
-                    //Obligado coger la excepción PrintException
-                    //Mandamos a impremir el documento
-                    PrintService[] pservices =PrintServiceLookup.lookupPrintServices(flavor, null);
-                    if (pservices.length > 0) {
-                       pj.print(doc, null);
-                    }
-                   
-                    //System.out.println(ticket);
-
+                        String efectivo = JOptionPane.showInputDialog(null, "Venta Realizada\nTotal a Cobrar: $"+t+"\nEfectivo Recibido: ");
+                        //System.out.println("efectivo: " + efectivo);
+                        float efe = Float.parseFloat(efectivo);
+                        //System.out.println("efe: " + efe);
+                        float cambio = efe - tota;
+                        //System.out.println("cambio" + cambio);
+                        if(printTicket.isSelected()) {
+                            ticket = cadena+cade+"\nTotal: \t$"+jTtotalv.getText()+"\n\tEfectivo: $"+efectivo+"\n\tCambio: $"+cambio+"\n\n    Le atendio: "+nombre+" "+ap+"\n\n    CON EL CORAZON EN LAS MANOS\n    GRACIAS POR SU COMPRA.\n\n\n\n";
+                            //Cogemos el servicio de impresión por defecto (impresora por defecto)
+                            PrintService service = PrintServiceLookup.lookupDefaultPrintService();
+                            //Le decimos el tipo de datos que vamos a enviar a la impresora
+                            //Tipo: bytes Subtipo: autodetectado
+                            DocFlavor flavor = DocFlavor.BYTE_ARRAY.AUTOSENSE;
+                            //Creamos un trabajo de impresión
+                            DocPrintJob pj = service.createPrintJob();
+                            //Nuestro trabajo de impresión envía una cadena de texto
+                            ss=new String(ticket);
+                            byte[] bytes;
+                            //Transformamos el texto a bytes que es lo que soporta la impresora
+                            bytes=ss.getBytes();
+                            //Creamos un documento (Como si fuese una hoja de Word para imprimir)
+                            Doc doc=new SimpleDoc(bytes,flavor,null);
+                            //PrintRequestAttributeSet aset = new HashPrintRequestHashAttributeSet();
+                            //aset.add(MediaSizeName.ISO_A4);
+                            //Obligado coger la excepción PrintException
+                            //Mandamos a impremir el documento
+                            PrintService[] pservices =PrintServiceLookup.lookupPrintServices(flavor, null);
+                            pj.print(doc, null);
+                            System.out.println(ticket);
+                            ticket = "";
+                        }
+                    System.out.println(ticket);
                     String userId=ppal.jTID.getText();
-                    ticket = "";
-                    System.out.println(jTdesc.getText());
+                    //System.out.println(jTdesc.getText());
                     String venta = "INSERT INTO  `sigi`.`ventas` (`fecha`, `Id_usuario`, `total`, `descuento`, `forma_pago_id_forma_pago`, `iva_id_iva`)VALUES (CURRENT_TIMESTAMP, '"+userId+"', '"+t+"', '"+jTdesc.getText()+"', 0, NULL);";
                     con.ejecutar(venta);
                     
@@ -570,7 +508,7 @@ jTdesc.selectAll();
 
             }
 
-        }
+        //}
     }//GEN-LAST:event_jButton2ActionPerformed
 
     private void jTvscaningvActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jTvscaningvActionPerformed
@@ -603,7 +541,7 @@ jTdesc.selectAll();
                 String codigo = jTable1.getValueAt(aux, 0).toString();
                 String nombre = jTable1.getValueAt(aux, 1).toString();
                 String precio = jTable1.getValueAt(aux, 2).toString();
-                System.out.println(precio);
+                //System.out.println(precio);
                  float prec = Float.parseFloat(precio);
                  
                 String desc = jTdesc.getText();
@@ -652,7 +590,7 @@ jTdesc.selectAll();
                     
                     jTvscaningv.setText("");
                 jTcant.setText("1");
-                jTdesc.setText("0");
+                jTdesc.setText("0.00");
                 jTvscaningv.requestFocusInWindow();
                 jTable1.setModel(new DefaultTableModel());
                 
@@ -664,6 +602,103 @@ jTdesc.selectAll();
          ctacte.setVisible(true);
       // jBvta.setEnabled(false);
     }//GEN-LAST:event_jButton4ActionPerformed
+
+    private void printTicketActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_printTicketActionPerformed
+        // TODO add your handling code here:
+        
+    }//GEN-LAST:event_printTicketActionPerformed
+
+    private void jTvscaningvKeyReleased(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_jTvscaningvKeyReleased
+        try {
+                    // se comienza la conexion con la base de datos
+                    try {
+                        con = new Conexion();
+                        
+
+                    } catch (ClassNotFoundException ex) {
+                        Logger.getLogger(moduloVenta.class.getName()).log(Level.SEVERE, null, ex);
+                    } catch (SQLException ex) {
+                        Logger.getLogger(moduloVenta.class.getName()).log(Level.SEVERE, null, ex);
+                    } catch (InstantiationException ex) {
+                        Logger.getLogger(moduloVenta.class.getName()).log(Level.SEVERE, null, ex);
+                    } catch (IllegalAccessException ex) {
+                        Logger.getLogger(moduloVenta.class.getName()).log(Level.SEVERE, null, ex);
+                    }
+                    
+                    String nom= jTvscaningv.getText();
+                   // String sql ="SELECT * FROM articulos WHERE scanning LIKE '"+nom+"%' AND unidad > 0";
+                    String sql =   "SELECT descripcion_articulos.id_articulo, descripcion_articulos.scanning, descripcion_articulos.nombre_producto, descripcion_articulos.precio_venta,  stock.saldo_stock FROM descripcion_articulos INNER JOIN stock ON stock.id_articulo = descripcion_articulos.id_articulo WHERE descripcion_articulos.scanning LIKE '"+nom+"%'";
+                    //String sql =   "SELECT descripcion_articulos.id_articulo, descripcion_articulos.scanning, descripcion_articulos.nombre_producto, descripcion_articulos.precio_venta,  stock.saldo_stock FROM descripcion_articulos INNER JOIN stock ON stock.id_articulo = descripcion_articulos.id_articulo WHERE descripcion_articulos.scanning = ?";
+                    
+                    //rs = con.find(sql, jTvscaningv.getText());
+                    
+                    rs = con.Consulta(sql);
+                    if(rs==null)
+                    JOptionPane.showMessageDialog(null, "No se encontro el scanning: "+jTvscaningv.getText()+" en la base de datos.");
+                  /*  Integer id;
+                   id = rs.getInt("id_articulo");
+                   String id1 = id.toString();
+                    String sqls ="SELECT * FROM stock WHERE id_articulo LIKE '"+id+"%'";
+                    rs2 = con.Consulta(sqls);
+                   */
+ 
+                    //prueba 1
+                   
+                    // fin prueba
+                    
+                    //Para establecer el modelo al JTable
+
+                    DefaultTableModel buscar = new DefaultTableModel(){
+                        @Override
+                        public boolean isCellEditable(int rowIndex, int vColIndex) {
+                            return false;
+                        }};
+                        this.jTable1.setModel(buscar);
+                        buscar.addColumn("Codigo");
+                        buscar.addColumn("Nombre Producto");
+                        buscar.addColumn("Precio");
+                        buscar.addColumn("Cantidad");
+                        //Obteniendo la informacion de las columnas que estan siendo consultadas
+                      /*  ResultSetMetaData rsMd = rs.getMetaData();
+                        //La cantidad de columnas que tiene la consulta
+                        int cantidadColumnas = rsMd.getColumnCount();
+                        //Establecer como cabezeras el nombre de las colimnas
+                        for (int i = 1; i <= cantidadColumnas; i++) {
+                            buscar.addColumn(rsMd.getColumnLabel(i));
+                        }
+*/
+                        int y=0;
+                        while (rs.next()) {
+                            
+                           Object[] fila = new Object[4];
+
+                           //for (int i = 0; i < 3; i++) {
+//int i = 0;
+  //                            fila[i]=rs.getObject(i+1);
+                            //Object[] fila = new Object[3];//Creamos un Objeto con tantos parámetros como datos retorne cada fila 
+                                              // de la consulta
+                fila[0] = rs.getString("scanning");
+                fila[1] = rs.getString("nombre_producto");//Lo que hay entre comillas son los campos de la base de datos
+                fila[2] = rs.getFloat("precio_venta");
+                fila[3] = rs.getInt("saldo_stock");//saldo_stock
+                buscar.addRow(fila); // Añade una fila al final del modelo de la tabla
+                            //}
+                            //buscar.addRow(fila);
+                           // for(int l=0;l<7;l++)
+                           // buscar.isCellEditable(y, l);
+                           // y++;
+                       // jTable1.updateUI();
+                        }
+    
+                    } catch (SQLException ex) {
+                        Logger.getLogger(moduloVenta.class.getName()).log(Level.SEVERE, null, ex);
+                    }
+                    if(evt.getKeyCode() == KeyEvent.VK_ENTER){
+                        jTcant.requestFocusInWindow();
+                        jTable1.selectAll();
+                        jTcant.selectAll();
+                    }
+    }//GEN-LAST:event_jTvscaningvKeyReleased
 
     /**
      * @param args the command line arguments
@@ -727,13 +762,19 @@ public String objectToString(Object o) {
     private javax.swing.JLabel jLabel5;
     private javax.swing.JLabel jLabel6;
     private javax.swing.JLabel jLabel7;
-    private javax.swing.JPanel jPanel1;
     private javax.swing.JScrollPane jScrollPane18;
     private javax.swing.JScrollPane jScrollPane2;
+    private javax.swing.JTextField jTID;
     private javax.swing.JTable jTable1;
     private javax.swing.JTextField jTcant;
     private javax.swing.JTextField jTdesc;
     private javax.swing.JTextField jTtotalv;
     private javax.swing.JTextField jTvscaningv;
+    private javax.swing.JCheckBox printTicket;
     // End of variables declaration//GEN-END:variables
+
+    public void setId(String id){
+        id2 = id;
+        jTID.setText(id);
+    }
 }
