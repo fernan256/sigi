@@ -11,6 +11,7 @@ public class Conexion {
     private Connection con;
     private Statement  sentSQL;
     private ResultSet rst;
+    PreparedStatement ps = null;
 
 
     public Conexion() throws ClassNotFoundException,SQLException,InstantiationException,IllegalAccessException{
@@ -22,42 +23,40 @@ public class Conexion {
 
     public void conectar() throws SQLException{
         //datos necesarios para la conexion
-    String URL_bd="jdbc:mysql://localhost:3306/sigi";
-    String usuario="root";
-    String contraseña="dedox132";
-    //conexion con la bd
-    con=DriverManager.getConnection(URL_bd,usuario,contraseña);
-    // se crea una Statement para asi poder usar sentencias sql
-    sentSQL=con.createStatement(ResultSet.TYPE_SCROLL_SENSITIVE, ResultSet.CONCUR_UPDATABLE);
-    
-    
+        String URL_bd="jdbc:mysql://localhost:3306/sigi";
+        String usuario="root";
+        String contraseña="dedox132";
+        //conexion con la bd
+        con=DriverManager.getConnection(URL_bd,usuario,contraseña);
+        // se crea una Statement para asi poder usar sentencias sql
+        sentSQL=con.createStatement(ResultSet.TYPE_SCROLL_SENSITIVE, ResultSet.CONCUR_UPDATABLE);
     }
 
     public ResultSet ConectarBD(String usuario, String pass) throws SQLException{
-
-        rst=sentSQL.executeQuery("select * from usuarios where usuario='root' AND password='dedox132';");
+       rst=sentSQL.executeQuery("select * from usuarios where usuario='root' AND password='dedox132';");
        return rst;
     }
-
   
     // metodo para ejecutar sentencia sql
-     public String ejecutar(String sql) throws SQLException
-		  {
-                      //executeUpdate nos sirve para hacer UPDATE, INSERT y ese tipo de sentencias que modifican la base de datos
-                      // no se necesita devolver algo
-                       sentSQL.executeUpdate(sql);
-                       
-		  return "";
-		  }
+    public String ejecutar(String sql) throws SQLException{
+        sentSQL.executeUpdate(sql);
+        return "";
+    }
      
-     //metodo para ejecutar consultas de sentencias sql en la base de datos
-     public ResultSet Consulta(String sql) throws SQLException{
-         
-         //executeQuery nos sirve solamente para hacer consultas de la base de datos, solo acepta sentencias como SELECT
-         // se necesita forzosamente devolver algo, guardar en una variable el resultado de la consulta
+    //metodo para ejecutar consultas de sentencias sql en la base de datos
+    public ResultSet Consulta(String sql) throws SQLException{ 
+        //executeQuery nos sirve solamente para hacer consultas de la base de datos, solo acepta sentencias como SELECT
+        // se necesita forzosamente devolver algo, guardar en una variable el resultado de la consulta
         rst=sentSQL.executeQuery(sql);
         
        return rst;
+    }
+     
+    public ResultSet find (String sql, String s) throws SQLException{
+        ps = con.prepareStatement(sql);
+        ps.setString(1,s);
+        rst = ps.executeQuery();
+        return rst;
     }
 }
 
