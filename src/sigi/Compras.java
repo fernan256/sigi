@@ -89,7 +89,6 @@ public static int rowCount, numfac, idoc;
         jButton1 = new javax.swing.JButton();
         jLabel64 = new javax.swing.JLabel();
         jTefect1 = new javax.swing.JTextField();
-        jLabel65 = new javax.swing.JLabel();
         jCfechapago = new org.freixas.jcalendar.JCalendarCombo();
         jCpagocaja = new javax.swing.JCheckBox();
 
@@ -114,39 +113,39 @@ public static int rowCount, numfac, idoc;
         setPreferredSize(getPreferredSize());
         getContentPane().setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
-        jLabel59.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
+        jLabel59.setFont(new java.awt.Font("Tahoma", 1, 12)); // NOI18N
         jLabel59.setText("Proveedor");
-        getContentPane().add(jLabel59, new org.netbeans.lib.awtextra.AbsoluteConstraints(60, 70, -1, -1));
+        getContentPane().add(jLabel59, new org.netbeans.lib.awtextra.AbsoluteConstraints(30, 20, -1, -1));
 
-        jLabel70.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
+        jLabel70.setFont(new java.awt.Font("Tahoma", 1, 12)); // NOI18N
         jLabel70.setText("Fecha pago");
-        getContentPane().add(jLabel70, new org.netbeans.lib.awtextra.AbsoluteConstraints(60, 230, -1, -1));
+        getContentPane().add(jLabel70, new org.netbeans.lib.awtextra.AbsoluteConstraints(30, 140, -1, -1));
 
-        jLabel61.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
+        jLabel61.setFont(new java.awt.Font("Tahoma", 1, 12)); // NOI18N
         jLabel61.setText("N° Factura");
-        getContentPane().add(jLabel61, new org.netbeans.lib.awtextra.AbsoluteConstraints(60, 150, -1, -1));
-        getContentPane().add(jTnfact, new org.netbeans.lib.awtextra.AbsoluteConstraints(180, 150, 290, -1));
+        getContentPane().add(jLabel61, new org.netbeans.lib.awtextra.AbsoluteConstraints(30, 80, -1, -1));
+        getContentPane().add(jTnfact, new org.netbeans.lib.awtextra.AbsoluteConstraints(150, 80, 290, -1));
 
         jToc.addKeyListener(new java.awt.event.KeyAdapter() {
             public void keyPressed(java.awt.event.KeyEvent evt) {
                 jTocKeyPressed(evt);
             }
         });
-        getContentPane().add(jToc, new org.netbeans.lib.awtextra.AbsoluteConstraints(180, 110, 290, -1));
+        getContentPane().add(jToc, new org.netbeans.lib.awtextra.AbsoluteConstraints(150, 50, 290, -1));
 
-        jLabel63.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
+        jLabel63.setFont(new java.awt.Font("Tahoma", 1, 12)); // NOI18N
         jLabel63.setText("N° Orden Comp.");
-        getContentPane().add(jLabel63, new org.netbeans.lib.awtextra.AbsoluteConstraints(60, 110, -1, -1));
+        getContentPane().add(jLabel63, new org.netbeans.lib.awtextra.AbsoluteConstraints(30, 50, -1, -1));
 
-        jLabel71.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
+        jLabel71.setFont(new java.awt.Font("Tahoma", 1, 12)); // NOI18N
         jLabel71.setText("Descripción de compra:");
-        getContentPane().add(jLabel71, new org.netbeans.lib.awtextra.AbsoluteConstraints(60, 350, -1, -1));
+        getContentPane().add(jLabel71, new org.netbeans.lib.awtextra.AbsoluteConstraints(30, 170, -1, -1));
 
         jTdetallecompra.setColumns(20);
         jTdetallecompra.setRows(5);
         jScrollPane15.setViewportView(jTdetallecompra);
 
-        getContentPane().add(jScrollPane15, new org.netbeans.lib.awtextra.AbsoluteConstraints(60, 370, 800, 60));
+        getContentPane().add(jScrollPane15, new org.netbeans.lib.awtextra.AbsoluteConstraints(30, 200, 800, 60));
 
         jBcompra.setText("Aceptar");
         jBcompra.addActionListener(new java.awt.event.ActionListener() {
@@ -154,14 +153,14 @@ public static int rowCount, numfac, idoc;
                 jBcompraActionPerformed(evt);
             }
         });
-        getContentPane().add(jBcompra, new org.netbeans.lib.awtextra.AbsoluteConstraints(60, 680, 140, 30));
+        getContentPane().add(jBcompra, new org.netbeans.lib.awtextra.AbsoluteConstraints(30, 480, 140, 30));
 
         jCprov2.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 jCprov2ActionPerformed(evt);
             }
         });
-        getContentPane().add(jCprov2, new org.netbeans.lib.awtextra.AbsoluteConstraints(180, 70, 140, -1));
+        getContentPane().add(jCprov2, new org.netbeans.lib.awtextra.AbsoluteConstraints(150, 20, 140, -1));
 
         jTarticcomp.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
@@ -173,35 +172,30 @@ public static int rowCount, numfac, idoc;
         ));
         jScrollPane2.setViewportView(jTarticcomp);
 
-        getContentPane().add(jScrollPane2, new org.netbeans.lib.awtextra.AbsoluteConstraints(60, 460, 800, 210));
+        getContentPane().add(jScrollPane2, new org.netbeans.lib.awtextra.AbsoluteConstraints(30, 300, 800, 160));
 
-        jLabel72.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
+        jLabel72.setFont(new java.awt.Font("Tahoma", 1, 12)); // NOI18N
         jLabel72.setText("Detalle compra:");
-        getContentPane().add(jLabel72, new org.netbeans.lib.awtextra.AbsoluteConstraints(60, 430, -1, -1));
+        getContentPane().add(jLabel72, new org.netbeans.lib.awtextra.AbsoluteConstraints(30, 270, -1, -1));
 
         jCpag.addFocusListener(new java.awt.event.FocusAdapter() {
             public void focusGained(java.awt.event.FocusEvent evt) {
                 jCpagFocusGained(evt);
             }
         });
-        getContentPane().add(jCpag, new org.netbeans.lib.awtextra.AbsoluteConstraints(370, 190, 100, -1));
+        getContentPane().add(jCpag, new org.netbeans.lib.awtextra.AbsoluteConstraints(340, 110, 100, -1));
 
         jButton1.setText("Borrar");
-        getContentPane().add(jButton1, new org.netbeans.lib.awtextra.AbsoluteConstraints(230, 680, 130, 30));
+        getContentPane().add(jButton1, new org.netbeans.lib.awtextra.AbsoluteConstraints(200, 480, 130, 30));
 
-        jLabel64.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
+        jLabel64.setFont(new java.awt.Font("Tahoma", 1, 12)); // NOI18N
         jLabel64.setText("Pago total");
-        getContentPane().add(jLabel64, new org.netbeans.lib.awtextra.AbsoluteConstraints(60, 190, -1, -1));
-        getContentPane().add(jTefect1, new org.netbeans.lib.awtextra.AbsoluteConstraints(180, 190, 140, -1));
-
-        jLabel65.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
-        jLabel65.setForeground(new java.awt.Color(255, 255, 255));
-        jLabel65.setText("Pago total");
-        getContentPane().add(jLabel65, new org.netbeans.lib.awtextra.AbsoluteConstraints(60, 190, -1, -1));
-        getContentPane().add(jCfechapago, new org.netbeans.lib.awtextra.AbsoluteConstraints(180, 230, -1, -1));
+        getContentPane().add(jLabel64, new org.netbeans.lib.awtextra.AbsoluteConstraints(30, 110, -1, -1));
+        getContentPane().add(jTefect1, new org.netbeans.lib.awtextra.AbsoluteConstraints(150, 110, 140, -1));
+        getContentPane().add(jCfechapago, new org.netbeans.lib.awtextra.AbsoluteConstraints(150, 140, -1, -1));
 
         jCpagocaja.setText("Pago de caja");
-        getContentPane().add(jCpagocaja, new org.netbeans.lib.awtextra.AbsoluteConstraints(500, 190, -1, -1));
+        getContentPane().add(jCpagocaja, new org.netbeans.lib.awtextra.AbsoluteConstraints(470, 110, -1, -1));
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
@@ -706,7 +700,6 @@ llenar_forma_pago();
     private javax.swing.JLabel jLabel61;
     private javax.swing.JLabel jLabel63;
     private javax.swing.JLabel jLabel64;
-    private javax.swing.JLabel jLabel65;
     private javax.swing.JLabel jLabel70;
     private javax.swing.JLabel jLabel71;
     private javax.swing.JLabel jLabel72;
