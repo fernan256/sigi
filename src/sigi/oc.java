@@ -86,10 +86,11 @@ public static int rowCount, numfac, idprov, idprovi, idpag;
         jTvscaning = new javax.swing.JTextField();
         jScrollPane4 = new javax.swing.JScrollPane();
         jTbuscar = new javax.swing.JTable();
-        jttotal = new javax.swing.JFormattedTextField();
+        jTtotal = new javax.swing.JFormattedTextField();
         jBacep = new javax.swing.JButton();
         jCpag = new javax.swing.JComboBox();
         jLabel5 = new javax.swing.JLabel();
+        jLabel7 = new javax.swing.JLabel();
 
         setClosable(true);
         setIconifiable(true);
@@ -98,37 +99,37 @@ public static int rowCount, numfac, idprov, idprovi, idpag;
         getContentPane().setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
         jCprov2.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "Proveedor" }));
-        getContentPane().add(jCprov2, new org.netbeans.lib.awtextra.AbsoluteConstraints(180, 10, -1, -1));
+        getContentPane().add(jCprov2, new org.netbeans.lib.awtextra.AbsoluteConstraints(180, 10, 160, -1));
 
-        jLabel1.setFont(new java.awt.Font("Microsoft JhengHei", 1, 14)); // NOI18N
-        jLabel1.setText("Fecha de pago");
-        getContentPane().add(jLabel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(12, 55, -1, -1));
+        jLabel1.setFont(new java.awt.Font("Microsoft JhengHei", 1, 12)); // NOI18N
+        jLabel1.setText("Seleccionar Proveedor");
+        getContentPane().add(jLabel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 10, -1, -1));
 
-        jLabel2.setFont(new java.awt.Font("Microsoft JhengHei", 1, 14)); // NOI18N
+        jLabel2.setFont(new java.awt.Font("Microsoft JhengHei", 1, 12)); // NOI18N
         jLabel2.setText("Fecha de entrega");
-        getContentPane().add(jLabel2, new org.netbeans.lib.awtextra.AbsoluteConstraints(12, 95, -1, -1));
+        getContentPane().add(jLabel2, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 90, -1, -1));
 
-        jLabel3.setFont(new java.awt.Font("Microsoft JhengHei", 1, 14)); // NOI18N
+        jLabel3.setFont(new java.awt.Font("Microsoft JhengHei", 1, 12)); // NOI18N
         jLabel3.setText("Condición de entrega");
-        getContentPane().add(jLabel3, new org.netbeans.lib.awtextra.AbsoluteConstraints(12, 132, -1, -1));
+        getContentPane().add(jLabel3, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 130, -1, -1));
 
-        jLabel4.setFont(new java.awt.Font("Microsoft JhengHei", 1, 14)); // NOI18N
+        jLabel4.setFont(new java.awt.Font("Microsoft JhengHei", 1, 12)); // NOI18N
         jLabel4.setText("Estado");
-        getContentPane().add(jLabel4, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 170, 46, -1));
+        getContentPane().add(jLabel4, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 170, 46, -1));
 
         jToc.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
 
             },
             new String [] {
-                "Item", "Scanning", "Nombre Producto", "Precio unitario", "Cantidad", "Total"
+                "Item", "Scanning", "Nombre Producto", "Marca", "Precio unitario", "En Stock", "Cantidad Solicitada", "Total"
             }
         ) {
             Class[] types = new Class [] {
-                java.lang.String.class, java.lang.Integer.class, java.lang.String.class, java.lang.String.class, java.lang.String.class, java.lang.String.class
+                java.lang.String.class, java.lang.Integer.class, java.lang.String.class, java.lang.String.class, java.lang.String.class, java.lang.String.class, java.lang.Object.class, java.lang.String.class
             };
             boolean[] canEdit = new boolean [] {
-                false, false, false, false, true, false
+                false, false, false, false, false, false, true, false
             };
 
             public Class getColumnClass(int columnIndex) {
@@ -155,7 +156,7 @@ public static int rowCount, numfac, idprov, idprovi, idpag;
         });
         jScrollPane1.setViewportView(jToc);
 
-        getContentPane().add(jScrollPane1, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 330, 813, 190));
+        getContentPane().add(jScrollPane1, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 310, 813, 190));
 
         jButton2.setText("Borrar");
         jButton2.addActionListener(new java.awt.event.ActionListener() {
@@ -163,7 +164,7 @@ public static int rowCount, numfac, idprov, idprovi, idpag;
                 jButton2ActionPerformed(evt);
             }
         });
-        getContentPane().add(jButton2, new org.netbeans.lib.awtextra.AbsoluteConstraints(110, 540, -1, -1));
+        getContentPane().add(jButton2, new org.netbeans.lib.awtextra.AbsoluteConstraints(150, 510, 120, 30));
 
         jButton3.setText("Eliminar");
         jButton3.addActionListener(new java.awt.event.ActionListener() {
@@ -171,7 +172,7 @@ public static int rowCount, numfac, idprov, idprovi, idpag;
                 jButton3ActionPerformed(evt);
             }
         });
-        getContentPane().add(jButton3, new org.netbeans.lib.awtextra.AbsoluteConstraints(200, 540, -1, -1));
+        getContentPane().add(jButton3, new org.netbeans.lib.awtextra.AbsoluteConstraints(280, 510, 130, 30));
         getContentPane().add(jCfechapago, new org.netbeans.lib.awtextra.AbsoluteConstraints(180, 50, -1, -1));
         getContentPane().add(jCfechaentrega, new org.netbeans.lib.awtextra.AbsoluteConstraints(180, 90, -1, -1));
 
@@ -179,12 +180,12 @@ public static int rowCount, numfac, idprov, idprovi, idpag;
         jTcondentrega.setRows(5);
         jScrollPane2.setViewportView(jTcondentrega);
 
-        getContentPane().add(jScrollPane2, new org.netbeans.lib.awtextra.AbsoluteConstraints(180, 130, 525, 27));
-        getContentPane().add(jCpend, new org.netbeans.lib.awtextra.AbsoluteConstraints(180, 170, -1, -1));
+        getContentPane().add(jScrollPane2, new org.netbeans.lib.awtextra.AbsoluteConstraints(180, 130, 490, 27));
+        getContentPane().add(jCpend, new org.netbeans.lib.awtextra.AbsoluteConstraints(90, 170, -1, -1));
 
-        jlestado.setFont(new java.awt.Font("Microsoft JhengHei", 1, 14)); // NOI18N
+        jlestado.setFont(new java.awt.Font("Microsoft JhengHei", 1, 12)); // NOI18N
         jlestado.setText("Pendiente");
-        getContentPane().add(jlestado, new org.netbeans.lib.awtextra.AbsoluteConstraints(220, 170, -1, -1));
+        getContentPane().add(jlestado, new org.netbeans.lib.awtextra.AbsoluteConstraints(130, 170, -1, -1));
 
         jTvscaning.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -196,7 +197,7 @@ public static int rowCount, numfac, idprov, idprovi, idpag;
                 jTvscaningKeyPressed(evt);
             }
         });
-        getContentPane().add(jTvscaning, new org.netbeans.lib.awtextra.AbsoluteConstraints(140, 220, 180, -1));
+        getContentPane().add(jTvscaning, new org.netbeans.lib.awtextra.AbsoluteConstraints(90, 200, 180, -1));
 
         jTbuscar.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
@@ -213,15 +214,15 @@ public static int rowCount, numfac, idprov, idprovi, idpag;
         });
         jScrollPane4.setViewportView(jTbuscar);
 
-        getContentPane().add(jScrollPane4, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 250, 810, 70));
+        getContentPane().add(jScrollPane4, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 230, 810, 70));
 
-        jttotal.setText("0.0");
-        jttotal.addActionListener(new java.awt.event.ActionListener() {
+        jTtotal.setText("0.0");
+        jTtotal.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jttotalActionPerformed(evt);
+                jTtotalActionPerformed(evt);
             }
         });
-        getContentPane().add(jttotal, new org.netbeans.lib.awtextra.AbsoluteConstraints(700, 520, 130, -1));
+        getContentPane().add(jTtotal, new org.netbeans.lib.awtextra.AbsoluteConstraints(700, 500, 130, -1));
 
         jBacep.setText("Crear");
         jBacep.addActionListener(new java.awt.event.ActionListener() {
@@ -229,14 +230,18 @@ public static int rowCount, numfac, idprov, idprovi, idpag;
                 jBacepActionPerformed(evt);
             }
         });
-        getContentPane().add(jBacep, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 540, -1, -1));
+        getContentPane().add(jBacep, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 510, 120, 30));
 
         jCpag.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "Forma Pago" }));
-        getContentPane().add(jCpag, new org.netbeans.lib.awtextra.AbsoluteConstraints(320, 170, -1, -1));
+        getContentPane().add(jCpag, new org.netbeans.lib.awtextra.AbsoluteConstraints(200, 170, -1, -1));
 
-        jLabel5.setFont(new java.awt.Font("Microsoft JhengHei", 1, 14)); // NOI18N
+        jLabel5.setFont(new java.awt.Font("Microsoft JhengHei", 1, 12)); // NOI18N
         jLabel5.setText("Scanning");
-        getContentPane().add(jLabel5, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 220, -1, -1));
+        getContentPane().add(jLabel5, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 200, -1, -1));
+
+        jLabel7.setFont(new java.awt.Font("Microsoft JhengHei", 1, 12)); // NOI18N
+        jLabel7.setText("Fecha de pago");
+        getContentPane().add(jLabel7, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 50, -1, -1));
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
@@ -265,11 +270,11 @@ public static int rowCount, numfac, idprov, idprovi, idpag;
                         Logger.getLogger(oc.class.getName()).log(Level.SEVERE, null, ex);
                     }
 
-                    String nom= jTvscaning.getText();
-                    
-                    String sql ="SELECT articulos.scanning, articulos.nombre_prod, articulos.precio_costo,  stock.stock_min, stock.saldo_stock, articulos.id_articulo FROM articulos INNER JOIN stock ON stock.id_articulo = articulos.id_articulo WHERE scanning LIKE '"+nom+"%'";//"SELECT * FROM articulos WHERE scanning LIKE '"+nom+"%'";
-                    rs = con.Consulta(sql);
+                    String searchScanning= jTvscaning.getText();
 
+                    String sql = "SELECT t1.scanning, t1.nombre_producto, t1.marca, t1.precio_costo, t1.id_articulo, t2.stock_min, t2.saldo_stock FROM descripcion_articulos AS t1 INNER JOIN stock AS t2 ON t1.id_articulo = t2.id_articulo WHERE t1.scanning LIKE '"+searchScanning+"%'";
+                    rs = con.Consulta(sql);
+                    
                     if(rs==null)
                     JOptionPane.showMessageDialog(null, "No se encontro el scaning: "+jTvscaning.getText()+" en la base de datos.");
  
@@ -287,6 +292,7 @@ public static int rowCount, numfac, idprov, idprovi, idpag;
                         this.jTbuscar.setModel(buscar);
                         buscar.addColumn("Scanning");
                         buscar.addColumn("Nombre Producto");
+                        buscar.addColumn("Marca");
                         buscar.addColumn("Precio Costo");
                         buscar.addColumn("Stock");
                         //Obteniendo la informacion de las columnas que estan siendo consultadas
@@ -301,7 +307,7 @@ public static int rowCount, numfac, idprov, idprovi, idpag;
                         int y=0;*/
                         while (rs.next()) {
                             
-                           Object[] fila = new Object[4];
+                           Object[] fila = new Object[5];
 
                            //for (int i = 0; i < 3; i++) {
 //int i = 0;
@@ -309,9 +315,10 @@ public static int rowCount, numfac, idprov, idprovi, idpag;
                             //Object[] fila = new Object[3];//Creamos un Objeto con tantos parámetros como datos retorne cada fila 
                                               // de la consulta
                 fila[0] = rs.getString("scanning"); //Lo que hay entre comillas son los campos de la base de datos
-                fila[1] = rs.getString("nombre_prod");
-                fila[2] = rs.getFloat("precio_costo");
-                fila[3] = rs.getInt("saldo_stock");
+                fila[1] = rs.getString("nombre_producto");
+                fila[2] = rs.getString("marca");
+                fila[3] = rs.getFloat("precio_costo");
+                fila[4] = rs.getInt("saldo_stock");
                 buscar.addRow(fila); // Añade una fila al final del modelo de la tabla
                             //}
                             //buscar.addRow(fila);
@@ -400,7 +407,8 @@ public static int rowCount, numfac, idprov, idprovi, idpag;
             {
                 String scanning = jTbuscar.getValueAt(aux, 0).toString();
                 String nombre = jTbuscar.getValueAt(aux, 1).toString();
-                String costo = jTbuscar.getValueAt(aux, 2).toString();
+                String marca = jTbuscar.getValueAt(aux, 2).toString();
+                String costo = jTbuscar.getValueAt(aux, 3).toString();
               //calculo  
              
                 //String total2 = "0";
@@ -433,9 +441,10 @@ public static int rowCount, numfac, idprov, idprovi, idpag;
                     jToc.setValueAt(item, j, 0);
                     jToc.setValueAt(scanning, j, 1);
                     jToc.setValueAt(nombre, j, 2);
-                    jToc.setValueAt(costo, j, 3);
-                    jToc.setValueAt(ini, j, 4);
-                     jToc.setValueAt(costo, j, 5);
+                    jToc.setValueAt(marca, j, 3);
+                    jToc.setValueAt(costo, j, 4);
+                    jToc.setValueAt(ini, j, 5);
+                    jToc.setValueAt(costo, j, 6);
                     //jToc.setValueAt(tot, j, 5);
                     j++;//Aumenta el contador
                     
@@ -459,14 +468,14 @@ public static int rowCount, numfac, idprov, idprovi, idpag;
 
         {
 
-             double sumatoria= Double.parseDouble(String.valueOf(jToc.getValueAt(i,5)));
+             double sumatoria= Double.parseDouble(String.valueOf(jToc.getValueAt(i,6)));
 
 //en la parte de arriba indica el primer parametro la fila y el segundo la columna la cual estaras //manejando
 
              sumatoria1+=sumatoria;
              String suma = Double.toString(sumatoria1);
  
- jttotal.setText(suma);
+ jTtotal.setText(suma);
          // System.out.println(""+sumatoria1);
 
  
@@ -499,13 +508,13 @@ public static int rowCount, numfac, idprov, idprovi, idpag;
             else
             {
         
-                String cantidad = jToc.getValueAt(aux, 4).toString();
+                String cantidad = jToc.getValueAt(aux, 5).toString();
                 float cant = Float.parseFloat(cantidad);
-                String costo = jToc.getValueAt(aux, 3).toString();
+                String costo = jToc.getValueAt(aux, 4).toString();
                 float cos = Float.parseFloat(costo);
                 float total = cant*cos;
                 String tot = Float.toString(total);
-                 jToc.setValueAt(tot, aux, 5);
+                 jToc.setValueAt(tot, aux, 6);
                  
                 
                  
@@ -570,7 +579,7 @@ public static int rowCount, numfac, idprov, idprovi, idpag;
              sumatoria1+=sumatoria;
              String suma = Double.toString(sumatoria1);
  
- jttotal.setText(suma);
+ jTtotal.setText(suma);
          // System.out.println(""+sumatoria1);
 
  
@@ -579,9 +588,9 @@ public static int rowCount, numfac, idprov, idprovi, idpag;
         
     }//GEN-LAST:event_jTocKeyPressed
 
-    private void jttotalActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jttotalActionPerformed
+    private void jTtotalActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jTtotalActionPerformed
         // TODO add your handling code here:
-    }//GEN-LAST:event_jttotalActionPerformed
+    }//GEN-LAST:event_jTtotalActionPerformed
 
     private void jBacepActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jBacepActionPerformed
         
@@ -616,7 +625,7 @@ public static int rowCount, numfac, idprov, idprovi, idpag;
                      }
                    String idprov = Integer.toString(idprovi);
                     String iduser = ppal.jTID.getText();
-                   String total = jttotal.getText();
+                   String total = jTtotal.getText();
                  ///obtener la fecha con el formato correcto para la base mysql 
                  String fp = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss").format(jCfechapago.getDate());
                  String fe = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss").format(jCfechaentrega.getDate());
@@ -725,7 +734,7 @@ JOptionPane.showMessageDialog(null, "Generada la OC.");
                     Logger.getLogger(oc.class.getName()).log(Level.SEVERE, null, ex);
                 }
    // jToc.setModel(new DefaultTableModel());
-    jttotal.setText("0.0");
+    jTtotal.setText("0.0");
     llenar_combo_prov();
      int x =jToc.getRowCount()-1;
 
@@ -757,7 +766,7 @@ modelo.removeRow(fila);
 
     private void jButton3ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton3ActionPerformed
            total=0;
-        jttotal.setText("0.00");
+        jTtotal.setText("0.00");
 
         int x =jToc.getRowCount()-1;
 
@@ -920,15 +929,16 @@ modelo.removeRow(fila);
     private javax.swing.JLabel jLabel3;
     private javax.swing.JLabel jLabel4;
     private javax.swing.JLabel jLabel5;
+    private javax.swing.JLabel jLabel7;
     private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JScrollPane jScrollPane2;
     private javax.swing.JScrollPane jScrollPane4;
     private javax.swing.JTable jTbuscar;
     private javax.swing.JTextArea jTcondentrega;
     private javax.swing.JTable jToc;
+    private javax.swing.JFormattedTextField jTtotal;
     private javax.swing.JTextField jTvscaning;
     private javax.swing.JLabel jlestado;
-    private javax.swing.JFormattedTextField jttotal;
     // End of variables declaration//GEN-END:variables
 
 /*    private String objectToString(Object pros) {
