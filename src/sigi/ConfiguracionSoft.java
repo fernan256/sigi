@@ -16,12 +16,12 @@ import javax.swing.JOptionPane;
  *
  * @author Gustavo
  */
-public class configsoft extends javax.swing.JInternalFrame {
+public class ConfiguracionSoft extends javax.swing.JInternalFrame {
 
     /**
      * Creates new form configsoft
      */
-    public configsoft() {
+    public ConfiguracionSoft() {
         initComponents();
     }
 
@@ -71,7 +71,7 @@ public class configsoft extends javax.swing.JInternalFrame {
         });
         getContentPane().add(jnombemp, new org.netbeans.lib.awtextra.AbsoluteConstraints(38, 48, 487, 33));
 
-        jdire.setText("DirecciÃ³n");
+        jdire.setText("Dirección");
         getContentPane().add(jdire, new org.netbeans.lib.awtextra.AbsoluteConstraints(38, 88, 487, 33));
 
         jprovin.setText("Provincia");
@@ -103,7 +103,7 @@ public class configsoft extends javax.swing.JInternalFrame {
         getContentPane().add(jcuit, new org.netbeans.lib.awtextra.AbsoluteConstraints(40, 320, 487, 34));
 
         jComboBox1.setFont(new java.awt.Font("Tahoma", 1, 13)); // NOI18N
-        jComboBox1.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "PaÃ­s", "Argentina", "Chile", "Brasil", " " }));
+        jComboBox1.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "País", "Argentina", "Chile", "Brasil", " " }));
         getContentPane().add(jComboBox1, new org.netbeans.lib.awtextra.AbsoluteConstraints(40, 170, 210, -1));
 
         jButton1.setText("Guardar");
@@ -125,7 +125,7 @@ public class configsoft extends javax.swing.JInternalFrame {
         jComboBox2.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "IVA", "21,00", "10,5", " " }));
         getContentPane().add(jComboBox2, new org.netbeans.lib.awtextra.AbsoluteConstraints(40, 410, -1, -1));
 
-        jComboBox3.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "Empresa", "AutÃ³nomo" }));
+        jComboBox3.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "Empresa", "Autónomo" }));
         getContentPane().add(jComboBox3, new org.netbeans.lib.awtextra.AbsoluteConstraints(200, 410, -1, -1));
 
         jComboBox4.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "SA", "SRL", "RI", "Monotributista" }));

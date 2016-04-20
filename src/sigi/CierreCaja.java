@@ -117,7 +117,7 @@ public class CierreCaja extends javax.swing.JFrame {
 
     private void cerrarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_cerrarActionPerformed
         // TODO add your handling code here:
-        moduloVenta abrir = new moduloVenta();
+        ModuloVenta abrir = new ModuloVenta();
         abrir.setVisible(true);
         this.dispose();
     }//GEN-LAST:event_cerrarActionPerformed
@@ -157,16 +157,16 @@ public class CierreCaja extends javax.swing.JFrame {
                     }
                     System.out.println(cant);
                     this.dispose();
-                    ppalVendedor.jBvta.setEnabled(true);
-                    ppal.jBvta.setEnabled(true);
+                    PantallaPrincipalVendedor.jBvta.setEnabled(true);
+                    PantallaPrincipal.jBvta.setEnabled(true);
                 } catch (SQLException ex) {
-                    Logger.getLogger(moduloVenta.class.getName()).log(Level.SEVERE, null, ex);
+                    Logger.getLogger(ModuloVenta.class.getName()).log(Level.SEVERE, null, ex);
                 }
                 //this.dispose();
 //                if(Login.userRol != 1) {
-//                    ppalVendedor.jBvta.setEnabled(true); 
+//                    PantallaPrincipalVendedor.jBvta.setEnabled(true); 
 //                } else {
-//                    ppal.jBvta.setEnabled(true); 
+//                    PantallaPrincipal.jBvta.setEnabled(true); 
 //                }
             } else {
                 closeSales = "0";

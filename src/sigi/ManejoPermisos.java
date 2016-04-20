@@ -16,13 +16,13 @@ import java.util.logging.Logger;
 import javax.swing.DefaultComboBoxModel;
 import javax.swing.JOptionPane;
 import javax.swing.table.DefaultTableModel;
-import static sigi.proveedores.estado;
+import static sigi.Proveedores.estado;
 
 /**
  *
  * @author Gustavo
  */
-public class permisos extends javax.swing.JInternalFrame {
+public class ManejoPermisos extends javax.swing.JInternalFrame {
 Conexion con,query;
     ResultSet rs;
     ResultSet rs2;
@@ -40,7 +40,7 @@ public static boolean estado;
     /**
      * Creates new form permisos
      */
-    public permisos() {
+    public ManejoPermisos() {
         initComponents();
         llenar_combo_usuario();
     }
@@ -254,7 +254,7 @@ public static boolean estado;
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(jPanel1, javax.swing.GroupLayout.DEFAULT_SIZE, 559, Short.MAX_VALUE)
+            .addComponent(jPanel1, javax.swing.GroupLayout.DEFAULT_SIZE, 564, Short.MAX_VALUE)
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -367,13 +367,13 @@ jcventas.disable();*/
                         con = new Conexion();
 
                     } catch (ClassNotFoundException ex) {
-                        Logger.getLogger(permisos.class.getName()).log(Level.SEVERE, null, ex);
+                        Logger.getLogger(ManejoPermisos.class.getName()).log(Level.SEVERE, null, ex);
                     } catch (SQLException ex) {
-                        Logger.getLogger(permisos.class.getName()).log(Level.SEVERE, null, ex);
+                        Logger.getLogger(ManejoPermisos.class.getName()).log(Level.SEVERE, null, ex);
                     } catch (InstantiationException ex) {
-                        Logger.getLogger(permisos.class.getName()).log(Level.SEVERE, null, ex);
+                        Logger.getLogger(ManejoPermisos.class.getName()).log(Level.SEVERE, null, ex);
                     } catch (IllegalAccessException ex) {
-                        Logger.getLogger(permisos.class.getName()).log(Level.SEVERE, null, ex);
+                        Logger.getLogger(ManejoPermisos.class.getName()).log(Level.SEVERE, null, ex);
                     }
 
                     String nom= (String)jCusuario.getSelectedItem();
@@ -568,8 +568,10 @@ jcventas.disable();*/
                         }*/
 
                     } catch (SQLException ex) {
-                        Logger.getLogger(permisos.class.getName()).log(Level.SEVERE, null, ex);
+                        Logger.getLogger(ManejoPermisos.class.getName()).log(Level.SEVERE, null, ex);
                     }
+                 /*   if(evt.getKeyCode() == KeyEvent.VK_ENTER){
+                        jTbuscarprov.requestFocusInWindow();
                  /*   if(evt.getKeyCode() == KeyEvent.VK_ENTER){
                         jTbuscarprov.requestFocusInWindow();
                     }*/

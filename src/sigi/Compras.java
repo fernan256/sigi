@@ -25,9 +25,9 @@ import javax.swing.tree.DefaultTreeModel;
 import javax.print.PrintException;
 import javax.swing.DefaultComboBoxModel;
 import javax.swing.table.DefaultTableModel;
-import static sigi.oc.idpag;
-import static sigi.oc.idprovi;
-import static sigi.oc.j;
+import static sigi.OrdenesCompras.idpag;
+import static sigi.OrdenesCompras.idprovi;
+import static sigi.OrdenesCompras.j;
 /**
  *
  * @author Gustavo
@@ -358,13 +358,13 @@ public static int rowCount, numfac, idoc;
                    */
 JOptionPane.showMessageDialog(null, "Compra finalizada.");
                 }catch (ClassNotFoundException ex) {
-                    Logger.getLogger(oc.class.getName()).log(Level.SEVERE, null, ex);
+                    Logger.getLogger(OrdenesCompras.class.getName()).log(Level.SEVERE, null, ex);
                 } catch (InstantiationException ex) {
-                    Logger.getLogger(oc.class.getName()).log(Level.SEVERE, null, ex);
+                    Logger.getLogger(OrdenesCompras.class.getName()).log(Level.SEVERE, null, ex);
                 } catch (IllegalAccessException ex) {
-                    Logger.getLogger(oc.class.getName()).log(Level.SEVERE, null, ex);
+                    Logger.getLogger(OrdenesCompras.class.getName()).log(Level.SEVERE, null, ex);
                 } catch (SQLException ex) {
-                    Logger.getLogger(oc.class.getName()).log(Level.SEVERE, null, ex);
+                    Logger.getLogger(OrdenesCompras.class.getName()).log(Level.SEVERE, null, ex);
                 }
    // jToc.setModel(new DefaultTableModel());
     jTefect1.setText("0.0");
@@ -434,7 +434,7 @@ JOptionPane.showMessageDialog(null, "Compra finalizada.");
                    }// fin llenar combo
                    
                      }
-                 // completo el table con los datos de los productos desde la tabla oc productos
+                 // completo el table con los datos de los productos desde la tabla OrdenesCompras productos
                    String sqlart = "SELECT * FROM oc_productos WHERE id_orden_de_compra = '"+idoc+"%'";
                    rs4 = con.Consulta(sqlart);
                     DefaultTableModel buscar = new DefaultTableModel(){
@@ -498,13 +498,13 @@ llenar_forma_pago();
                         con = new Conexion();
 
                     } catch (ClassNotFoundException ex) {
-                        Logger.getLogger(oc.class.getName()).log(Level.SEVERE, null, ex);
+                        Logger.getLogger(OrdenesCompras.class.getName()).log(Level.SEVERE, null, ex);
                     } catch (SQLException ex) {
-                        Logger.getLogger(oc.class.getName()).log(Level.SEVERE, null, ex);
+                        Logger.getLogger(OrdenesCompras.class.getName()).log(Level.SEVERE, null, ex);
                     } catch (InstantiationException ex) {
-                        Logger.getLogger(oc.class.getName()).log(Level.SEVERE, null, ex);
+                        Logger.getLogger(OrdenesCompras.class.getName()).log(Level.SEVERE, null, ex);
                     } catch (IllegalAccessException ex) {
-                        Logger.getLogger(oc.class.getName()).log(Level.SEVERE, null, ex);
+                        Logger.getLogger(OrdenesCompras.class.getName()).log(Level.SEVERE, null, ex);
                     }
 
                     String nom= jToc.getText();
@@ -588,7 +588,7 @@ llenar_forma_pago();
                         jTarticcomp.requestFocusInWindow();
                     }*/
                     } catch (SQLException ex) {
-                        Logger.getLogger(moduloVenta.class.getName()).log(Level.SEVERE, null, ex);
+                        Logger.getLogger(ModuloVenta.class.getName()).log(Level.SEVERE, null, ex);
                     }
                    /* if(evt.getKeyCode() == KeyEvent.VK_ENTER){
                     //    jTcant.requestFocusInWindow();
@@ -653,13 +653,13 @@ llenar_forma_pago();
                    
                 con = new Conexion();
                 } catch (ClassNotFoundException ex) {
-                    Logger.getLogger(oc.class.getName()).log(Level.SEVERE, null, ex);
+                    Logger.getLogger(OrdenesCompras.class.getName()).log(Level.SEVERE, null, ex);
                 } catch (SQLException ex) {
-                    Logger.getLogger(oc.class.getName()).log(Level.SEVERE, null, ex);
+                    Logger.getLogger(OrdenesCompras.class.getName()).log(Level.SEVERE, null, ex);
                 } catch (InstantiationException ex) {
-                    Logger.getLogger(oc.class.getName()).log(Level.SEVERE, null, ex);
+                    Logger.getLogger(OrdenesCompras.class.getName()).log(Level.SEVERE, null, ex);
                 } catch (IllegalAccessException ex) {
-                    Logger.getLogger(oc.class.getName()).log(Level.SEVERE, null, ex);
+                    Logger.getLogger(OrdenesCompras.class.getName()).log(Level.SEVERE, null, ex);
                 }
                 String sql = "SELECT * FROM forma_pago";
 
@@ -685,7 +685,7 @@ llenar_forma_pago();
            
             
             } catch (SQLException ex) {
-          Logger.getLogger(oc.class.getName()).log(Level.SEVERE, null, ex);
+          Logger.getLogger(OrdenesCompras.class.getName()).log(Level.SEVERE, null, ex);
             }
     }  
     

@@ -17,7 +17,7 @@ import java.util.logging.Logger;
  *
  * @author Gustavo
  */
-public class ajusteCaja extends javax.swing.JInternalFrame {
+public class AjusteCaja extends javax.swing.JInternalFrame {
 Conexion con,query;
     ResultSet rs;
     ResultSet rs2;
@@ -37,7 +37,7 @@ public static boolean estado;
     /**
      * Creates new form ajustecaja
      */
-    public ajusteCaja() {
+    public AjusteCaja() {
         initComponents();
     }
 
@@ -102,13 +102,13 @@ public static boolean estado;
                 con = new Conexion();
 
             } catch (ClassNotFoundException ex) {
-                Logger.getLogger(ajusteCaja.class.getName()).log(Level.SEVERE, null, ex);
+                Logger.getLogger(AjusteCaja.class.getName()).log(Level.SEVERE, null, ex);
             } catch (SQLException ex) {
-                Logger.getLogger(ajusteCaja.class.getName()).log(Level.SEVERE, null, ex);
+                Logger.getLogger(AjusteCaja.class.getName()).log(Level.SEVERE, null, ex);
             } catch (InstantiationException ex) {
-                Logger.getLogger(ajusteCaja.class.getName()).log(Level.SEVERE, null, ex);
+                Logger.getLogger(AjusteCaja.class.getName()).log(Level.SEVERE, null, ex);
             } catch (IllegalAccessException ex) {
-                Logger.getLogger(ajusteCaja.class.getName()).log(Level.SEVERE, null, ex);
+                Logger.getLogger(AjusteCaja.class.getName()).log(Level.SEVERE, null, ex);
             }
           java.util.Date date = new java.util.Date();
                 java.text.SimpleDateFormat sdf=new java.text.SimpleDateFormat("yyyy-MM-dd");
@@ -152,7 +152,7 @@ String total1= String.valueOf(total);
                 
                 
         } catch (SQLException ex) {
-                Logger.getLogger(ajusteCaja.class.getName()).log(Level.SEVERE, null, ex);
+                Logger.getLogger(AjusteCaja.class.getName()).log(Level.SEVERE, null, ex);
             }
     }//GEN-LAST:event_jButton1ActionPerformed
 

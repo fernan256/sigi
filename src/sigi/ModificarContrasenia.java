@@ -4,7 +4,7 @@
  */
 
 /*
- * modificar.java
+ * ModificarContrasenia.java
  *
  * Created on 07-mar-2012, 23:42:14
  */
@@ -22,12 +22,12 @@ import javax.swing.JOptionPane;
  *
  * @author AkaMM
  */
-public class modificar extends javax.swing.JFrame {
+public class ModificarContrasenia extends javax.swing.JFrame {
 int id;
 Conexion con;
     ResultSet rs;
     /** Creates new form modificar */
-    public modificar() {
+    public ModificarContrasenia() {
         initComponents();
     }
 
@@ -56,7 +56,7 @@ Conexion con;
         jMenu2 = new javax.swing.JMenu();
         jMenuItem2 = new javax.swing.JMenuItem();
 
-        setTitle("Modificar ContraseÃ±a");
+        setTitle("Modificar Contraseña");
         setMinimumSize(new java.awt.Dimension(400, 400));
         setResizable(false);
         getContentPane().setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
@@ -68,13 +68,13 @@ Conexion con;
         });
         getContentPane().add(jTpass, new org.netbeans.lib.awtextra.AbsoluteConstraints(217, 80, 146, -1));
 
-        jLabel1.setText("ContraseÃ±a Actual:");
+        jLabel1.setText("Contraseña Actual:");
         getContentPane().add(jLabel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(70, 83, -1, -1));
 
-        jLabel2.setText("ContraseÃ±a Nueva:");
+        jLabel2.setText("Contraseña Nueva:");
         getContentPane().add(jLabel2, new org.netbeans.lib.awtextra.AbsoluteConstraints(70, 115, -1, -1));
 
-        jLabel3.setText("Repetir ContraseÃ±a:");
+        jLabel3.setText("Repetir Contraseña:");
         getContentPane().add(jLabel3, new org.netbeans.lib.awtextra.AbsoluteConstraints(64, 147, -1, -1));
         getContentPane().add(jTpassN, new org.netbeans.lib.awtextra.AbsoluteConstraints(217, 112, 146, -1));
 
@@ -103,10 +103,10 @@ Conexion con;
         getContentPane().add(jBcancelar, new org.netbeans.lib.awtextra.AbsoluteConstraints(240, 196, 88, 33));
 
         jLabel4.setBackground(new java.awt.Color(0, 153, 255));
-        jLabel4.setBorder(javax.swing.BorderFactory.createTitledBorder(null, "Cambiar contraseÃ±a", javax.swing.border.TitledBorder.LEFT, javax.swing.border.TitledBorder.DEFAULT_POSITION, new java.awt.Font("Tahoma", 1, 14))); // NOI18N
+        jLabel4.setBorder(javax.swing.BorderFactory.createTitledBorder(null, "Cambiar contraseña", javax.swing.border.TitledBorder.LEFT, javax.swing.border.TitledBorder.DEFAULT_POSITION, new java.awt.Font("Tahoma", 1, 14))); // NOI18N
         jLabel4.setName(""); // NOI18N
         getContentPane().add(jLabel4, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 10, 390, 290));
-        jLabel4.getAccessibleContext().setAccessibleDescription("Cambiar contraseÃ±a actual");
+        jLabel4.getAccessibleContext().setAccessibleDescription("Cambiar contraseña actual");
 
         jPanel1.setBackground(new java.awt.Color(255, 255, 255));
         getContentPane().add(jPanel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 400, 280));
@@ -240,13 +240,13 @@ private void jBcambiarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIR
                         
             
         } catch (ClassNotFoundException ex) {
-            Logger.getLogger(modificar.class.getName()).log(Level.SEVERE, null, ex);
+            Logger.getLogger(ModificarContrasenia.class.getName()).log(Level.SEVERE, null, ex);
         } catch (SQLException ex) {
-            Logger.getLogger(modificar.class.getName()).log(Level.SEVERE, null, ex);
+            Logger.getLogger(ModificarContrasenia.class.getName()).log(Level.SEVERE, null, ex);
         } catch (InstantiationException ex) {
-            Logger.getLogger(modificar.class.getName()).log(Level.SEVERE, null, ex);
+            Logger.getLogger(ModificarContrasenia.class.getName()).log(Level.SEVERE, null, ex);
         } catch (IllegalAccessException ex) {
-            Logger.getLogger(modificar.class.getName()).log(Level.SEVERE, null, ex);
+            Logger.getLogger(ModificarContrasenia.class.getName()).log(Level.SEVERE, null, ex);
         }
     
     
@@ -292,14 +292,20 @@ public int setId(int id){
                 }
             }
         } catch (ClassNotFoundException ex) {
-            java.util.logging.Logger.getLogger(modificar.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(ModificarContrasenia.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         } catch (InstantiationException ex) {
-            java.util.logging.Logger.getLogger(modificar.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(ModificarContrasenia.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         } catch (IllegalAccessException ex) {
-            java.util.logging.Logger.getLogger(modificar.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(ModificarContrasenia.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         } catch (javax.swing.UnsupportedLookAndFeelException ex) {
-            java.util.logging.Logger.getLogger(modificar.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(ModificarContrasenia.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         }
+        //</editor-fold>
+        //</editor-fold>
+        //</editor-fold>
+        //</editor-fold>
+        //</editor-fold>
+        //</editor-fold>
         //</editor-fold>
         //</editor-fold>
 
@@ -307,7 +313,7 @@ public int setId(int id){
         java.awt.EventQueue.invokeLater(new Runnable() {
 
             public void run() {
-                new modificar().setVisible(true);
+                new ModificarContrasenia().setVisible(true);
             }
         });
         

@@ -9,12 +9,12 @@ package sigi;
  *
  * @author Gustavo
  */
-public class ajusteventa extends javax.swing.JInternalFrame {
+public class AjusteVenta extends javax.swing.JInternalFrame {
 
     /**
      * Creates new form ajusteventa
      */
-    public ajusteventa() {
+    public AjusteVenta() {
         initComponents();
     }
 

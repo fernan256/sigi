@@ -9,12 +9,12 @@ package sigi;
  *
  * @author Gustavo
  */
-public class importarexportar extends javax.swing.JInternalFrame {
+public class ImportarExportar extends javax.swing.JInternalFrame {
 
     /**
      * Creates new form importarexportar
      */
-    public importarexportar() {
+    public ImportarExportar() {
         initComponents();
     }
 

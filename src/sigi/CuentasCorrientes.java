@@ -20,7 +20,7 @@ import javax.swing.table.DefaultTableModel;
  *
  * @author Gustavo
  */
-public class ctacte extends javax.swing.JFrame {
+public class CuentasCorrientes extends javax.swing.JFrame {
     Conexion con,query;
     ResultSet rs;
     ResultSet rs2;
@@ -36,7 +36,7 @@ public class ctacte extends javax.swing.JFrame {
     public static int rowCount, numfac, rs1;
     public static boolean estado;
     
-    public ctacte() {
+    public CuentasCorrientes() {
         initComponents();
     }
     
@@ -185,13 +185,13 @@ public class ctacte extends javax.swing.JFrame {
                     con = new Conexion();
 
                 } catch (ClassNotFoundException ex) {
-                    Logger.getLogger(ppal.class.getName()).log(Level.SEVERE, null, ex);
+                    Logger.getLogger(PantallaPrincipal.class.getName()).log(Level.SEVERE, null, ex);
                 } catch (SQLException ex) {
-                    Logger.getLogger(ppal.class.getName()).log(Level.SEVERE, null, ex);
+                    Logger.getLogger(PantallaPrincipal.class.getName()).log(Level.SEVERE, null, ex);
                 } catch (InstantiationException ex) {
-                    Logger.getLogger(ppal.class.getName()).log(Level.SEVERE, null, ex);
+                    Logger.getLogger(PantallaPrincipal.class.getName()).log(Level.SEVERE, null, ex);
                 } catch (IllegalAccessException ex) {
-                    Logger.getLogger(ppal.class.getName()).log(Level.SEVERE, null, ex);
+                    Logger.getLogger(PantallaPrincipal.class.getName()).log(Level.SEVERE, null, ex);
                 }    
                 //se obtienen los valores de los jTextField
 
@@ -225,7 +225,7 @@ public class ctacte extends javax.swing.JFrame {
                 
                 JOptionPane.showMessageDialog(null, "Operación realizada, saldo actual: "+resultado+".");
             } catch (SQLException ex) {
-                Logger.getLogger(ppal.class.getName()).log(Level.SEVERE, null, ex);
+                Logger.getLogger(PantallaPrincipal.class.getName()).log(Level.SEVERE, null, ex);
             }
     
         
@@ -239,13 +239,13 @@ public class ctacte extends javax.swing.JFrame {
                         con = new Conexion();
 
                     } catch (ClassNotFoundException ex) {
-                        Logger.getLogger(moduloVenta.class.getName()).log(Level.SEVERE, null, ex);
+                        Logger.getLogger(ModuloVenta.class.getName()).log(Level.SEVERE, null, ex);
                     } catch (SQLException ex) {
-                        Logger.getLogger(moduloVenta.class.getName()).log(Level.SEVERE, null, ex);
+                        Logger.getLogger(ModuloVenta.class.getName()).log(Level.SEVERE, null, ex);
                     } catch (InstantiationException ex) {
-                        Logger.getLogger(moduloVenta.class.getName()).log(Level.SEVERE, null, ex);
+                        Logger.getLogger(ModuloVenta.class.getName()).log(Level.SEVERE, null, ex);
                     } catch (IllegalAccessException ex) {
-                        Logger.getLogger(moduloVenta.class.getName()).log(Level.SEVERE, null, ex);
+                        Logger.getLogger(ModuloVenta.class.getName()).log(Level.SEVERE, null, ex);
                     }
 
                     String nom= jTbusc.getText();
@@ -302,7 +302,7 @@ public class ctacte extends javax.swing.JFrame {
                         }
     
                     } catch (SQLException ex) {
-                        Logger.getLogger(moduloVenta.class.getName()).log(Level.SEVERE, null, ex);
+                        Logger.getLogger(ModuloVenta.class.getName()).log(Level.SEVERE, null, ex);
                     }
                   /*  if(evt.getKeyCode() == KeyEvent.VK_ENTER){
                         jTcant.requestFocusInWindow();
@@ -324,7 +324,7 @@ public class ctacte extends javax.swing.JFrame {
                         con = new Conexion();
 
                     } catch (ClassNotFoundException | SQLException | InstantiationException | IllegalAccessException ex) {
-                        Logger.getLogger(moduloVenta.class.getName()).log(Level.SEVERE, null, ex);
+                        Logger.getLogger(ModuloVenta.class.getName()).log(Level.SEVERE, null, ex);
                     }
 
                     String nom= jTbusc.getText();
@@ -390,7 +390,7 @@ public class ctacte extends javax.swing.JFrame {
                         }
     
                     } catch (SQLException ex) {
-                        Logger.getLogger(moduloVenta.class.getName()).log(Level.SEVERE, null, ex);
+                        Logger.getLogger(ModuloVenta.class.getName()).log(Level.SEVERE, null, ex);
                     }
         jTfecha.enable(false);
         jFsaldo.enable(false);
@@ -503,20 +503,21 @@ modelo.removeRow(fila);
                 }
             }
         } catch (ClassNotFoundException ex) {
-            java.util.logging.Logger.getLogger(ctacte.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(CuentasCorrientes.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         } catch (InstantiationException ex) {
-            java.util.logging.Logger.getLogger(ctacte.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(CuentasCorrientes.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         } catch (IllegalAccessException ex) {
-            java.util.logging.Logger.getLogger(ctacte.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(CuentasCorrientes.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         } catch (javax.swing.UnsupportedLookAndFeelException ex) {
-            java.util.logging.Logger.getLogger(ctacte.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(CuentasCorrientes.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         }
+        //</editor-fold>
         //</editor-fold>
 
         /* Create and display the form */
         java.awt.EventQueue.invokeLater(new Runnable() {
             public void run() {
-                new ctacte().setVisible(true);
+                new CuentasCorrientes().setVisible(true);
             }
         });
     }

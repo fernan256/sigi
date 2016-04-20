@@ -14,12 +14,12 @@ import java.util.logging.Logger;
 import javax.swing.JFileChooser;
 import javax.swing.JOptionPane;
 
-public class backupbd extends javax.swing.JInternalFrame {
+public class BackupBd extends javax.swing.JInternalFrame {
     Conexion con,query;
     ResultSet rs;
     JFileChooser chooser = new JFileChooser();
     
-    public backupbd() {
+    public BackupBd() {
         initComponents();
     }
 
@@ -114,9 +114,10 @@ public class backupbd extends javax.swing.JInternalFrame {
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(mostrarDb, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(12, 12, 12)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(restaurarBd)
-                    .addComponent(respaldoBd))
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(respaldoBd, javax.swing.GroupLayout.Alignment.TRAILING)
+                    .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                        .addComponent(restaurarBd)))
                 .addGap(62, 62, 62)
                 .addComponent(jLabel2, javax.swing.GroupLayout.PREFERRED_SIZE, 31, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(58, 58, 58)
@@ -169,7 +170,7 @@ public class backupbd extends javax.swing.JInternalFrame {
                 br.close();
 
             } catch (ClassNotFoundException | SQLException | InstantiationException | IllegalAccessException | IOException ex) {
-                Logger.getLogger(moduloVenta.class.getName()).log(Level.SEVERE, null, ex);
+                Logger.getLogger(ModuloVenta.class.getName()).log(Level.SEVERE, null, ex);
             }
             JOptionPane.showMessageDialog(null, "Archivo generado", "Verificar", JOptionPane.INFORMATION_MESSAGE);
         } else if(resp == JFileChooser.CANCEL_OPTION) {

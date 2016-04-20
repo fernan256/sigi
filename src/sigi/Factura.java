@@ -4,7 +4,7 @@
  */
 
 /*
- * factura.java
+ * Factura.java
  *
  * Created on 08-dic-2011, 3:58:24
  */
@@ -31,10 +31,10 @@ import javax.swing.table.DefaultTableModel;
  *
  * @author AkaMM
  */
-public class factura extends javax.swing.JInternalFrame {
+public class Factura extends javax.swing.JInternalFrame {
 
     /** Creates new form factura */
-    public factura() {
+    public Factura() {
         
         initComponents();
     }
@@ -184,7 +184,7 @@ public class factura extends javax.swing.JInternalFrame {
         getContentPane().add(jLabel15, new org.netbeans.lib.awtextra.AbsoluteConstraints(500, 140, -1, -1));
 
         jLabel16.setFont(new java.awt.Font("Verdana", 1, 12)); // NOI18N
-        jLabel16.setText("DirecciÃ³n:");
+        jLabel16.setText("Dirección:");
         getContentPane().add(jLabel16, new org.netbeans.lib.awtextra.AbsoluteConstraints(490, 170, -1, -1));
 
         jTnombrefac.addActionListener(new java.awt.event.ActionListener() {
@@ -217,7 +217,7 @@ public class factura extends javax.swing.JInternalFrame {
         getContentPane().add(jBimprimirfac, new org.netbeans.lib.awtextra.AbsoluteConstraints(558, 596, 150, 53));
 
         jLabel17.setFont(new java.awt.Font("Verdana", 1, 12)); // NOI18N
-        jLabel17.setText("Factura NÂº: ");
+        jLabel17.setText("Factura Nº: ");
         getContentPane().add(jLabel17, new org.netbeans.lib.awtextra.AbsoluteConstraints(490, 70, -1, 31));
 
         jTnumfac.setEditable(false);
@@ -312,9 +312,9 @@ if(JOptionPane.showConfirmDialog(rootPane, "Ya esta listo para imprimir la Factu
 //////                  PrintStream ps = new PrintStream(os);
                 
                 
-               // Interface row = new Interface();
+                PantallaPrincipal row = new PantallaPrincipal();
                 int rowCount = row.getFactura();
-                //vendedor vende = new vendedor();
+                ModuloVenta vende = new ModuloVenta();
                 int rc = vende.getFactura();
                 
                 Date fecha = new Date();
@@ -418,15 +418,15 @@ Doc doc=new SimpleDoc(bytes,flavor,null);
 
 
             }   catch (PrintException ex1) {
-                    Logger.getLogger(factura.class.getName()).log(Level.SEVERE, null, ex1);
+                    Logger.getLogger(Factura.class.getName()).log(Level.SEVERE, null, ex1);
                 }  catch (ClassNotFoundException ex) {
-                Logger.getLogger(factura.class.getName()).log(Level.SEVERE, null, ex);
+                Logger.getLogger(Factura.class.getName()).log(Level.SEVERE, null, ex);
             } catch (InstantiationException ex) {
-                Logger.getLogger(factura.class.getName()).log(Level.SEVERE, null, ex);
+                Logger.getLogger(Factura.class.getName()).log(Level.SEVERE, null, ex);
             } catch (IllegalAccessException ex) {
-                Logger.getLogger(factura.class.getName()).log(Level.SEVERE, null, ex);
+                Logger.getLogger(Factura.class.getName()).log(Level.SEVERE, null, ex);
             } catch (SQLException ex) {
-                Logger.getLogger(factura.class.getName()).log(Level.SEVERE, null, ex);
+                Logger.getLogger(Factura.class.getName()).log(Level.SEVERE, null, ex);
             }
 
         
@@ -486,14 +486,16 @@ public void setNum(int num){
                 }
             }
         } catch (ClassNotFoundException ex) {
-            java.util.logging.Logger.getLogger(factura.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(Factura.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         } catch (InstantiationException ex) {
-            java.util.logging.Logger.getLogger(factura.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(Factura.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         } catch (IllegalAccessException ex) {
-            java.util.logging.Logger.getLogger(factura.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(Factura.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         } catch (javax.swing.UnsupportedLookAndFeelException ex) {
-            java.util.logging.Logger.getLogger(factura.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(Factura.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         }
+        //</editor-fold>
+        //</editor-fold>
         //</editor-fold>
         //</editor-fold>
 
@@ -501,7 +503,7 @@ public void setNum(int num){
         java.awt.EventQueue.invokeLater(new Runnable() {
 
             public void run() {
-                    factura fact =    new factura();
+                    Factura fact =    new Factura();
                     fact.setVisible(true);
             }
         });

@@ -457,7 +457,7 @@ public class AbmClientes extends javax.swing.JInternalFrame {
                 List<JTable> tb = new ArrayList<>();
                 //tb.add(jTtabla_clie);
                 //-------------------
-                export_excel excelExporter = new export_excel(tb, new File(dir.getAbsolutePath() + ".xls"));
+                ExportarExcel excelExporter = new ExportarExcel(tb, new File(dir.getAbsolutePath() + ".xls"));
                 if (excelExporter.export()) {
                     JOptionPane.showMessageDialog(null, "TABLAS EXPORTADOS CON EXITOS!");
                 }
@@ -535,7 +535,7 @@ public class AbmClientes extends javax.swing.JInternalFrame {
                     }
 
                     } catch (SQLException ex) {
-                        Logger.getLogger(proveedores.class.getName()).log(Level.SEVERE, null, ex);
+                        Logger.getLogger(Proveedores.class.getName()).log(Level.SEVERE, null, ex);
                     }
          
             }
@@ -560,7 +560,7 @@ public class AbmClientes extends javax.swing.JInternalFrame {
             }
             
         } catch (SQLException ex) {
-            Logger.getLogger(proveedores.class.getName()).log(Level.SEVERE, null, ex);
+            Logger.getLogger(Proveedores.class.getName()).log(Level.SEVERE, null, ex);
         }
     }
     public void clearFields(){

@@ -27,7 +27,7 @@ import javax.swing.table.DefaultTableModel;
  *
  * @author Gustavo
  */
-public class moduloVenta extends javax.swing.JFrame {
+public class ModuloVenta extends javax.swing.JFrame {
     Conexion con;
     ResultSet rs;
     ResultSet rs2;
@@ -43,9 +43,10 @@ public class moduloVenta extends javax.swing.JFrame {
     static BigDecimal descuentoAuxiliar = BigDecimal.ZERO;
     static BigDecimal cantidadSolicitada = BigDecimal.ZERO;
     static BigDecimal getTotalVentas;
+    public static int rowCount, numfac;
     String articleId = null;
     
-    public moduloVenta() {
+    public ModuloVenta() {
         initComponents();
         this.setLocationRelativeTo(null);
     }
@@ -378,14 +379,14 @@ public class moduloVenta extends javax.swing.JFrame {
                     j=0;
                 }
             } catch (PrintException | ClassNotFoundException | InstantiationException | IllegalAccessException | SQLException ex1) {
-                Logger.getLogger(moduloVenta.class.getName()).log(Level.SEVERE, null, ex1);
+                Logger.getLogger(ModuloVenta.class.getName()).log(Level.SEVERE, null, ex1);
             }
 
         }
     }//GEN-LAST:event_venderActionPerformed
 
     private void jButton4ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton4ActionPerformed
-        ctacte ctacte = new ctacte();
+        CuentasCorrientes ctacte = new CuentasCorrientes();
         ctacte.setVisible(true);
     }//GEN-LAST:event_jButton4ActionPerformed
 
@@ -415,13 +416,13 @@ public class moduloVenta extends javax.swing.JFrame {
             try {
                 con = new Conexion();
             } catch (ClassNotFoundException ex) {
-                Logger.getLogger(moduloVenta.class.getName()).log(Level.SEVERE, null, ex);
+                Logger.getLogger(ModuloVenta.class.getName()).log(Level.SEVERE, null, ex);
             } catch (SQLException ex) {
-                Logger.getLogger(moduloVenta.class.getName()).log(Level.SEVERE, null, ex);
+                Logger.getLogger(ModuloVenta.class.getName()).log(Level.SEVERE, null, ex);
             } catch (InstantiationException ex) {
-                Logger.getLogger(moduloVenta.class.getName()).log(Level.SEVERE, null, ex);
+                Logger.getLogger(ModuloVenta.class.getName()).log(Level.SEVERE, null, ex);
             } catch (IllegalAccessException ex) {
-                Logger.getLogger(moduloVenta.class.getName()).log(Level.SEVERE, null, ex);
+                Logger.getLogger(ModuloVenta.class.getName()).log(Level.SEVERE, null, ex);
             }
 
             String searchScanning= scanning.getText();
@@ -492,7 +493,7 @@ public class moduloVenta extends javax.swing.JFrame {
                 scanning.requestFocus();
             }
         } catch (SQLException ex) {
-            Logger.getLogger(moduloVenta.class.getName()).log(Level.SEVERE, null, ex);
+            Logger.getLogger(ModuloVenta.class.getName()).log(Level.SEVERE, null, ex);
         }
     }//GEN-LAST:event_scanningKeyReleased
 
@@ -503,7 +504,9 @@ public class moduloVenta extends javax.swing.JFrame {
     private void scanningActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_scanningActionPerformed
         // TODO add your handling code here:
     }//GEN-LAST:event_scanningActionPerformed
-
+    public int getFactura(){
+        return rowCount;
+    }
     /**
      * @param args the command line arguments
      */
@@ -522,21 +525,23 @@ public class moduloVenta extends javax.swing.JFrame {
                 }
             }
         } catch (ClassNotFoundException ex) {
-            java.util.logging.Logger.getLogger(moduloVenta.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(ModuloVenta.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         } catch (InstantiationException ex) {
-            java.util.logging.Logger.getLogger(moduloVenta.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(ModuloVenta.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         } catch (IllegalAccessException ex) {
-            java.util.logging.Logger.getLogger(moduloVenta.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(ModuloVenta.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         } catch (javax.swing.UnsupportedLookAndFeelException ex) {
-            java.util.logging.Logger.getLogger(moduloVenta.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(ModuloVenta.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         }
+        //</editor-fold>
+        //</editor-fold>
         //</editor-fold>
         //</editor-fold>
 
         /* Create and display the form */
         java.awt.EventQueue.invokeLater(new Runnable() {
             public void run() {
-                new moduloVenta().setVisible(true);
+                new ModuloVenta().setVisible(true);
             }
         });
     }

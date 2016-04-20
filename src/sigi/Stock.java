@@ -37,12 +37,12 @@ import jxl.Cell;
 import jxl.Sheet;
 import jxl.Workbook;
 import jxl.read.biff.BiffException;
-import static sigi.moduloVenta.j;
+import static sigi.ModuloVenta.j;
 /**
  *
  * @author Gustavo
  */
-public class stock extends javax.swing.JInternalFrame {
+public class Stock extends javax.swing.JInternalFrame {
 
     Conexion con,query;
     ResultSet rs;
@@ -71,7 +71,7 @@ public static boolean estado;
     private static int tabla_ancho = 0;
     private static int tabla_alto = 0;
     
-    public stock() {
+    public Stock() {
         initComponents();
     }
 
@@ -215,7 +215,7 @@ public static boolean estado;
         jPanel1.add(jFstockmin, new org.netbeans.lib.awtextra.AbsoluteConstraints(152, 146, 101, -1));
 
         jLabel6.setFont(new java.awt.Font("Microsoft JhengHei", 1, 14)); // NOI18N
-        jLabel6.setText("DescripciÃ³n ajuste");
+        jLabel6.setText("Descripción ajuste");
         jPanel1.add(jLabel6, new org.netbeans.lib.awtextra.AbsoluteConstraints(160, 240, -1, -1));
 
         jLabel8.setFont(new java.awt.Font("Microsoft JhengHei", 1, 14)); // NOI18N
@@ -305,7 +305,7 @@ public static boolean estado;
             try {
                 CrearTabla(file);
             } catch (IOException ex) {
-                Logger.getLogger(proveedores.class.getName()).log(Level.SEVERE, null, ex);
+                Logger.getLogger(Proveedores.class.getName()).log(Level.SEVERE, null, ex);
             }
         }
     }//GEN-LAST:event_jButton2ActionPerformed
@@ -316,7 +316,7 @@ public static boolean estado;
             JOptionPane.showMessageDialog(null, "No hay tabla para exportar, se debe presionar Mostrar primero y luego exportar");
         } else {
             JFileChooser dialog = new JFileChooser();
-            int opcion = dialog.showSaveDialog(stock.this);
+            int opcion = dialog.showSaveDialog(Stock.this);
             if (opcion == JFileChooser.APPROVE_OPTION) {
 
                 File dir = dialog.getSelectedFile();
@@ -325,7 +325,7 @@ public static boolean estado;
                     List<JTable> tb = new ArrayList<JTable>();
                     tb.add(jTmostrar);
                     //-------------------
-                    export_excel excelExporter = new export_excel(tb, new File(dir.getAbsolutePath() + ".xls"));
+                    ExportarExcel excelExporter = new ExportarExcel(tb, new File(dir.getAbsolutePath() + ".xls"));
                     if (excelExporter.export()) {
                         JOptionPane.showMessageDialog(null, "TABLAS EXPORTADOS CON EXITOS!");
                     }
@@ -343,16 +343,16 @@ public static boolean estado;
                 con = new Conexion();
 
             } catch (ClassNotFoundException ex) {
-                Logger.getLogger(ppal.class.getName()).log(Level.SEVERE, null, ex);
+                Logger.getLogger(PantallaPrincipal.class.getName()).log(Level.SEVERE, null, ex);
             } catch (SQLException ex) {
-                Logger.getLogger(ppal.class.getName()).log(Level.SEVERE, null, ex);
+                Logger.getLogger(PantallaPrincipal.class.getName()).log(Level.SEVERE, null, ex);
             } catch (InstantiationException ex) {
-                Logger.getLogger(ppal.class.getName()).log(Level.SEVERE, null, ex);
+                Logger.getLogger(PantallaPrincipal.class.getName()).log(Level.SEVERE, null, ex);
             } catch (IllegalAccessException ex) {
-                Logger.getLogger(ppal.class.getName()).log(Level.SEVERE, null, ex);
+                Logger.getLogger(PantallaPrincipal.class.getName()).log(Level.SEVERE, null, ex);
             }
 
-            //  String sqlc = " SELECT * FROM `stock` WHERE `saldo_stock` <= `stock_min`";
+            //  String sqlc = " SELECT * FROM `Stock` WHERE `saldo_stock` <= `stock_min`";
             String sqlc =  "SELECT descripcion_articulos.scanning, descripcion_articulos.nombre_producto, descripcion_articulos.precio_costo,  stock.stock_min, stock.saldo_stock, descripcion_articulos.id_articulo FROM descripcion_articulos INNER JOIN stock ON stock.id_articulo = descripcion_articulos.id_articulo WHERE `saldo_stock` <= `stock_min`";
             rs = con.Consulta(sqlc);
 
@@ -423,7 +423,7 @@ public static boolean estado;
                 }
 
             } catch (SQLException ex) {
-                Logger.getLogger(ppal.class.getName()).log(Level.SEVERE, null, ex);
+                Logger.getLogger(PantallaPrincipal.class.getName()).log(Level.SEVERE, null, ex);
             }
     }//GEN-LAST:event_jBmostrarActionPerformed
 
@@ -434,20 +434,20 @@ public static boolean estado;
                 con = new Conexion();
 
             } catch (ClassNotFoundException ex) {
-                Logger.getLogger(ppal.class.getName()).log(Level.SEVERE, null, ex);
+                Logger.getLogger(PantallaPrincipal.class.getName()).log(Level.SEVERE, null, ex);
             } catch (SQLException ex) {
-                Logger.getLogger(ppal.class.getName()).log(Level.SEVERE, null, ex);
+                Logger.getLogger(PantallaPrincipal.class.getName()).log(Level.SEVERE, null, ex);
             } catch (InstantiationException ex) {
-                Logger.getLogger(ppal.class.getName()).log(Level.SEVERE, null, ex);
+                Logger.getLogger(PantallaPrincipal.class.getName()).log(Level.SEVERE, null, ex);
             } catch (IllegalAccessException ex) {
-                Logger.getLogger(ppal.class.getName()).log(Level.SEVERE, null, ex);
+                Logger.getLogger(PantallaPrincipal.class.getName()).log(Level.SEVERE, null, ex);
             }
 
             //se obtienen los valores de los jTextField
             String stockmin = jFstockmin.getText();
             //sentencias sql para insertar los datos en la base de datos
             String sql3 = "UPDATE `stock` SET `stock_min`='"+stockmin+"' WHERE id_articulo LIKE '"+id+"'";
-            //en mysql ///// UPDATE `stock` SET `stock_min`=8 WHERE id_articulo LIKE 15
+            //en mysql ///// UPDATE `Stock` SET `stock_min`=8 WHERE id_articulo LIKE 15
             //funcion para ejecutar la query
             con.ejecutar(sql3);
 
@@ -456,7 +456,7 @@ public static boolean estado;
             borrarCampos();
 
         } catch (SQLException ex) {
-            Logger.getLogger(ppal.class.getName()).log(Level.SEVERE, null, ex);
+            Logger.getLogger(PantallaPrincipal.class.getName()).log(Level.SEVERE, null, ex);
         }
     }//GEN-LAST:event_jBmodstockminActionPerformed
 
@@ -473,13 +473,13 @@ public static boolean estado;
                 con = new Conexion();
 
             } catch (ClassNotFoundException ex) {
-                Logger.getLogger(moduloVenta.class.getName()).log(Level.SEVERE, null, ex);
+                Logger.getLogger(ModuloVenta.class.getName()).log(Level.SEVERE, null, ex);
             } catch (SQLException ex) {
-                Logger.getLogger(moduloVenta.class.getName()).log(Level.SEVERE, null, ex);
+                Logger.getLogger(ModuloVenta.class.getName()).log(Level.SEVERE, null, ex);
             } catch (InstantiationException ex) {
-                Logger.getLogger(moduloVenta.class.getName()).log(Level.SEVERE, null, ex);
+                Logger.getLogger(ModuloVenta.class.getName()).log(Level.SEVERE, null, ex);
             } catch (IllegalAccessException ex) {
-                Logger.getLogger(moduloVenta.class.getName()).log(Level.SEVERE, null, ex);
+                Logger.getLogger(ModuloVenta.class.getName()).log(Level.SEVERE, null, ex);
             }
 
             String scanning = jFscaning.getText();
@@ -499,7 +499,7 @@ public static boolean estado;
             }
 
         } catch (SQLException ex) {
-            Logger.getLogger(moduloVenta.class.getName()).log(Level.SEVERE, null, ex);
+            Logger.getLogger(ModuloVenta.class.getName()).log(Level.SEVERE, null, ex);
         }
 
         if(evt.getKeyCode() == KeyEvent.VK_ENTER){
@@ -509,13 +509,13 @@ public static boolean estado;
                     con = new Conexion();
 
                 } catch (ClassNotFoundException ex) {
-                    Logger.getLogger(moduloVenta.class.getName()).log(Level.SEVERE, null, ex);
+                    Logger.getLogger(ModuloVenta.class.getName()).log(Level.SEVERE, null, ex);
                 } catch (SQLException ex) {
-                    Logger.getLogger(moduloVenta.class.getName()).log(Level.SEVERE, null, ex);
+                    Logger.getLogger(ModuloVenta.class.getName()).log(Level.SEVERE, null, ex);
                 } catch (InstantiationException ex) {
-                    Logger.getLogger(moduloVenta.class.getName()).log(Level.SEVERE, null, ex);
+                    Logger.getLogger(ModuloVenta.class.getName()).log(Level.SEVERE, null, ex);
                 } catch (IllegalAccessException ex) {
-                    Logger.getLogger(moduloVenta.class.getName()).log(Level.SEVERE, null, ex);
+                    Logger.getLogger(ModuloVenta.class.getName()).log(Level.SEVERE, null, ex);
                 }
                 String sql1 ="SELECT * FROM stock WHERE id_articulo LIKE '"+id+"'";
 
@@ -525,7 +525,7 @@ public static boolean estado;
                     jFstockact.setText(rs2.getString("saldo_stock"));
                 }
             } catch (SQLException ex) {
-                Logger.getLogger(moduloVenta.class.getName()).log(Level.SEVERE, null, ex);
+                Logger.getLogger(ModuloVenta.class.getName()).log(Level.SEVERE, null, ex);
             }
         }
     }//GEN-LAST:event_jFscaningKeyPressed
@@ -541,13 +541,13 @@ public static boolean estado;
                 con = new Conexion();
 
             } catch (ClassNotFoundException ex) {
-                Logger.getLogger(ppal.class.getName()).log(Level.SEVERE, null, ex);
+                Logger.getLogger(PantallaPrincipal.class.getName()).log(Level.SEVERE, null, ex);
             } catch (SQLException ex) {
-                Logger.getLogger(ppal.class.getName()).log(Level.SEVERE, null, ex);
+                Logger.getLogger(PantallaPrincipal.class.getName()).log(Level.SEVERE, null, ex);
             } catch (InstantiationException ex) {
-                Logger.getLogger(ppal.class.getName()).log(Level.SEVERE, null, ex);
+                Logger.getLogger(PantallaPrincipal.class.getName()).log(Level.SEVERE, null, ex);
             } catch (IllegalAccessException ex) {
-                Logger.getLogger(ppal.class.getName()).log(Level.SEVERE, null, ex);
+                Logger.getLogger(PantallaPrincipal.class.getName()).log(Level.SEVERE, null, ex);
             }
             String sqlc = "SELECT * FROM stock WHERE id_articulo = '"+id+"'";
             // System.out.println("antes");
@@ -571,7 +571,7 @@ public static boolean estado;
             borrarCampos();
 
         } catch (SQLException ex) {
-            Logger.getLogger(ppal.class.getName()).log(Level.SEVERE, null, ex);
+            Logger.getLogger(PantallaPrincipal.class.getName()).log(Level.SEVERE, null, ex);
         }
     }//GEN-LAST:event_jBajusteActionPerformed
 
@@ -583,13 +583,13 @@ public static boolean estado;
                 con = new Conexion();
 
             } catch (ClassNotFoundException ex) {
-                Logger.getLogger(ppal.class.getName()).log(Level.SEVERE, null, ex);
+                Logger.getLogger(PantallaPrincipal.class.getName()).log(Level.SEVERE, null, ex);
             } catch (SQLException ex) {
-                Logger.getLogger(ppal.class.getName()).log(Level.SEVERE, null, ex);
+                Logger.getLogger(PantallaPrincipal.class.getName()).log(Level.SEVERE, null, ex);
             } catch (InstantiationException ex) {
-                Logger.getLogger(ppal.class.getName()).log(Level.SEVERE, null, ex);
+                Logger.getLogger(PantallaPrincipal.class.getName()).log(Level.SEVERE, null, ex);
             } catch (IllegalAccessException ex) {
-                Logger.getLogger(ppal.class.getName()).log(Level.SEVERE, null, ex);
+                Logger.getLogger(PantallaPrincipal.class.getName()).log(Level.SEVERE, null, ex);
             }
             String sqlc = "SELECT * FROM stock WHERE id_articulo = '"+id+"'";
             // System.out.println("antes");
@@ -614,7 +614,7 @@ public static boolean estado;
             borrarCampos();
 
         } catch (SQLException ex) {
-            Logger.getLogger(ppal.class.getName()).log(Level.SEVERE, null, ex);
+            Logger.getLogger(PantallaPrincipal.class.getName()).log(Level.SEVERE, null, ex);
         }
     }//GEN-LAST:event_jBagregarActionPerformed
 
@@ -633,13 +633,13 @@ public static boolean estado;
                 con = new Conexion();
 
             } catch (ClassNotFoundException ex) {
-                Logger.getLogger(stock.class.getName()).log(Level.SEVERE, null, ex);
+                Logger.getLogger(Stock.class.getName()).log(Level.SEVERE, null, ex);
             } catch (SQLException ex) {
-                Logger.getLogger(stock.class.getName()).log(Level.SEVERE, null, ex);
+                Logger.getLogger(Stock.class.getName()).log(Level.SEVERE, null, ex);
             } catch (InstantiationException ex) {
-                Logger.getLogger(stock.class.getName()).log(Level.SEVERE, null, ex);
+                Logger.getLogger(Stock.class.getName()).log(Level.SEVERE, null, ex);
             } catch (IllegalAccessException ex) {
-                Logger.getLogger(stock.class.getName()).log(Level.SEVERE, null, ex);
+                Logger.getLogger(Stock.class.getName()).log(Level.SEVERE, null, ex);
             }
             String sqlc = "SELECT t1.id_articulo, t1.scanning, "
                     + "t1.nombre_producto, t1.precio_costo, "
@@ -681,11 +681,11 @@ public static boolean estado;
 		// pass the scrollpane to the joptionpane.				
 		JOptionPane.showMessageDialog(null, scrollPane, "Datos a exportar", JOptionPane.PLAIN_MESSAGE);
         } catch (SQLException ex) {
-            Logger.getLogger(ppal.class.getName()).log(Level.SEVERE, null, ex);
+            Logger.getLogger(PantallaPrincipal.class.getName()).log(Level.SEVERE, null, ex);
         }
         
         JFileChooser dialog = new JFileChooser();
-        int opcion = dialog.showSaveDialog(stock.this);
+        int opcion = dialog.showSaveDialog(Stock.this);
 
         if (opcion == JFileChooser.APPROVE_OPTION) {
 
@@ -695,7 +695,7 @@ public static boolean estado;
                 List<JTable> tb = new ArrayList<JTable>();
                 tb.add(exportAllTable);
                 //-------------------
-                export_excel excelExporter = new export_excel(tb, new File(dir.getAbsolutePath() + ".xls"));
+                ExportarExcel excelExporter = new ExportarExcel(tb, new File(dir.getAbsolutePath() + ".xls"));
                 if (excelExporter.export()) {
                     JOptionPane.showMessageDialog(null, "TABLAS EXPORTADOS CON EXITOS!");
                 }
@@ -715,7 +715,7 @@ public static boolean estado;
             try {
                 CrearTabla(file);
             } catch (IOException ex) {
-                Logger.getLogger(proveedores.class.getName()).log(Level.SEVERE, null, ex);
+                Logger.getLogger(Proveedores.class.getName()).log(Level.SEVERE, null, ex);
             }
         }
     }//GEN-LAST:event_jButton5ActionPerformed
@@ -774,13 +774,13 @@ public static boolean estado;
                         try {
                             con = new Conexion();
                         } catch (ClassNotFoundException ex) {
-                            Logger.getLogger(ppal.class.getName()).log(Level.SEVERE, null, ex);
+                            Logger.getLogger(PantallaPrincipal.class.getName()).log(Level.SEVERE, null, ex);
                         } catch (SQLException ex) {
-                            Logger.getLogger(ppal.class.getName()).log(Level.SEVERE, null, ex);
+                            Logger.getLogger(PantallaPrincipal.class.getName()).log(Level.SEVERE, null, ex);
                         } catch (InstantiationException ex) {
-                            Logger.getLogger(ppal.class.getName()).log(Level.SEVERE, null, ex);
+                            Logger.getLogger(PantallaPrincipal.class.getName()).log(Level.SEVERE, null, ex);
                         } catch (IllegalAccessException ex) {
-                            Logger.getLogger(ppal.class.getName()).log(Level.SEVERE, null, ex);
+                            Logger.getLogger(PantallaPrincipal.class.getName()).log(Level.SEVERE, null, ex);
                         }
                         
                         String pro[] = new String[100],p;
@@ -805,7 +805,7 @@ public static boolean estado;
                             con.ejecutar(modifica);
                         }j=0;
                     } catch (SQLException ex) {
-                        Logger.getLogger(ppal.class.getName()).log(Level.SEVERE, null, ex);
+                        Logger.getLogger(PantallaPrincipal.class.getName()).log(Level.SEVERE, null, ex);
                     }
             }  
             JOptionPane.showMessageDialog(null, "Datos guardados");

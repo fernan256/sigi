@@ -208,12 +208,12 @@ public class Login extends javax.swing.JFrame {
                     if(user.equals(usuario)){
                         if(pass.equals(password)){
                             if(userRol==1){
-                                ppal inter = new ppal();
+                                PantallaPrincipal inter = new PantallaPrincipal();
                                 //JOptionPane.showMessageDialog(rootPane, "Bienvenid@ "+nombre+" "+ap+" "+am+" \n\n Ha ingresado como: Administrador");
                                 inter.setVisible(true);
                                 this.dispose();
                             } else if(userRol==2){                                
-                                ppalVendedor vendorView = new ppalVendedor();
+                                PantallaPrincipalVendedor vendorView = new PantallaPrincipalVendedor();
                                 //JOptionPane.showMessageDialog(rootPane, "Bienvenid@ "+nombre+" "+ap+" "+am+" \n\n Has entrado al sistema como: Vendedor");
                                 vendorView.setVisible(true);
                                 this.dispose();
@@ -230,7 +230,7 @@ public class Login extends javax.swing.JFrame {
                     }
                 }
             } catch (ClassNotFoundException | SQLException | InstantiationException | IllegalAccessException ex) {
-                Logger.getLogger(ppal.class.getName()).log(Level.SEVERE, null, ex);
+                Logger.getLogger(PantallaPrincipal.class.getName()).log(Level.SEVERE, null, ex);
             }
         }
     }//GEN-LAST:event_jBingresarKeyReleased

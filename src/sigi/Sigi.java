@@ -24,7 +24,7 @@ import javax.swing.tree.TreeCellRenderer;
  *
  * @author Gustavo
  */
-public class SIGI {
+public class Sigi {
 
     /**
      * @param args the command line arguments
@@ -81,7 +81,7 @@ public class SIGI {
 
 	            public void run() {
 
-	                new ppal().setVisible(true);
+	                new PantallaPrincipal().setVisible(true);
 
 	            }
 

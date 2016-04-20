@@ -12,7 +12,7 @@ import javax.swing.JOptionPane;
 import java.util.Calendar;
 import java.util.GregorianCalendar;
 
-public class ppal extends javax.swing.JFrame {
+public class PantallaPrincipal extends javax.swing.JFrame {
     Conexion con,query;
     ResultSet rs;
     ResultSet rs2;
@@ -32,7 +32,7 @@ public class ppal extends javax.swing.JFrame {
     public static int rowCount, numfac;
     public static boolean ABM_Articulo;
     
-    public ppal() {         
+    public PantallaPrincipal() {         
         initComponents();
         jLuserName.setText(Login.userName);
         this.setLocationRelativeTo(null);
@@ -170,7 +170,7 @@ public class ppal extends javax.swing.JFrame {
         jMenu1.setText("Modificar");
 
         jMenuItem2.setAccelerator(javax.swing.KeyStroke.getKeyStroke(java.awt.event.KeyEvent.VK_P, java.awt.event.InputEvent.ALT_MASK | java.awt.event.InputEvent.CTRL_MASK));
-        jMenuItem2.setText("Contraseña");
+        jMenuItem2.setText("Contrase�a");
         jMenuItem2.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 jMenuItem2ActionPerformed(evt);
@@ -183,7 +183,7 @@ public class ppal extends javax.swing.JFrame {
         jMenu2.setText("Salir");
 
         jMenuItem1.setAccelerator(javax.swing.KeyStroke.getKeyStroke(java.awt.event.KeyEvent.VK_Q, java.awt.event.InputEvent.CTRL_MASK));
-        jMenuItem1.setText("Cerrar Sesión");
+        jMenuItem1.setText("Cerrar Sesi�n");
         jMenuItem1.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 jMenuItem1ActionPerformed(evt);
@@ -252,24 +252,23 @@ public class ppal extends javax.swing.JFrame {
     }// </editor-fold>//GEN-END:initComponents
 
     Compras objIC = new Compras();
-    altaModificaionArticulos objIC1 = new altaModificaionArticulos();
-    bajaArticulos objIC20=new bajaArticulos();
+    AltaModificaionArticulos objIC1 = new AltaModificaionArticulos();
+    BajaArticulos objIC20=new BajaArticulos();
     AbmClientes objIC3=new AbmClientes();
     //abmusuario objIC4=new abmusuario();
-    ajusteCaja objIC5=new ajusteCaja();
-    ajusteVenta objIC6=new ajusteVenta();
-    buscarfacturas objIC9=new buscarfacturas();
-    cliente objIC10=new cliente();
-    configsoft objIC11=new configsoft();
-    ctacte objIC12=new ctacte();
-    estadocuentas objIC13=new estadocuentas();
-    importarexportar objIC15=new importarexportar();
-    oc objIC16=new oc();
-    permisos objIC17=new permisos();
-    proveedores objIC19=new proveedores();
-    reportes objIC26=new reportes();
-    stock objIC25=new stock();
-    backupbd objIC27 = new backupbd();
+    AjusteCaja objIC5=new AjusteCaja();
+    AjusteVenta objIC6=new AjusteVenta();
+    BuscarFacturas objIC9=new BuscarFacturas();
+    Clientes objIC10=new Clientes();
+    ConfiguracionSoft objIC11=new ConfiguracionSoft();
+    CuentasCorrientes objIC12=new CuentasCorrientes();
+    EstadoCuentasCorrientes objIC13=new EstadoCuentasCorrientes();
+    ImportarExportar objIC15=new ImportarExportar();
+    OrdenesCompras objIC16=new OrdenesCompras();
+    ManejoPermisos objIC17=new ManejoPermisos();
+    Proveedores objIC19=new Proveedores();
+    Stock objIC25=new Stock();
+    BackupBd objIC27 = new BackupBd();
 
     private void jTree1MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jTree1MouseClicked
         
@@ -365,13 +364,13 @@ public class ppal extends javax.swing.JFrame {
             }
         }
         if(menu.equals("Reportes")){
-            if(objIC26.isShowing()){
-		//mensaje de que está abierto si se desea
-            }else{
-                desktopPane.add(objIC26);
-                objIC26.show();
-                objIC26.setSize(desktopPane.getSize());
-            }
+//            if(objIC26.isShowing()){
+//		//mensaje de que está abierto si se desea
+//            }else{
+//                desktopPane.add(objIC26);
+//                objIC26.show();
+//                objIC26.setSize(desktopPane.getSize());
+//            }
         }
         if(menu.equals("Administrar BD")){
             if(objIC27.isShowing()){
@@ -386,7 +385,7 @@ public class ppal extends javax.swing.JFrame {
     
     private void jBvtaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jBvtaActionPerformed
  /*       
-        moduloVenta vta = new moduloVenta();
+        ModuloVenta vta = new ModuloVenta();
          vta.setVisible(true);
        jBvta.setEnabled(false);*/
     }//GEN-LAST:event_jBvtaActionPerformed
@@ -399,7 +398,7 @@ public class ppal extends javax.swing.JFrame {
     }//GEN-LAST:event_jButton3ActionPerformed
 
     private void ctacteActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_ctacteActionPerformed
-        ctacte showCtacte = new ctacte();
+        CuentasCorrientes showCtacte = new CuentasCorrientes();
         showCtacte.setVisible(true);
     }//GEN-LAST:event_ctacteActionPerformed
 
@@ -411,13 +410,13 @@ public class ppal extends javax.swing.JFrame {
 //            try {
 //                con = new Conexion();
 //            } catch (ClassNotFoundException ex) {
-//                Logger.getLogger(ppal.class.getName()).log(Level.SEVERE, null, ex);
+//                Logger.getLogger(PantallaPrincipal.class.getName()).log(Level.SEVERE, null, ex);
 //            } catch (SQLException ex) {
-//                Logger.getLogger(ppal.class.getName()).log(Level.SEVERE, null, ex);
+//                Logger.getLogger(PantallaPrincipal.class.getName()).log(Level.SEVERE, null, ex);
 //            } catch (InstantiationException ex) {
-//                Logger.getLogger(ppal.class.getName()).log(Level.SEVERE, null, ex);
+//                Logger.getLogger(PantallaPrincipal.class.getName()).log(Level.SEVERE, null, ex);
 //            } catch (IllegalAccessException ex) {
-//                Logger.getLogger(ppal.class.getName()).log(Level.SEVERE, null, ex);
+//                Logger.getLogger(PantallaPrincipal.class.getName()).log(Level.SEVERE, null, ex);
 //            }
 //
 //          
@@ -426,10 +425,10 @@ public class ppal extends javax.swing.JFrame {
 //            con.ejecutar(apertura);
 //
 //            } catch (SQLException ex) {
-//                Logger.getLogger(moduloVenta.class.getName()).log(Level.SEVERE, null, ex);
+//                Logger.getLogger(ModuloVenta.class.getName()).log(Level.SEVERE, null, ex);
 //            }
             queries("INSERT INTO  `sigi`.`caja` (`apertura`, `id_usuario`)VALUES ('"+openSalesValue+"', '"+Login.userId+"')");
-            moduloVenta vta = new moduloVenta();
+            ModuloVenta vta = new ModuloVenta();
             vta.setVisible(true);
             jBvta.setEnabled(false);   
         } else {
@@ -452,7 +451,7 @@ public class ppal extends javax.swing.JFrame {
     }//GEN-LAST:event_jMenuItem1ActionPerformed
 
     private void jMenuItem2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItem2ActionPerformed
-        modificar mod = new modificar();
+        ModificarContrasenia mod = new ModificarContrasenia();
         mod.id = IDusuario;
         System.out.println("id para modificar: "+mod.id);
         mod.setVisible(true);
@@ -490,7 +489,7 @@ public class ppal extends javax.swing.JFrame {
         /* Create and display the form */
      /*   java.awt.EventQueue.invokeLater(new Runnable() {
             public void run() {
-                new ppal().setVisible(true);
+                new PantallaPrincipal().setVisible(true);
 
             }
         });
@@ -502,13 +501,13 @@ public class ppal extends javax.swing.JFrame {
             try {
                 con = new Conexion();
             } catch (ClassNotFoundException ex) {
-                Logger.getLogger(ppal.class.getName()).log(Level.SEVERE, null, ex);
+                Logger.getLogger(PantallaPrincipal.class.getName()).log(Level.SEVERE, null, ex);
             } catch (SQLException ex) {
-                Logger.getLogger(ppal.class.getName()).log(Level.SEVERE, null, ex);
+                Logger.getLogger(PantallaPrincipal.class.getName()).log(Level.SEVERE, null, ex);
             } catch (InstantiationException ex) {
-                Logger.getLogger(ppal.class.getName()).log(Level.SEVERE, null, ex);
+                Logger.getLogger(PantallaPrincipal.class.getName()).log(Level.SEVERE, null, ex);
             } catch (IllegalAccessException ex) {
-                Logger.getLogger(ppal.class.getName()).log(Level.SEVERE, null, ex);
+                Logger.getLogger(PantallaPrincipal.class.getName()).log(Level.SEVERE, null, ex);
             }
 
             //String apertura ="INSERT INTO  `sigi`.`caja` (`apertura`, `id_usuario`)VALUES ('"+openSalesValue+"', '"+Login.userId+"')";
@@ -516,7 +515,7 @@ public class ppal extends javax.swing.JFrame {
             con.ejecutar(query);
 
         } catch (SQLException ex) {
-            Logger.getLogger(moduloVenta.class.getName()).log(Level.SEVERE, null, ex);
+            Logger.getLogger(ModuloVenta.class.getName()).log(Level.SEVERE, null, ex);
         }
     }
 
@@ -531,7 +530,7 @@ public class ppal extends javax.swing.JFrame {
             
             
         } catch (SQLException ex) {
-            Logger.getLogger(ppal.class.getName()).log(Level.SEVERE, null, ex);
+            Logger.getLogger(PantallaPrincipal.class.getName()).log(Level.SEVERE, null, ex);
         }
 
 }*/
@@ -540,19 +539,19 @@ public void getT(String cad){
     System.out.println(aux3);
 }
 
-public void setT(String cad){
+    public void setT(String cad){
         String aux2 = cad;
+    }
 
-}
-
-public String objectToString(Object o) {
+    public String objectToString(Object o) {
         String st;
         st = (String) o;
         return st;
     }
-public int getFactura(){
+    
+    public int getFactura(){
         return rowCount;
-}
+    }
 
 public int getNumFac(){
         return numfac;
@@ -585,7 +584,7 @@ public void calcula () {
          
         java.awt.EventQueue.invokeLater(new Runnable() {
             public void run() {
-                new ppal().setVisible(true);
+                new PantallaPrincipal().setVisible(true);
                 
             }
         });
@@ -621,7 +620,7 @@ public void setC(){
             
             
         } catch (SQLException ex) {
-            Logger.getLogger(ppal.class.getName()).log(Level.SEVERE, null, ex);
+            Logger.getLogger(PantallaPrincipal.class.getName()).log(Level.SEVERE, null, ex);
         }
 
 }

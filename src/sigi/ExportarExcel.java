@@ -8,7 +8,7 @@ import jxl.write.*;
 import jxl.write.biff.RowsExceededException;
 import jxl.*;
 
-public class export_excel {
+public class ExportarExcel {
 
 	    private File archi;
 	    private List<JTable> tabla;
@@ -16,7 +16,7 @@ public class export_excel {
 	    private WritableCellFormat	fomato_fila ;
 	    private WritableCellFormat	fomato_columna;
 
-	    public export_excel(List<JTable> tab, File ar) throws Exception {
+	    public ExportarExcel(List<JTable> tab, File ar) throws Exception {
 	        this.archi = ar;
 	        this.tabla = tab;
 	        if(tab.size()<0){

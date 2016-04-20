@@ -371,13 +371,13 @@ private void jMenuItem1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FI
                     this.dispose();
 
                 } catch (ClassNotFoundException ex) {
-                    Logger.getLogger(ppal.class.getName()).log(Level.SEVERE, null, ex);
+                    Logger.getLogger(PantallaPrincipal.class.getName()).log(Level.SEVERE, null, ex);
                 } catch (SQLException ex) {
-                    Logger.getLogger(ppal.class.getName()).log(Level.SEVERE, null, ex);
+                    Logger.getLogger(PantallaPrincipal.class.getName()).log(Level.SEVERE, null, ex);
                 } catch (InstantiationException ex) {
-                    Logger.getLogger(ppal.class.getName()).log(Level.SEVERE, null, ex);
+                    Logger.getLogger(PantallaPrincipal.class.getName()).log(Level.SEVERE, null, ex);
                 } catch (IllegalAccessException ex) {
-                    Logger.getLogger(ppal.class.getName()).log(Level.SEVERE, null, ex);
+                    Logger.getLogger(PantallaPrincipal.class.getName()).log(Level.SEVERE, null, ex);
                 }
 
             }

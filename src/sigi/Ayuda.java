@@ -9,12 +9,12 @@ package sigi;
  *
  * @author Gustavo
  */
-public class estadocuentas extends javax.swing.JInternalFrame {
+public class Ayuda extends javax.swing.JInternalFrame {
 
     /**
-     * Creates new form estadocuentas
+     * Creates new form ayudappal
      */
-    public estadocuentas() {
+    public Ayuda() {
         initComponents();
     }
 
@@ -27,15 +27,20 @@ public class estadocuentas extends javax.swing.JInternalFrame {
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
+        setClosable(true);
+        setIconifiable(true);
+        setMaximizable(true);
+        setResizable(true);
+
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 902, Short.MAX_VALUE)
+            .addGap(0, 730, Short.MAX_VALUE)
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 483, Short.MAX_VALUE)
+            .addGap(0, 683, Short.MAX_VALUE)
         );
 
         pack();

@@ -46,7 +46,7 @@ import jxl.read.biff.BiffException;
  *
  * @author Gustavo
  */
-public class proveedores extends javax.swing.JInternalFrame {
+public class Proveedores extends javax.swing.JInternalFrame {
 Conexion con,query;
     ResultSet rs;
     ResultSet rs2;
@@ -75,7 +75,7 @@ public static boolean estado;
     /**
      * Creates new form proveedores
      */
-    public proveedores() {
+    public Proveedores() {
         initComponents();
         searchItems();
         
@@ -132,7 +132,7 @@ public static boolean estado;
         jTdescripcion.setRows(5);
         jScrollPane1.setViewportView(jTdescripcion);
 
-        jLabel1.setText("DescripciÃ³n de productos");
+        jLabel1.setText("Descripción de productos");
 
         jBcrear.setFont(new java.awt.Font("Microsoft JhengHei", 1, 18)); // NOI18N
         jBcrear.setText("Crear");
@@ -170,7 +170,7 @@ public static boolean estado;
 
         jLabel5.setText("Empresa");
 
-        jLabel6.setText("DirecciÃ³n");
+        jLabel6.setText("Dirección");
 
         jLabel7.setText("Telefono");
 
@@ -356,14 +356,15 @@ public static boolean estado;
                     con = new Conexion();
 
                 } catch (ClassNotFoundException ex) {
-                    Logger.getLogger(proveedores.class.getName()).log(Level.SEVERE, null, ex);
+                    Logger.getLogger(Proveedores.class.getName()).log(Level.SEVERE, null, ex);
                 } catch (SQLException ex) {
-                    Logger.getLogger(proveedores.class.getName()).log(Level.SEVERE, null, ex);
+                    Logger.getLogger(Proveedores.class.getName()).log(Level.SEVERE, null, ex);
                 } catch (InstantiationException ex) {
-                    Logger.getLogger(proveedores.class.getName()).log(Level.SEVERE, null, ex);
+                    Logger.getLogger(Proveedores.class.getName()).log(Level.SEVERE, null, ex);
                 } catch (IllegalAccessException ex) {
-                    Logger.getLogger(proveedores.class.getName()).log(Level.SEVERE, null, ex);
+                    Logger.getLogger(Proveedores.class.getName()).log(Level.SEVERE, null, ex);
                 }
+                //se obtienen los valores de los jTextField
                 //se obtienen los valores de los jTextField
                 
                 //obtengo los combos de sector, familia, subfamilia
@@ -441,7 +442,7 @@ public static boolean estado;
                 jTdescripcion.setText("");
 
             } catch (SQLException ex) {
-                Logger.getLogger(proveedores.class.getName()).log(Level.SEVERE, null, ex);
+                Logger.getLogger(Proveedores.class.getName()).log(Level.SEVERE, null, ex);
             }
 
         }
@@ -456,14 +457,15 @@ public static boolean estado;
                     con = new Conexion();
 
                 } catch (ClassNotFoundException ex) {
-                    Logger.getLogger(proveedores.class.getName()).log(Level.SEVERE, null, ex);
+                    Logger.getLogger(Proveedores.class.getName()).log(Level.SEVERE, null, ex);
                 } catch (SQLException ex) {
-                    Logger.getLogger(proveedores.class.getName()).log(Level.SEVERE, null, ex);
+                    Logger.getLogger(Proveedores.class.getName()).log(Level.SEVERE, null, ex);
                 } catch (InstantiationException ex) {
-                    Logger.getLogger(proveedores.class.getName()).log(Level.SEVERE, null, ex);
+                    Logger.getLogger(Proveedores.class.getName()).log(Level.SEVERE, null, ex);
                 } catch (IllegalAccessException ex) {
-                    Logger.getLogger(proveedores.class.getName()).log(Level.SEVERE, null, ex);
+                    Logger.getLogger(Proveedores.class.getName()).log(Level.SEVERE, null, ex);
                 }
+                //se obtienen los valores de los jTextField
                 //se obtienen los valores de los jTextField
 
                 String empresa = jTempresa.getText();
@@ -496,7 +498,7 @@ public static boolean estado;
 
 
             } catch (SQLException ex) {
-                Logger.getLogger(proveedores.class.getName()).log(Level.SEVERE, null, ex);
+                Logger.getLogger(Proveedores.class.getName()).log(Level.SEVERE, null, ex);
             }
     }//GEN-LAST:event_jBeliminarActionPerformed
 
@@ -525,7 +527,7 @@ public static boolean estado;
                     id1 = rs2.getInt("id_sector");*/
               /*  String fam = (String) jCfamilia.getSelectedItem(); 
                } catch (SQLException ex) {
-        Logger.getLogger(proveedores.class.getName()).log(Level.SEVERE, null, ex);
+        Logger.getLogger(Proveedores.class.getName()).log(Level.SEVERE, null, ex);
     }     String sql2 = "SELECT id_familia FROM familia WHERE nombre LIKE '"+fam+"'";
                     rs = con.Consulta(sql2); 
                     rs.next();
@@ -570,13 +572,13 @@ public static boolean estado;
                 JOptionPane.showMessageDialog(null, "Datos Actualizados");
 
             } catch (ClassNotFoundException ex) {
-                Logger.getLogger(proveedores.class.getName()).log(Level.SEVERE, null, ex);
+                Logger.getLogger(Proveedores.class.getName()).log(Level.SEVERE, null, ex);
             } catch (InstantiationException ex) {
-                Logger.getLogger(proveedores.class.getName()).log(Level.SEVERE, null, ex);
+                Logger.getLogger(Proveedores.class.getName()).log(Level.SEVERE, null, ex);
             } catch (IllegalAccessException ex) {
-                Logger.getLogger(proveedores.class.getName()).log(Level.SEVERE, null, ex);
+                Logger.getLogger(Proveedores.class.getName()).log(Level.SEVERE, null, ex);
             } catch (SQLException ex) {
-                Logger.getLogger(proveedores.class.getName()).log(Level.SEVERE, null, ex);
+                Logger.getLogger(Proveedores.class.getName()).log(Level.SEVERE, null, ex);
             }
 
         
@@ -590,13 +592,13 @@ public static boolean estado;
                 con = new Conexion();
 
             } catch (ClassNotFoundException ex) {
-                Logger.getLogger(proveedores.class.getName()).log(Level.SEVERE, null, ex);
+                Logger.getLogger(Proveedores.class.getName()).log(Level.SEVERE, null, ex);
             } catch (SQLException ex) {
-                Logger.getLogger(proveedores.class.getName()).log(Level.SEVERE, null, ex);
+                Logger.getLogger(Proveedores.class.getName()).log(Level.SEVERE, null, ex);
             } catch (InstantiationException ex) {
-                Logger.getLogger(proveedores.class.getName()).log(Level.SEVERE, null, ex);
+                Logger.getLogger(Proveedores.class.getName()).log(Level.SEVERE, null, ex);
             } catch (IllegalAccessException ex) {
-                Logger.getLogger(proveedores.class.getName()).log(Level.SEVERE, null, ex);
+                Logger.getLogger(Proveedores.class.getName()).log(Level.SEVERE, null, ex);
             }
             
             String sql ="SELECT * FROM proveedores";
@@ -634,10 +636,10 @@ public static boolean estado;
             }
             
         } catch (SQLException ex) {
-            Logger.getLogger(proveedores.class.getName()).log(Level.SEVERE, null, ex);
+            Logger.getLogger(Proveedores.class.getName()).log(Level.SEVERE, null, ex);
         }
         JFileChooser dialog = new JFileChooser();
-        int opcion = dialog.showSaveDialog(proveedores.this);
+        int opcion = dialog.showSaveDialog(Proveedores.this);
 
         if (opcion == JFileChooser.APPROVE_OPTION) {
 
@@ -647,7 +649,7 @@ public static boolean estado;
                 List<JTable> tb = new ArrayList<JTable>();
                 tb.add(proveedoresTabla);
                 //-------------------
-                export_excel excelExporter = new export_excel(tb, new File(dir.getAbsolutePath() + ".xls"));
+                ExportarExcel excelExporter = new ExportarExcel(tb, new File(dir.getAbsolutePath() + ".xls"));
                 if (excelExporter.export()) {
                     JOptionPane.showMessageDialog(null, "TABLAS EXPORTADOS CON EXITOS!");
                 }
@@ -663,13 +665,13 @@ public static boolean estado;
                 con = new Conexion();
 
             } catch (ClassNotFoundException ex) {
-                Logger.getLogger(proveedores.class.getName()).log(Level.SEVERE, null, ex);
+                Logger.getLogger(Proveedores.class.getName()).log(Level.SEVERE, null, ex);
             } catch (SQLException ex) {
-                Logger.getLogger(proveedores.class.getName()).log(Level.SEVERE, null, ex);
+                Logger.getLogger(Proveedores.class.getName()).log(Level.SEVERE, null, ex);
             } catch (InstantiationException ex) {
-                Logger.getLogger(proveedores.class.getName()).log(Level.SEVERE, null, ex);
+                Logger.getLogger(Proveedores.class.getName()).log(Level.SEVERE, null, ex);
             } catch (IllegalAccessException ex) {
-                Logger.getLogger(proveedores.class.getName()).log(Level.SEVERE, null, ex);
+                Logger.getLogger(Proveedores.class.getName()).log(Level.SEVERE, null, ex);
             }
 
             TextAutoCompleter textAutoAcompleter = new TextAutoCompleter(search);
@@ -681,7 +683,7 @@ public static boolean estado;
             }
             
         } catch (SQLException ex) {
-            Logger.getLogger(proveedores.class.getName()).log(Level.SEVERE, null, ex);
+            Logger.getLogger(Proveedores.class.getName()).log(Level.SEVERE, null, ex);
         }
     }
     private void jCactivoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jCactivoActionPerformed
@@ -700,13 +702,13 @@ public static boolean estado;
                         con = new Conexion();
 
                     } catch (ClassNotFoundException ex) {
-                        Logger.getLogger(proveedores.class.getName()).log(Level.SEVERE, null, ex);
+                        Logger.getLogger(Proveedores.class.getName()).log(Level.SEVERE, null, ex);
                     } catch (SQLException ex) {
-                        Logger.getLogger(proveedores.class.getName()).log(Level.SEVERE, null, ex);
+                        Logger.getLogger(Proveedores.class.getName()).log(Level.SEVERE, null, ex);
                     } catch (InstantiationException ex) {
-                        Logger.getLogger(proveedores.class.getName()).log(Level.SEVERE, null, ex);
+                        Logger.getLogger(Proveedores.class.getName()).log(Level.SEVERE, null, ex);
                     } catch (IllegalAccessException ex) {
-                        Logger.getLogger(proveedores.class.getName()).log(Level.SEVERE, null, ex);
+                        Logger.getLogger(Proveedores.class.getName()).log(Level.SEVERE, null, ex);
                     }
 
                     
@@ -746,7 +748,7 @@ public static boolean estado;
                     System.out.println(result);
 
                     } catch (SQLException ex) {
-                        Logger.getLogger(proveedores.class.getName()).log(Level.SEVERE, null, ex);
+                        Logger.getLogger(Proveedores.class.getName()).log(Level.SEVERE, null, ex);
                     }
          
             }

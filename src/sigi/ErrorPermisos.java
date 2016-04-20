@@ -9,12 +9,12 @@ package sigi;
  *
  * @author Gustavo
  */
-public class errorpermisos extends javax.swing.JInternalFrame {
+public class ErrorPermisos extends javax.swing.JInternalFrame {
 
     /**
      * Creates new form errorpermisos
      */
-    public errorpermisos() {
+    public ErrorPermisos() {
         initComponents();
     }
 

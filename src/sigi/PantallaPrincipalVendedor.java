@@ -80,7 +80,7 @@ import java.util.GregorianCalendar;
  *
  * @author Gustavo
  */
-public class ppalVendedor extends javax.swing.JFrame {
+public class PantallaPrincipalVendedor extends javax.swing.JFrame {
     Conexion con,query;
     ResultSet rs;
     ResultSet rs2;
@@ -114,7 +114,7 @@ public class ppalVendedor extends javax.swing.JFrame {
     public static int rowCount, numfac;
     public static boolean ABM_Articulo;
     
-    public ppalVendedor() { 
+    public PantallaPrincipalVendedor() { 
         
         initComponents();
         jLuserName.setText(Login.userName);
@@ -239,7 +239,7 @@ public class ppalVendedor extends javax.swing.JFrame {
         jMenu2.setText("Modificar");
 
         jMenuItem3.setAccelerator(javax.swing.KeyStroke.getKeyStroke(java.awt.event.KeyEvent.VK_P, java.awt.event.InputEvent.ALT_MASK | java.awt.event.InputEvent.CTRL_MASK));
-        jMenuItem3.setText("Contraseña");
+        jMenuItem3.setText("Contrase�a");
         jMenuItem3.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 jMenuItem3ActionPerformed(evt);
@@ -252,7 +252,7 @@ public class ppalVendedor extends javax.swing.JFrame {
         jMenu3.setText("Salir");
 
         jMenuItem2.setAccelerator(javax.swing.KeyStroke.getKeyStroke(java.awt.event.KeyEvent.VK_Q, java.awt.event.InputEvent.CTRL_MASK));
-        jMenuItem2.setText("Cerrar Sesión");
+        jMenuItem2.setText("Cerrar Sesi�n");
         jMenuItem2.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 jMenuItem2ActionPerformed(evt);
@@ -322,23 +322,22 @@ public class ppalVendedor extends javax.swing.JFrame {
     }// </editor-fold>//GEN-END:initComponents
 //Compras objIC=new Compras();
 
-altaModificaionArticulos objIC1=new altaModificaionArticulos();
-bajaArticulos objIC20=new bajaArticulos();
+AltaModificaionArticulos objIC1=new AltaModificaionArticulos();
+BajaArticulos objIC20=new BajaArticulos();
 //abmclientes objIC3=new abmclientes();
 //abmusuario objIC4=new abmusuario();
-ajusteCaja objIC5=new ajusteCaja();
-ajusteVenta objIC6=new ajusteVenta();
+AjusteCaja objIC5=new AjusteCaja();
+AjusteVenta objIC6=new AjusteVenta();
 //buscarfacturas objIC9=new buscarfacturas();
-cliente objIC10=new cliente();
+Clientes objIC10=new Clientes();
 //configsoft objIC11=new configsoft();
-ctacte objIC12=new ctacte();
-estadocuentas objIC13=new estadocuentas();
+CuentasCorrientes objIC12=new CuentasCorrientes();
+EstadoCuentasCorrientes objIC13=new EstadoCuentasCorrientes();
 //importarexportar objIC15=new importarexportar();
 //oc objIC16=new oc();
 //permisos objIC17=new permisos();
-proveedores objIC19=new proveedores();
-reportes objIC26=new reportes();
-stock objIC25=new stock();
+Proveedores objIC19=new Proveedores();
+Stock objIC25=new Stock();
 
     private void jTree1MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jTree1MouseClicked
         
@@ -434,13 +433,13 @@ stock objIC25=new stock();
             }
         }
         if(menu.equals("Reportes")){
-            if(objIC26.isShowing()){
-		//mensaje de que está abierto si se desea
-            }else{
-                desktopPane.add(objIC26);
-                objIC26.show();
-                objIC26.setSize(desktopPane.getSize());
-            }
+//            if(objIC26.isShowing()){
+//		//mensaje de que está abierto si se desea
+//            }else{
+//                desktopPane.add(objIC26);
+//                objIC26.show();
+//                objIC26.setSize(desktopPane.getSize());
+//            }
         }
     }//GEN-LAST:event_jTree1MouseClicked
     
@@ -455,23 +454,23 @@ stock objIC25=new stock();
                         con = new Conexion();
 
                     } catch (ClassNotFoundException ex) {
-                        Logger.getLogger(moduloVenta.class.getName()).log(Level.SEVERE, null, ex);
+                        Logger.getLogger(ModuloVenta.class.getName()).log(Level.SEVERE, null, ex);
                     } catch (SQLException ex) {
-                        Logger.getLogger(moduloVenta.class.getName()).log(Level.SEVERE, null, ex);
+                        Logger.getLogger(ModuloVenta.class.getName()).log(Level.SEVERE, null, ex);
                     } catch (InstantiationException ex) {
-                        Logger.getLogger(moduloVenta.class.getName()).log(Level.SEVERE, null, ex);
+                        Logger.getLogger(ModuloVenta.class.getName()).log(Level.SEVERE, null, ex);
                     } catch (IllegalAccessException ex) {
-                        Logger.getLogger(moduloVenta.class.getName()).log(Level.SEVERE, null, ex);
+                        Logger.getLogger(ModuloVenta.class.getName()).log(Level.SEVERE, null, ex);
                     }                                                        
                     String apertura ="INSERT INTO caja (apertura, id_usuario, estado) VALUES ('"+openSalesValue+"', '"+Login.userId+"', 1)";
 
                     con.ejecutar(apertura);
 
                     } catch (SQLException ex) {
-                        Logger.getLogger(moduloVenta.class.getName()).log(Level.SEVERE, null, ex);
+                        Logger.getLogger(ModuloVenta.class.getName()).log(Level.SEVERE, null, ex);
                     }
                     jBvta.setEnabled(false);
-                    moduloVenta venta = new moduloVenta();
+                    ModuloVenta venta = new ModuloVenta();
                     venta.setVisible(true);
             } else {
                 openSales = "0";
@@ -481,7 +480,7 @@ stock objIC25=new stock();
     }//GEN-LAST:event_jBvtaActionPerformed
 
     private void ctacteActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_ctacteActionPerformed
-        ctacte showCtacte = new ctacte();
+        CuentasCorrientes showCtacte = new CuentasCorrientes();
         showCtacte.setVisible(true);
     }//GEN-LAST:event_ctacteActionPerformed
 
@@ -499,7 +498,7 @@ stock objIC25=new stock();
     }//GEN-LAST:event_jMenuItem2ActionPerformed
 
     private void jMenuItem3ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItem3ActionPerformed
-        modificar mod = new modificar();
+        ModificarContrasenia mod = new ModificarContrasenia();
         mod.id = IDusuario;
         System.out.println("id para modificar: "+mod.id);
         mod.setVisible(true);
@@ -585,7 +584,7 @@ public void calcula () {
          
         java.awt.EventQueue.invokeLater(new Runnable() {
             public void run() {
-                new ppalVendedor().setVisible(true);
+                new PantallaPrincipalVendedor().setVisible(true);
                 
             }
         });

@@ -27,13 +27,13 @@ import javax.swing.WindowConstants;
 import javax.swing.table.DefaultTableModel;
 import javax.swing.tree.DefaultMutableTreeNode;
 import javax.swing.tree.DefaultTreeModel;
-import sigi.moduloVenta;
-import static sigi.proveedores.id1;
+import sigi.ModuloVenta;
+import static sigi.Proveedores.id1;
 /**
  *
  * @author Gustavo
  */
-public class bajaArticulos extends javax.swing.JFrame {
+public class BajaArticulos extends javax.swing.JFrame {
 Conexion con,query;
     ResultSet rs;
     ResultSet rs2;
@@ -42,11 +42,11 @@ Conexion con,query;
    static int j=0;
    public static int id1;
    public static String id;
-    private static moduloVenta myInstance;
+    private static ModuloVenta myInstance;
     /**
      * Creates new form ArticEliminar
      */
-    public bajaArticulos() {
+    public BajaArticulos() {
         initComponents();
     }
 
@@ -157,13 +157,13 @@ Conexion con,query;
                 con = new Conexion();
 
             } catch (ClassNotFoundException ex) {
-                Logger.getLogger(bajaArticulos.class.getName()).log(Level.SEVERE, null, ex);
+                Logger.getLogger(BajaArticulos.class.getName()).log(Level.SEVERE, null, ex);
             } catch (SQLException ex) {
-                Logger.getLogger(bajaArticulos.class.getName()).log(Level.SEVERE, null, ex);
+                Logger.getLogger(BajaArticulos.class.getName()).log(Level.SEVERE, null, ex);
             } catch (InstantiationException ex) {
-                Logger.getLogger(bajaArticulos.class.getName()).log(Level.SEVERE, null, ex);
+                Logger.getLogger(BajaArticulos.class.getName()).log(Level.SEVERE, null, ex);
             } catch (IllegalAccessException ex) {
-                Logger.getLogger(bajaArticulos.class.getName()).log(Level.SEVERE, null, ex);
+                Logger.getLogger(BajaArticulos.class.getName()).log(Level.SEVERE, null, ex);
             }
 
             String nom= jTvscaningv.getText();
@@ -200,7 +200,7 @@ Conexion con,query;
                 }
 
             } catch (SQLException ex) {
-                Logger.getLogger(moduloVenta.class.getName()).log(Level.SEVERE, null, ex);
+                Logger.getLogger(ModuloVenta.class.getName()).log(Level.SEVERE, null, ex);
             }
             if(evt.getKeyCode() == KeyEvent.VK_ENTER){
                 jTvscaningv.requestFocusInWindow();
@@ -246,13 +246,13 @@ String bool;
                 con = new Conexion();
 
             } catch (ClassNotFoundException ex) {
-                Logger.getLogger(bajaArticulos.class.getName()).log(Level.SEVERE, null, ex);
+                Logger.getLogger(BajaArticulos.class.getName()).log(Level.SEVERE, null, ex);
             } catch (SQLException ex) {
-                Logger.getLogger(bajaArticulos.class.getName()).log(Level.SEVERE, null, ex);
+                Logger.getLogger(BajaArticulos.class.getName()).log(Level.SEVERE, null, ex);
             } catch (InstantiationException ex) {
-                Logger.getLogger(bajaArticulos.class.getName()).log(Level.SEVERE, null, ex);
+                Logger.getLogger(BajaArticulos.class.getName()).log(Level.SEVERE, null, ex);
             } catch (IllegalAccessException ex) {
-                Logger.getLogger(bajaArticulos.class.getName()).log(Level.SEVERE, null, ex);
+                Logger.getLogger(BajaArticulos.class.getName()).log(Level.SEVERE, null, ex);
             }
             //sentencias sql para insertar los datos en la base de datos
             String sql = "DELETE FROM `descripcion_articulos` WHERE id_articulo='"+id+"'";
@@ -270,7 +270,7 @@ String bool;
             jTable1.setModel(new DefaultTableModel());
 
         } catch (SQLException ex) {
-            Logger.getLogger(bajaArticulos.class.getName()).log(Level.SEVERE, null, ex);
+            Logger.getLogger(BajaArticulos.class.getName()).log(Level.SEVERE, null, ex);
         }
     }//GEN-LAST:event_jBeliminarActionPerformed
 
@@ -305,14 +305,18 @@ String bool;
                 }
             }
         } catch (ClassNotFoundException ex) {
-            java.util.logging.Logger.getLogger(bajaArticulos.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(BajaArticulos.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         } catch (InstantiationException ex) {
-            java.util.logging.Logger.getLogger(bajaArticulos.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(BajaArticulos.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         } catch (IllegalAccessException ex) {
-            java.util.logging.Logger.getLogger(bajaArticulos.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(BajaArticulos.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         } catch (javax.swing.UnsupportedLookAndFeelException ex) {
-            java.util.logging.Logger.getLogger(bajaArticulos.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(BajaArticulos.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         }
+        //</editor-fold>
+        //</editor-fold>
+        //</editor-fold>
+        //</editor-fold>
         //</editor-fold>
         //</editor-fold>
         //</editor-fold>
@@ -321,7 +325,7 @@ String bool;
         /* Create and display the form */
         java.awt.EventQueue.invokeLater(new Runnable() {
             public void run() {
-                new bajaArticulos().setVisible(true);
+                new BajaArticulos().setVisible(true);
             }
         });
     }

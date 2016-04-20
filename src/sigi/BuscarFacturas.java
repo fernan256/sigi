@@ -24,14 +24,14 @@ import javax.swing.tree.DefaultTreeModel;
 import javax.print.PrintException;
 import javax.swing.DefaultComboBoxModel;
 import javax.swing.table.DefaultTableModel;
-import static sigi.oc.idpag;
-import static sigi.oc.idprovi;
-import static sigi.oc.j;
+import static sigi.OrdenesCompras.idpag;
+import static sigi.OrdenesCompras.idprovi;
+import static sigi.OrdenesCompras.j;
 /**
  *
  * @author Gustavo
  */
-public class buscarfacturas extends javax.swing.JInternalFrame {
+public class BuscarFacturas extends javax.swing.JInternalFrame {
 Conexion con,query;
     ResultSet rs;
     ResultSet rs2;
@@ -48,12 +48,12 @@ Conexion con,query;
     Calendar calendario;    
 public static int rowCount, numfac, idoc, idusuario;
 
-//public class buscarfacturas extends javax.swing.JInternalFrame {
+//public class BuscarFacturas extends javax.swing.JInternalFrame {
 
     /**
      * Creates new form buscarfacturas
      */
-    public buscarfacturas() {
+    public BuscarFacturas() {
         initComponents();
     }
 
@@ -92,7 +92,7 @@ public static int rowCount, numfac, idoc, idusuario;
 
             },
             new String [] {
-                "Fecha", "NÂ° Factura", "Orden Compra", "Total", "Proveedor", "DescripciÃ³n"
+                "Fecha", "N° Factura", "Orden Compra", "Total", "Proveedor", "Descripción"
             }
         ) {
             Class[] types = new Class [] {
@@ -199,13 +199,13 @@ public static int rowCount, numfac, idoc, idusuario;
                         con = new Conexion();
 
                     } catch (ClassNotFoundException ex) {
-                        Logger.getLogger(oc.class.getName()).log(Level.SEVERE, null, ex);
+                        Logger.getLogger(OrdenesCompras.class.getName()).log(Level.SEVERE, null, ex);
                     } catch (SQLException ex) {
-                        Logger.getLogger(oc.class.getName()).log(Level.SEVERE, null, ex);
+                        Logger.getLogger(OrdenesCompras.class.getName()).log(Level.SEVERE, null, ex);
                     } catch (InstantiationException ex) {
-                        Logger.getLogger(oc.class.getName()).log(Level.SEVERE, null, ex);
+                        Logger.getLogger(OrdenesCompras.class.getName()).log(Level.SEVERE, null, ex);
                     } catch (IllegalAccessException ex) {
-                        Logger.getLogger(oc.class.getName()).log(Level.SEVERE, null, ex);
+                        Logger.getLogger(OrdenesCompras.class.getName()).log(Level.SEVERE, null, ex);
                     }
 
                     String nom= jTbusc_com.getText();
@@ -305,13 +305,13 @@ public static int rowCount, numfac, idoc, idusuario;
                         con = new Conexion();
 
                     } catch (ClassNotFoundException ex) {
-                        Logger.getLogger(oc.class.getName()).log(Level.SEVERE, null, ex);
+                        Logger.getLogger(OrdenesCompras.class.getName()).log(Level.SEVERE, null, ex);
                     } catch (SQLException ex) {
-                        Logger.getLogger(oc.class.getName()).log(Level.SEVERE, null, ex);
+                        Logger.getLogger(OrdenesCompras.class.getName()).log(Level.SEVERE, null, ex);
                     } catch (InstantiationException ex) {
-                        Logger.getLogger(oc.class.getName()).log(Level.SEVERE, null, ex);
+                        Logger.getLogger(OrdenesCompras.class.getName()).log(Level.SEVERE, null, ex);
                     } catch (IllegalAccessException ex) {
-                        Logger.getLogger(oc.class.getName()).log(Level.SEVERE, null, ex);
+                        Logger.getLogger(OrdenesCompras.class.getName()).log(Level.SEVERE, null, ex);
                     }
 
                     //String nom= jTbusc_com.getText();

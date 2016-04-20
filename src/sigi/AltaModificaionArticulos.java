@@ -28,7 +28,7 @@ import jxl.read.biff.BiffException;
  *
  * @author Gustavo
  */
-public class altaModificaionArticulos extends javax.swing.JInternalFrame {
+public class AltaModificaionArticulos extends javax.swing.JInternalFrame {
     Conexion con,query;
     ResultSet rs, rs1, rs2, rs3, rs4 ;
     static int j = 0; 
@@ -37,7 +37,7 @@ public class altaModificaionArticulos extends javax.swing.JInternalFrame {
     private Vector columna = new Vector();
     private Vector filas = new Vector();
          
-    public altaModificaionArticulos() {
+    public AltaModificaionArticulos() {
         initComponents();
     }
     @SuppressWarnings("unchecked")
@@ -191,13 +191,13 @@ public class altaModificaionArticulos extends javax.swing.JInternalFrame {
                 try {
                     con = new Conexion();
                 } catch (ClassNotFoundException ex) {
-                    Logger.getLogger(altaModificaionArticulos.class.getName()).log(Level.SEVERE, null, ex);
+                    Logger.getLogger(AltaModificaionArticulos.class.getName()).log(Level.SEVERE, null, ex);
                 } catch (SQLException ex) {
-                    Logger.getLogger(altaModificaionArticulos.class.getName()).log(Level.SEVERE, null, ex);
+                    Logger.getLogger(AltaModificaionArticulos.class.getName()).log(Level.SEVERE, null, ex);
                 } catch (InstantiationException ex) {
-                    Logger.getLogger(altaModificaionArticulos.class.getName()).log(Level.SEVERE, null, ex);
+                    Logger.getLogger(AltaModificaionArticulos.class.getName()).log(Level.SEVERE, null, ex);
                 } catch (IllegalAccessException ex) {
-                    Logger.getLogger(altaModificaionArticulos.class.getName()).log(Level.SEVERE, null, ex);
+                    Logger.getLogger(AltaModificaionArticulos.class.getName()).log(Level.SEVERE, null, ex);
                 }
                 String nombre_producto = jTnombre_producto.getText();
                 String marca = jTmarca.getText();
@@ -227,7 +227,7 @@ public class altaModificaionArticulos extends javax.swing.JInternalFrame {
                 clear();
                 jTscanning.setText("");
             } catch (SQLException ex) {
-                Logger.getLogger(ppal.class.getName()).log(Level.SEVERE, null, ex);
+                Logger.getLogger(PantallaPrincipal.class.getName()).log(Level.SEVERE, null, ex);
             }
         }
     }//GEN-LAST:event_jBagregarActionPerformed
@@ -237,13 +237,13 @@ public class altaModificaionArticulos extends javax.swing.JInternalFrame {
             try {
                 con = new Conexion();
             } catch (ClassNotFoundException ex) {
-                Logger.getLogger(altaModificaionArticulos.class.getName()).log(Level.SEVERE, null, ex);
+                Logger.getLogger(AltaModificaionArticulos.class.getName()).log(Level.SEVERE, null, ex);
             } catch (SQLException ex) {
-                Logger.getLogger(altaModificaionArticulos.class.getName()).log(Level.SEVERE, null, ex);
+                Logger.getLogger(AltaModificaionArticulos.class.getName()).log(Level.SEVERE, null, ex);
             } catch (InstantiationException ex) {
-                Logger.getLogger(altaModificaionArticulos.class.getName()).log(Level.SEVERE, null, ex);
+                Logger.getLogger(AltaModificaionArticulos.class.getName()).log(Level.SEVERE, null, ex);
             } catch (IllegalAccessException ex) {
-                Logger.getLogger(altaModificaionArticulos.class.getName()).log(Level.SEVERE, null, ex);
+                Logger.getLogger(AltaModificaionArticulos.class.getName()).log(Level.SEVERE, null, ex);
             }
              
             String scanning= jTscanning.getText();
@@ -268,7 +268,7 @@ public class altaModificaionArticulos extends javax.swing.JInternalFrame {
                 }
             }
         } catch (SQLException ex) {
-            Logger.getLogger(moduloVenta.class.getName()).log(Level.SEVERE, null, ex);
+            Logger.getLogger(ModuloVenta.class.getName()).log(Level.SEVERE, null, ex);
         }
     }//GEN-LAST:event_jTscanningKeyPressed
 
@@ -278,7 +278,7 @@ public class altaModificaionArticulos extends javax.swing.JInternalFrame {
     }//GEN-LAST:event_jButton3ActionPerformed
 
     private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
-        bajaArticulos elimin = new bajaArticulos();
+        BajaArticulos elimin = new BajaArticulos();
         elimin.setVisible(true);
     }//GEN-LAST:event_jButton1ActionPerformed
 
@@ -287,13 +287,13 @@ public class altaModificaionArticulos extends javax.swing.JInternalFrame {
             try {
             con = new Conexion();
             } catch (ClassNotFoundException ex) {
-                Logger.getLogger(altaModificaionArticulos.class.getName()).log(Level.SEVERE, null, ex);
+                Logger.getLogger(AltaModificaionArticulos.class.getName()).log(Level.SEVERE, null, ex);
             } catch (InstantiationException ex) {
-                Logger.getLogger(altaModificaionArticulos.class.getName()).log(Level.SEVERE, null, ex);
+                Logger.getLogger(AltaModificaionArticulos.class.getName()).log(Level.SEVERE, null, ex);
             } catch (IllegalAccessException ex) {
-                Logger.getLogger(altaModificaionArticulos.class.getName()).log(Level.SEVERE, null, ex);
+                Logger.getLogger(AltaModificaionArticulos.class.getName()).log(Level.SEVERE, null, ex);
             } catch (SQLException ex) {
-                Logger.getLogger(altaModificaionArticulos.class.getName()).log(Level.SEVERE, null, ex);
+                Logger.getLogger(AltaModificaionArticulos.class.getName()).log(Level.SEVERE, null, ex);
             }   
             String scanning = jTscanning.getText();
             String nombre_producto = jTnombre_producto.getText();
@@ -306,7 +306,7 @@ public class altaModificaionArticulos extends javax.swing.JInternalFrame {
             clear();
             jTscanning.setText("");
         } catch (SQLException ex) {
-            Logger.getLogger(ppal.class.getName()).log(Level.SEVERE, null, ex);
+            Logger.getLogger(PantallaPrincipal.class.getName()).log(Level.SEVERE, null, ex);
         }
     }//GEN-LAST:event_updateArticleActionPerformed
 
@@ -315,13 +315,13 @@ public class altaModificaionArticulos extends javax.swing.JInternalFrame {
             try {
                 con = new Conexion();
             } catch (ClassNotFoundException ex) {
-                Logger.getLogger(altaModificaionArticulos.class.getName()).log(Level.SEVERE, null, ex);
+                Logger.getLogger(AltaModificaionArticulos.class.getName()).log(Level.SEVERE, null, ex);
             } catch (SQLException ex) {
-                Logger.getLogger(altaModificaionArticulos.class.getName()).log(Level.SEVERE, null, ex);
+                Logger.getLogger(AltaModificaionArticulos.class.getName()).log(Level.SEVERE, null, ex);
             } catch (InstantiationException ex) {
-                Logger.getLogger(altaModificaionArticulos.class.getName()).log(Level.SEVERE, null, ex);
+                Logger.getLogger(AltaModificaionArticulos.class.getName()).log(Level.SEVERE, null, ex);
             } catch (IllegalAccessException ex) {
-                Logger.getLogger(altaModificaionArticulos.class.getName()).log(Level.SEVERE, null, ex);
+                Logger.getLogger(AltaModificaionArticulos.class.getName()).log(Level.SEVERE, null, ex);
             }
             String sqlc = "SELECT * FROM descripcion_articulos";
             rs = con.Consulta(sqlc);
@@ -349,16 +349,16 @@ public class altaModificaionArticulos extends javax.swing.JInternalFrame {
                 buscar.addRow(fila);
             }
         } catch (SQLException ex) {
-            Logger.getLogger(ppal.class.getName()).log(Level.SEVERE, null, ex);
+            Logger.getLogger(PantallaPrincipal.class.getName()).log(Level.SEVERE, null, ex);
         }
         JFileChooser dialog = new JFileChooser();
-        int opcion = dialog.showSaveDialog(altaModificaionArticulos.this);
+        int opcion = dialog.showSaveDialog(AltaModificaionArticulos.this);
         if (opcion == JFileChooser.APPROVE_OPTION) {
             File dir = dialog.getSelectedFile();
             try {
                 List<JTable> tb = new ArrayList<JTable>();
                 tb.add(exportTable);
-                export_excel excelExporter = new export_excel(tb, new File(dir.getAbsolutePath() + ".xls"));
+                ExportarExcel excelExporter = new ExportarExcel(tb, new File(dir.getAbsolutePath() + ".xls"));
                 if (excelExporter.export()) {
                     JOptionPane.showMessageDialog(null, "TABLAS EXPORTADOS CON EXITOS!");
                 }
@@ -371,14 +371,14 @@ public class altaModificaionArticulos extends javax.swing.JInternalFrame {
     private void importFromExcelActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_importFromExcelActionPerformed
         JFileChooser examinar = new JFileChooser();
         examinar.setFileFilter(new FileNameExtensionFilter("Archivo Excel", "xls"));
-        int opcion = examinar.showSaveDialog(altaModificaionArticulos.this);
+        int opcion = examinar.showSaveDialog(AltaModificaionArticulos.this);
         File archivoExcel = null;
         if (opcion == JFileChooser.APPROVE_OPTION) {
             archivoExcel = examinar.getSelectedFile().getAbsoluteFile();
             try {
                 CrearTabla(archivoExcel);
             } catch(IOException ex) {
-                Logger.getLogger(altaModificaionArticulos.class.getName()).log(Level.SEVERE, null, ex);
+                Logger.getLogger(AltaModificaionArticulos.class.getName()).log(Level.SEVERE, null, ex);
                 JOptionPane.showMessageDialog(null, "Error" + ex);
             }
         }
@@ -429,13 +429,13 @@ public class altaModificaionArticulos extends javax.swing.JInternalFrame {
                         try {
                             con = new Conexion();
                         } catch (ClassNotFoundException ex) {
-                            Logger.getLogger(ppal.class.getName()).log(Level.SEVERE, null, ex);
+                            Logger.getLogger(PantallaPrincipal.class.getName()).log(Level.SEVERE, null, ex);
                         } catch (SQLException ex) {
-                            Logger.getLogger(ppal.class.getName()).log(Level.SEVERE, null, ex);
+                            Logger.getLogger(PantallaPrincipal.class.getName()).log(Level.SEVERE, null, ex);
                         } catch (InstantiationException ex) {
-                            Logger.getLogger(ppal.class.getName()).log(Level.SEVERE, null, ex);
+                            Logger.getLogger(PantallaPrincipal.class.getName()).log(Level.SEVERE, null, ex);
                         } catch (IllegalAccessException ex) {
-                            Logger.getLogger(ppal.class.getName()).log(Level.SEVERE, null, ex);
+                            Logger.getLogger(PantallaPrincipal.class.getName()).log(Level.SEVERE, null, ex);
                         }
 
                         String nombreProducto[] = new String[j];
@@ -486,7 +486,7 @@ public class altaModificaionArticulos extends javax.swing.JInternalFrame {
                             con.ejecutar(updateArticulos);          
                         }
                     } catch (SQLException ex) {
-                        Logger.getLogger(ppal.class.getName()).log(Level.SEVERE, null, ex);
+                        Logger.getLogger(PantallaPrincipal.class.getName()).log(Level.SEVERE, null, ex);
                     }
             }  
             JOptionPane.showMessageDialog(null, "Se guardaron "+j+" registros");

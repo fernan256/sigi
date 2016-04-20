@@ -9,12 +9,12 @@ package sigi;
  *
  * @author Gustavo
  */
-public class cliente extends javax.swing.JInternalFrame {
+public class Clientes extends javax.swing.JInternalFrame {
 
     /**
      * Creates new form cliente
      */
-    public cliente() {
+    public Clientes() {
         initComponents();
     }
 
@@ -52,7 +52,7 @@ public class cliente extends javax.swing.JInternalFrame {
 
         jTextField1.setText("Nombre, Apellido");
 
-        jTextField2.setText("DirecciÃ³n");
+        jTextField2.setText("Dirección");
 
         jTextField3.setText("telefono");
 

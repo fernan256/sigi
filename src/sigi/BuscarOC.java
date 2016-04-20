@@ -9,12 +9,12 @@ package sigi;
  *
  * @author Gustavo
  */
-public class buscarOC extends javax.swing.JInternalFrame {
+public class BuscarOC extends javax.swing.JInternalFrame {
 
     /**
      * Creates new form buscar
      */
-    public buscarOC() {
+    public BuscarOC() {
         initComponents();
     }
 
