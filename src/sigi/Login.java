@@ -1,52 +1,23 @@
-/*
- * To change this template, choose Tools | Templates
- * and open the template in the editor.
- */
-
-/*
- * inicio.java
- *
- * Created on Dec 6, 2011, 10:08:31 AM
- */
-
 package sigi;
 
 import Connection.Conexion;
-import sigi.ppal;
-import java.awt.event.ActionEvent;
-import java.awt.event.ActionListener;
 import java.sql.ResultSet;
 import java.sql.SQLException;
-import java.security.MessageDigest;
-import java.security.NoSuchAlgorithmException;
 import java.util.logging.Level;
 import java.util.logging.Logger;
-import javax.swing.JFrame;
 import javax.swing.JOptionPane;
 
-/**
- *
- * @author Aeroslizth
- */
-public class inicio extends javax.swing.JFrame {
+public class Login extends javax.swing.JFrame {
 
     Conexion con;
     ResultSet rs;
-    int ID=-1;
-    /** Creates new form inicio */
-    public inicio() {
-        try {
-            initComponents();
-           con = new Conexion();
-        } catch (ClassNotFoundException ex) {
-            Logger.getLogger(ppal.class.getName()).log(Level.SEVERE, null, ex);
-        } catch (SQLException ex) {
-            Logger.getLogger(ppal.class.getName()).log(Level.SEVERE, null, ex);
-        } catch (InstantiationException ex) {
-            Logger.getLogger(ppal.class.getName()).log(Level.SEVERE, null, ex);
-        } catch (IllegalAccessException ex) {
-            Logger.getLogger(ppal.class.getName()).log(Level.SEVERE, null, ex);
-        }
+    String rol;
+    public static int userRol;
+    public static int userId;
+    public static String userName;
+    
+    public Login() {
+        initComponents();
     }
 
     /** This method is called from within the constructor to
@@ -66,10 +37,10 @@ public class inicio extends javax.swing.JFrame {
         txtPass = new javax.swing.JPasswordField();
         jBingresar = new javax.swing.JButton();
         jMenuBar1 = new javax.swing.JMenuBar();
-        jMenu1 = new javax.swing.JMenu();
-        jMenuItem1 = new javax.swing.JMenuItem();
-        jMenu2 = new javax.swing.JMenu();
-        jMenuItem2 = new javax.swing.JMenuItem();
+        archivo = new javax.swing.JMenu();
+        salir = new javax.swing.JMenuItem();
+        info = new javax.swing.JMenu();
+        acerca = new javax.swing.JMenuItem();
 
         jLabel1.setMaximumSize(new java.awt.Dimension(500, 500));
         jLabel1.setMinimumSize(new java.awt.Dimension(500, 500));
@@ -93,7 +64,7 @@ public class inicio extends javax.swing.JFrame {
         });
 
         jLabel5.setFont(new java.awt.Font("Verdana", 1, 12)); // NOI18N
-        jLabel5.setText("Contraseña:");
+        jLabel5.setText("Contrase�a:");
 
         txtPass.addKeyListener(new java.awt.event.KeyAdapter() {
             public void keyPressed(java.awt.event.KeyEvent evt) {
@@ -102,14 +73,9 @@ public class inicio extends javax.swing.JFrame {
         });
 
         jBingresar.setText("Ingresar");
-        jBingresar.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jBingresarActionPerformed(evt);
-            }
-        });
         jBingresar.addKeyListener(new java.awt.event.KeyAdapter() {
-            public void keyPressed(java.awt.event.KeyEvent evt) {
-                jBingresarKeyPressed(evt);
+            public void keyReleased(java.awt.event.KeyEvent evt) {
+                jBingresarKeyReleased(evt);
             }
         });
 
@@ -146,29 +112,29 @@ public class inicio extends javax.swing.JFrame {
                 .addContainerGap(28, Short.MAX_VALUE))
         );
 
-        jMenu1.setText("Archivo");
+        archivo.setText("Archivo");
 
-        jMenuItem1.setText("Salir");
-        jMenuItem1.addActionListener(new java.awt.event.ActionListener() {
+        salir.setText("Salir");
+        salir.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jMenuItem1ActionPerformed(evt);
+                salirActionPerformed(evt);
             }
         });
-        jMenu1.add(jMenuItem1);
+        archivo.add(salir);
 
-        jMenuBar1.add(jMenu1);
+        jMenuBar1.add(archivo);
 
-        jMenu2.setText("Info");
+        info.setText("Info");
 
-        jMenuItem2.setText("Acerca de...");
-        jMenuItem2.addActionListener(new java.awt.event.ActionListener() {
+        acerca.setText("Acerca de...");
+        acerca.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jMenuItem2ActionPerformed(evt);
+                acercaActionPerformed(evt);
             }
         });
-        jMenu2.add(jMenuItem2);
+        info.add(acerca);
 
-        jMenuBar1.add(jMenu2);
+        jMenuBar1.add(info);
 
         setJMenuBar(jMenuBar1);
 
@@ -188,494 +154,107 @@ public class inicio extends javax.swing.JFrame {
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
-    private void jMenuItem2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItem2ActionPerformed
+    private void acercaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_acercaActionPerformed
         JOptionPane.showMessageDialog(rootPane, "\n\n www.systec.com.ar \n Soluciones en Software y WEB\n SiGI V1.0\n\n ");
-    }//GEN-LAST:event_jMenuItem2ActionPerformed
+    }//GEN-LAST:event_acercaActionPerformed
 
-    private void jMenuItem1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItem1ActionPerformed
-        if(JOptionPane.showConfirmDialog(rootPane, "Estás seguro de cerrarla?","Cerrar aplicación",1)==0){
+    private void salirActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_salirActionPerformed
+        if(JOptionPane.showConfirmDialog(rootPane, "Esta seguro de cerrarla?","Cerrar aplicaci�n",1)==0){
             System.exit(0);
         }
-    }//GEN-LAST:event_jMenuItem1ActionPerformed
+    }//GEN-LAST:event_salirActionPerformed
 
     private void txtUserActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtUserActionPerformed
         // TODO add your handling code here:
     }//GEN-LAST:event_txtUserActionPerformed
 
     private void txtPassKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_txtPassKeyPressed
-        int evento=evt.getKeyCode();
-        int N;
-        if(evento==10 ){
-            String usuario=txtUser.getText();
-            String pass=txtPass.getText();
+        
+    }//GEN-LAST:event_txtPassKeyPressed
 
-            String nom="",password="",id="",nivel="",nombre="", ap="",am="";
+    private void jBingresarKeyReleased(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_jBingresarKeyReleased
+        String usuario = txtUser.getText();
+        String pass = txtPass.getText();
+        String user ="", password="", id="", nombre = "", apellidos = "";
+    
+        if(usuario.equals("") || pass.equals("")){
+            JOptionPane.showMessageDialog(null,"Faltan campos por llenar");
+        } else{
+            try {
+                con = new Conexion();
 
-            // se valida que no esten vacios
-            if(usuario.equals("") || pass.equals(""))
-            {
-                JOptionPane.showMessageDialog(null,"Faltan campos por llenar");
-            }
-            else{
+                String sql = "select * from usuarios where user='"+usuario+"';";
 
-                try {
-                    // se hace la conexion con la base de datos
-                    con = new Conexion();
+                rs = con.Consulta(sql);
 
-                    //sentencia sql para extraer los datos del usuario insertado
-                    String sql = "select * from usuarios where user='"+usuario+"';";
+                while (rs.next()){
+                    id = rs.getString(1);
+                    nombre = rs.getString(2);
+                    apellidos = rs.getString(3);
+                    user = rs.getString(4);
+                    password = rs.getString(5);
+                    rol= rs.getString(13);
+                }
+                if (id.equals("")) {
+                    JOptionPane.showMessageDialog(null,"Usuario No Encontrado");
+                    txtUser.setText("");
+                    txtPass.setText("");
 
-                    rs = con.Consulta(sql);
-                    // se obtienen los datos de la consulta
+                } else {
+                    userId = Integer.parseInt(id);
+                    userRol = Integer.parseInt(rol);
+                    userName = nombre + " " + apellidos;
 
-                    while (rs.next()){
-                        id = rs.getString(1);
-                        nombre= rs.getString(2);
-                        ap= rs.getString(3);
-                        am = rs.getString(4);
-                        nom = rs.getString(5);
-                        password = rs.getString(6);
-                        nivel= rs.getString(7);
-                    }
-                    if (id.equals("")) {
-
-                        JOptionPane.showMessageDialog(null,"Usuario No Encontrado");
-                        txtUser.setText("");
-                        txtPass.setText("");
-
-                    }
-                    else{
-                        ID = Integer.parseInt(id);
-                        N = Integer.parseInt(nivel);
-
-                        //   System.out.println(id+" ---- "+nom+" ---- "+password+" --- "+nivel);
-                        // sentencia sql para comprobar que el estatus del usuario es TRUE
-                        //                    String sql2 ="select estatus from persona where idPersona="+ID+";";
-                        //                    rs = con.Consulta(sql2);
-                        //                   lleno = rs.next();
-                        //                   while(lleno){
-                            //                       estatus = rs.getString(1);
-                            //                       lleno = rs.next();
-                            //                   }
-
-                        //metodo para encriptar la contraseña insertada en MD5
-
-                        //                MessageDigest messagedigest = null;
-                        //
-                        //                try {
-                            //                    messagedigest = MessageDigest.getInstance("MD5");
-                            //                } catch (NoSuchAlgorithmException ex) {
-                            //                    Logger.getLogger(Interface.class.getName()).log(Level.SEVERE, null, ex);
-                            //                }
-                        //
-                        //                 messagedigest.update(pass.getBytes());
-                        //                String password2 = new String(messagedigest.digest());
-                        // System.out.println("pass: "+pass);
-                        // se compara que el usuario de la base de datos es el mismo que el insertado
-                        //se comparan ambas contraseñas encriptadas
-                        if(nom.equals(usuario) && pass.equals(password)){
-                            // se compara si el estatus es igual a TRUE
-                            //System.out.println(N);
-                            //if(N==0){
-                                //se carga la segunda interfaz
-
+                    if(user.equals(usuario)){
+                        if(pass.equals(password)){
+                            if(userRol==1){
                                 ppal inter = new ppal();
-                                inter.setId(id);
-                                inter.setNivel(N);
-                                //inter.setC();
-                                inter.IDusuario = ID;
                                 //JOptionPane.showMessageDialog(rootPane, "Bienvenid@ "+nombre+" "+ap+" "+am+" \n\n Ha ingresado como: Administrador");
                                 inter.setVisible(true);
                                 this.dispose();
-                            //}
-//                                     if(N==1){
-//                                         moduloVenta vendedor = new moduloVenta();
-//                                         vendedor.setId(id);
-//                                         vendedor.IDusuario = ID;
-//                                         vendedor.setVisible(true);
-//                                         this.dispose();
-                                //se carga la segunda interfaz
-
-                                //vendedor vende = new vendedor();
-//                                vende.setId(id);
-//                                vende.IDusuario = ID;
-//                                JOptionPane.showMessageDialog(rootPane, "Bienvenid@ "+nombre+" "+ap+" "+am+" \n\n Ha ingresado como: Vendedor");
-//                                vende.setVisible(true);
-//                                this.dispose();
-                                //apertura ape = new apertura();
-                                //ape.setVisible(true);
-                                //this.dispose();
-                            //}
-//                            if(N==2){
-//                                //se carga la tercera interfaz
-//                                capturista cap = new capturista();
-//                                cap.setId(id);
-//                                cap.IDusuario = ID;
-//                                JOptionPane.showMessageDialog(rootPane, "Bienvenid@ "+nombre+" "+ap+" "+am+" \n\n Has entrado al sistema como: Capturista");
-//                                cap.setVisible(true);
-//                                this.dispose();
-//                            }
-                            
-                        }
-
-                        // en caso de que esten mal los datos
-                        else{
-                            JOptionPane.showMessageDialog(rootPane,"Contraseña Incorrecta");
-                            txtUser.setText("");
-                            txtPass.setText("");
-
-                        }
-
-                    }
-
-                } catch (ClassNotFoundException ex) {
-                    Logger.getLogger(ppal.class.getName()).log(Level.SEVERE, null, ex);
-                } catch (SQLException ex) {
-                    Logger.getLogger(ppal.class.getName()).log(Level.SEVERE, null, ex);
-                } catch (InstantiationException ex) {
-                    Logger.getLogger(ppal.class.getName()).log(Level.SEVERE, null, ex);
-                } catch (IllegalAccessException ex) {
-                    Logger.getLogger(ppal.class.getName()).log(Level.SEVERE, null, ex);
-                }
-
-            }
-
-        }
-    }//GEN-LAST:event_txtPassKeyPressed
-
-    private void jBingresarKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_jBingresarKeyPressed
-        // TODO add your handling code here:
-
-        // BOTON PARA INGRESAR AL SISTEMA
-
-        // se obtiene los valores de los cuadros de texto
-        String usuario=txtUser.getText();
-        String pass=txtPass.getText();
-
-        String nom="",password="",id="",nivel="";
-        String nombre = null;
-        String ap = null;
-        String am = null;
-        // se valida que no esten vacios
-        if(usuario.equals("") || pass.equals(""))
-        {
-            JOptionPane.showMessageDialog(null,"Faltan campos por llenar");
-        }
-        else{
-
-            try {
-                // se hace la conexion con la base de datos
-                con = new Conexion();
-
-                //sentencia sql para extraer los datos del usuario insertado
-                String sql = "select * from usuarios where user='"+usuario+"';";
-
-                rs = con.Consulta(sql);
-
-                // se obtienen los datos de la consulta
-
-                while (rs.next()){
-                    id = rs.getString(1);
-                    nombre= rs.getString(2);
-                    ap= rs.getString(3);
-                    am = rs.getString(4);
-                    nom = rs.getString(5);
-                    password = rs.getString(6);
-                    nivel= rs.getString(7);
-                }
-                if (id.equals("")) {
-
-                    JOptionPane.showMessageDialog(null,"Usuario No Encontrado");
-                    txtUser.setText("");
-                    txtPass.setText("");
-
-                }
-                else{
-                    ID = Integer.parseInt(id);
-                    int N = Integer.parseInt(nivel);
-
-                    //  System.out.println(id+" ---- "+nom+" ---- "+password+" --- "+nivel);
-                    // sentencia sql para comprobar que el estatus del usuario es TRUE
-                    //                    String sql2 ="select estatus from persona where idPersona="+ID+";";
-                    //                    rs = con.Consulta(sql2);
-                    //                   lleno = rs.next();
-                    //                   while(lleno){
-                        //                       estatus = rs.getString(1);
-                        //                       lleno = rs.next();
-                        //                   }
-
-                    //metodo para encriptar la contraseña insertada en MD5
-
-                    //                MessageDigest messagedigest = null;
-                    //
-                    //                try {
-                        //                    messagedigest = MessageDigest.getInstance("MD5");
-                        //                } catch (NoSuchAlgorithmException ex) {
-                        //                    Logger.getLogger(Interface.class.getName()).log(Level.SEVERE, null, ex);
-                        //                }
-                    //
-                    //                 messagedigest.update(pass.getBytes());
-                    //                String password2 = new String(messagedigest.digest());
-
-                    // se compara que el usuario de la base de datos es el mismo que el insertado
-                    //se comparan ambas contraseñas encriptadas
-
-                    if(nom.equals(usuario)){
-                        if(pass.equals(password)){
-                            // se compara si el estatus es igual a TRUE
-                            if(N==0){
-                                //se carga la segunda interfaz
-
-                                ppal inter = new ppal();
-
-                                inter.setId(id);
-                                //inter.setC();
-                                inter.IDusuario = ID;
-                                //JOptionPane.showMessageDialog(rootPane, "Bienvenid@ "+nombre+" "+ap+" "+am+" \n\n Has entrado al sistema como: Administrador");
-                                inter.setVisible(true);
-                                this.dispose();
-
-                            }
-                            /*        if(N==1){
-                                //se carga la segunda interfaz
-                                vendedor vende = new vendedor();
-                                vende.setId(id);
-                                vende.IDusuario = ID;
-                                JOptionPane.showMessageDialog(rootPane, "Bienvenid@ "+nombre+" "+ap+" "+am+" \n\n Has entrado al sistema como: Vendedor");
-                                vende.setVisible(true);
-                                this.dispose();
-
-                            }
-                            if(N==2){
-                                //se carga la segunda interfaz
-                                capturista cap = new capturista();
-                                cap.setId(id);
-                                cap.IDusuario = ID;
-                                JOptionPane.showMessageDialog(rootPane, "Bienvenid@ "+nombre+" "+ap+" "+am+" \n\n Has entrado al sistema como: Capturista");
-                                cap.setVisible(true);
+                            } else if(userRol==2){                                
+                                ppalVendedor vendorView = new ppalVendedor();
+                                //JOptionPane.showMessageDialog(rootPane, "Bienvenid@ "+nombre+" "+ap+" "+am+" \n\n Has entrado al sistema como: Vendedor");
+                                vendorView.setVisible(true);
                                 this.dispose();
                             }
-                            //                        //se carga la segunda interfaz
-                            //                        Interface inter = new Interface();
-                            //                        inter.setId(id);
-                            //                        inter.setC();
-                            //                        inter.IDusuario = ID;
-                            //                        System.out.println(inter.IDusuario);
-                            //                        JOptionPane.showMessageDialog(rootPane, "Bienvenid@ "+nombre+" "+ap+" "+am+"");
-                            //                        inter.setVisible(true);
-                            //                        this.dispose();
-                            //
-                            */
-                        }
-                        else{
-
-                            JOptionPane.showMessageDialog(null,"Contraseña Incorrecta");
+                        } else{
+                            JOptionPane.showMessageDialog(null,"Contrase�a Incorrecta");
                             txtUser.setText("");
                             txtPass.setText("");
                         }
-                    }
-                    // en caso de que esten mal los datos
-                    else{
-                        JOptionPane.showMessageDialog(null,"Usuario o Contraseña Incorrecta");
+                    } else{
+                        JOptionPane.showMessageDialog(null,"Usuario o Contrase�a Incorrecta");
                         txtUser.setText("");
                         txtPass.setText("");
                     }
-
                 }
-
-            } catch (ClassNotFoundException ex) {
-                Logger.getLogger(ppal.class.getName()).log(Level.SEVERE, null, ex);
-            } catch (SQLException ex) {
-                Logger.getLogger(ppal.class.getName()).log(Level.SEVERE, null, ex);
-            } catch (InstantiationException ex) {
-                Logger.getLogger(ppal.class.getName()).log(Level.SEVERE, null, ex);
-            } catch (IllegalAccessException ex) {
+            } catch (ClassNotFoundException | SQLException | InstantiationException | IllegalAccessException ex) {
                 Logger.getLogger(ppal.class.getName()).log(Level.SEVERE, null, ex);
             }
-
         }
-    }//GEN-LAST:event_jBingresarKeyPressed
-
-    private void jBingresarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jBingresarActionPerformed
-
-        // BOTON PARA INGRESAR AL SISTEMA
-
-        // se obtiene los valores de los cuadros de texto
-        String usuario=txtUser.getText();
-        String pass=txtPass.getText();
-
-        String nom="",password="",id="",nivel="";
-        String nombre = null;
-        String ap = null;
-        String am = null;
-        // se valida que no esten vacios
-        if(usuario.equals("") || pass.equals(""))
-        {
-            JOptionPane.showMessageDialog(null,"Faltan campos por llenar");
-        }
-        else{
-
-            try {
-                // se hace la conexion con la base de datos
-                con = new Conexion();
-
-                //sentencia sql para extraer los datos del usuario insertado
-                String sql = "select * from usuarios where user='"+usuario+"';";
-
-                rs = con.Consulta(sql);
-
-                // se obtienen los datos de la consulta
-
-                while (rs.next()){
-                    id = rs.getString(1);
-                    nombre= rs.getString(2);
-                    ap= rs.getString(3);
-                    am = rs.getString(4);
-                    nom = rs.getString(5);
-                    password = rs.getString(6);
-                    nivel= rs.getString(7);
-                }
-                if (id.equals("")) {
-
-                    JOptionPane.showMessageDialog(null,"Usuario No Encontrado");
-                    txtUser.setText("");
-                    txtPass.setText("");
-
-                }
-                else{
-                    ID = Integer.parseInt(id);
-                    int N = Integer.parseInt(nivel);
-
-                    //  System.out.println(id+" ---- "+nom+" ---- "+password+" --- "+nivel);
-                    // sentencia sql para comprobar que el estatus del usuario es TRUE
-                    //                    String sql2 ="select estatus from persona where idPersona="+ID+";";
-                    //                    rs = con.Consulta(sql2);
-                    //                   lleno = rs.next();
-                    //                   while(lleno){
-                        //                       estatus = rs.getString(1);
-                        //                       lleno = rs.next();
-                        //                   }
-
-                    //metodo para encriptar la contraseña insertada en MD5
-
-                    //                MessageDigest messagedigest = null;
-                    //
-                    //                try {
-                        //                    messagedigest = MessageDigest.getInstance("MD5");
-                        //                } catch (NoSuchAlgorithmException ex) {
-                        //                    Logger.getLogger(Interface.class.getName()).log(Level.SEVERE, null, ex);
-                        //                }
-                    //
-                    //                 messagedigest.update(pass.getBytes());
-                    //                String password2 = new String(messagedigest.digest());
-
-                    // se compara que el usuario de la base de datos es el mismo que el insertado
-                    //se comparan ambas contraseñas encriptadas
-
-                    if(nom.equals(usuario)){
-                        if(pass.equals(password)){
-                            // se compara si el estatus es igual a TRUE
-                            if(N==0){
-                                //se carga la segunda interfaz
-
-                                ppal inter = new ppal();
-
-                                inter.setId(id);
-//                                inter.setC();
-                                inter.IDusuario = ID;
-                                //JOptionPane.showMessageDialog(rootPane, "Bienvenid@ "+nombre+" "+ap+" "+am+" \n\n Has entrado al sistema como: Administrador");
-                                inter.setVisible(true);
-                                this.dispose();
-
-                            }
-                            /*            if(N==1){
-                                //se carga la segunda interfaz
-                                vendedor vende = new vendedor();
-                                vende.setId(id);
-                                vende.IDusuario = ID;
-                                JOptionPane.showMessageDialog(rootPane, "Bienvenid@ "+nombre+" "+ap+" "+am+" \n\n Has entrado al sistema como: Vendedor");
-
-                                vende.setVisible(true);
-
-                                this.dispose();
-
-                            }
-                            if(N==2){
-                                //se carga la segunda interfaz
-                                capturista cap = new capturista();
-                                cap.setId(id);
-                                cap.IDusuario = ID;
-                                JOptionPane.showMessageDialog(rootPane, "Bienvenid@ "+nombre+" "+ap+" "+am+" \n\n Has entrado al sistema como: Capturista");
-                                cap.setVisible(true);
-                                this.dispose();
-                            }
-                            //                        //se carga la segunda interfaz
-                            //                        Interface inter = new Interface();
-                            //                        inter.setId(id);
-                            //                        inter.setC();
-                            //                        inter.IDusuario = ID;
-                            //                        System.out.println(inter.IDusuario);
-                            //                        JOptionPane.showMessageDialog(rootPane, "Bienvenid@ "+nombre+" "+ap+" "+am+"");
-                            //                        inter.setVisible(true);
-                            //                        this.dispose();
-                            //
-                            */
-                        }
-                        else{
-
-                            JOptionPane.showMessageDialog(null,"Contraseña Incorrecta");
-                            txtUser.setText("");
-                            txtPass.setText("");
-                        }
-                    }
-                    // en caso de que esten mal los datos
-                    else{
-                        JOptionPane.showMessageDialog(null,"Usuario o Contraseña Incorrecta");
-                        txtUser.setText("");
-                        txtPass.setText("");
-                    }
-
-                }
-
-            } catch (ClassNotFoundException ex) {
-                Logger.getLogger(ppal.class.getName()).log(Level.SEVERE, null, ex);
-            } catch (SQLException ex) {
-                Logger.getLogger(ppal.class.getName()).log(Level.SEVERE, null, ex);
-            } catch (InstantiationException ex) {
-                Logger.getLogger(ppal.class.getName()).log(Level.SEVERE, null, ex);
-            } catch (IllegalAccessException ex) {
-                Logger.getLogger(ppal.class.getName()).log(Level.SEVERE, null, ex);
-            }
-
-        }
-    }//GEN-LAST:event_jBingresarActionPerformed
+    }//GEN-LAST:event_jBingresarKeyReleased
 
     /**
     * @param args the command line arguments
     */
     
- public static void main(String args[]) {
-        
-         
-        java.awt.EventQueue.invokeLater(new Runnable() {
-            public void run() {
-                new inicio().setVisible(true);
-                
-            }
+    public static void main(String args[]) {
+        java.awt.EventQueue.invokeLater(() -> {
+            new Login().setVisible(true);
         });
-        
     }
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.JMenuItem acerca;
+    private javax.swing.JMenu archivo;
+    private javax.swing.JMenu info;
     private javax.swing.JButton jBingresar;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel4;
     private javax.swing.JLabel jLabel5;
-    private javax.swing.JMenu jMenu1;
-    private javax.swing.JMenu jMenu2;
     private javax.swing.JMenuBar jMenuBar1;
-    private javax.swing.JMenuItem jMenuItem1;
-    private javax.swing.JMenuItem jMenuItem2;
     private javax.swing.JPanel jPanel1;
+    private javax.swing.JMenuItem salir;
     private javax.swing.JPasswordField txtPass;
     private javax.swing.JTextField txtUser;
     // End of variables declaration//GEN-END:variables
