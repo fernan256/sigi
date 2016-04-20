@@ -102,7 +102,7 @@
                                   <EmptySpace type="unrelated" max="-2" attributes="0"/>
                                   <Component id="jLabel4" min="-2" pref="20" max="-2" attributes="0"/>
                                   <EmptySpace max="-2" attributes="0"/>
-                                  <Component id="jTnac_año" min="-2" pref="90" max="-2" attributes="0"/>
+                                  <Component id="anio_nacimiento" min="-2" pref="90" max="-2" attributes="0"/>
                               </Group>
                               <Component id="jLabel54" min="-2" max="-2" attributes="0"/>
                               <Group type="102" attributes="0">
@@ -166,7 +166,7 @@
                                   <EmptySpace min="-2" pref="2" max="-2" attributes="0"/>
                                   <Group type="103" groupAlignment="3" attributes="0">
                                       <Component id="jLabel4" alignment="3" min="-2" max="-2" attributes="0"/>
-                                      <Component id="jTnac_año" alignment="3" min="-2" max="-2" attributes="0"/>
+                                      <Component id="anio_nacimiento" alignment="3" min="-2" max="-2" attributes="0"/>
                                   </Group>
                               </Group>
                           </Group>
@@ -270,7 +270,7 @@
             <Property name="text" type="java.lang.String" value="AAAA"/>
           </Properties>
         </Component>
-        <Component class="javax.swing.JTextField" name="jTnac_a&#xf1;o">
+        <Component class="javax.swing.JTextField" name="anio_nacimiento">
         </Component>
         <Component class="javax.swing.JTextField" name="jTcel_clie">
         </Component>

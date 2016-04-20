@@ -11,11 +11,8 @@
 package sigi;
 
 import Connection.Conexion;
-import sigi.ppal;
 import java.sql.ResultSet;
 import java.sql.SQLException;
-import java.security.MessageDigest;
-import java.security.NoSuchAlgorithmException;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 import javax.swing.JOptionPane;
@@ -24,12 +21,12 @@ import javax.swing.JOptionPane;
  *
  * @author AkaMM
  */
-public class abmusuario1 extends javax.swing.JFrame {
+public class AbmUsuario extends javax.swing.JFrame {
     Conexion con;
     ResultSet rs;
 
     /** Creates new form altas */
-    public abmusuario1() {
+    public AbmUsuario() {
         initComponents();
     }
 
@@ -69,8 +66,6 @@ public class abmusuario1 extends javax.swing.JFrame {
         jMenuItem2 = new javax.swing.JMenuItem();
 
         setTitle("Agregar Usuario");
-        setMaximumSize(new java.awt.Dimension(800, 600));
-        setPreferredSize(new java.awt.Dimension(550, 800));
 
         jLabel6.setFont(new java.awt.Font("Microsoft JhengHei", 1, 14)); // NOI18N
         jLabel6.setText("Nombre: ");
@@ -85,7 +80,7 @@ public class abmusuario1 extends javax.swing.JFrame {
         jLabel9.setText("Nombre de Usuario:");
 
         jLabel10.setFont(new java.awt.Font("Microsoft JhengHei", 1, 14)); // NOI18N
-        jLabel10.setText("ContraseÃ±a:");
+        jLabel10.setText("Contraseña:");
 
         jTnombre.setFont(new java.awt.Font("Tahoma", 0, 12)); // NOI18N
         jTnombre.addActionListener(new java.awt.event.ActionListener() {
@@ -122,7 +117,7 @@ public class abmusuario1 extends javax.swing.JFrame {
         jCnivel.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "Administrador", "Vendedor", " " }));
 
         jLabel11.setFont(new java.awt.Font("Microsoft JhengHei", 1, 14)); // NOI18N
-        jLabel11.setText("Repetir ContraseÃ±a:");
+        jLabel11.setText("Repetir Contraseña:");
 
         jTpass2.setFont(new java.awt.Font("Tahoma", 0, 12)); // NOI18N
 
@@ -352,9 +347,10 @@ private void jMenuItem1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FI
                     //                 messagedigest.update(pass1.getBytes());
                     //                String password = new String(messagedigest.digest());
                     //System.out.println("pass: "+password);
+                    
 
                     String sql = "INSERT INTO `usuarios`(`nombre`, `apellido_paterno`, `apellido_materno`, `user`, `pass`, `nivel`) VALUES ('"+nom+"','"+ap+"','"+am+"','"+user+"','"+pass1+"','"+nivel+"')";
-
+                    
                     con.ejecutar(sql);
                     if(nivel==0)
                     aux="Administrador/a";
@@ -444,7 +440,7 @@ private void jMenuItem1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FI
         java.awt.EventQueue.invokeLater(new Runnable() {
 
             public void run() {
-                new abmusuario1().setVisible(true);
+                new AbmUsuario().setVisible(true);
             }
         });
     }

@@ -624,7 +624,7 @@ public static int rowCount, numfac, idprov, idprovi, idpag;
                      
                      }
                    String idprov = Integer.toString(idprovi);
-                    String iduser = ppal.jTID.getText();
+                    String iduser = Integer.toString(Login.userId);
                    String total = jTtotal.getText();
                  ///obtener la fecha con el formato correcto para la base mysql 
                  String fp = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss").format(jCfechapago.getDate());

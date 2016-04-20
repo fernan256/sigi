@@ -6,7 +6,7 @@
 package sigi.Model;
 
 import sigi.Principal1;
-import sigi.inicio;
+import sigi.Login;
 import java.awt.Dimension;
 import java.awt.Toolkit;
 
@@ -22,17 +22,16 @@ public class Main {
     public static void main(String args[]) {
         java.awt.EventQueue.invokeLater(new Runnable() {
             public void run() {
-                 //  Principal1 prin = new Principal1();
-                 inicio prin = new inicio();   
+                //Principal1 prin = new Principal1();
+                Login login = new Login();
                 Dimension pantalla = Toolkit.getDefaultToolkit().getScreenSize();  
-                    //obtenemos el tamaño de la ventana  
-                    Dimension ventana = prin.getSize();  
-                    //para centrar la ventana lo hacemos con el siguiente calculo  
-                    prin.setLocation((pantalla.width - ventana.width) / 2, (pantalla.height - ventana.height) / 2);  
-                    prin.setVisible(true);
-                    
+                //obtenemos el tamaño de la ventana  
+                //Dimension ventana = prin.getSize();  
+                Dimension ventana = login.getSize();  
+                //para centrar la ventana lo hacemos con el siguiente calculo  
+                login.setLocation((pantalla.width - ventana.width) / 2, (pantalla.height - ventana.height) / 2);  
+                login.setVisible(true);    
             }
         });
     }
-
 }

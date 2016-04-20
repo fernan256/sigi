@@ -6,37 +6,18 @@
 package sigi;
 
 import Connection.Conexion;
-import java.sql.ResultSet;
 import com.mxrck.autocompleter.TextAutoCompleter;
-import java.awt.event.KeyEvent;
 import java.io.File;
 import java.io.IOException;
 import java.sql.ResultSet;
-import java.sql.ResultSetMetaData;
 import java.sql.SQLException;
-import java.text.ParseException;
-import java.text.SimpleDateFormat;
 import java.util.Calendar;
-import java.util.Date;
 import java.util.Vector;
 import java.util.logging.Level;
 import java.util.logging.Logger;
-import javax.print.Doc;
-import javax.print.DocFlavor;
-import javax.print.DocPrintJob;
-import javax.print.PrintException;
-import javax.print.PrintService;
-import javax.print.PrintServiceLookup;
-import javax.print.SimpleDoc;
 import javax.swing.JFileChooser;
-import javax.swing.JFrame;
 import javax.swing.JOptionPane;
-import javax.swing.JScrollPane;
-import javax.swing.JTree;
-import javax.swing.WindowConstants;
 import javax.swing.table.DefaultTableModel;
-import javax.swing.tree.DefaultMutableTreeNode;
-import javax.swing.tree.DefaultTreeModel;
 import jxl.Cell;
 import jxl.Sheet;
 import jxl.Workbook;
@@ -48,7 +29,7 @@ import javax.swing.JTable;
  *
  * @author Gustavo
  */
-public class abmclientes extends javax.swing.JInternalFrame {
+public class AbmClientes extends javax.swing.JInternalFrame {
     Conexion con,query;
     ResultSet rs;
     ResultSet rs2;
@@ -74,7 +55,7 @@ public class abmclientes extends javax.swing.JInternalFrame {
     private Vector filas = new Vector();
     private static int tabla_ancho = 0;
     private static int tabla_alto = 0;
-    public abmclientes() {
+    public AbmClientes() {
         initComponents();
         searchUsers();
     }
@@ -101,7 +82,7 @@ public class abmclientes extends javax.swing.JInternalFrame {
         jLabel51 = new javax.swing.JLabel();
         jTnac_mes = new javax.swing.JTextField();
         jLabel50 = new javax.swing.JLabel();
-        jTnac_año = new javax.swing.JTextField();
+        anio_nacimiento = new javax.swing.JTextField();
         jTcel_clie = new javax.swing.JTextField();
         jLabel4 = new javax.swing.JLabel();
         jLabel3 = new javax.swing.JLabel();
@@ -160,7 +141,7 @@ public class abmclientes extends javax.swing.JInternalFrame {
         jLabel3.setText("/");
 
         jLabel53.setFont(new java.awt.Font("Microsoft JhengHei", 1, 14)); // NOI18N
-        jLabel53.setText("Dirección");
+        jLabel53.setText("Direcci�n");
 
         jLabel54.setFont(new java.awt.Font("Microsoft JhengHei", 1, 14)); // NOI18N
         jLabel54.setText("Estados");
@@ -277,7 +258,7 @@ public class abmclientes extends javax.swing.JInternalFrame {
                                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                                 .addComponent(jLabel4, javax.swing.GroupLayout.PREFERRED_SIZE, 20, javax.swing.GroupLayout.PREFERRED_SIZE)
                                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                .addComponent(jTnac_año, javax.swing.GroupLayout.PREFERRED_SIZE, 90, javax.swing.GroupLayout.PREFERRED_SIZE))
+                                .addComponent(anio_nacimiento, javax.swing.GroupLayout.PREFERRED_SIZE, 90, javax.swing.GroupLayout.PREFERRED_SIZE))
                             .addComponent(jLabel54)
                             .addGroup(jPanel1Layout.createSequentialGroup()
                                 .addComponent(jCactivo_clie)
@@ -329,7 +310,7 @@ public class abmclientes extends javax.swing.JInternalFrame {
                                 .addGap(2, 2, 2)
                                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                                     .addComponent(jLabel4)
-                                    .addComponent(jTnac_año, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))))))
+                                    .addComponent(anio_nacimiento, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))))))
                 .addGap(11, 11, 11)
                 .addComponent(jLabel55)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
@@ -364,29 +345,17 @@ public class abmclientes extends javax.swing.JInternalFrame {
 
         // validaciones para saber que no se deja algun campo en limpio
         if (jTnomb_clien.getText().equals("")||jTapell_clie.getText().equals("")||jTdirec_clie.getText().equals("")
-            ||jTcel_clie.getText().equals("")||jTmail_clie.getText().equals("")||jTnac_año.getText().equals("")||jTnac_mes.getText().equals("")||jTnac_dia.getText().equals(""))
-        {
-
+            ||jTcel_clie.getText().equals("")||jTmail_clie.getText().equals("")|| anio_nacimiento.getText().equals("")||jTnac_mes.getText().equals("")||jTnac_dia.getText().equals("")) {
+            
             JOptionPane.showMessageDialog(null, "Faltan Datos: No Puede Dejar Cuadros en Blanco");
-
-        }
-
-        else
-
-        {
+        } else {
             try {
                 // se comienza la conexion con la base de datos
                 try {
                     con = new Conexion();
 
-                } catch (ClassNotFoundException ex) {
-                    Logger.getLogger(abmclientes.class.getName()).log(Level.SEVERE, null, ex);
-                } catch (SQLException ex) {
-                    Logger.getLogger(abmclientes.class.getName()).log(Level.SEVERE, null, ex);
-                } catch (InstantiationException ex) {
-                    Logger.getLogger(abmclientes.class.getName()).log(Level.SEVERE, null, ex);
-                } catch (IllegalAccessException ex) {
-                    Logger.getLogger(abmclientes.class.getName()).log(Level.SEVERE, null, ex);
+                } catch (ClassNotFoundException | SQLException | InstantiationException | IllegalAccessException ex) {
+                    Logger.getLogger(AbmClientes.class.getName()).log(Level.SEVERE, null, ex);
                 }
 
                 String nombre = jTnomb_clien.getText();
@@ -395,7 +364,7 @@ public class abmclientes extends javax.swing.JInternalFrame {
                 String telefono = jTelefono_clie.getText();
                 String cel = jTcel_clie.getText();
                 String mail = jTmail_clie.getText();
-                String nacimiento = jTnac_año.getText()+"-"+jTnac_mes.getText()+"-"+jTnac_dia.getText();
+                String nacimiento = anio_nacimiento.getText()+"-"+jTnac_mes.getText()+"-"+jTnac_dia.getText();
                 boolean activo = jCactivo_clie.isSelected();
                 String activo1 = Boolean.toString(activo);
                 int activo2 = activo ? 1 : 0;
@@ -409,7 +378,7 @@ public class abmclientes extends javax.swing.JInternalFrame {
                 clearFields();
 
             } catch (SQLException ex) {
-                Logger.getLogger(abmclientes.class.getName()).log(Level.SEVERE, null, ex);
+                Logger.getLogger(AbmClientes.class.getName()).log(Level.SEVERE, null, ex);
             }
         }
         // TODO add your handling code here:
@@ -424,7 +393,7 @@ public class abmclientes extends javax.swing.JInternalFrame {
 
         // validaciones para saber que no se deja algun campo en limpio
          if (jTnomb_clien.getText().equals("")||jTapell_clie.getText().equals("")||jTdirec_clie.getText().equals("")
-            ||jTcel_clie.getText().equals("")||jTmail_clie.getText().equals("")||jTnac_año.getText().equals("")||jTnac_mes.getText().equals("")||jTnac_dia.getText().equals(""))
+            ||jTcel_clie.getText().equals("")||jTmail_clie.getText().equals("")||anio_nacimiento.getText().equals("")||jTnac_mes.getText().equals("")||jTnac_dia.getText().equals(""))
         {
 
             JOptionPane.showMessageDialog(null, "Faltan Datos: No Puede Dejar Cuadros en Blanco");
@@ -444,7 +413,7 @@ public class abmclientes extends javax.swing.JInternalFrame {
                 //String prov_apell = jTprov_apell.getText();
                 String cel = jTcel_clie.getText();
                 String mail = jTmail_clie.getText();
-                String nacimiento = jTnac_año.getText()+"-"+jTnac_mes.getText()+"-"+jTnac_dia.getText();
+                String nacimiento = anio_nacimiento.getText()+"-"+jTnac_mes.getText()+"-"+jTnac_dia.getText();
                 //Para pasar el estado a string del CKBOX a la base SQL, responde FALSE o TRUE
                 boolean activo = jCactivo_clie.isSelected();
                 String activo1 = Boolean.toString(activo);
@@ -469,14 +438,8 @@ public class abmclientes extends javax.swing.JInternalFrame {
                 con.ejecutar(modifica);
                 JOptionPane.showMessageDialog(null, "Datos Actualizados");
 
-            } catch (ClassNotFoundException ex) {
-                Logger.getLogger(abmclientes.class.getName()).log(Level.SEVERE, null, ex);
-            } catch (InstantiationException ex) {
-                Logger.getLogger(abmclientes.class.getName()).log(Level.SEVERE, null, ex);
-            } catch (IllegalAccessException ex) {
-                Logger.getLogger(abmclientes.class.getName()).log(Level.SEVERE, null, ex);
-            } catch (SQLException ex) {
-                Logger.getLogger(abmclientes.class.getName()).log(Level.SEVERE, null, ex);
+            } catch (ClassNotFoundException | InstantiationException | IllegalAccessException | SQLException ex) {
+                Logger.getLogger(AbmClientes.class.getName()).log(Level.SEVERE, null, ex);
             }
 
         }
@@ -484,14 +447,14 @@ public class abmclientes extends javax.swing.JInternalFrame {
 
     private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
         JFileChooser dialog = new JFileChooser();
-        int opcion = dialog.showSaveDialog(abmclientes.this);
+        int opcion = dialog.showSaveDialog(AbmClientes.this);
 
         if (opcion == JFileChooser.APPROVE_OPTION) {
 
             File dir = dialog.getSelectedFile();
 
             try {
-                List<JTable> tb = new ArrayList<JTable>();
+                List<JTable> tb = new ArrayList<>();
                 //tb.add(jTtabla_clie);
                 //-------------------
                 export_excel excelExporter = new export_excel(tb, new File(dir.getAbsolutePath() + ".xls"));
@@ -515,14 +478,8 @@ public class abmclientes extends javax.swing.JInternalFrame {
                     try {
                         con = new Conexion();
 
-                    } catch (ClassNotFoundException ex) {
-                        Logger.getLogger(abmclientes.class.getName()).log(Level.SEVERE, null, ex);
-                    } catch (SQLException ex) {
-                        Logger.getLogger(abmclientes.class.getName()).log(Level.SEVERE, null, ex);
-                    } catch (InstantiationException ex) {
-                        Logger.getLogger(abmclientes.class.getName()).log(Level.SEVERE, null, ex);
-                    } catch (IllegalAccessException ex) {
-                        Logger.getLogger(abmclientes.class.getName()).log(Level.SEVERE, null, ex);
+                    } catch (ClassNotFoundException | SQLException | InstantiationException | IllegalAccessException ex) {
+                        Logger.getLogger(AbmClientes.class.getName()).log(Level.SEVERE, null, ex);
                     }
 
                     
@@ -560,7 +517,7 @@ public class abmclientes extends javax.swing.JInternalFrame {
                         String anio = date[0];
                         String mes = date[1];
                         String dia = date[2];
-                        jTnac_año.setText(anio);
+                        anio_nacimiento.setText(anio);
                         jTnac_mes.setText(mes);
                         jTnac_dia.setText(dia);
                         if(rs.getInt("ctacte") == 1){
@@ -589,14 +546,8 @@ public class abmclientes extends javax.swing.JInternalFrame {
             try {
                 con = new Conexion();
 
-            } catch (ClassNotFoundException ex) {
-                Logger.getLogger(abmclientes.class.getName()).log(Level.SEVERE, null, ex);
-            } catch (SQLException ex) {
-                Logger.getLogger(abmclientes.class.getName()).log(Level.SEVERE, null, ex);
-            } catch (InstantiationException ex) {
-                Logger.getLogger(abmclientes.class.getName()).log(Level.SEVERE, null, ex);
-            } catch (IllegalAccessException ex) {
-                Logger.getLogger(abmclientes.class.getName()).log(Level.SEVERE, null, ex);
+            } catch (ClassNotFoundException | SQLException | InstantiationException | IllegalAccessException ex) {
+                Logger.getLogger(AbmClientes.class.getName()).log(Level.SEVERE, null, ex);
             }
 
             TextAutoCompleter textAutoAcompleter = new TextAutoCompleter(searchUser);
@@ -619,7 +570,7 @@ public class abmclientes extends javax.swing.JInternalFrame {
         jTelefono_clie.setText("");
         jTcel_clie.setText("");
         jTmail_clie.setText("");
-        jTnac_año.setText("");
+        anio_nacimiento.setText("");
         jTnac_mes.setText("");
         jTnac_dia.setText("");
         jCactivo_clie.setSelected(false);
@@ -654,13 +605,13 @@ public class abmclientes extends javax.swing.JInternalFrame {
             }
             filas.clear();
 
-            for (int j = 1; j < sheet.getRows(); j++) {
+            for (int k = 1; k < sheet.getRows(); k++) {
 
                 Vector d = new Vector();
 
                 for (int i = 0; i < sheet.getColumns(); i++) {
 
-                    Cell cell = sheet.getCell(i, j);
+                    Cell cell = sheet.getCell(i, k);
                     d.add(cell.getContents());
                 }
                 d.add("\n");
@@ -669,11 +620,12 @@ public class abmclientes extends javax.swing.JInternalFrame {
             }
     
         } catch (BiffException e) {
-            e.printStackTrace();
+            e.printStackTrace(System.out);
         } 
 }  
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.JTextField anio_nacimiento;
     private javax.swing.JButton jBcrea_clie;
     private javax.swing.JButton jBmodifi_clie;
     private javax.swing.JButton jBmodifi_clie1;
@@ -700,7 +652,6 @@ public class abmclientes extends javax.swing.JInternalFrame {
     private javax.swing.JTextField jTdirec_clie;
     private javax.swing.JTextField jTelefono_clie;
     private javax.swing.JTextField jTmail_clie;
-    private javax.swing.JTextField jTnac_año;
     private javax.swing.JTextField jTnac_dia;
     private javax.swing.JTextField jTnac_mes;
     private javax.swing.JTextField jTnomb_clien;

@@ -87,7 +87,7 @@ private void progresoStateChanged(javax.swing.event.ChangeEvent evt) {//GEN-FIRS
 if (progreso.getValue()==100){
     this.dispose();
 //Aqui llamamos al JFrame que queremos que aparezca despues
-    inicio ini = new inicio();
+    Login ini = new Login();
     
     Dimension pantall = Toolkit.getDefaultToolkit().getScreenSize();  
     //obtenemos el tamaño de la ventana  

@@ -80,13 +80,12 @@ import java.util.GregorianCalendar;
  *
  * @author Gustavo
  */
-public class ppal extends javax.swing.JFrame {
+public class ppalVendedor extends javax.swing.JFrame {
     Conexion con,query;
     ResultSet rs;
     ResultSet rs2;
     ResultSet rs3;
-   public  int IDusuario;
-    public int priorityLevel;
+    public  int IDusuario;
     String id2="";
     /**
      * Creates new form ppal
@@ -114,66 +113,28 @@ public class ppal extends javax.swing.JFrame {
     Thread h1;
     public static int rowCount, numfac;
     public static boolean ABM_Articulo;
-     public ppal() {
-         System.out.println(priorityLevel);
-      //System.out.println(IDusuario);
-      if(IDusuario != 0) {
-          System.out.println(IDusuario);
-          String ax = JOptionPane.showInputDialog("Ingrese apertura caja: ", "0");
-        
-int ax1 = Integer.parseInt(ax);
-if(ax1 > 0){
-     try {
-                    // se comienza la conexion con la base de datos
-                    try {
-                        con = new Conexion();
-
-                    } catch (ClassNotFoundException ex) {
-                        Logger.getLogger(moduloVenta.class.getName()).log(Level.SEVERE, null, ex);
-                    } catch (SQLException ex) {
-                        Logger.getLogger(moduloVenta.class.getName()).log(Level.SEVERE, null, ex);
-                    } catch (InstantiationException ex) {
-                        Logger.getLogger(moduloVenta.class.getName()).log(Level.SEVERE, null, ex);
-                    } catch (IllegalAccessException ex) {
-                        Logger.getLogger(moduloVenta.class.getName()).log(Level.SEVERE, null, ex);
-                    }
-
-                    String nom= ax;
-                    String id = jTID.getText();
-                    String apertura ="INSERT INTO  `sigi`.`caja` (`apertura`, `id_usuario`)VALUES ('"+nom+"', '"+id+"')";
-                    
-                    con.ejecutar(apertura);
-
     
-                    } catch (SQLException ex) {
-                        Logger.getLogger(moduloVenta.class.getName()).log(Level.SEVERE, null, ex);
-                    }
-        moduloVenta vta = new moduloVenta();
-         vta.setVisible(true);
-       jBvta.setEnabled(false);   
-} else {
-    ax = "0";
-    JOptionPane.showMessageDialog(null, "Debe ingresar el conteo de apertura de caja, intente nuevamente. ");
-}
-      } else{
-            initComponents();
+    public ppalVendedor() { 
+        
+        initComponents();
+        jLuserName.setText(Login.userName);
        //     h1 = new Thread(this);
 //            h1.start();
             
-                    this.setLocationRelativeTo(null);
+        this.setLocationRelativeTo(null);
         this.setExtendedState(JFrame.MAXIMIZED_BOTH);
             
           
 //            aux = Integer.parseInt(cad);
  // ---------------- para realizar la muestra del mensaje:-----------------------------------           
            Calendar fecha = new GregorianCalendar();
-        int año = fecha.get(Calendar.YEAR);
-        String año1 = Integer.toString(año);
-        int mes = (fecha.get(Calendar.MONTH)+1);
-        String mes1 = Integer.toString(mes);
-        int dia = fecha.get(Calendar.DAY_OF_MONTH);
-        String dia1 = Integer.toString(dia);
-        String fechaact = año1+"-"+mes1+"-"+dia1;
+        int year = fecha.get(Calendar.YEAR);
+        String year1 = Integer.toString(year);
+        int month = (fecha.get(Calendar.MONTH)+1);
+        String month1 = Integer.toString(month);
+        int day = fecha.get(Calendar.DAY_OF_MONTH);
+        String day1 = Integer.toString(day);
+        String fechaact = year1+"-"+month1+"-"+day1;
                                    //  rs2 = con.Consulta(sql1);
                                    
                                         //while(rs2.next()){
@@ -183,7 +144,7 @@ if(ax1 > 0){
    // jTcierre.setEnabled(false);
    // jBcierre.setEnabled(false);        
                                     
-     }
+     
      }
     /**
      * This method is called from within the constructor to initialize the form.
@@ -195,17 +156,21 @@ if(ax1 > 0){
     private void initComponents() {
 
         jPopupMenu1 = new javax.swing.JPopupMenu();
+        jPopupMenu2 = new javax.swing.JPopupMenu();
         desktopPane = new javax.swing.JDesktopPane();
         jScrollPane2 = new javax.swing.JScrollPane();
         jTree1 = new javax.swing.JTree();
         jBvta = new javax.swing.JButton();
         jButton2 = new javax.swing.JButton();
-        jButton3 = new javax.swing.JButton();
-        jLabel12 = new javax.swing.JLabel();
-        jTID = new javax.swing.JTextField();
+        jLuserName = new javax.swing.JLabel();
         jLabel1 = new javax.swing.JLabel();
         ctacte = new javax.swing.JButton();
         lbHora1 = new javax.swing.JLabel();
+        jMenuBar1 = new javax.swing.JMenuBar();
+        jMenu2 = new javax.swing.JMenu();
+        jMenuItem3 = new javax.swing.JMenuItem();
+        jMenu3 = new javax.swing.JMenu();
+        jMenuItem2 = new javax.swing.JMenuItem();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
@@ -221,14 +186,6 @@ if(ax1 > 0){
         treeNode3 = new javax.swing.tree.DefaultMutableTreeNode("Stock");
         treeNode2.add(treeNode3);
         treeNode1.add(treeNode2);
-        treeNode2 = new javax.swing.tree.DefaultMutableTreeNode("Compras");
-        treeNode3 = new javax.swing.tree.DefaultMutableTreeNode("ABM Compra");
-        treeNode2.add(treeNode3);
-        treeNode3 = new javax.swing.tree.DefaultMutableTreeNode("OC");
-        treeNode2.add(treeNode3);
-        treeNode3 = new javax.swing.tree.DefaultMutableTreeNode("Buscar Facturas");
-        treeNode2.add(treeNode3);
-        treeNode1.add(treeNode2);
         treeNode2 = new javax.swing.tree.DefaultMutableTreeNode("Ajustes");
         treeNode3 = new javax.swing.tree.DefaultMutableTreeNode("Caja");
         treeNode2.add(treeNode3);
@@ -239,15 +196,7 @@ if(ax1 > 0){
         treeNode3 = new javax.swing.tree.DefaultMutableTreeNode("ABM Cliente");
         treeNode2.add(treeNode3);
         treeNode1.add(treeNode2);
-        treeNode2 = new javax.swing.tree.DefaultMutableTreeNode("Proveedores");
-        treeNode3 = new javax.swing.tree.DefaultMutableTreeNode("ABM Proveedor");
-        treeNode2.add(treeNode3);
-        treeNode1.add(treeNode2);
         treeNode2 = new javax.swing.tree.DefaultMutableTreeNode("Cuentas Corrientes");
-        treeNode1.add(treeNode2);
-        treeNode2 = new javax.swing.tree.DefaultMutableTreeNode("Reportes");
-        treeNode1.add(treeNode2);
-        treeNode2 = new javax.swing.tree.DefaultMutableTreeNode("Administrar BD");
         treeNode1.add(treeNode2);
         jTree1.setModel(new javax.swing.tree.DefaultTreeModel(treeNode1));
         jTree1.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
@@ -264,11 +213,6 @@ if(ax1 > 0){
         jBvta.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
         jBvta.setHorizontalTextPosition(javax.swing.SwingConstants.CENTER);
         jBvta.setVerticalTextPosition(javax.swing.SwingConstants.BOTTOM);
-        jBvta.addMouseListener(new java.awt.event.MouseAdapter() {
-            public void mouseClicked(java.awt.event.MouseEvent evt) {
-                jBvtaMouseClicked(evt);
-            }
-        });
         jBvta.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 jBvtaActionPerformed(evt);
@@ -278,26 +222,6 @@ if(ax1 > 0){
         jButton2.setBackground(new java.awt.Color(255, 255, 255));
         jButton2.setIcon(new javax.swing.ImageIcon(getClass().getResource("/imagenes/info.jpg"))); // NOI18N
         jButton2.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
-
-        jButton3.setBackground(new java.awt.Color(255, 255, 255));
-        jButton3.setText("USUARIO");
-        jButton3.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
-        jButton3.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jButton3ActionPerformed(evt);
-            }
-        });
-
-        jLabel12.setText("ID Admin:");
-
-        jTID.setEditable(false);
-        jTID.setBackground(new java.awt.Color(255, 255, 255));
-        jTID.setHorizontalAlignment(javax.swing.JTextField.CENTER);
-        jTID.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jTIDActionPerformed(evt);
-            }
-        });
 
         jLabel1.setFont(new java.awt.Font("Microsoft JhengHei", 1, 24)); // NOI18N
         jLabel1.setForeground(new java.awt.Color(0, 153, 255));
@@ -312,6 +236,34 @@ if(ax1 > 0){
 
         lbHora1.setText("HORA");
 
+        jMenu2.setText("Modificar");
+
+        jMenuItem3.setAccelerator(javax.swing.KeyStroke.getKeyStroke(java.awt.event.KeyEvent.VK_P, java.awt.event.InputEvent.ALT_MASK | java.awt.event.InputEvent.CTRL_MASK));
+        jMenuItem3.setText("Contraseña");
+        jMenuItem3.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jMenuItem3ActionPerformed(evt);
+            }
+        });
+        jMenu2.add(jMenuItem3);
+
+        jMenuBar1.add(jMenu2);
+
+        jMenu3.setText("Salir");
+
+        jMenuItem2.setAccelerator(javax.swing.KeyStroke.getKeyStroke(java.awt.event.KeyEvent.VK_Q, java.awt.event.InputEvent.CTRL_MASK));
+        jMenuItem2.setText("Cerrar Sesión");
+        jMenuItem2.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jMenuItem2ActionPerformed(evt);
+            }
+        });
+        jMenu3.add(jMenuItem2);
+
+        jMenuBar1.add(jMenu3);
+
+        setJMenuBar(jMenuBar1);
+
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
@@ -325,38 +277,38 @@ if(ax1 > 0){
             .addGroup(layout.createSequentialGroup()
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(layout.createSequentialGroup()
-                        .addComponent(jBvta, javax.swing.GroupLayout.PREFERRED_SIZE, 61, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(32, 32, 32)
-                        .addComponent(jButton3)
-                        .addGap(29, 29, 29)
-                        .addComponent(ctacte)
+                        .addGap(27, 27, 27)
+                        .addComponent(jBvta, javax.swing.GroupLayout.PREFERRED_SIZE, 149, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(48, 48, 48)
+                        .addComponent(ctacte, javax.swing.GroupLayout.PREFERRED_SIZE, 151, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                         .addComponent(jButton2, javax.swing.GroupLayout.PREFERRED_SIZE, 61, javax.swing.GroupLayout.PREFERRED_SIZE))
                     .addGroup(layout.createSequentialGroup()
                         .addGap(21, 21, 21)
                         .addComponent(lbHora1)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                        .addComponent(jLabel12)
-                        .addGap(12, 12, 12)
-                        .addComponent(jTID, javax.swing.GroupLayout.PREFERRED_SIZE, 27, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                        .addComponent(jLuserName, javax.swing.GroupLayout.PREFERRED_SIZE, 154, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(39, 39, 39)))
                 .addContainerGap())
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(jBvta, javax.swing.GroupLayout.PREFERRED_SIZE, 56, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jButton2, javax.swing.GroupLayout.PREFERRED_SIZE, 58, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jButton3, javax.swing.GroupLayout.PREFERRED_SIZE, 58, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(ctacte, javax.swing.GroupLayout.PREFERRED_SIZE, 58, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addGap(18, 18, 18)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(layout.createSequentialGroup()
-                        .addGap(1, 1, 1)
-                        .addComponent(jLabel12, javax.swing.GroupLayout.PREFERRED_SIZE, 20, javax.swing.GroupLayout.PREFERRED_SIZE))
-                    .addComponent(jTID, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(lbHora1))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(jButton2, javax.swing.GroupLayout.PREFERRED_SIZE, 58, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addGroup(layout.createSequentialGroup()
+                                .addContainerGap()
+                                .addComponent(jBvta, javax.swing.GroupLayout.PREFERRED_SIZE, 56, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                        .addGap(18, 18, 18)
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(lbHora1)
+                            .addComponent(jLuserName, javax.swing.GroupLayout.PREFERRED_SIZE, 20, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                    .addGroup(layout.createSequentialGroup()
+                        .addContainerGap()
+                        .addComponent(ctacte, javax.swing.GroupLayout.PREFERRED_SIZE, 58, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 13, Short.MAX_VALUE)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
                     .addGroup(layout.createSequentialGroup()
                         .addComponent(jLabel1)
@@ -368,22 +320,22 @@ if(ax1 > 0){
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
-Compras objIC=new Compras();
+//Compras objIC=new Compras();
 
 altaModificaionArticulos objIC1=new altaModificaionArticulos();
 bajaArticulos objIC20=new bajaArticulos();
-abmclientes objIC3=new abmclientes();
+//abmclientes objIC3=new abmclientes();
 //abmusuario objIC4=new abmusuario();
 ajusteCaja objIC5=new ajusteCaja();
 ajusteVenta objIC6=new ajusteVenta();
-buscarfacturas objIC9=new buscarfacturas();
+//buscarfacturas objIC9=new buscarfacturas();
 cliente objIC10=new cliente();
-configsoft objIC11=new configsoft();
+//configsoft objIC11=new configsoft();
 ctacte objIC12=new ctacte();
 estadocuentas objIC13=new estadocuentas();
-importarexportar objIC15=new importarexportar();
-oc objIC16=new oc();
-permisos objIC17=new permisos();
+//importarexportar objIC15=new importarexportar();
+//oc objIC16=new oc();
+//permisos objIC17=new permisos();
 proveedores objIC19=new proveedores();
 reportes objIC26=new reportes();
 stock objIC25=new stock();
@@ -391,15 +343,15 @@ stock objIC25=new stock();
     private void jTree1MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jTree1MouseClicked
         
         String menu = jTree1.getLastSelectedPathComponent().toString();
-        if(menu.equals("ABM Compra")){
-           if(objIC.isShowing()){
-        	//mensaje de que está abierto si se desea
-            }else{
-                desktopPane.add(objIC);
-                objIC.show();
-                objIC.setSize(desktopPane.getSize());
-            }
-        } 
+//        if(menu.equals("ABM Compra")){
+//           if(objIC.isShowing()){
+//        	//mensaje de que está abierto si se desea
+//            }else{
+//                desktopPane.add(objIC);
+//                objIC.show();
+//                objIC.setSize(desktopPane.getSize());
+//            }
+//        } 
         if(menu.equals("ABM Articulos") ){
             if(objIC1.isShowing()){
                 //mensaje de que está abierto si se desea
@@ -409,15 +361,15 @@ stock objIC25=new stock();
                 objIC1.setSize(desktopPane.getSize());
             }
         }
-        if(menu.equals("ABM Cliente")){
-            if(objIC3.isShowing()){
-                //mensaje de que está abierto si se desea
-            }else{
-                desktopPane.add(objIC3);
-                objIC3.show();
-                objIC3.setSize(desktopPane.getSize());
-            }
-        } 
+//        if(menu.equals("ABM Cliente")){
+//            if(objIC3.isShowing()){
+//                //mensaje de que está abierto si se desea
+//            }else{
+//                desktopPane.add(objIC3);
+//                objIC3.show();
+//                objIC3.setSize(desktopPane.getSize());
+//            }
+//        } 
         if(menu.equals("Stock")){
             if(objIC25.isShowing()){
 		//mensaje de que está abierto si se desea
@@ -436,15 +388,15 @@ stock objIC25=new stock();
                 objIC12.setSize(desktopPane.getSize());
             }
         }
-        if(menu.equals("OC")){
-            if(objIC16.isShowing()){
-		//mensaje de que está abierto si se desea
-            }else{
-                desktopPane.add(objIC16);
-                objIC16.show();
-                objIC3.setSize(desktopPane.getSize());
-            }
-        } 
+//        if(menu.equals("OC")){
+//            if(objIC16.isShowing()){
+//		//mensaje de que está abierto si se desea
+//            }else{
+//                desktopPane.add(objIC16);
+//                objIC16.show();
+//                objIC3.setSize(desktopPane.getSize());
+//            }
+//        } 
         if(menu.equals("ABM Proveedor")){
             if(objIC19.isShowing()){
 		//mensaje de que está abierto si se desea
@@ -454,24 +406,24 @@ stock objIC25=new stock();
                 objIC19.setSize(desktopPane.getSize());
             }
         } 
-        if(menu.equals("Permisos")){
-            if(objIC17.isShowing()){
-		//mensaje de que está abierto si se desea
-            }else{
-                desktopPane.add(objIC17);
-                objIC17.show();
-                //objIC17.setSize(desktopPane.getSize());
-            }
-        } 
-        if(menu.equals("Buscar Facturas")){
-            if(objIC9.isShowing()){
-		//mensaje de que está abierto si se desea
-            }else{
-                desktopPane.add(objIC9);
-                objIC9.show();
-                //objIC17.setSize(desktopPane.getSize());
-            }
-        } 
+//        if(menu.equals("Permisos")){
+//            if(objIC17.isShowing()){
+//		//mensaje de que está abierto si se desea
+//            }else{
+//                desktopPane.add(objIC17);
+//                objIC17.show();
+//                //objIC17.setSize(desktopPane.getSize());
+//            }
+//        } 
+//        if(menu.equals("Buscar Facturas")){
+//            if(objIC9.isShowing()){
+//		//mensaje de que está abierto si se desea
+//            }else{
+//                desktopPane.add(objIC9);
+//                objIC9.show();
+//                //objIC17.setSize(desktopPane.getSize());
+//            }
+//        } 
         if(menu.equals("Caja")){
             if(objIC5.isShowing()){
 		//mensaje de que está abierto si se desea
@@ -493,36 +445,12 @@ stock objIC25=new stock();
     }//GEN-LAST:event_jTree1MouseClicked
     
     private void jBvtaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jBvtaActionPerformed
- /*       
-        moduloVenta vta = new moduloVenta();
-         vta.setVisible(true);
-       jBvta.setEnabled(false);*/
-    }//GEN-LAST:event_jBvtaActionPerformed
-
-    private void jTIDActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jTIDActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_jTIDActionPerformed
-
-    private void jButton3ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton3ActionPerformed
-      
-        abmusuario1 showAbmUser = new abmusuario1();
-         showAbmUser.setVisible(true);
-      // jBvta.setEnabled(false);        // TODO add your handling code here:
-    }//GEN-LAST:event_jButton3ActionPerformed
-
-    private void ctacteActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_ctacteActionPerformed
-        ctacte showCtacte = new ctacte();
-        showCtacte.setVisible(true);
-    }//GEN-LAST:event_ctacteActionPerformed
-
-    private void jBvtaMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jBvtaMouseClicked
-
-String ax = JOptionPane.showInputDialog("Ingrese apertura caja: ", "0");
-        
-int ax1 = Integer.parseInt(ax);
-if(ax1 > 0){
-     try {
-                    // se comienza la conexion con la base de datos
+        JFrame aperturaCaja = new JFrame("Apertura de Caja");
+        String openSales = JOptionPane.showInputDialog(aperturaCaja, "Ingrese apertura caja: ", "0");
+        if(openSales != null) {
+            float openSalesValue = Float.parseFloat(openSales);
+            if(openSalesValue > 0){
+                try {
                     try {
                         con = new Conexion();
 
@@ -534,26 +462,48 @@ if(ax1 > 0){
                         Logger.getLogger(moduloVenta.class.getName()).log(Level.SEVERE, null, ex);
                     } catch (IllegalAccessException ex) {
                         Logger.getLogger(moduloVenta.class.getName()).log(Level.SEVERE, null, ex);
-                    }
+                    }                                                        
+                    String apertura ="INSERT INTO caja (apertura, id_usuario, estado) VALUES ('"+openSalesValue+"', '"+Login.userId+"', 1)";
 
-                    String nom= ax;
-                    String id = jTID.getText();
-                    String apertura ="INSERT INTO  `sigi`.`caja` (`apertura`, `id_usuario`)VALUES ('"+nom+"', '"+id+"')";
-                    
                     con.ejecutar(apertura);
 
-    
                     } catch (SQLException ex) {
                         Logger.getLogger(moduloVenta.class.getName()).log(Level.SEVERE, null, ex);
                     }
-        moduloVenta vta = new moduloVenta();
-         vta.setVisible(true);
-       jBvta.setEnabled(false);   
-} else {
-    ax = "0";
-    JOptionPane.showMessageDialog(null, "Debe ingresar el conteo de apertura de caja, intente nuevamente. ");
-}
-    }//GEN-LAST:event_jBvtaMouseClicked
+                    jBvta.setEnabled(false);
+                    moduloVenta venta = new moduloVenta();
+                    venta.setVisible(true);
+            } else {
+                openSales = "0";
+                JOptionPane.showMessageDialog(null, "Debe ingresar el conteo de apertura de caja, intente nuevamente. ");
+            }
+        }
+    }//GEN-LAST:event_jBvtaActionPerformed
+
+    private void ctacteActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_ctacteActionPerformed
+        ctacte showCtacte = new ctacte();
+        showCtacte.setVisible(true);
+    }//GEN-LAST:event_ctacteActionPerformed
+
+    private void jMenuItem2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItem2ActionPerformed
+        if(JOptionPane.showConfirmDialog(rootPane, "Esta seguro de cerrar la sesion actual?","Cerrar sesión",1)==0){
+            this.dispose();
+            Login login = new Login();
+            Dimension pantall = Toolkit.getDefaultToolkit().getScreenSize();  
+            //obtenemos el tamaño de la ventana  
+            Dimension ventan = login.getSize();  
+            //para centrar la ventana lo hacemos con el siguiente calculo  
+            login.setLocation((pantall.width - ventan.width) / 2, (pantall.height - ventan.height) / 2);
+            login.setVisible(true);
+        }
+    }//GEN-LAST:event_jMenuItem2ActionPerformed
+
+    private void jMenuItem3ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItem3ActionPerformed
+        modificar mod = new modificar();
+        mod.id = IDusuario;
+        System.out.println("id para modificar: "+mod.id);
+        mod.setVisible(true);
+    }//GEN-LAST:event_jMenuItem3ActionPerformed
 
     /**
      * @param args the command line arguments
@@ -593,44 +543,7 @@ if(ax1 > 0){
         });
     }
     */
-public void setId(String id){
-    id2 = id;
-    jTID.setText(id);
-  
-}
 
-/*public void setC(){
-        try {
-           // int q=0;
-            rs=con.Consulta("SELECT * FROM usuarios WHERE nivel = '1' OR nivel = '0'");
-            while(rs.next()){
-                jCuser.addItem(rs.getString(5));
-            
-            }
-            
-            
-        } catch (SQLException ex) {
-            Logger.getLogger(ppal.class.getName()).log(Level.SEVERE, null, ex);
-        }
-
-}*/
-public void getT(String cad){
-    aux3 = cad;
-    System.out.println(aux3);
-}
-
-public void setT(String cad){
-        String aux2 = cad;
-
-}
-
-public String getId(){
-    cad = jTID.getText();
-    return cad;
-}
-public void setNivel(int nivel) {
-    priorityLevel = nivel;
-}
 
 public String objectToString(Object o) {
         String st;
@@ -672,7 +585,7 @@ public void calcula () {
          
         java.awt.EventQueue.invokeLater(new Runnable() {
             public void run() {
-                new ppal().setVisible(true);
+                new ppalVendedor().setVisible(true);
                 
             }
         });
@@ -682,37 +595,22 @@ public void calcula () {
     private javax.swing.JButton ctacte;
     public static javax.swing.JDesktopPane desktopPane;
     private javax.swing.JButton jButton2;
-    private javax.swing.JButton jButton3;
     public static javax.swing.JButton jBvta;
     private javax.swing.JLabel jLabel1;
-    private javax.swing.JLabel jLabel12;
+    private javax.swing.JLabel jLuserName;
+    private javax.swing.JMenu jMenu2;
+    private javax.swing.JMenu jMenu3;
+    private javax.swing.JMenuBar jMenuBar1;
+    private javax.swing.JMenuItem jMenuItem2;
+    private javax.swing.JMenuItem jMenuItem3;
     private javax.swing.JPopupMenu jPopupMenu1;
+    private javax.swing.JPopupMenu jPopupMenu2;
     private javax.swing.JScrollPane jScrollPane2;
-    public static javax.swing.JTextField jTID;
     private javax.swing.JTree jTree1;
     private javax.swing.JLabel lbHora1;
     // End of variables declaration//GEN-END:variables
-/*public void setId(String id){
-    id2 = id;
-    jTID.setText(id);
-  
-}
-public void setC(){
-        try {
-           // int q=0;
-            rs=con.Consulta("SELECT * FROM usuarios WHERE nivel = '1' OR nivel = '0'");
-            while(rs.next()){
-                jCuser.addItem(rs.getString(5));
-            
-            }
-            
-            
-        } catch (SQLException ex) {
-            Logger.getLogger(ppal.class.getName()).log(Level.SEVERE, null, ex);
-        }
-
-}*/
-   public void run() {
+    
+    public void run() {
         Thread ct = Thread.currentThread();
          while(ct == h1) {   
           calcula();
@@ -726,5 +624,4 @@ public void setC(){
          }
         throw new UnsupportedOperationException("Not supported yet.");
     }
-
 }

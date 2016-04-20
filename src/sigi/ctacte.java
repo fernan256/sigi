@@ -6,7 +6,6 @@
 package sigi;
 
 import Connection.Conexion;
-import java.awt.Color;
 import java.awt.event.KeyEvent;
 import java.io.IOException;
 import java.sql.ResultSet;
@@ -21,24 +20,22 @@ import javax.swing.table.DefaultTableModel;
  *
  * @author Gustavo
  */
-public class ctacte extends javax.swing.JInternalFrame {
-Conexion con,query;
+public class ctacte extends javax.swing.JFrame {
+    Conexion con,query;
     ResultSet rs;
     ResultSet rs2;
     ResultSet rs3;
-   static float total=0;
-   static int j=0;
-   static String aux3;
+    static float total=0;
+    static int j=0;
+    static String aux3;
     static String inv[]=new String[50000];
     static float invT=0;
-   public static String id,cad,id_sect, rstring, sum, res;
-   String hora,minutos,segundos,ampm;
+    public static String id,cad,id_sect, rstring, sum, res;
+    String hora,minutos,segundos,ampm;
     Calendar calendario;    
-public static int rowCount, numfac, rs1;
-public static boolean estado;
-    /**
-     * Creates new form ctacte
-     */
+    public static int rowCount, numfac, rs1;
+    public static boolean estado;
+    
     public ctacte() {
         initComponents();
     }
@@ -180,7 +177,7 @@ public static boolean estado;
     private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
 
         String idcliente= jTtabla_clie.getValueAt(jTtabla_clie.getSelectedRow(), 0).toString();
-        String idusuario = ppal.jTID.getText();
+        String idusuario = Integer.toString(Login.userId);
         
         try {
                 // se comienza la conexion con la base de datos
@@ -326,13 +323,7 @@ public static boolean estado;
                     try {
                         con = new Conexion();
 
-                    } catch (ClassNotFoundException ex) {
-                        Logger.getLogger(moduloVenta.class.getName()).log(Level.SEVERE, null, ex);
-                    } catch (SQLException ex) {
-                        Logger.getLogger(moduloVenta.class.getName()).log(Level.SEVERE, null, ex);
-                    } catch (InstantiationException ex) {
-                        Logger.getLogger(moduloVenta.class.getName()).log(Level.SEVERE, null, ex);
-                    } catch (IllegalAccessException ex) {
+                    } catch (ClassNotFoundException | SQLException | InstantiationException | IllegalAccessException ex) {
                         Logger.getLogger(moduloVenta.class.getName()).log(Level.SEVERE, null, ex);
                     }
 

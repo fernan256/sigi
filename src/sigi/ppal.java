@@ -1,190 +1,52 @@
-/*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- */
 package sigi;
-/*
- * Fichero: PruebaJTree.java
- * Autor: Chuidiang
- * Fecha: 27/02/07 22:19
- */
-//package chuidiang.ejemplos;
 import Connection.Conexion;
 import java.sql.ResultSet;
 import java.sql.SQLException;
-import java.util.Calendar;
-import java.util.Date;
-import java.util.GregorianCalendar;
-import java.util.logging.Level;
-import java.util.logging.Logger;
-import javax.swing.ImageIcon;
 import javax.swing.JFrame;
-import javax.swing.JScrollPane;
-import javax.swing.JTree;
-import javax.swing.WindowConstants;
-import javax.swing.tree.DefaultMutableTreeNode;
-import javax.swing.tree.DefaultTreeCellRenderer;
-import javax.swing.tree.DefaultTreeModel;
-import javax.swing.tree.TreeCellRenderer;
-
-import javax.swing.JFrame;
-import javax.swing.JLabel;
-import javax.swing.JOptionPane;
-import javax.swing.JScrollPane;
-import javax.swing.JTextField;
-import javax.swing.JTree;
-import javax.swing.WindowConstants;
-import javax.swing.tree.DefaultMutableTreeNode;
-import javax.swing.tree.DefaultTreeModel;
-
-import Connection.Conexion;
 import java.awt.Dimension;
-import java.awt.Font;
 import java.awt.Toolkit;
-import java.awt.event.ActionEvent;
-import java.awt.event.ActionListener;
-import java.awt.event.KeyEvent;
-import java.io.FileNotFoundException;
-import java.io.FileOutputStream;
-import java.io.PrintStream;
-import java.security.MessageDigest;
-import java.security.NoSuchAlgorithmException;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 import java.util.Date;
-import java.util.*;
-import javax.print.PrintException;
-import javax.swing.*;
 import javax.swing.JOptionPane;
-import java.sql.*;
-import javax.swing.JTextField;
-import java.lang.Object;
-import javax.print.Doc;
-import javax.print.DocFlavor;
-import javax.print.DocPrintJob;
-import javax.print.PrintService;
-import javax.print.PrintServiceLookup;
-import javax.print.SimpleDoc;
-import javax.swing.table.DefaultTableModel;
-import javax.swing.table.TableModel;
 import java.util.Calendar;
 import java.util.GregorianCalendar;
-/**
- * Clase de ejemplo sencillo de uso del JTree
- *
- * @author Chuidiang
- */
 
-/**
- *
- * @author Gustavo
- */
 public class ppal extends javax.swing.JFrame {
     Conexion con,query;
     ResultSet rs;
     ResultSet rs2;
     ResultSet rs3;
-   public  int IDusuario;
-    public int priorityLevel;
+    public  int IDusuario;
     String id2="";
-    /**
-     * Creates new form ppal
-     */
-
-   // private JLabel jLabel17;
-    private Object txtestatus;
-    private JLabel jLabel20;
-    private JLabel jLabel6;
-    private JLabel jLabel21;
-    private JTextField txtapellidom;
-    private JTextField txtapellidop;
-    private JTextField txtdireccion;
-    private JTextField txtciudad;
-    private JLabel jLabel24;
     private int limite = 4;
     static int j=0,w=0,jj=0; 
     static String aux3;
     static float total=0;
     static String inv[]=new String[50000];
     static float invT=0;
-   public static String id,cad,id_nota;
-   String hora,minutos,segundos,ampm;
+    public static String id,cad,id_nota;
+    String hora,minutos,segundos,ampm;
     Calendar calendario;    
     Thread h1;
     public static int rowCount, numfac;
     public static boolean ABM_Articulo;
-     public ppal() {
-         System.out.println(priorityLevel);
-      //System.out.println(IDusuario);
-      if(IDusuario != 0) {
-          System.out.println(IDusuario);
-          String ax = JOptionPane.showInputDialog("Ingrese apertura caja: ", "0");
-        
-int ax1 = Integer.parseInt(ax);
-if(ax1 > 0){
-     try {
-                    // se comienza la conexion con la base de datos
-                    try {
-                        con = new Conexion();
-
-                    } catch (ClassNotFoundException ex) {
-                        Logger.getLogger(moduloVenta.class.getName()).log(Level.SEVERE, null, ex);
-                    } catch (SQLException ex) {
-                        Logger.getLogger(moduloVenta.class.getName()).log(Level.SEVERE, null, ex);
-                    } catch (InstantiationException ex) {
-                        Logger.getLogger(moduloVenta.class.getName()).log(Level.SEVERE, null, ex);
-                    } catch (IllegalAccessException ex) {
-                        Logger.getLogger(moduloVenta.class.getName()).log(Level.SEVERE, null, ex);
-                    }
-
-                    String nom= ax;
-                    String id = jTID.getText();
-                    String apertura ="INSERT INTO  `sigi`.`caja` (`apertura`, `id_usuario`)VALUES ('"+nom+"', '"+id+"')";
-                    
-                    con.ejecutar(apertura);
-
     
-                    } catch (SQLException ex) {
-                        Logger.getLogger(moduloVenta.class.getName()).log(Level.SEVERE, null, ex);
-                    }
-        moduloVenta vta = new moduloVenta();
-         vta.setVisible(true);
-       jBvta.setEnabled(false);   
-} else {
-    ax = "0";
-    JOptionPane.showMessageDialog(null, "Debe ingresar el conteo de apertura de caja, intente nuevamente. ");
-}
-      } else{
-            initComponents();
-       //     h1 = new Thread(this);
-//            h1.start();
-            
-                    this.setLocationRelativeTo(null);
-        this.setExtendedState(JFrame.MAXIMIZED_BOTH);
-            
-          
-//            aux = Integer.parseInt(cad);
- // ---------------- para realizar la muestra del mensaje:-----------------------------------           
-           Calendar fecha = new GregorianCalendar();
-        int año = fecha.get(Calendar.YEAR);
-        String año1 = Integer.toString(año);
-        int mes = (fecha.get(Calendar.MONTH)+1);
-        String mes1 = Integer.toString(mes);
-        int dia = fecha.get(Calendar.DAY_OF_MONTH);
-        String dia1 = Integer.toString(dia);
-        String fechaact = año1+"-"+mes1+"-"+dia1;
-                                   //  rs2 = con.Consulta(sql1);
-                                   
-                                        //while(rs2.next()){
-                                          //  ABM_Articulo= rs2.getBoolean("ABM_Articulo");
-        
-   // jTvscaningv.requestFocusInWindow();
-   // jTcierre.setEnabled(false);
-   // jBcierre.setEnabled(false);        
-                                    
-     }
-     }
+    public ppal() {         
+        initComponents();
+        jLuserName.setText(Login.userName);
+        this.setLocationRelativeTo(null);
+        this.setExtendedState(JFrame.MAXIMIZED_BOTH);    
+
+        Calendar fecha = new GregorianCalendar();
+        int year = fecha.get(Calendar.YEAR);
+        String year1 = Integer.toString(year);
+        int month = (fecha.get(Calendar.MONTH)+1);
+        String month1 = Integer.toString(month);
+        int day = fecha.get(Calendar.DAY_OF_MONTH);
+        String day1 = Integer.toString(day);
+        String fechaact = year1+"-"+month1+"-"+day1;
+    }
     /**
      * This method is called from within the constructor to initialize the form.
      * WARNING: Do NOT modify this code. The content of this method is always
@@ -201,11 +63,15 @@ if(ax1 > 0){
         jBvta = new javax.swing.JButton();
         jButton2 = new javax.swing.JButton();
         jButton3 = new javax.swing.JButton();
-        jLabel12 = new javax.swing.JLabel();
-        jTID = new javax.swing.JTextField();
+        jLuserName = new javax.swing.JLabel();
         jLabel1 = new javax.swing.JLabel();
         ctacte = new javax.swing.JButton();
         lbHora1 = new javax.swing.JLabel();
+        jMenuBar1 = new javax.swing.JMenuBar();
+        jMenu1 = new javax.swing.JMenu();
+        jMenuItem2 = new javax.swing.JMenuItem();
+        jMenu2 = new javax.swing.JMenu();
+        jMenuItem1 = new javax.swing.JMenuItem();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
@@ -288,17 +154,6 @@ if(ax1 > 0){
             }
         });
 
-        jLabel12.setText("ID Admin:");
-
-        jTID.setEditable(false);
-        jTID.setBackground(new java.awt.Color(255, 255, 255));
-        jTID.setHorizontalAlignment(javax.swing.JTextField.CENTER);
-        jTID.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jTIDActionPerformed(evt);
-            }
-        });
-
         jLabel1.setFont(new java.awt.Font("Microsoft JhengHei", 1, 24)); // NOI18N
         jLabel1.setForeground(new java.awt.Color(0, 153, 255));
         jLabel1.setText("Modulos");
@@ -311,6 +166,34 @@ if(ax1 > 0){
         });
 
         lbHora1.setText("HORA");
+
+        jMenu1.setText("Modificar");
+
+        jMenuItem2.setAccelerator(javax.swing.KeyStroke.getKeyStroke(java.awt.event.KeyEvent.VK_P, java.awt.event.InputEvent.ALT_MASK | java.awt.event.InputEvent.CTRL_MASK));
+        jMenuItem2.setText("Contraseña");
+        jMenuItem2.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jMenuItem2ActionPerformed(evt);
+            }
+        });
+        jMenu1.add(jMenuItem2);
+
+        jMenuBar1.add(jMenu1);
+
+        jMenu2.setText("Salir");
+
+        jMenuItem1.setAccelerator(javax.swing.KeyStroke.getKeyStroke(java.awt.event.KeyEvent.VK_Q, java.awt.event.InputEvent.CTRL_MASK));
+        jMenuItem1.setText("Cerrar Sesión");
+        jMenuItem1.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jMenuItem1ActionPerformed(evt);
+            }
+        });
+        jMenu2.add(jMenuItem1);
+
+        jMenuBar1.add(jMenu2);
+
+        setJMenuBar(jMenuBar1);
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
@@ -336,9 +219,8 @@ if(ax1 > 0){
                         .addGap(21, 21, 21)
                         .addComponent(lbHora1)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                        .addComponent(jLabel12)
-                        .addGap(12, 12, 12)
-                        .addComponent(jTID, javax.swing.GroupLayout.PREFERRED_SIZE, 27, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                        .addComponent(jLuserName, javax.swing.GroupLayout.PREFERRED_SIZE, 117, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(39, 39, 39)))
                 .addContainerGap())
         );
         layout.setVerticalGroup(
@@ -349,14 +231,14 @@ if(ax1 > 0){
                     .addComponent(jButton2, javax.swing.GroupLayout.PREFERRED_SIZE, 58, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(jButton3, javax.swing.GroupLayout.PREFERRED_SIZE, 58, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(ctacte, javax.swing.GroupLayout.PREFERRED_SIZE, 58, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addGap(18, 18, 18)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(layout.createSequentialGroup()
-                        .addGap(1, 1, 1)
-                        .addComponent(jLabel12, javax.swing.GroupLayout.PREFERRED_SIZE, 20, javax.swing.GroupLayout.PREFERRED_SIZE))
-                    .addComponent(jTID, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(lbHora1))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                        .addGap(18, 18, 18)
+                        .addComponent(lbHora1))
+                    .addGroup(layout.createSequentialGroup()
+                        .addGap(19, 19, 19)
+                        .addComponent(jLuserName, javax.swing.GroupLayout.PREFERRED_SIZE, 20, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 12, Short.MAX_VALUE)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
                     .addGroup(layout.createSequentialGroup()
                         .addComponent(jLabel1)
@@ -368,25 +250,26 @@ if(ax1 > 0){
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
-Compras objIC=new Compras();
 
-altaModificaionArticulos objIC1=new altaModificaionArticulos();
-bajaArticulos objIC20=new bajaArticulos();
-abmclientes objIC3=new abmclientes();
-//abmusuario objIC4=new abmusuario();
-ajusteCaja objIC5=new ajusteCaja();
-ajusteVenta objIC6=new ajusteVenta();
-buscarfacturas objIC9=new buscarfacturas();
-cliente objIC10=new cliente();
-configsoft objIC11=new configsoft();
-ctacte objIC12=new ctacte();
-estadocuentas objIC13=new estadocuentas();
-importarexportar objIC15=new importarexportar();
-oc objIC16=new oc();
-permisos objIC17=new permisos();
-proveedores objIC19=new proveedores();
-reportes objIC26=new reportes();
-stock objIC25=new stock();
+    Compras objIC = new Compras();
+    altaModificaionArticulos objIC1 = new altaModificaionArticulos();
+    bajaArticulos objIC20=new bajaArticulos();
+    AbmClientes objIC3=new AbmClientes();
+    //abmusuario objIC4=new abmusuario();
+    ajusteCaja objIC5=new ajusteCaja();
+    ajusteVenta objIC6=new ajusteVenta();
+    buscarfacturas objIC9=new buscarfacturas();
+    cliente objIC10=new cliente();
+    configsoft objIC11=new configsoft();
+    ctacte objIC12=new ctacte();
+    estadocuentas objIC13=new estadocuentas();
+    importarexportar objIC15=new importarexportar();
+    oc objIC16=new oc();
+    permisos objIC17=new permisos();
+    proveedores objIC19=new proveedores();
+    reportes objIC26=new reportes();
+    stock objIC25=new stock();
+    backupbd objIC27 = new backupbd();
 
     private void jTree1MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jTree1MouseClicked
         
@@ -490,6 +373,15 @@ stock objIC25=new stock();
                 objIC26.setSize(desktopPane.getSize());
             }
         }
+        if(menu.equals("Administrar BD")){
+            if(objIC27.isShowing()){
+		//mensaje de que está abierto si se desea
+            }else{
+                desktopPane.add(objIC27);
+                objIC27.show();
+                objIC27.setSize(desktopPane.getSize());
+            }
+        }
     }//GEN-LAST:event_jTree1MouseClicked
     
     private void jBvtaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jBvtaActionPerformed
@@ -499,13 +391,9 @@ stock objIC25=new stock();
        jBvta.setEnabled(false);*/
     }//GEN-LAST:event_jBvtaActionPerformed
 
-    private void jTIDActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jTIDActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_jTIDActionPerformed
-
     private void jButton3ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton3ActionPerformed
       
-        abmusuario1 showAbmUser = new abmusuario1();
+        AbmUsuario showAbmUser = new AbmUsuario();
          showAbmUser.setVisible(true);
       // jBvta.setEnabled(false);        // TODO add your handling code here:
     }//GEN-LAST:event_jButton3ActionPerformed
@@ -516,44 +404,59 @@ stock objIC25=new stock();
     }//GEN-LAST:event_ctacteActionPerformed
 
     private void jBvtaMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jBvtaMouseClicked
-
-String ax = JOptionPane.showInputDialog("Ingrese apertura caja: ", "0");
-        
-int ax1 = Integer.parseInt(ax);
-if(ax1 > 0){
-     try {
-                    // se comienza la conexion con la base de datos
-                    try {
-                        con = new Conexion();
-
-                    } catch (ClassNotFoundException ex) {
-                        Logger.getLogger(moduloVenta.class.getName()).log(Level.SEVERE, null, ex);
-                    } catch (SQLException ex) {
-                        Logger.getLogger(moduloVenta.class.getName()).log(Level.SEVERE, null, ex);
-                    } catch (InstantiationException ex) {
-                        Logger.getLogger(moduloVenta.class.getName()).log(Level.SEVERE, null, ex);
-                    } catch (IllegalAccessException ex) {
-                        Logger.getLogger(moduloVenta.class.getName()).log(Level.SEVERE, null, ex);
-                    }
-
-                    String nom= ax;
-                    String id = jTID.getText();
-                    String apertura ="INSERT INTO  `sigi`.`caja` (`apertura`, `id_usuario`)VALUES ('"+nom+"', '"+id+"')";
-                    
-                    con.ejecutar(apertura);
-
-    
-                    } catch (SQLException ex) {
-                        Logger.getLogger(moduloVenta.class.getName()).log(Level.SEVERE, null, ex);
-                    }
-        moduloVenta vta = new moduloVenta();
-         vta.setVisible(true);
-       jBvta.setEnabled(false);   
-} else {
-    ax = "0";
-    JOptionPane.showMessageDialog(null, "Debe ingresar el conteo de apertura de caja, intente nuevamente. ");
-}
+        String openSales = JOptionPane.showInputDialog("Ingrese apertura caja: ", "0");
+        float openSalesValue = Float.parseFloat(openSales);
+        if(openSalesValue > 0){
+//        try {
+//            try {
+//                con = new Conexion();
+//            } catch (ClassNotFoundException ex) {
+//                Logger.getLogger(ppal.class.getName()).log(Level.SEVERE, null, ex);
+//            } catch (SQLException ex) {
+//                Logger.getLogger(ppal.class.getName()).log(Level.SEVERE, null, ex);
+//            } catch (InstantiationException ex) {
+//                Logger.getLogger(ppal.class.getName()).log(Level.SEVERE, null, ex);
+//            } catch (IllegalAccessException ex) {
+//                Logger.getLogger(ppal.class.getName()).log(Level.SEVERE, null, ex);
+//            }
+//
+//          
+//            String apertura ="INSERT INTO  `sigi`.`caja` (`apertura`, `id_usuario`)VALUES ('"+openSalesValue+"', '"+Login.userId+"')";
+//
+//            con.ejecutar(apertura);
+//
+//            } catch (SQLException ex) {
+//                Logger.getLogger(moduloVenta.class.getName()).log(Level.SEVERE, null, ex);
+//            }
+            queries("INSERT INTO  `sigi`.`caja` (`apertura`, `id_usuario`)VALUES ('"+openSalesValue+"', '"+Login.userId+"')");
+            moduloVenta vta = new moduloVenta();
+            vta.setVisible(true);
+            jBvta.setEnabled(false);   
+        } else {
+            openSales = "0";
+            JOptionPane.showMessageDialog(null, "Debe ingresar el conteo de apertura de caja, intente nuevamente. ");
+        }
     }//GEN-LAST:event_jBvtaMouseClicked
+
+    private void jMenuItem1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItem1ActionPerformed
+        if(JOptionPane.showConfirmDialog(rootPane, "Esta seguro de cerrar la sesion actual?","Cerrar sesión",1)==0){
+            this.dispose();
+            Login login = new Login();
+            Dimension pantall = Toolkit.getDefaultToolkit().getScreenSize();  
+            //obtenemos el tamaño de la ventana  
+            Dimension ventan = login.getSize();  
+            //para centrar la ventana lo hacemos con el siguiente calculo  
+            login.setLocation((pantall.width - ventan.width) / 2, (pantall.height - ventan.height) / 2);
+            login.setVisible(true);
+        }
+    }//GEN-LAST:event_jMenuItem1ActionPerformed
+
+    private void jMenuItem2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItem2ActionPerformed
+        modificar mod = new modificar();
+        mod.id = IDusuario;
+        System.out.println("id para modificar: "+mod.id);
+        mod.setVisible(true);
+    }//GEN-LAST:event_jMenuItem2ActionPerformed
 
     /**
      * @param args the command line arguments
@@ -593,11 +496,29 @@ if(ax1 > 0){
         });
     }
     */
-public void setId(String id){
-    id2 = id;
-    jTID.setText(id);
-  
-}
+ 
+    public void queries(String query){
+        try {
+            try {
+                con = new Conexion();
+            } catch (ClassNotFoundException ex) {
+                Logger.getLogger(ppal.class.getName()).log(Level.SEVERE, null, ex);
+            } catch (SQLException ex) {
+                Logger.getLogger(ppal.class.getName()).log(Level.SEVERE, null, ex);
+            } catch (InstantiationException ex) {
+                Logger.getLogger(ppal.class.getName()).log(Level.SEVERE, null, ex);
+            } catch (IllegalAccessException ex) {
+                Logger.getLogger(ppal.class.getName()).log(Level.SEVERE, null, ex);
+            }
+
+            //String apertura ="INSERT INTO  `sigi`.`caja` (`apertura`, `id_usuario`)VALUES ('"+openSalesValue+"', '"+Login.userId+"')";
+
+            con.ejecutar(query);
+
+        } catch (SQLException ex) {
+            Logger.getLogger(moduloVenta.class.getName()).log(Level.SEVERE, null, ex);
+        }
+    }
 
 /*public void setC(){
         try {
@@ -622,14 +543,6 @@ public void getT(String cad){
 public void setT(String cad){
         String aux2 = cad;
 
-}
-
-public String getId(){
-    cad = jTID.getText();
-    return cad;
-}
-public void setNivel(int nivel) {
-    priorityLevel = nivel;
 }
 
 public String objectToString(Object o) {
@@ -685,24 +598,24 @@ public void calcula () {
     private javax.swing.JButton jButton3;
     public static javax.swing.JButton jBvta;
     private javax.swing.JLabel jLabel1;
-    private javax.swing.JLabel jLabel12;
+    private javax.swing.JLabel jLuserName;
+    private javax.swing.JMenu jMenu1;
+    private javax.swing.JMenu jMenu2;
+    private javax.swing.JMenuBar jMenuBar1;
+    private javax.swing.JMenuItem jMenuItem1;
+    private javax.swing.JMenuItem jMenuItem2;
     private javax.swing.JPopupMenu jPopupMenu1;
     private javax.swing.JScrollPane jScrollPane2;
-    public static javax.swing.JTextField jTID;
     private javax.swing.JTree jTree1;
     private javax.swing.JLabel lbHora1;
     // End of variables declaration//GEN-END:variables
-/*public void setId(String id){
-    id2 = id;
-    jTID.setText(id);
-  
-}
+
 public void setC(){
         try {
            // int q=0;
             rs=con.Consulta("SELECT * FROM usuarios WHERE nivel = '1' OR nivel = '0'");
             while(rs.next()){
-                jCuser.addItem(rs.getString(5));
+//                jCuser.addItem(rs.getString(5));
             
             }
             
@@ -711,7 +624,7 @@ public void setC(){
             Logger.getLogger(ppal.class.getName()).log(Level.SEVERE, null, ex);
         }
 
-}*/
+}
    public void run() {
         Thread ct = Thread.currentThread();
          while(ct == h1) {   
@@ -726,5 +639,4 @@ public void setC(){
          }
         throw new UnsupportedOperationException("Not supported yet.");
     }
-
 }

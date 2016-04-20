@@ -266,7 +266,7 @@ public static int rowCount, numfac, idoc, idusuario;
                         }
 
                     } catch (SQLException ex) {
-                        Logger.getLogger(abmclientes.class.getName()).log(Level.SEVERE, null, ex);
+                        Logger.getLogger(AbmClientes.class.getName()).log(Level.SEVERE, null, ex);
                     }
                     /*if(evt.getKeyCode() == KeyEvent.VK_ENTER){
                         jTarticcomp.requestFocusInWindow();
@@ -372,7 +372,7 @@ public static int rowCount, numfac, idoc, idusuario;
                         }
 
                     } catch (SQLException ex) {
-                        Logger.getLogger(abmclientes.class.getName()).log(Level.SEVERE, null, ex);
+                        Logger.getLogger(AbmClientes.class.getName()).log(Level.SEVERE, null, ex);
                     }
     }//GEN-LAST:event_jTtabla_comMouseClicked
 

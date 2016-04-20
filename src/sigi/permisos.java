@@ -272,13 +272,13 @@ public static boolean estado;
                     con = new Conexion();
 
                 } catch (ClassNotFoundException ex) {
-                    Logger.getLogger(abmclientes.class.getName()).log(Level.SEVERE, null, ex);
+                    Logger.getLogger(AbmClientes.class.getName()).log(Level.SEVERE, null, ex);
                 } catch (SQLException ex) {
-                    Logger.getLogger(abmclientes.class.getName()).log(Level.SEVERE, null, ex);
+                    Logger.getLogger(AbmClientes.class.getName()).log(Level.SEVERE, null, ex);
                 } catch (InstantiationException ex) {
-                    Logger.getLogger(abmclientes.class.getName()).log(Level.SEVERE, null, ex);
+                    Logger.getLogger(AbmClientes.class.getName()).log(Level.SEVERE, null, ex);
                 } catch (IllegalAccessException ex) {
-                    Logger.getLogger(abmclientes.class.getName()).log(Level.SEVERE, null, ex);
+                    Logger.getLogger(AbmClientes.class.getName()).log(Level.SEVERE, null, ex);
                 }
        String nombre= (String)jCusuario.getSelectedItem();
        
@@ -353,7 +353,7 @@ jcventas.disable();*/
 
 
             } catch (SQLException ex) {
-                Logger.getLogger(abmclientes.class.getName()).log(Level.SEVERE, null, ex);
+                Logger.getLogger(AbmClientes.class.getName()).log(Level.SEVERE, null, ex);
             }
 
         
@@ -679,7 +679,7 @@ jcventas.enable();
                 } catch (IllegalAccessException ex) {
                     Logger.getLogger(Compras.class.getName()).log(Level.SEVERE, null, ex);
                 }
-                String sql = "SELECT * FROM usuarios ORDER BY nombre";
+                String sql = "SELECT * FROM usuarios ORDER BY nombres";
 
                     //funcion para ejecutar la query
                    // con.Consulta(sql);
@@ -695,7 +695,7 @@ jcventas.enable();
                   estado=rs.getBoolean("activo");
                  if(estado == true){
                   
-                    modeloCombo.addElement(rs.getObject("nombre"));
+                    modeloCombo.addElement(rs.getObject("nombres"));
                   //  id=(rs.getString("id_usuario")); //Obtengo el ID al momento de seleccionar el usuario****!!!!
                     jCusuario.setModel(modeloCombo);
                 //    String valor = rs.getString("empresa");

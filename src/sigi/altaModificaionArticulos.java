@@ -393,10 +393,12 @@ public class altaModificaionArticulos extends javax.swing.JInternalFrame {
         modelo = new DefaultTableModel();
         modelo.addColumn("Nombre Producto");
         modelo.addColumn("Marca");
+        modelo.addColumn("Peso");
         modelo.addColumn("Cantidad");
         modelo.addColumn("Scaning");
         modelo.addColumn("Precio Costo");
         modelo.addColumn("Precio Venta");
+        modelo.addColumn("Tipo Articulo");
         this.exportTable.setModel(modelo);
         try {
             workbook = Workbook.getWorkbook(file);
@@ -436,42 +438,45 @@ public class altaModificaionArticulos extends javax.swing.JInternalFrame {
                             Logger.getLogger(ppal.class.getName()).log(Level.SEVERE, null, ex);
                         }
 
-                        String nombreProducto[] = new String[j], cantidadInicial;
+                        String nombreProducto[] = new String[j];
                         String marca[] = new String[j];
                         String scanning;
                         String precioCosto, precioVenta;
+                        String tipoArticulo[] = new String[j];
                         double scanningDouble[] = new double[j];
                         float precioVentaFlo[] = new float[j];
                         float precioCostoFlo[] = new float[j];
                         String cantidad[] = new String[j];
                         int articuloId = 0, stockId = 0;
-                        Object nombreProductoObj = null, marcaObj = null, scanningObj = null, precioCostoObj = null, precioVentaObj = null;
+                        String insertInToStock;
+                        //Object nombreProductoObj = null, marcaObj = null, scanningObj = null, precioCostoObj = null, precioVentaObj = null, pesoObj = null;
                         for (int i=0; i<j; i++) {
-                            nombreProductoObj = exportTable.getValueAt(i, 0);
-                            nombreProducto[i] = objectToString(nombreProductoObj);
-                            marcaObj = exportTable.getValueAt(i, 1);
-                            marca[i] = objectToString(marcaObj);
-                            cantidadInicial=objectToString(exportTable.getValueAt(i, 2));
-                            cantidad[i]= objectToString(cantidadInicial);
-                            scanningObj = exportTable.getValueAt(i, 3);
-                            scanning = objectToString(scanningObj);
-                            precioCostoObj = exportTable.getValueAt(i, 4);
-                            precioCosto = objectToString(precioCostoObj);
-                            precioVentaObj =  exportTable.getValueAt(i, 5);
-                            precioVenta = objectToString(precioVentaObj);
+                           // nombreProductoObj = exportTable.getValueAt(i, 0);
+                            nombreProducto[i] = objectToString(exportTable.getValueAt(i, 0));
+                            //marcaObj = exportTable.getValueAt(i, 1);
+                            marca[i] = objectToString(exportTable.getValueAt(i, 1));
+                            //cantidadInicial=objectToString(exportTable.getValueAt(i, 3));
+                            cantidad[i]= objectToString(exportTable.getValueAt(i, 2));
+                            //scanningObj = exportTable.getValueAt(i, 4);
+                            scanning = objectToString(exportTable.getValueAt(i, 3));
+                            //precioCostoObj = exportTable.getValueAt(i, 5);
+                            precioCosto = objectToString(exportTable.getValueAt(i, 4));
+                            //precioVentaObj =  exportTable.getValueAt(i, 6);
+                            precioVenta = objectToString(exportTable.getValueAt(i, 5));
+                            tipoArticulo[i] = objectToString(exportTable.getValueAt(i, 6));
                             precioVentaFlo[i] = Float.parseFloat(precioVenta);
                             scanningDouble[i] = Double.parseDouble(scanning);
                             precioCostoFlo[i] = Float.parseFloat(precioCosto);
 
-                            String insertArticulos = "INSERT INTO `descripcion_articulos`(`scanning`, `nombre_producto`, `marca`, `precio_costo`, `precio_venta`) VALUES ('"+scanningDouble[i]+"', '"+nombreProducto[i]+"', '"+ marca[i]+"', '"+precioCostoFlo[i]+"','"+precioVentaFlo[i]+"')";
+                            String insertArticulos = "INSERT INTO `descripcion_articulos`(`scanning`, `nombre_producto`, `marca`, `precio_costo`, `precio_venta`, `tipo_articulo_id`) VALUES ('"+scanningDouble[i]+"', '"+nombreProducto[i]+"', '"+ marca[i]+"', '"+precioCostoFlo[i]+"','"+precioVentaFlo[i]+"', '"+tipoArticulo[i]+"')";
                             con.ejecutar(insertArticulos);
                             String getArticuloId = "SELECT LAST_INSERT_ID() AS id_articulo";
                             rs = con.Consulta(getArticuloId);
                             while (rs.next()) {
                                 articuloId = rs.getInt("id_articulo");
                             }
-                            String sql = "INSERT INTO `stock`(`id_articulo`, `saldo_stock`) VALUES ('"+articuloId+"','"+cantidad[i]+"')";
-                            con.ejecutar(sql);
+                            insertInToStock = "INSERT INTO `stock`(`id_articulo`, `saldo_stock`) VALUES ('"+articuloId+"','"+cantidad[i]+"')";
+                            con.ejecutar(insertInToStock);
                             String getStockId = "SELECT LAST_INSERT_ID() AS id_stock"; 
                             rs2 = con.Consulta(getStockId);
                             while(rs2.next()) {

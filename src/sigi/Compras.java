@@ -533,13 +533,13 @@ llenar_forma_pago();
                         con = new Conexion();
 
                     } catch (ClassNotFoundException ex) {
-                        Logger.getLogger(abmclientes.class.getName()).log(Level.SEVERE, null, ex);
+                        Logger.getLogger(AbmClientes.class.getName()).log(Level.SEVERE, null, ex);
                     } catch (SQLException ex) {
-                        Logger.getLogger(abmclientes.class.getName()).log(Level.SEVERE, null, ex);
+                        Logger.getLogger(AbmClientes.class.getName()).log(Level.SEVERE, null, ex);
                     } catch (InstantiationException ex) {
-                        Logger.getLogger(abmclientes.class.getName()).log(Level.SEVERE, null, ex);
+                        Logger.getLogger(AbmClientes.class.getName()).log(Level.SEVERE, null, ex);
                     } catch (IllegalAccessException ex) {
-                        Logger.getLogger(abmclientes.class.getName()).log(Level.SEVERE, null, ex);
+                        Logger.getLogger(AbmClientes.class.getName()).log(Level.SEVERE, null, ex);
                     }
 
                    
@@ -582,7 +582,7 @@ llenar_forma_pago();
                         }
 
                     } catch (SQLException ex) {
-                        Logger.getLogger(abmclientes.class.getName()).log(Level.SEVERE, null, ex);
+                        Logger.getLogger(AbmClientes.class.getName()).log(Level.SEVERE, null, ex);
                     }
                     /*if(evt.getKeyCode() == KeyEvent.VK_ENTER){
                         jTarticcomp.requestFocusInWindow();
