@@ -1,156 +1,31 @@
-/*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- */
+
 package sigi;
-/*
- * Fichero: PruebaJTree.java
- * Autor: Chuidiang
- * Fecha: 27/02/07 22:19
- */
-//package chuidiang.ejemplos;
-import Connection.Conexion;
+
 import java.sql.ResultSet;
 import java.sql.SQLException;
-import java.util.Calendar;
-import java.util.Date;
-import java.util.GregorianCalendar;
-import java.util.logging.Level;
-import java.util.logging.Logger;
-import javax.swing.ImageIcon;
 import javax.swing.JFrame;
-import javax.swing.JScrollPane;
-import javax.swing.JTree;
-import javax.swing.WindowConstants;
-import javax.swing.tree.DefaultMutableTreeNode;
-import javax.swing.tree.DefaultTreeCellRenderer;
-import javax.swing.tree.DefaultTreeModel;
-import javax.swing.tree.TreeCellRenderer;
-
-import javax.swing.JFrame;
-import javax.swing.JLabel;
-import javax.swing.JOptionPane;
-import javax.swing.JScrollPane;
-import javax.swing.JTextField;
-import javax.swing.JTree;
-import javax.swing.WindowConstants;
-import javax.swing.tree.DefaultMutableTreeNode;
-import javax.swing.tree.DefaultTreeModel;
-
 import Connection.Conexion;
 import java.awt.Dimension;
-import java.awt.Font;
 import java.awt.Toolkit;
-import java.awt.event.ActionEvent;
-import java.awt.event.ActionListener;
-import java.awt.event.KeyEvent;
-import java.io.FileNotFoundException;
-import java.io.FileOutputStream;
-import java.io.PrintStream;
-import java.security.MessageDigest;
-import java.security.NoSuchAlgorithmException;
+import java.beans.PropertyVetoException;
 import java.util.logging.Level;
 import java.util.logging.Logger;
-import java.util.Date;
-import java.util.*;
-import javax.print.PrintException;
-import javax.swing.*;
 import javax.swing.JOptionPane;
-import java.sql.*;
-import javax.swing.JTextField;
-import java.lang.Object;
-import javax.print.Doc;
-import javax.print.DocFlavor;
-import javax.print.DocPrintJob;
-import javax.print.PrintService;
-import javax.print.PrintServiceLookup;
-import javax.print.SimpleDoc;
-import javax.swing.table.DefaultTableModel;
-import javax.swing.table.TableModel;
-import java.util.Calendar;
-import java.util.GregorianCalendar;
-/**
- * Clase de ejemplo sencillo de uso del JTree
- *
- * @author Chuidiang
- */
 
-/**
- *
- * @author Gustavo
- */
 public class PantallaPrincipalVendedor extends javax.swing.JFrame {
-    Conexion con,query;
+    Conexion con;
     ResultSet rs;
-    ResultSet rs2;
-    ResultSet rs3;
-    public  int IDusuario;
-    String id2="";
-    /**
-     * Creates new form ppal
-     */
-
-   // private JLabel jLabel17;
-    private Object txtestatus;
-    private JLabel jLabel20;
-    private JLabel jLabel6;
-    private JLabel jLabel21;
-    private JTextField txtapellidom;
-    private JTextField txtapellidop;
-    private JTextField txtdireccion;
-    private JTextField txtciudad;
-    private JLabel jLabel24;
-    private int limite = 4;
-    static int j=0,w=0,jj=0; 
-    static String aux3;
-    static float total=0;
-    static String inv[]=new String[50000];
-    static float invT=0;
-   public static String id,cad,id_nota;
-   String hora,minutos,segundos,ampm;
-    Calendar calendario;    
-    Thread h1;
-    public static int rowCount, numfac;
-    public static boolean ABM_Articulo;
+    int userId = Login.userId;
+    public int IDusuario;
     
     public PantallaPrincipalVendedor() { 
         
         initComponents();
         jLuserName.setText(Login.userName);
-       //     h1 = new Thread(this);
-//            h1.start();
-            
         this.setLocationRelativeTo(null);
-        this.setExtendedState(JFrame.MAXIMIZED_BOTH);
-            
-          
-//            aux = Integer.parseInt(cad);
- // ---------------- para realizar la muestra del mensaje:-----------------------------------           
-           Calendar fecha = new GregorianCalendar();
-        int year = fecha.get(Calendar.YEAR);
-        String year1 = Integer.toString(year);
-        int month = (fecha.get(Calendar.MONTH)+1);
-        String month1 = Integer.toString(month);
-        int day = fecha.get(Calendar.DAY_OF_MONTH);
-        String day1 = Integer.toString(day);
-        String fechaact = year1+"-"+month1+"-"+day1;
-                                   //  rs2 = con.Consulta(sql1);
-                                   
-                                        //while(rs2.next()){
-                                          //  ABM_Articulo= rs2.getBoolean("ABM_Articulo");
-        
-   // jTvscaningv.requestFocusInWindow();
-   // jTcierre.setEnabled(false);
-   // jBcierre.setEnabled(false);        
-                                    
-     
-     }
-    /**
-     * This method is called from within the constructor to initialize the form.
-     * WARNING: Do NOT modify this code. The content of this method is always
-     * regenerated by the Form Editor.
-     */
+        this.setExtendedState(JFrame.MAXIMIZED_BOTH);                                   
+    }
+    
     @SuppressWarnings("unchecked")
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
@@ -159,25 +34,28 @@ public class PantallaPrincipalVendedor extends javax.swing.JFrame {
         jPopupMenu2 = new javax.swing.JPopupMenu();
         desktopPane = new javax.swing.JDesktopPane();
         jScrollPane2 = new javax.swing.JScrollPane();
-        jTree1 = new javax.swing.JTree();
-        jBvta = new javax.swing.JButton();
+        salesManeTree = new javax.swing.JTree();
+        moduloVentaVendedor = new javax.swing.JButton();
         jButton2 = new javax.swing.JButton();
         jLuserName = new javax.swing.JLabel();
         jLabel1 = new javax.swing.JLabel();
-        ctacte = new javax.swing.JButton();
-        lbHora1 = new javax.swing.JLabel();
+        jLabel3 = new javax.swing.JLabel();
         jMenuBar1 = new javax.swing.JMenuBar();
-        jMenu2 = new javax.swing.JMenu();
-        jMenuItem3 = new javax.swing.JMenuItem();
-        jMenu3 = new javax.swing.JMenu();
-        jMenuItem2 = new javax.swing.JMenuItem();
+        changeMenu = new javax.swing.JMenu();
+        changePass = new javax.swing.JMenuItem();
+        exitMenu = new javax.swing.JMenu();
+        exit = new javax.swing.JMenuItem();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
+        setTitle("Principal");
+        setForeground(java.awt.Color.red);
+        getContentPane().setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
-        desktopPane.setBackground(new java.awt.Color(255, 255, 255));
+        desktopPane.setBackground(new java.awt.Color(188, 186, 186));
         desktopPane.setForeground(new java.awt.Color(255, 255, 255));
         desktopPane.setMaximumSize(new java.awt.Dimension(1680, 960));
         desktopPane.setPreferredSize(new java.awt.Dimension(1024, 768));
+        getContentPane().add(desktopPane, new org.netbeans.lib.awtextra.AbsoluteConstraints(240, 90, 1040, 620));
 
         javax.swing.tree.DefaultMutableTreeNode treeNode1 = new javax.swing.tree.DefaultMutableTreeNode("Menu");
         javax.swing.tree.DefaultMutableTreeNode treeNode2 = new javax.swing.tree.DefaultMutableTreeNode("Articulos");
@@ -189,392 +67,291 @@ public class PantallaPrincipalVendedor extends javax.swing.JFrame {
         treeNode2 = new javax.swing.tree.DefaultMutableTreeNode("Ajustes");
         treeNode3 = new javax.swing.tree.DefaultMutableTreeNode("Caja");
         treeNode2.add(treeNode3);
-        treeNode3 = new javax.swing.tree.DefaultMutableTreeNode("Venta");
-        treeNode2.add(treeNode3);
         treeNode1.add(treeNode2);
         treeNode2 = new javax.swing.tree.DefaultMutableTreeNode("Clientes");
         treeNode3 = new javax.swing.tree.DefaultMutableTreeNode("ABM Cliente");
         treeNode2.add(treeNode3);
         treeNode1.add(treeNode2);
         treeNode2 = new javax.swing.tree.DefaultMutableTreeNode("Cuentas Corrientes");
+        treeNode3 = new javax.swing.tree.DefaultMutableTreeNode("ABM Cuentas Corrientes");
+        treeNode2.add(treeNode3);
         treeNode1.add(treeNode2);
-        jTree1.setModel(new javax.swing.tree.DefaultTreeModel(treeNode1));
-        jTree1.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
-        jTree1.setRootVisible(false);
-        jTree1.addMouseListener(new java.awt.event.MouseAdapter() {
+        treeNode2 = new javax.swing.tree.DefaultMutableTreeNode("Devoluciones");
+        treeNode3 = new javax.swing.tree.DefaultMutableTreeNode("Devoluci�n");
+        treeNode2.add(treeNode3);
+        treeNode1.add(treeNode2);
+        treeNode2 = new javax.swing.tree.DefaultMutableTreeNode("Tickets");
+        treeNode3 = new javax.swing.tree.DefaultMutableTreeNode("Ver/Reimprimir Ticket");
+        treeNode2.add(treeNode3);
+        treeNode3 = new javax.swing.tree.DefaultMutableTreeNode("Anular Ticket");
+        treeNode2.add(treeNode3);
+        treeNode1.add(treeNode2);
+        salesManeTree.setModel(new javax.swing.tree.DefaultTreeModel(treeNode1));
+        salesManeTree.setToolTipText("");
+        salesManeTree.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
+        salesManeTree.setMaximumSize(new java.awt.Dimension(170, 171));
+        salesManeTree.setPreferredSize(new java.awt.Dimension(170, 171));
+        salesManeTree.setRootVisible(false);
+        salesManeTree.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
-                jTree1MouseClicked(evt);
+                salesManeTreeMouseClicked(evt);
             }
         });
-        jScrollPane2.setViewportView(jTree1);
+        jScrollPane2.setViewportView(salesManeTree);
 
-        jBvta.setBackground(new java.awt.Color(255, 255, 255));
-        jBvta.setText("VTA");
-        jBvta.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
-        jBvta.setHorizontalTextPosition(javax.swing.SwingConstants.CENTER);
-        jBvta.setVerticalTextPosition(javax.swing.SwingConstants.BOTTOM);
-        jBvta.addActionListener(new java.awt.event.ActionListener() {
+        getContentPane().add(jScrollPane2, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 140, 210, 340));
+
+        moduloVentaVendedor.setBackground(new java.awt.Color(255, 255, 255));
+        moduloVentaVendedor.setIcon(new javax.swing.ImageIcon(getClass().getResource("/imagenes/carritoVentas.png"))); // NOI18N
+        moduloVentaVendedor.setText("Modulo Venta");
+        moduloVentaVendedor.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
+        moduloVentaVendedor.setHorizontalTextPosition(javax.swing.SwingConstants.CENTER);
+        moduloVentaVendedor.setVerticalTextPosition(javax.swing.SwingConstants.BOTTOM);
+        moduloVentaVendedor.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jBvtaActionPerformed(evt);
+                moduloVentaVendedorActionPerformed(evt);
             }
         });
+        getContentPane().add(moduloVentaVendedor, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 0, 280, 80));
 
         jButton2.setBackground(new java.awt.Color(255, 255, 255));
         jButton2.setIcon(new javax.swing.ImageIcon(getClass().getResource("/imagenes/info.jpg"))); // NOI18N
         jButton2.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
+        getContentPane().add(jButton2, new org.netbeans.lib.awtextra.AbsoluteConstraints(1220, 10, 61, 58));
+
+        jLuserName.setFont(new java.awt.Font("Arial", 1, 24)); // NOI18N
+        getContentPane().add(jLuserName, new org.netbeans.lib.awtextra.AbsoluteConstraints(910, 10, 290, 30));
 
         jLabel1.setFont(new java.awt.Font("Microsoft JhengHei", 1, 24)); // NOI18N
-        jLabel1.setForeground(new java.awt.Color(0, 153, 255));
+        jLabel1.setForeground(new java.awt.Color(227, 243, 253));
         jLabel1.setText("Modulos");
+        getContentPane().add(jLabel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 100, 248, -1));
 
-        ctacte.setText("ctacte");
-        ctacte.addActionListener(new java.awt.event.ActionListener() {
+        jLabel3.setIcon(new javax.swing.ImageIcon(getClass().getResource("/imagenes/blue_3_by_astoyanov.png"))); // NOI18N
+        jLabel3.setText("jLabel3");
+        jLabel3.setPreferredSize(new java.awt.Dimension(1200, 700));
+        getContentPane().add(jLabel3, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 1420, 900));
+
+        changeMenu.setText("Modificar");
+
+        changePass.setAccelerator(javax.swing.KeyStroke.getKeyStroke(java.awt.event.KeyEvent.VK_P, java.awt.event.InputEvent.ALT_MASK | java.awt.event.InputEvent.CTRL_MASK));
+        changePass.setText("Contrase�a");
+        changePass.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                ctacteActionPerformed(evt);
+                changePassActionPerformed(evt);
             }
         });
+        changeMenu.add(changePass);
 
-        lbHora1.setText("HORA");
+        jMenuBar1.add(changeMenu);
 
-        jMenu2.setText("Modificar");
+        exitMenu.setText("Salir");
 
-        jMenuItem3.setAccelerator(javax.swing.KeyStroke.getKeyStroke(java.awt.event.KeyEvent.VK_P, java.awt.event.InputEvent.ALT_MASK | java.awt.event.InputEvent.CTRL_MASK));
-        jMenuItem3.setText("Contrase�a");
-        jMenuItem3.addActionListener(new java.awt.event.ActionListener() {
+        exit.setAccelerator(javax.swing.KeyStroke.getKeyStroke(java.awt.event.KeyEvent.VK_Q, java.awt.event.InputEvent.CTRL_MASK));
+        exit.setText("Cerrar Sesi�n");
+        exit.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jMenuItem3ActionPerformed(evt);
+                exitActionPerformed(evt);
             }
         });
-        jMenu2.add(jMenuItem3);
+        exitMenu.add(exit);
 
-        jMenuBar1.add(jMenu2);
-
-        jMenu3.setText("Salir");
-
-        jMenuItem2.setAccelerator(javax.swing.KeyStroke.getKeyStroke(java.awt.event.KeyEvent.VK_Q, java.awt.event.InputEvent.CTRL_MASK));
-        jMenuItem2.setText("Cerrar Sesi�n");
-        jMenuItem2.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jMenuItem2ActionPerformed(evt);
-            }
-        });
-        jMenu3.add(jMenuItem2);
-
-        jMenuBar1.add(jMenu3);
+        jMenuBar1.add(exitMenu);
 
         setJMenuBar(jMenuBar1);
 
-        javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
-        getContentPane().setLayout(layout);
-        layout.setHorizontalGroup(
-            layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(layout.createSequentialGroup()
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                    .addComponent(jScrollPane2, javax.swing.GroupLayout.DEFAULT_SIZE, 248, Short.MAX_VALUE)
-                    .addComponent(jLabel1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(desktopPane, javax.swing.GroupLayout.DEFAULT_SIZE, 1045, Short.MAX_VALUE))
-            .addGroup(layout.createSequentialGroup()
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(layout.createSequentialGroup()
-                        .addGap(27, 27, 27)
-                        .addComponent(jBvta, javax.swing.GroupLayout.PREFERRED_SIZE, 149, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(48, 48, 48)
-                        .addComponent(ctacte, javax.swing.GroupLayout.PREFERRED_SIZE, 151, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                        .addComponent(jButton2, javax.swing.GroupLayout.PREFERRED_SIZE, 61, javax.swing.GroupLayout.PREFERRED_SIZE))
-                    .addGroup(layout.createSequentialGroup()
-                        .addGap(21, 21, 21)
-                        .addComponent(lbHora1)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                        .addComponent(jLuserName, javax.swing.GroupLayout.PREFERRED_SIZE, 154, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(39, 39, 39)))
-                .addContainerGap())
-        );
-        layout.setVerticalGroup(
-            layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(layout.createSequentialGroup()
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(jButton2, javax.swing.GroupLayout.PREFERRED_SIZE, 58, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addGroup(layout.createSequentialGroup()
-                                .addContainerGap()
-                                .addComponent(jBvta, javax.swing.GroupLayout.PREFERRED_SIZE, 56, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                        .addGap(18, 18, 18)
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(lbHora1)
-                            .addComponent(jLuserName, javax.swing.GroupLayout.PREFERRED_SIZE, 20, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                    .addGroup(layout.createSequentialGroup()
-                        .addContainerGap()
-                        .addComponent(ctacte, javax.swing.GroupLayout.PREFERRED_SIZE, 58, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 13, Short.MAX_VALUE)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                    .addGroup(layout.createSequentialGroup()
-                        .addComponent(jLabel1)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                        .addComponent(jScrollPane2, javax.swing.GroupLayout.PREFERRED_SIZE, 535, javax.swing.GroupLayout.PREFERRED_SIZE))
-                    .addComponent(desktopPane, javax.swing.GroupLayout.PREFERRED_SIZE, 574, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addGap(0, 0, Short.MAX_VALUE))
-        );
-
         pack();
     }// </editor-fold>//GEN-END:initComponents
-//Compras objIC=new Compras();
 
-AltaModificaionArticulos objIC1=new AltaModificaionArticulos();
-BajaArticulos objIC20=new BajaArticulos();
-//abmclientes objIC3=new abmclientes();
-//abmusuario objIC4=new abmusuario();
-AjusteCaja objIC5=new AjusteCaja();
-AjusteVenta objIC6=new AjusteVenta();
-//buscarfacturas objIC9=new buscarfacturas();
-Clientes objIC10=new Clientes();
-//configsoft objIC11=new configsoft();
-CuentasCorrientes objIC12=new CuentasCorrientes();
-EstadoCuentasCorrientes objIC13=new EstadoCuentasCorrientes();
-//importarexportar objIC15=new importarexportar();
-//oc objIC16=new oc();
-//permisos objIC17=new permisos();
-Proveedores objIC19=new Proveedores();
-Stock objIC25=new Stock();
-
-    private void jTree1MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jTree1MouseClicked
-        
-        String menu = jTree1.getLastSelectedPathComponent().toString();
-//        if(menu.equals("ABM Compra")){
-//           if(objIC.isShowing()){
-//        	//mensaje de que está abierto si se desea
-//            }else{
-//                desktopPane.add(objIC);
-//                objIC.show();
-//                objIC.setSize(desktopPane.getSize());
-//            }
-//        } 
-        if(menu.equals("ABM Articulos") ){
-            if(objIC1.isShowing()){
-                //mensaje de que está abierto si se desea
-            }else{
-                desktopPane.add(objIC1);
-                objIC1.show();
-                objIC1.setSize(desktopPane.getSize());
-            }
-        }
-//        if(menu.equals("ABM Cliente")){
-//            if(objIC3.isShowing()){
-//                //mensaje de que está abierto si se desea
-//            }else{
-//                desktopPane.add(objIC3);
-//                objIC3.show();
-//                objIC3.setSize(desktopPane.getSize());
-//            }
-//        } 
-        if(menu.equals("Stock")){
-            if(objIC25.isShowing()){
-		//mensaje de que está abierto si se desea
-            }else{
-                desktopPane.add(objIC25);
-                objIC25.show();
-                objIC25.setSize(desktopPane.getSize());
-            }
-        }
-        if(menu.equals("Cuentas Corrientes")){
-            if(objIC12.isShowing()){
-		//mensaje de que está abierto si se desea
-            }else{
-                desktopPane.add(objIC12);
-                objIC12.show();
-                objIC12.setSize(desktopPane.getSize());
-            }
-        }
-//        if(menu.equals("OC")){
-//            if(objIC16.isShowing()){
-//		//mensaje de que está abierto si se desea
-//            }else{
-//                desktopPane.add(objIC16);
-//                objIC16.show();
-//                objIC3.setSize(desktopPane.getSize());
-//            }
-//        } 
-        if(menu.equals("ABM Proveedor")){
-            if(objIC19.isShowing()){
-		//mensaje de que está abierto si se desea
-            }else{
-                desktopPane.add(objIC19);
-                objIC19.show();
-                objIC19.setSize(desktopPane.getSize());
-            }
-        } 
-//        if(menu.equals("Permisos")){
-//            if(objIC17.isShowing()){
-//		//mensaje de que está abierto si se desea
-//            }else{
-//                desktopPane.add(objIC17);
-//                objIC17.show();
-//                //objIC17.setSize(desktopPane.getSize());
-//            }
-//        } 
-//        if(menu.equals("Buscar Facturas")){
-//            if(objIC9.isShowing()){
-//		//mensaje de que está abierto si se desea
-//            }else{
-//                desktopPane.add(objIC9);
-//                objIC9.show();
-//                //objIC17.setSize(desktopPane.getSize());
-//            }
-//        } 
-        if(menu.equals("Caja")){
-            if(objIC5.isShowing()){
-		//mensaje de que está abierto si se desea
-            }else{
-                desktopPane.add(objIC5);
-                objIC5.show();
-                //objIC17.setSize(desktopPane.getSize());
-            }
-        }
-        if(menu.equals("Reportes")){
-//            if(objIC26.isShowing()){
-//		//mensaje de que está abierto si se desea
-//            }else{
-//                desktopPane.add(objIC26);
-//                objIC26.show();
-//                objIC26.setSize(desktopPane.getSize());
-//            }
-        }
-    }//GEN-LAST:event_jTree1MouseClicked
+    AltaModificaionArticulos objIC1=new AltaModificaionArticulos();
+    AbmClientes objIC2=new AbmClientes();
+    AjusteCaja objIC3=new AjusteCaja();
+    CuentasCorrientes objIC5=new CuentasCorrientes();
+    Stock objIC6=new Stock();
+    VerReimprimirTickets objIC7 = new VerReimprimirTickets();
     
-    private void jBvtaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jBvtaActionPerformed
-        JFrame aperturaCaja = new JFrame("Apertura de Caja");
-        String openSales = JOptionPane.showInputDialog(aperturaCaja, "Ingrese apertura caja: ", "0");
-        if(openSales != null) {
-            float openSalesValue = Float.parseFloat(openSales);
-            if(openSalesValue > 0){
-                try {
+    private void salesManeTreeMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_salesManeTreeMouseClicked
+        
+        String menu = salesManeTree.getLastSelectedPathComponent().toString();
+        switch(menu) {
+            case "ABM Articulos":
+                if(objIC1.isShowing() == true){
                     try {
-                        con = new Conexion();
-
-                    } catch (ClassNotFoundException ex) {
-                        Logger.getLogger(ModuloVenta.class.getName()).log(Level.SEVERE, null, ex);
-                    } catch (SQLException ex) {
-                        Logger.getLogger(ModuloVenta.class.getName()).log(Level.SEVERE, null, ex);
-                    } catch (InstantiationException ex) {
-                        Logger.getLogger(ModuloVenta.class.getName()).log(Level.SEVERE, null, ex);
-                    } catch (IllegalAccessException ex) {
-                        Logger.getLogger(ModuloVenta.class.getName()).log(Level.SEVERE, null, ex);
-                    }                                                        
-                    String apertura ="INSERT INTO caja (apertura, id_usuario, estado) VALUES ('"+openSalesValue+"', '"+Login.userId+"', 1)";
-
-                    con.ejecutar(apertura);
-
-                    } catch (SQLException ex) {
-                        Logger.getLogger(ModuloVenta.class.getName()).log(Level.SEVERE, null, ex);
+                        objIC1.setSelected(true);
+                    } catch (PropertyVetoException ex) {
+                        Logger.getLogger(PantallaPrincipalVendedor.class.getName()).log(Level.SEVERE, null, ex);
                     }
-                    jBvta.setEnabled(false);
-                    ModuloVenta venta = new ModuloVenta();
-                    venta.setVisible(true);
-            } else {
-                openSales = "0";
-                JOptionPane.showMessageDialog(null, "Debe ingresar el conteo de apertura de caja, intente nuevamente. ");
-            }
+                }else{
+                    objIC1.clearCrudArticlesFields();
+                    desktopPane.add(objIC1);
+                    objIC1.show();
+                    objIC1.setSize(desktopPane.getSize());
+                }
+                break;
+            case "ABM Cliente":
+                if(objIC2.isShowing() == true){
+                    try {
+                        objIC2.setSelected(true);
+                    } catch (PropertyVetoException ex) {
+                        Logger.getLogger(PantallaPrincipalVendedor.class.getName()).log(Level.SEVERE, null, ex);
+                    }
+                }else{
+                    objIC2.clearCrudCustomersFields();
+                    desktopPane.add(objIC2);
+                    objIC2.show();
+                    objIC2.setSize(desktopPane.getSize());
+                }
+                break;
+            case "Stock":
+                if(objIC6.isShowing() == true){
+                    try {
+                        objIC6.setSelected(true);
+                    } catch (PropertyVetoException ex) {
+                        Logger.getLogger(PantallaPrincipalVendedor.class.getName()).log(Level.SEVERE, null, ex);
+                    }
+                }else{
+                    objIC6.clearStockFields();
+                    desktopPane.add(objIC6);
+                    objIC6.show();
+                    objIC6.setSize(desktopPane.getSize());
+                }
+                break;
+            case "ABM Cuentas Corrientes":
+                if(objIC5.isShowing() == true){
+                    try {
+                        objIC5.setSelected(true);
+                    } catch (PropertyVetoException ex) {
+                        Logger.getLogger(PantallaPrincipalVendedor.class.getName()).log(Level.SEVERE, null, ex);
+                    }
+                }else{
+                    objIC5.clearCtaCteFields();
+                    desktopPane.add(objIC5);
+                    objIC5.show();
+                    objIC5.setSize(desktopPane.getSize());
+                }
+                break;
+            case "Caja":
+                if(objIC3.isShowing() == true){
+                    try {
+                        objIC3.setSelected(true);
+                    } catch (PropertyVetoException ex) {
+                        Logger.getLogger(PantallaPrincipalVendedor.class.getName()).log(Level.SEVERE, null, ex);
+                    }
+                }else{
+                    objIC3.clearAdjustmentPOSFields();
+                    desktopPane.add(objIC3);
+                    objIC3.show();
+                    objIC3.setSize(desktopPane.getSize());
+                }
+                break;
+            case "Devoluci�n":
+                Devoluciones devolucion = new Devoluciones(this, true);
+                devolucion.setVisible(true);
+                break;
+            case "Ver/Reimprimir Ticket":
+                if(objIC7.isShowing() == true) {
+                    try {
+                        objIC7.setSelected(true);
+                    } catch (PropertyVetoException ex) {
+                        Logger.getLogger(PantallaPrincipal.class.getName()).log(Level.SEVERE, null, ex);
+                    }
+                } else {
+                    objIC7.clearReprintTicket();
+                    desktopPane.add(objIC7);
+                    objIC7.show();
+                    objIC7.setSize(desktopPane.getSize());
+                }
+                break;
+            case "Anular Ticket":
+                AnularTicket anular = new AnularTicket(this, true);
+                anular.setVisible(true);
+                break;
+            default:
+                break;
         }
-    }//GEN-LAST:event_jBvtaActionPerformed
+    }//GEN-LAST:event_salesManeTreeMouseClicked
+    
+    private void moduloVentaVendedorActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_moduloVentaVendedorActionPerformed
+        try {
+            con = new Conexion();
+            Login.getStatus();
+            if(Login.status == 1 || Login.status == 3) {
+                if (userId == Login.compareIds) {
+                    switch (Login.status) {                    
+                        case 1:
+                            JOptionPane.showMessageDialog(null, "La caja ya esta abierta");
+                            CierreCaja cierre = new CierreCaja();
+                            cierre.setVisible(true);
+                            break;
+                        case 3:
+                            int option = JOptionPane.showOptionDialog(null, "Se hab�a hecho un cierre X de la caja, elegir una opci�n.", "Caja", JOptionPane.YES_NO_OPTION, JOptionPane.INFORMATION_MESSAGE, null, new String[]{"Abrir caja", "Hacer cierre"}, "Abrir caja");
+                            if(option == 0) {
+                                String updateSalesStatus = "UPDATE caja SET estado = 1 WHERE id_caja = "+Login.cajaId+"";
+                                con.ejecutar(updateSalesStatus);
+                                moduloVentaVendedor.setEnabled(false);
+                                ModuloVenta venta = new ModuloVenta();
+                                venta.setVisible(true);
+                            } else {
+                                CierreZ cierreDelDia = new CierreZ(this, true);
+                                cierreDelDia.setVisible(true);
+                            }
+                            break;
+                        default:
+                            openPos();
+                            break;
+                    }
+                } else {
+                    String getUser = "SELECT nombres, apellidos FROM usuarios WHERE id_usuario = "+Login.compareIds+"";
+                    rs = con.Consulta(getUser);
+                    String names = null, lastNames = null;
+                    while(rs.next()) {
+                        names = rs.getString("nombres");
+                        lastNames = rs.getString("apellidos");
+                    }
+                    JOptionPane.showMessageDialog(null, "Se ha hecho la apertura de caja con el usuario: " +  names + " " + lastNames);
+                }
+            } else {
+                openPos();
+            }
+        } catch (SQLException | ClassNotFoundException | InstantiationException | IllegalAccessException ex) {
+            Logger.getLogger(PantallaPrincipalVendedor.class.getName()).log(Level.SEVERE, null, ex);
+        }
+    }//GEN-LAST:event_moduloVentaVendedorActionPerformed
 
-    private void ctacteActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_ctacteActionPerformed
-        CuentasCorrientes showCtacte = new CuentasCorrientes();
-        showCtacte.setVisible(true);
-    }//GEN-LAST:event_ctacteActionPerformed
-
-    private void jMenuItem2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItem2ActionPerformed
-        if(JOptionPane.showConfirmDialog(rootPane, "Esta seguro de cerrar la sesion actual?","Cerrar sesión",1)==0){
+    private void exitActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_exitActionPerformed
+        if(JOptionPane.showConfirmDialog(rootPane, "Esta seguro de cerrar la sesion actual?","Cerrar sesi�n",1)==0){
             this.dispose();
             Login login = new Login();
             Dimension pantall = Toolkit.getDefaultToolkit().getScreenSize();  
-            //obtenemos el tamaño de la ventana  
             Dimension ventan = login.getSize();  
-            //para centrar la ventana lo hacemos con el siguiente calculo  
             login.setLocation((pantall.width - ventan.width) / 2, (pantall.height - ventan.height) / 2);
             login.setVisible(true);
         }
-    }//GEN-LAST:event_jMenuItem2ActionPerformed
+    }//GEN-LAST:event_exitActionPerformed
 
-    private void jMenuItem3ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItem3ActionPerformed
+    private void changePassActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_changePassActionPerformed
         ModificarContrasenia mod = new ModificarContrasenia();
-        mod.id = IDusuario;
-        System.out.println("id para modificar: "+mod.id);
         mod.setVisible(true);
-    }//GEN-LAST:event_jMenuItem3ActionPerformed
+    }//GEN-LAST:event_changePassActionPerformed
 
-    /**
-     * @param args the command line arguments
-     */
-  /*  public void calcula () {        
-    Calendar calendario1 = new GregorianCalendar();
-    Date fechaHoraActual = new Date();
-
-
-    calendario1.setTime(fechaHoraActual);
-    ampm = calendario1.get(Calendar.AM_PM)==Calendar.AM?"AM":"PM";
-
-    if(ampm.equals("PM")){
-         int h = calendario1.get(Calendar.HOUR_OF_DAY);
-         hora = h>9?""+h:"0"+h;
-    }else{
-         hora = calendario1.get(Calendar.HOUR_OF_DAY)>9?""+calendario1.get(Calendar.HOUR_OF_DAY):"0"+calendario1.get(Calendar.HOUR_OF_DAY);            
-    }
-    minutos = calendario1.get(Calendar.MINUTE)>9?""+calendario1.get(Calendar.MINUTE):"0"+calendario1.get(Calendar.MINUTE);
-    segundos = calendario1.get(Calendar.SECOND)>9?""+calendario1.get(Calendar.SECOND):"0"+calendario1.get(Calendar.SECOND); 
-}
-    public static void main(String args[]) {
-        /* Set the Nimbus look and feel */
-        //<editor-fold defaultstate="collapsed" desc=" Look and feel setting code (optional) ">
-        /* If Nimbus (introduced in Java SE 6) is not available, stay with the default look and feel.
-         * For details see http://download.oracle.com/javase/tutorial/uiswing/lookandfeel/plaf.html 
-         */
-         // Construccion del arbol
-             
-    
-        /* Create and display the form */
-     /*   java.awt.EventQueue.invokeLater(new Runnable() {
-            public void run() {
-                new ppal().setVisible(true);
-
+    private void openPos () {
+        try {
+            int openCash = 0;
+            String getOpeningCash = "SELECT caja_inicial FROM configuracion_inicial WHERE id_configuracion_inicial = 1"; 
+            rs = con.Consulta(getOpeningCash);
+            while(rs.next()) {
+                openCash = rs.getInt("caja_inicial");
             }
-        });
+            String apertura = "INSERT INTO caja (fecha_apertura, apertura, fecha_cierre, id_usuario, estado) VALUES (CURRENT_TIMESTAMP, '"+openCash+"', 0, '"+Login.userId+"', 1)";
+            con.ejecutar(apertura);
+
+            moduloVentaVendedor.setEnabled(false);
+            ModuloVenta venta = new ModuloVenta();
+            venta.setVisible(true);
+        } catch (SQLException ex) {
+            Logger.getLogger(ModuloVenta.class.getName()).log(Level.SEVERE, null, ex);
+        }                                                        
     }
-    */
-
-
-public String objectToString(Object o) {
-        String st;
-        st = (String) o;
-        return st;
-    }
-public int getFactura(){
-        return rowCount;
-}
-
-public int getNumFac(){
-        return numfac;
-}
-
-public void calcula () {        
-    Calendar calendario1 = new GregorianCalendar();
-    Date fechaHoraActual = new Date();
-
-
-    calendario1.setTime(fechaHoraActual);
-    ampm = calendario1.get(Calendar.AM_PM)==Calendar.AM?"AM":"PM";
-
-    if(ampm.equals("PM")){
-         int h = calendario1.get(Calendar.HOUR_OF_DAY);
-         hora = h>9?""+h:"0"+h;
-    }else{
-         hora = calendario1.get(Calendar.HOUR_OF_DAY)>9?""+calendario1.get(Calendar.HOUR_OF_DAY):"0"+calendario1.get(Calendar.HOUR_OF_DAY);            
-    }
-    minutos = calendario1.get(Calendar.MINUTE)>9?""+calendario1.get(Calendar.MINUTE):"0"+calendario1.get(Calendar.MINUTE);
-    segundos = calendario1.get(Calendar.SECOND)>9?""+calendario1.get(Calendar.SECOND):"0"+calendario1.get(Calendar.SECOND); 
-}
-
 
     /**
     * @param args the command line arguments
@@ -591,36 +368,20 @@ public void calcula () {
         
     }
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    private javax.swing.JButton ctacte;
+    private javax.swing.JMenu changeMenu;
+    private javax.swing.JMenuItem changePass;
     public static javax.swing.JDesktopPane desktopPane;
+    private javax.swing.JMenuItem exit;
+    private javax.swing.JMenu exitMenu;
     private javax.swing.JButton jButton2;
-    public static javax.swing.JButton jBvta;
     private javax.swing.JLabel jLabel1;
+    private javax.swing.JLabel jLabel3;
     private javax.swing.JLabel jLuserName;
-    private javax.swing.JMenu jMenu2;
-    private javax.swing.JMenu jMenu3;
     private javax.swing.JMenuBar jMenuBar1;
-    private javax.swing.JMenuItem jMenuItem2;
-    private javax.swing.JMenuItem jMenuItem3;
     private javax.swing.JPopupMenu jPopupMenu1;
     private javax.swing.JPopupMenu jPopupMenu2;
     private javax.swing.JScrollPane jScrollPane2;
-    private javax.swing.JTree jTree1;
-    private javax.swing.JLabel lbHora1;
+    public static javax.swing.JButton moduloVentaVendedor;
+    private javax.swing.JTree salesManeTree;
     // End of variables declaration//GEN-END:variables
-    
-    public void run() {
-        Thread ct = Thread.currentThread();
-         while(ct == h1) {   
-          calcula();
-         // lbHora.setText(hora + ":" + minutos + ":" + segundos + " "+ampm);
-          lbHora1.setText(hora + ":" + minutos + ":" + segundos + " "+ampm);
-         // lbHora2.setText(hora + ":" + minutos + ":" + segundos + " "+ampm);
-          try {
-              
-           Thread.sleep(1000);
-          }catch(InterruptedException e) {}
-         }
-        throw new UnsupportedOperationException("Not supported yet.");
-    }
 }

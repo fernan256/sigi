@@ -5,7 +5,6 @@
 
 package sigi.Model;
 
-import sigi.Principal1;
 import sigi.Login;
 import java.awt.Dimension;
 import java.awt.Toolkit;

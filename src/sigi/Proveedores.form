@@ -3,9 +3,6 @@
 <Form version="1.5" maxVersion="1.9" type="org.netbeans.modules.form.forminfo.JInternalFrameFormInfo">
   <Properties>
     <Property name="closable" type="boolean" value="true"/>
-    <Property name="iconifiable" type="boolean" value="true"/>
-    <Property name="maximizable" type="boolean" value="true"/>
-    <Property name="resizable" type="boolean" value="true"/>
   </Properties>
   <SyntheticProperties>
     <SyntheticProperty name="formSizePolicy" type="int" value="1"/>
@@ -46,23 +43,29 @@
                           <Group type="102" alignment="0" attributes="0">
                               <Group type="103" groupAlignment="0" attributes="0">
                                   <Group type="103" alignment="0" groupAlignment="1" max="-2" attributes="0">
-                                      <Component id="jTfax" alignment="0" max="32767" attributes="0"/>
-                                      <Component id="jTcelular" alignment="0" max="32767" attributes="0"/>
-                                      <Component id="jTtelefono" alignment="0" min="-2" pref="163" max="-2" attributes="0"/>
+                                      <Component id="newProviderFax" alignment="0" max="32767" attributes="0"/>
+                                      <Component id="newProviderCelphone" alignment="0" max="32767" attributes="0"/>
+                                      <Component id="newProviderPhone" alignment="0" min="-2" pref="163" max="-2" attributes="0"/>
                                   </Group>
-                                  <Component id="jTcuit" alignment="0" min="-2" pref="163" max="-2" attributes="0"/>
-                                  <Group type="103" alignment="0" groupAlignment="1" attributes="0">
-                                      <Component id="jTapellido" min="-2" pref="302" max="-2" attributes="0"/>
-                                      <Component id="jTnomb" min="-2" pref="302" max="-2" attributes="0"/>
-                                      <Component id="jTempresa" alignment="1" min="-2" pref="302" max="-2" attributes="0"/>
-                                      <Component id="jTdireccion" alignment="1" min="-2" pref="302" max="-2" attributes="0"/>
+                                  <Component id="newProviderCuilCuit" alignment="0" min="-2" pref="163" max="-2" attributes="0"/>
+                                  <Group type="102" alignment="0" attributes="0">
+                                      <Group type="103" groupAlignment="1" attributes="0">
+                                          <Component id="newProviderLastname" min="-2" pref="302" max="-2" attributes="0"/>
+                                          <Component id="newProviderName" min="-2" pref="302" max="-2" attributes="0"/>
+                                          <Component id="newCompanyName" alignment="1" min="-2" pref="302" max="-2" attributes="0"/>
+                                          <Component id="newProviderAddress" alignment="1" min="-2" pref="302" max="-2" attributes="0"/>
+                                      </Group>
+                                      <EmptySpace type="unrelated" max="-2" attributes="0"/>
+                                      <Component id="jLabel12" min="-2" max="-2" attributes="0"/>
+                                      <EmptySpace type="separate" max="-2" attributes="0"/>
+                                      <Component id="searchProvider" min="-2" pref="225" max="-2" attributes="0"/>
                                   </Group>
-                                  <Component id="jCactivo" alignment="0" min="-2" max="-2" attributes="0"/>
+                                  <Component id="newProviderActive" alignment="0" min="-2" max="-2" attributes="0"/>
                               </Group>
-                              <EmptySpace pref="444" max="32767" attributes="0"/>
+                              <EmptySpace pref="141" max="32767" attributes="0"/>
                           </Group>
                           <Group type="102" alignment="0" attributes="0">
-                              <Component id="jTmail" min="-2" pref="302" max="-2" attributes="0"/>
+                              <Component id="newProviderEmail" min="-2" pref="302" max="-2" attributes="0"/>
                               <EmptySpace min="0" pref="0" max="32767" attributes="0"/>
                           </Group>
                       </Group>
@@ -72,25 +75,18 @@
                           <Component id="jScrollPane1" min="-2" pref="541" max="-2" attributes="0"/>
                           <Component id="jLabel1" alignment="0" min="-2" max="-2" attributes="0"/>
                           <Group type="102" alignment="0" attributes="0">
-                              <Component id="jBcrear" min="-2" max="-2" attributes="0"/>
+                              <Component id="newProvider" min="-2" max="-2" attributes="0"/>
                               <EmptySpace type="separate" max="-2" attributes="0"/>
-                              <Component id="jBborrar" min="-2" max="-2" attributes="0"/>
+                              <Component id="cleanFields" min="-2" max="-2" attributes="0"/>
                               <EmptySpace type="separate" max="-2" attributes="0"/>
-                              <Component id="jBeliminar" min="-2" max="-2" attributes="0"/>
+                              <Component id="deleteProvider" min="-2" max="-2" attributes="0"/>
                               <EmptySpace type="separate" max="-2" attributes="0"/>
-                              <Component id="Jbmodificar" min="-2" max="-2" attributes="0"/>
+                              <Component id="modifieProvider" min="-2" max="-2" attributes="0"/>
                               <EmptySpace type="separate" max="-2" attributes="0"/>
-                              <Group type="103" groupAlignment="0" attributes="0">
-                                  <Group type="102" attributes="0">
-                                      <Component id="jLabel12" min="-2" max="-2" attributes="0"/>
-                                      <EmptySpace type="separate" max="-2" attributes="0"/>
-                                      <Component id="search" min="-2" pref="225" max="-2" attributes="0"/>
-                                  </Group>
-                                  <Component id="jButton1" min="-2" max="-2" attributes="0"/>
-                              </Group>
+                              <Component id="exportToXls" min="-2" max="-2" attributes="0"/>
                           </Group>
                       </Group>
-                      <EmptySpace min="0" pref="119" max="32767" attributes="0"/>
+                      <EmptySpace min="0" pref="339" max="32767" attributes="0"/>
                   </Group>
               </Group>
           </Group>
@@ -107,55 +103,55 @@
                   </Group>
                   <Group type="102" alignment="1" attributes="0">
                       <Group type="103" groupAlignment="3" attributes="0">
-                          <Component id="jTnomb" alignment="3" min="-2" max="-2" attributes="0"/>
+                          <Component id="newProviderName" alignment="3" min="-2" max="-2" attributes="0"/>
                           <Component id="jLabel12" alignment="3" min="-2" max="-2" attributes="0"/>
-                          <Component id="search" alignment="3" min="-2" max="-2" attributes="0"/>
+                          <Component id="searchProvider" alignment="3" min="-2" max="-2" attributes="0"/>
                       </Group>
                       <EmptySpace max="-2" attributes="0"/>
                   </Group>
               </Group>
               <Group type="103" groupAlignment="3" attributes="0">
-                  <Component id="jTapellido" alignment="3" min="-2" max="-2" attributes="0"/>
+                  <Component id="newProviderLastname" alignment="3" min="-2" max="-2" attributes="0"/>
                   <Component id="jLabel4" alignment="3" min="-2" max="-2" attributes="0"/>
               </Group>
               <EmptySpace max="-2" attributes="0"/>
               <Group type="103" groupAlignment="3" attributes="0">
-                  <Component id="jTempresa" alignment="3" min="-2" max="-2" attributes="0"/>
+                  <Component id="newCompanyName" alignment="3" min="-2" max="-2" attributes="0"/>
                   <Component id="jLabel5" alignment="3" min="-2" max="-2" attributes="0"/>
               </Group>
               <EmptySpace max="-2" attributes="0"/>
               <Group type="103" groupAlignment="3" attributes="0">
-                  <Component id="jTdireccion" alignment="3" min="-2" max="-2" attributes="0"/>
+                  <Component id="newProviderAddress" alignment="3" min="-2" max="-2" attributes="0"/>
                   <Component id="jLabel6" alignment="3" min="-2" max="-2" attributes="0"/>
               </Group>
               <EmptySpace max="-2" attributes="0"/>
               <Group type="103" groupAlignment="3" attributes="0">
                   <Component id="jLabel7" alignment="3" min="-2" max="-2" attributes="0"/>
-                  <Component id="jTtelefono" alignment="3" min="-2" max="-2" attributes="0"/>
+                  <Component id="newProviderPhone" alignment="3" min="-2" max="-2" attributes="0"/>
               </Group>
               <EmptySpace max="-2" attributes="0"/>
               <Group type="103" groupAlignment="3" attributes="0">
                   <Component id="jLabel8" alignment="3" min="-2" max="-2" attributes="0"/>
-                  <Component id="jTcelular" alignment="3" min="-2" max="-2" attributes="0"/>
+                  <Component id="newProviderCelphone" alignment="3" min="-2" max="-2" attributes="0"/>
               </Group>
               <EmptySpace max="-2" attributes="0"/>
               <Group type="103" groupAlignment="3" attributes="0">
                   <Component id="jLabel9" alignment="3" min="-2" max="-2" attributes="0"/>
-                  <Component id="jTfax" alignment="3" min="-2" max="-2" attributes="0"/>
+                  <Component id="newProviderFax" alignment="3" min="-2" max="-2" attributes="0"/>
               </Group>
               <EmptySpace max="-2" attributes="0"/>
               <Group type="103" groupAlignment="3" attributes="0">
-                  <Component id="jTmail" alignment="3" min="-2" max="-2" attributes="0"/>
+                  <Component id="newProviderEmail" alignment="3" min="-2" max="-2" attributes="0"/>
                   <Component id="jLabel10" alignment="3" min="-2" max="-2" attributes="0"/>
               </Group>
               <EmptySpace max="-2" attributes="0"/>
               <Group type="103" groupAlignment="3" attributes="0">
                   <Component id="jLabel11" alignment="3" min="-2" max="-2" attributes="0"/>
-                  <Component id="jTcuit" alignment="3" min="-2" max="-2" attributes="0"/>
+                  <Component id="newProviderCuilCuit" alignment="3" min="-2" max="-2" attributes="0"/>
               </Group>
               <EmptySpace type="unrelated" max="-2" attributes="0"/>
               <Group type="103" groupAlignment="0" attributes="0">
-                  <Component id="jCactivo" min="-2" max="-2" attributes="0"/>
+                  <Component id="newProviderActive" min="-2" max="-2" attributes="0"/>
                   <Component id="jLabel2" min="-2" max="-2" attributes="0"/>
               </Group>
               <EmptySpace type="separate" max="-2" attributes="0"/>
@@ -164,27 +160,27 @@
               <Component id="jScrollPane1" min="-2" pref="85" max="-2" attributes="0"/>
               <EmptySpace type="separate" max="-2" attributes="0"/>
               <Group type="103" groupAlignment="3" attributes="0">
-                  <Component id="jBcrear" alignment="3" min="-2" max="-2" attributes="0"/>
-                  <Component id="jBborrar" alignment="3" min="-2" max="-2" attributes="0"/>
-                  <Component id="jBeliminar" alignment="3" min="-2" max="-2" attributes="0"/>
-                  <Component id="Jbmodificar" alignment="3" min="-2" max="-2" attributes="0"/>
-                  <Component id="jButton1" alignment="3" min="-2" max="-2" attributes="0"/>
+                  <Component id="newProvider" alignment="3" min="-2" max="-2" attributes="0"/>
+                  <Component id="cleanFields" alignment="3" min="-2" max="-2" attributes="0"/>
+                  <Component id="deleteProvider" alignment="3" min="-2" max="-2" attributes="0"/>
+                  <Component id="modifieProvider" alignment="3" min="-2" max="-2" attributes="0"/>
+                  <Component id="exportToXls" alignment="3" min="-2" max="-2" attributes="0"/>
               </Group>
-              <EmptySpace pref="522" max="32767" attributes="0"/>
+              <EmptySpace pref="183" max="32767" attributes="0"/>
           </Group>
       </Group>
     </DimensionLayout>
   </Layout>
   <SubComponents>
-    <Component class="javax.swing.JTextField" name="jTnomb">
+    <Component class="javax.swing.JTextField" name="newProviderName">
     </Component>
-    <Component class="javax.swing.JTextField" name="jTapellido">
+    <Component class="javax.swing.JTextField" name="newProviderLastname">
     </Component>
-    <Component class="javax.swing.JTextField" name="jTempresa">
+    <Component class="javax.swing.JTextField" name="newCompanyName">
     </Component>
-    <Component class="javax.swing.JTextField" name="jTdireccion">
+    <Component class="javax.swing.JTextField" name="newProviderAddress">
     </Component>
-    <Component class="javax.swing.JTextField" name="jTmail">
+    <Component class="javax.swing.JTextField" name="newProviderEmail">
     </Component>
     <Container class="javax.swing.JScrollPane" name="jScrollPane1">
       <AuxValues>
@@ -193,7 +189,7 @@
 
       <Layout class="org.netbeans.modules.form.compat2.layouts.support.JScrollPaneSupportLayout"/>
       <SubComponents>
-        <Component class="javax.swing.JTextArea" name="jTdescripcion">
+        <Component class="javax.swing.JTextArea" name="providerArticleDescription">
           <Properties>
             <Property name="columns" type="int" value="20"/>
             <Property name="rows" type="int" value="5"/>
@@ -206,7 +202,7 @@
         <Property name="text" type="java.lang.String" value="Descripci&#xf3;n de productos"/>
       </Properties>
     </Component>
-    <Component class="javax.swing.JButton" name="jBcrear">
+    <Component class="javax.swing.JButton" name="newProvider">
       <Properties>
         <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
           <Font name="Microsoft JhengHei" size="18" style="1"/>
@@ -214,10 +210,10 @@
         <Property name="text" type="java.lang.String" value="Crear"/>
       </Properties>
       <Events>
-        <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="jBcrearActionPerformed"/>
+        <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="newProviderActionPerformed"/>
       </Events>
     </Component>
-    <Component class="javax.swing.JButton" name="jBborrar">
+    <Component class="javax.swing.JButton" name="cleanFields">
       <Properties>
         <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
           <Font name="Microsoft JhengHei" size="18" style="1"/>
@@ -225,10 +221,10 @@
         <Property name="text" type="java.lang.String" value="Borrar"/>
       </Properties>
       <Events>
-        <EventHandler event="mouseClicked" listener="java.awt.event.MouseListener" parameters="java.awt.event.MouseEvent" handler="jBborrarMouseClicked"/>
+        <EventHandler event="mouseClicked" listener="java.awt.event.MouseListener" parameters="java.awt.event.MouseEvent" handler="cleanFieldsMouseClicked"/>
       </Events>
     </Component>
-    <Component class="javax.swing.JButton" name="jBeliminar">
+    <Component class="javax.swing.JButton" name="deleteProvider">
       <Properties>
         <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
           <Font name="Microsoft JhengHei" size="18" style="1"/>
@@ -236,13 +232,10 @@
         <Property name="text" type="java.lang.String" value="Eliminar"/>
       </Properties>
       <Events>
-        <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="jBeliminarActionPerformed"/>
+        <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="deleteProviderActionPerformed"/>
       </Events>
     </Component>
-    <Component class="javax.swing.JCheckBox" name="jCactivo">
-      <Events>
-        <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="jCactivoActionPerformed"/>
-      </Events>
+    <Component class="javax.swing.JCheckBox" name="newProviderActive">
     </Component>
     <Component class="javax.swing.JLabel" name="jLabel3">
       <Properties>
@@ -294,13 +287,13 @@
         <Property name="text" type="java.lang.String" value="Buscar"/>
       </Properties>
     </Component>
-    <Component class="javax.swing.JFormattedTextField" name="jTtelefono">
+    <Component class="javax.swing.JFormattedTextField" name="newProviderPhone">
     </Component>
-    <Component class="javax.swing.JFormattedTextField" name="jTcelular">
+    <Component class="javax.swing.JFormattedTextField" name="newProviderCelphone">
     </Component>
-    <Component class="javax.swing.JFormattedTextField" name="jTfax">
+    <Component class="javax.swing.JFormattedTextField" name="newProviderFax">
     </Component>
-    <Component class="javax.swing.JButton" name="Jbmodificar">
+    <Component class="javax.swing.JButton" name="modifieProvider">
       <Properties>
         <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
           <Font name="Microsoft JhengHei" size="18" style="1"/>
@@ -308,12 +301,12 @@
         <Property name="text" type="java.lang.String" value="Modificar"/>
       </Properties>
       <Events>
-        <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="JbmodificarActionPerformed"/>
+        <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="modifieProviderActionPerformed"/>
       </Events>
     </Component>
-    <Component class="javax.swing.JFormattedTextField" name="jTcuit">
+    <Component class="javax.swing.JFormattedTextField" name="newProviderCuilCuit">
     </Component>
-    <Component class="javax.swing.JButton" name="jButton1">
+    <Component class="javax.swing.JButton" name="exportToXls">
       <Properties>
         <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
           <Font name="Microsoft JhengHei" size="18" style="1"/>
@@ -321,7 +314,7 @@
         <Property name="text" type="java.lang.String" value="A XLS"/>
       </Properties>
       <Events>
-        <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="jButton1ActionPerformed"/>
+        <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="exportToXlsActionPerformed"/>
       </Events>
     </Component>
     <Component class="javax.swing.JLabel" name="jLabel2">
@@ -329,9 +322,9 @@
         <Property name="text" type="java.lang.String" value="Activo/Inactivo"/>
       </Properties>
     </Component>
-    <Component class="javax.swing.JTextField" name="search">
+    <Component class="javax.swing.JTextField" name="searchProvider">
       <Events>
-        <EventHandler event="keyReleased" listener="java.awt.event.KeyListener" parameters="java.awt.event.KeyEvent" handler="searchKeyReleased"/>
+        <EventHandler event="keyReleased" listener="java.awt.event.KeyListener" parameters="java.awt.event.KeyEvent" handler="searchProviderKeyReleased"/>
       </Events>
     </Component>
   </SubComponents>

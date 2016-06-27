@@ -1,24 +1,12 @@
-/*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- */
 package sigi;
 
 import javax.swing.JOptionPane;
 import Connection.Conexion;
 import java.sql.ResultSet;
 import java.sql.SQLException;
-import java.text.DateFormat;
 import java.util.logging.Level;
 import java.util.logging.Logger;
-import java.util.Date;
-import java.text.SimpleDateFormat;
 
-/**
- *
- * @author diego
- */
 public class CierreCaja extends javax.swing.JFrame {
     Conexion con;
     ResultSet rs;
@@ -42,12 +30,18 @@ public class CierreCaja extends javax.swing.JFrame {
 
         cierreX = new javax.swing.JButton();
         cierreZ = new javax.swing.JButton();
-        cerrar = new javax.swing.JButton();
+        closeWindows = new javax.swing.JButton();
         jLabel1 = new javax.swing.JLabel();
         jLabel2 = new javax.swing.JLabel();
         jLabel3 = new javax.swing.JLabel();
+        openSalesModules = new javax.swing.JButton();
 
         cierreX.setText("CIERRE (X)");
+        cierreX.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                cierreXActionPerformed(evt);
+            }
+        });
 
         cierreZ.setText("CIERRE (Z)");
         cierreZ.addActionListener(new java.awt.event.ActionListener() {
@@ -56,10 +50,10 @@ public class CierreCaja extends javax.swing.JFrame {
             }
         });
 
-        cerrar.setText("CERRAR");
-        cerrar.addActionListener(new java.awt.event.ActionListener() {
+        closeWindows.setText("CERRAR");
+        closeWindows.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                cerrarActionPerformed(evt);
+                closeWindowsActionPerformed(evt);
             }
         });
 
@@ -69,6 +63,13 @@ public class CierreCaja extends javax.swing.JFrame {
 
         jLabel3.setText("TIPOS DE CIERRE");
 
+        openSalesModules.setText("IR A VENTAS");
+        openSalesModules.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                openSalesModulesActionPerformed(evt);
+            }
+        });
+
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
@@ -76,112 +77,111 @@ public class CierreCaja extends javax.swing.JFrame {
             .addGroup(layout.createSequentialGroup()
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(layout.createSequentialGroup()
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addGroup(layout.createSequentialGroup()
-                                .addGap(12, 12, 12)
-                                .addComponent(jLabel1, javax.swing.GroupLayout.PREFERRED_SIZE, 361, javax.swing.GroupLayout.PREFERRED_SIZE))
-                            .addGroup(layout.createSequentialGroup()
-                                .addGap(12, 12, 12)
-                                .addComponent(jLabel2))
-                            .addGroup(layout.createSequentialGroup()
-                                .addGap(130, 130, 130)
-                                .addComponent(jLabel3, javax.swing.GroupLayout.PREFERRED_SIZE, 120, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                        .addGap(0, 9, Short.MAX_VALUE))
-                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                        .addGap(0, 0, Short.MAX_VALUE)
+                        .addGap(63, 63, 63)
+                        .addComponent(cierreZ, javax.swing.GroupLayout.PREFERRED_SIZE, 107, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(18, 18, 18)
                         .addComponent(cierreX, javax.swing.GroupLayout.PREFERRED_SIZE, 113, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                        .addComponent(cierreZ, javax.swing.GroupLayout.PREFERRED_SIZE, 107, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                        .addComponent(cerrar, javax.swing.GroupLayout.PREFERRED_SIZE, 109, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                .addContainerGap())
+                        .addComponent(openSalesModules, javax.swing.GroupLayout.PREFERRED_SIZE, 113, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(18, 18, 18)
+                        .addComponent(closeWindows, javax.swing.GroupLayout.PREFERRED_SIZE, 109, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addGroup(layout.createSequentialGroup()
+                        .addContainerGap()
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(jLabel1, javax.swing.GroupLayout.PREFERRED_SIZE, 361, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(jLabel2)))
+                    .addGroup(layout.createSequentialGroup()
+                        .addGap(244, 244, 244)
+                        .addComponent(jLabel3, javax.swing.GroupLayout.PREFERRED_SIZE, 120, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                .addContainerGap(61, Short.MAX_VALUE))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
-                .addGap(10, 10, 10)
+                .addGap(4, 4, 4)
                 .addComponent(jLabel3, javax.swing.GroupLayout.PREFERRED_SIZE, 40, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(18, 18, 18)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(cierreZ, javax.swing.GroupLayout.PREFERRED_SIZE, 52, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(cierreX, javax.swing.GroupLayout.PREFERRED_SIZE, 52, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(cerrar, javax.swing.GroupLayout.PREFERRED_SIZE, 52, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addGap(33, 33, 33)
+                    .addComponent(closeWindows, javax.swing.GroupLayout.PREFERRED_SIZE, 52, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(openSalesModules, javax.swing.GroupLayout.PREFERRED_SIZE, 52, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGap(37, 37, 37)
                 .addComponent(jLabel1, javax.swing.GroupLayout.PREFERRED_SIZE, 31, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(18, 18, 18)
-                .addComponent(jLabel2, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addComponent(jLabel2, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addContainerGap(61, Short.MAX_VALUE))
         );
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
-    private void cerrarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_cerrarActionPerformed
-        // TODO add your handling code here:
-        ModuloVenta abrir = new ModuloVenta();
-        abrir.setVisible(true);
-        this.dispose();
-    }//GEN-LAST:event_cerrarActionPerformed
+    private void closeWindowsActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_closeWindowsActionPerformed
+        try {
+            con = new Conexion();
+            int lastStatus = 0, lastUserId = 0;
+            String lastOpeningDate = null;
+            String getOpeningYesterday = "SELECT estado, id_usuario, fecha_apertura FROM caja WHERE estado = 1 OR estado = 3";
+            rs = con.Consulta(getOpeningYesterday);
+            while(rs.next()) {
+                lastStatus = rs.getInt("estado");
+                lastUserId = rs.getInt("id_usuario");
+                lastOpeningDate = rs.getString("fecha_apertura");
+            }
+            switch (lastStatus) {
+                case 2:
+                    ModuloVenta abrir = new ModuloVenta();
+                    abrir.setVisible(true);
+                    this.dispose();
+                    break;
+                case 1:
+                    JOptionPane.showMessageDialog(null, "No se ha realizado el cierre de caja correspondiente a la fecha " + lastOpeningDate);
+                    this.dispose();
+                    break;
+                default:
+                    JOptionPane.showMessageDialog(null, "No se ha realizado el cierre de caja correspondiente a la fecha " + lastOpeningDate);
+                    this.dispose();
+                    break;
+            }
+        } catch (SQLException | ClassNotFoundException | InstantiationException | IllegalAccessException ex) {
+            Logger.getLogger(CierreCaja.class.getName()).log(Level.SEVERE, null, ex);
+        }
+    }//GEN-LAST:event_closeWindowsActionPerformed
 
     private void cierreZActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_cierreZActionPerformed
         int option = JOptionPane.showConfirmDialog(null, "Seguro que desea realizar el cierre Z", "Cierre", JOptionPane.YES_NO_OPTION, JOptionPane.PLAIN_MESSAGE);
         if(option == JOptionPane.YES_OPTION){
-            DateFormat dateFormat = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
-            Date date = new Date();
-            String initialDate = dateFormat.format(date);
-            String closeSales = JOptionPane.showInputDialog("Monto total en la caja", "0");
-            float closeSalesValue = Float.parseFloat(closeSales);
-            if(closeSalesValue > 0){
-            try {
-                try {
-                    con = new Conexion();
-                } catch (ClassNotFoundException ex) {
-                    Logger.getLogger(CierreCaja.class.getName()).log(Level.SEVERE, null, ex);
-                } catch (SQLException ex) {
-                    Logger.getLogger(CierreCaja.class.getName()).log(Level.SEVERE, null, ex);
-                } catch (InstantiationException ex) {
-                    Logger.getLogger(CierreCaja.class.getName()).log(Level.SEVERE, null, ex);
-                } catch (IllegalAccessException ex) {
-                    Logger.getLogger(CierreCaja.class.getName()).log(Level.SEVERE, null, ex);
-                }
-                
-                String cantidadEstimada = "SELECT SUM(total) suma_total FROM ventas WHERE fecha > DATE_FORMAT(NOW(),'%Y-%m-%d 00:00:00') AND fecha < CURRENT_TIME";
-                float cant = 0;
-                  //  String cierre= closeSales;
-                //    String apertura ="INSERT INTO  `sigi`.`caja` (`cierre`, `id_usuario`)VALUES ('"+closeSalesValue+"', '"+userId+"')";
-                    rs = con.Consulta(cantidadEstimada);
-                    while(rs.next()) {
-                        cant = rs.getFloat("suma_total");
-                    }
-                    if(cant == closeSalesValue) {
-                        String ingresarCierre = "INSERT INTO cierreX (id_usuario, tickets, monto_estimado, monto_total, quebrantos) VALUES ()";
-                    }
-                    System.out.println(cant);
-                    this.dispose();
-                    PantallaPrincipalVendedor.jBvta.setEnabled(true);
-                    PantallaPrincipal.jBvta.setEnabled(true);
-                } catch (SQLException ex) {
-                    Logger.getLogger(ModuloVenta.class.getName()).log(Level.SEVERE, null, ex);
-                }
-                //this.dispose();
-//                if(Login.userRol != 1) {
-//                    PantallaPrincipalVendedor.jBvta.setEnabled(true); 
-//                } else {
-//                    PantallaPrincipal.jBvta.setEnabled(true); 
-//                }
-            } else {
-                closeSales = "0";
-                JOptionPane.showMessageDialog(null, "Debe ingresar el conteo de cierre de caja, intente nuevamente. ");
-            }
-        }
+            CierreZ cierreFinDelDia = new CierreZ(this, true);
+            cierreFinDelDia.setVisible(true);
+            this.dispose();
+        } 
     }//GEN-LAST:event_cierreZActionPerformed
+
+    private void cierreXActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_cierreXActionPerformed
+        CierreX cierreTemporal = new CierreX(this, true);
+        cierreTemporal.setVisible(true);
+        this.dispose();
+    }//GEN-LAST:event_cierreXActionPerformed
+
+    private void openSalesModulesActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_openSalesModulesActionPerformed
+        ModuloVenta ventas = new ModuloVenta();
+        ventas.setVisible(true);
+        if(Login.userRol == 1) {
+            PantallaPrincipal.moduloVentaAdmin.setEnabled(false);
+        } else {
+            PantallaPrincipalVendedor.moduloVentaVendedor.setEnabled(false);
+        }
+        this.dispose();
+    }//GEN-LAST:event_openSalesModulesActionPerformed
 
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    private javax.swing.JButton cerrar;
     private javax.swing.JButton cierreX;
     private javax.swing.JButton cierreZ;
+    private javax.swing.JButton closeWindows;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel3;
+    private javax.swing.JButton openSalesModules;
     // End of variables declaration//GEN-END:variables
 }

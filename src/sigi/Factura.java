@@ -11,6 +11,7 @@
 package sigi;
 
 import Connection.Conexion;
+import Utils.Utils;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.Date;
@@ -313,9 +314,11 @@ if(JOptionPane.showConfirmDialog(rootPane, "Ya esta listo para imprimir la Factu
                 
                 
                 PantallaPrincipal row = new PantallaPrincipal();
-                int rowCount = row.getFactura();
+                //int rowCount = row.getFactura();
+                int rowCount = 0;
                 ModuloVenta vende = new ModuloVenta();
-                int rc = vende.getFactura();
+                //int rc = vende.getFactura();
+                int rc = 0;
                 
                 Date fecha = new Date();
                 String cadena="Farmacia 'Las Lomas'\n----------------------\nRFC: TOSO850220GN9\nBaltazar N. 4  \nSan Antonio Coaxomulco, Tlaxcala\nFecha: "+fecha+"\n";
@@ -325,7 +328,7 @@ if(JOptionPane.showConfirmDialog(rootPane, "Ya esta listo para imprimir la Factu
                 for(int x=0;x<rowCount;x++){
                 
                    producto = Tproductos.getValueAt(x,0);
-                    pro = objectToString(producto);
+                    pro = Utils.objectToString(producto);
                     
                     precio = Tproductos.getValueAt(x,1);
         //            String pre = objectToString(prec);
@@ -345,7 +348,7 @@ if(JOptionPane.showConfirmDialog(rootPane, "Ya esta listo para imprimir la Factu
                 for(int x=0;x<rc;x++){
                 
                    producto = Tproductos.getValueAt(x,0);
-                    pro = objectToString(producto);
+                    pro = Utils.objectToString(producto);
                     
                     precio = Tproductos.getValueAt(x,1);
         //            String pre = objectToString(prec);
@@ -457,12 +460,6 @@ public void setTotal(String total){
 public int getFactura(int filas){
     return filas;
 }
-
-public String objectToString(Object o) {
-        String st;
-        st = (String) o;
-        return st;
-    }
 
 public JTable getTabla(){
     return this.Tproductos;

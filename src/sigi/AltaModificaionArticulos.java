@@ -1,17 +1,12 @@
-/*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- */
 package sigi;
 
 import Connection.Conexion;
+import Utils.Utils;
 import java.io.File;
 import java.io.IOException;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.ArrayList;
-import java.util.Calendar;
 import java.util.List;
 import java.util.Vector;
 import java.util.logging.Level;
@@ -24,13 +19,10 @@ import javax.swing.table.DefaultTableModel;
 import jxl.Workbook;
 import jxl.*;
 import jxl.read.biff.BiffException;
-/**
- *
- * @author Gustavo
- */
+
 public class AltaModificaionArticulos extends javax.swing.JInternalFrame {
-    Conexion con,query;
-    ResultSet rs, rs1, rs2, rs3, rs4 ;
+    Conexion con;
+    ResultSet rs;
     static int j = 0; 
     public int idArticle = 0;
     private static DefaultTableModel modelo;
@@ -97,7 +89,7 @@ public class AltaModificaionArticulos extends javax.swing.JInternalFrame {
                 jBagregarActionPerformed(evt);
             }
         });
-        getContentPane().add(jBagregar, new org.netbeans.lib.awtextra.AbsoluteConstraints(580, 30, 130, 30));
+        getContentPane().add(jBagregar, new org.netbeans.lib.awtextra.AbsoluteConstraints(40, 230, 130, 30));
 
         jTprecio_costo.setAutoscrolls(false);
         getContentPane().add(jTprecio_costo, new org.netbeans.lib.awtextra.AbsoluteConstraints(210, 150, 100, -1));
@@ -115,7 +107,7 @@ public class AltaModificaionArticulos extends javax.swing.JInternalFrame {
                 jButton1ActionPerformed(evt);
             }
         });
-        getContentPane().add(jButton1, new org.netbeans.lib.awtextra.AbsoluteConstraints(580, 150, 130, 30));
+        getContentPane().add(jButton1, new org.netbeans.lib.awtextra.AbsoluteConstraints(500, 230, 130, 30));
 
         updateArticle.setText("Modificar");
         updateArticle.addActionListener(new java.awt.event.ActionListener() {
@@ -123,7 +115,7 @@ public class AltaModificaionArticulos extends javax.swing.JInternalFrame {
                 updateArticleActionPerformed(evt);
             }
         });
-        getContentPane().add(updateArticle, new org.netbeans.lib.awtextra.AbsoluteConstraints(580, 110, 130, 30));
+        getContentPane().add(updateArticle, new org.netbeans.lib.awtextra.AbsoluteConstraints(340, 230, 130, 30));
 
         jTcantidad.setEditable(false);
         jTcantidad.setAutoscrolls(false);
@@ -139,7 +131,7 @@ public class AltaModificaionArticulos extends javax.swing.JInternalFrame {
                 jButton3ActionPerformed(evt);
             }
         });
-        getContentPane().add(jButton3, new org.netbeans.lib.awtextra.AbsoluteConstraints(580, 70, 130, 30));
+        getContentPane().add(jButton3, new org.netbeans.lib.awtextra.AbsoluteConstraints(190, 230, 130, 30));
 
         importFromExcel.setText("Importar de Excel");
         importFromExcel.addActionListener(new java.awt.event.ActionListener() {
@@ -171,7 +163,7 @@ public class AltaModificaionArticulos extends javax.swing.JInternalFrame {
         ));
         jScrollPane1.setViewportView(exportTable);
 
-        getContentPane().add(jScrollPane1, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 320, 810, 320));
+        getContentPane().add(jScrollPane1, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 320, 810, 240));
 
         jTmarca.setAutoscrolls(false);
         getContentPane().add(jTmarca, new org.netbeans.lib.awtextra.AbsoluteConstraints(210, 90, 290, -1));
@@ -190,13 +182,7 @@ public class AltaModificaionArticulos extends javax.swing.JInternalFrame {
             try {
                 try {
                     con = new Conexion();
-                } catch (ClassNotFoundException ex) {
-                    Logger.getLogger(AltaModificaionArticulos.class.getName()).log(Level.SEVERE, null, ex);
-                } catch (SQLException ex) {
-                    Logger.getLogger(AltaModificaionArticulos.class.getName()).log(Level.SEVERE, null, ex);
-                } catch (InstantiationException ex) {
-                    Logger.getLogger(AltaModificaionArticulos.class.getName()).log(Level.SEVERE, null, ex);
-                } catch (IllegalAccessException ex) {
+                } catch (ClassNotFoundException | SQLException | InstantiationException | IllegalAccessException ex) {
                     Logger.getLogger(AltaModificaionArticulos.class.getName()).log(Level.SEVERE, null, ex);
                 }
                 String nombre_producto = jTnombre_producto.getText();
@@ -217,14 +203,14 @@ public class AltaModificaionArticulos extends javax.swing.JInternalFrame {
                 String sql = "INSERT INTO `stock`(`id_articulo`, `saldo_stock`) VALUES ('"+articuloId+"','"+existencia+"')";
                 con.ejecutar(sql);
                 String getStockId = "SELECT LAST_INSERT_ID() AS id_stock"; 
-                rs2 = con.Consulta(getStockId);
-                while(rs2.next()) {
-                    stockId = rs2.getInt("id_stock");
+                rs = con.Consulta(getStockId);
+                while(rs.next()) {
+                    stockId = rs.getInt("id_stock");
                 }
                 String updateArticulos = "UPDATE `descripcion_articulos` SET `stock_id_stock` = "+stockId+" WHERE `id_articulo` = "+articuloId+"";
                 con.ejecutar(updateArticulos);          
                 JOptionPane.showMessageDialog(null, "Producto: "+nombre_producto+" agregado.");
-                clear();
+                clearCrudArticlesFields();
                 jTscanning.setText("");
             } catch (SQLException ex) {
                 Logger.getLogger(PantallaPrincipal.class.getName()).log(Level.SEVERE, null, ex);
@@ -236,13 +222,7 @@ public class AltaModificaionArticulos extends javax.swing.JInternalFrame {
         try {
             try {
                 con = new Conexion();
-            } catch (ClassNotFoundException ex) {
-                Logger.getLogger(AltaModificaionArticulos.class.getName()).log(Level.SEVERE, null, ex);
-            } catch (SQLException ex) {
-                Logger.getLogger(AltaModificaionArticulos.class.getName()).log(Level.SEVERE, null, ex);
-            } catch (InstantiationException ex) {
-                Logger.getLogger(AltaModificaionArticulos.class.getName()).log(Level.SEVERE, null, ex);
-            } catch (IllegalAccessException ex) {
+            } catch (ClassNotFoundException | SQLException | InstantiationException | IllegalAccessException ex) {
                 Logger.getLogger(AltaModificaionArticulos.class.getName()).log(Level.SEVERE, null, ex);
             }
              
@@ -250,7 +230,7 @@ public class AltaModificaionArticulos extends javax.swing.JInternalFrame {
             String getArticles = "SELECT * FROM descripcion_articulos WHERE scanning LIKE '"+scanning+"%'";
             rs = con.Consulta(getArticles);
             if(!rs.isBeforeFirst()) {
-                clear();
+                clearCrudArticlesFields();
                 jTcantidad.setEditable(true);
             } else {
                 while(rs.next()){
@@ -262,9 +242,9 @@ public class AltaModificaionArticulos extends javax.swing.JInternalFrame {
                 }
                 jTcantidad.setEditable(false);
                 String getSaldo = "SELECT saldo_stock FROM stock WHERE id_articulo = "+idArticle+"";
-                rs1 = con.Consulta(getSaldo);
-                while(rs1.next()){
-                    jTcantidad.setText(rs1.getString("saldo_stock"));
+                rs = con.Consulta(getSaldo);
+                while(rs.next()){
+                    jTcantidad.setText(rs.getString("saldo_stock"));
                 }
             }
         } catch (SQLException ex) {
@@ -273,7 +253,7 @@ public class AltaModificaionArticulos extends javax.swing.JInternalFrame {
     }//GEN-LAST:event_jTscanningKeyPressed
 
     private void jButton3ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton3ActionPerformed
-        clear();
+        clearCrudArticlesFields();
         jTscanning.setText("");
     }//GEN-LAST:event_jButton3ActionPerformed
 
@@ -286,13 +266,7 @@ public class AltaModificaionArticulos extends javax.swing.JInternalFrame {
         try { 
             try {
             con = new Conexion();
-            } catch (ClassNotFoundException ex) {
-                Logger.getLogger(AltaModificaionArticulos.class.getName()).log(Level.SEVERE, null, ex);
-            } catch (InstantiationException ex) {
-                Logger.getLogger(AltaModificaionArticulos.class.getName()).log(Level.SEVERE, null, ex);
-            } catch (IllegalAccessException ex) {
-                Logger.getLogger(AltaModificaionArticulos.class.getName()).log(Level.SEVERE, null, ex);
-            } catch (SQLException ex) {
+            } catch (ClassNotFoundException | InstantiationException | IllegalAccessException | SQLException ex) {
                 Logger.getLogger(AltaModificaionArticulos.class.getName()).log(Level.SEVERE, null, ex);
             }   
             String scanning = jTscanning.getText();
@@ -303,7 +277,7 @@ public class AltaModificaionArticulos extends javax.swing.JInternalFrame {
             String update = "UPDATE descripcion_articulos SET scanning='"+scanning+"', nombre_producto='"+nombre_producto+"', precio_costo='"+precio_costo+"', precio_venta='"+precio_venta+"' WHERE id_articulo = '"+idArticle+"'";
             con.ejecutar(update);
             JOptionPane.showMessageDialog(null, "Datos Actualizados");
-            clear();
+            clearCrudArticlesFields();
             jTscanning.setText("");
         } catch (SQLException ex) {
             Logger.getLogger(PantallaPrincipal.class.getName()).log(Level.SEVERE, null, ex);
@@ -311,16 +285,10 @@ public class AltaModificaionArticulos extends javax.swing.JInternalFrame {
     }//GEN-LAST:event_updateArticleActionPerformed
 
     private void exportToExcelActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_exportToExcelActionPerformed
-         try {
+        try {
             try {
                 con = new Conexion();
-            } catch (ClassNotFoundException ex) {
-                Logger.getLogger(AltaModificaionArticulos.class.getName()).log(Level.SEVERE, null, ex);
-            } catch (SQLException ex) {
-                Logger.getLogger(AltaModificaionArticulos.class.getName()).log(Level.SEVERE, null, ex);
-            } catch (InstantiationException ex) {
-                Logger.getLogger(AltaModificaionArticulos.class.getName()).log(Level.SEVERE, null, ex);
-            } catch (IllegalAccessException ex) {
+            } catch (ClassNotFoundException | SQLException | InstantiationException | IllegalAccessException ex) {
                 Logger.getLogger(AltaModificaionArticulos.class.getName()).log(Level.SEVERE, null, ex);
             }
             String sqlc = "SELECT * FROM descripcion_articulos";
@@ -383,11 +351,7 @@ public class AltaModificaionArticulos extends javax.swing.JInternalFrame {
             }
         }
     }//GEN-LAST:event_importFromExcelActionPerformed
-    public String objectToString(Object o) {
-        String st;
-        st = (String) o;
-        return st;
-    }
+    
     public void CrearTabla(File file) throws IOException {
         Workbook workbook = null;
         modelo = new DefaultTableModel();
@@ -428,13 +392,7 @@ public class AltaModificaionArticulos extends javax.swing.JInternalFrame {
                     try {
                         try {
                             con = new Conexion();
-                        } catch (ClassNotFoundException ex) {
-                            Logger.getLogger(PantallaPrincipal.class.getName()).log(Level.SEVERE, null, ex);
-                        } catch (SQLException ex) {
-                            Logger.getLogger(PantallaPrincipal.class.getName()).log(Level.SEVERE, null, ex);
-                        } catch (InstantiationException ex) {
-                            Logger.getLogger(PantallaPrincipal.class.getName()).log(Level.SEVERE, null, ex);
-                        } catch (IllegalAccessException ex) {
+                        } catch (ClassNotFoundException | SQLException | InstantiationException | IllegalAccessException ex) {
                             Logger.getLogger(PantallaPrincipal.class.getName()).log(Level.SEVERE, null, ex);
                         }
 
@@ -452,18 +410,18 @@ public class AltaModificaionArticulos extends javax.swing.JInternalFrame {
                         //Object nombreProductoObj = null, marcaObj = null, scanningObj = null, precioCostoObj = null, precioVentaObj = null, pesoObj = null;
                         for (int i=0; i<j; i++) {
                            // nombreProductoObj = exportTable.getValueAt(i, 0);
-                            nombreProducto[i] = objectToString(exportTable.getValueAt(i, 0));
+                            nombreProducto[i] = Utils.objectToString(exportTable.getValueAt(i, 0));
                             //marcaObj = exportTable.getValueAt(i, 1);
-                            marca[i] = objectToString(exportTable.getValueAt(i, 1));
+                            marca[i] = Utils.objectToString(exportTable.getValueAt(i, 1));
                             //cantidadInicial=objectToString(exportTable.getValueAt(i, 3));
-                            cantidad[i]= objectToString(exportTable.getValueAt(i, 2));
+                            cantidad[i]= Utils.objectToString(exportTable.getValueAt(i, 2));
                             //scanningObj = exportTable.getValueAt(i, 4);
-                            scanning = objectToString(exportTable.getValueAt(i, 3));
+                            scanning = Utils.objectToString(exportTable.getValueAt(i, 3));
                             //precioCostoObj = exportTable.getValueAt(i, 5);
-                            precioCosto = objectToString(exportTable.getValueAt(i, 4));
+                            precioCosto = Utils.objectToString(exportTable.getValueAt(i, 4));
                             //precioVentaObj =  exportTable.getValueAt(i, 6);
-                            precioVenta = objectToString(exportTable.getValueAt(i, 5));
-                            tipoArticulo[i] = objectToString(exportTable.getValueAt(i, 6));
+                            precioVenta = Utils.objectToString(exportTable.getValueAt(i, 5));
+                            tipoArticulo[i] = Utils.objectToString(exportTable.getValueAt(i, 6));
                             precioVentaFlo[i] = Float.parseFloat(precioVenta);
                             scanningDouble[i] = Double.parseDouble(scanning);
                             precioCostoFlo[i] = Float.parseFloat(precioCosto);
@@ -478,9 +436,9 @@ public class AltaModificaionArticulos extends javax.swing.JInternalFrame {
                             insertInToStock = "INSERT INTO `stock`(`id_articulo`, `saldo_stock`) VALUES ('"+articuloId+"','"+cantidad[i]+"')";
                             con.ejecutar(insertInToStock);
                             String getStockId = "SELECT LAST_INSERT_ID() AS id_stock"; 
-                            rs2 = con.Consulta(getStockId);
-                            while(rs2.next()) {
-                                stockId = rs2.getInt("id_stock");
+                            rs = con.Consulta(getStockId);
+                            while(rs.next()) {
+                                stockId = rs.getInt("id_stock");
                             }
                             String updateArticulos = "UPDATE `descripcion_articulos` SET `stock_id_stock` = "+stockId+" WHERE `id_articulo` = "+articuloId+"";
                             con.ejecutar(updateArticulos);          
@@ -497,7 +455,7 @@ public class AltaModificaionArticulos extends javax.swing.JInternalFrame {
             e.printStackTrace();
         }
     }
-    private void clear() {
+    public void clearCrudArticlesFields() {
         jTnombre_producto.setText("");
         jTmarca.setText("");
         jTcantidad.setText("");

@@ -1,45 +1,32 @@
-/*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- */
 package sigi;
 
 import Connection.Conexion;
+import com.mxrck.autocompleter.TextAutoCompleter;
+import Utils.Utils;
 import java.awt.event.KeyEvent;
-import java.io.IOException;
+import java.math.BigDecimal;
 import java.sql.ResultSet;
 import java.sql.SQLException;
-import java.util.Calendar;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 import javax.swing.JOptionPane;
 import javax.swing.table.DefaultTableModel;
 
-/**
- *
- * @author Gustavo
- */
-public class CuentasCorrientes extends javax.swing.JFrame {
-    Conexion con,query;
-    ResultSet rs;
-    ResultSet rs2;
-    ResultSet rs3;
-    static float total=0;
-    static int j=0;
-    static String aux3;
-    static String inv[]=new String[50000];
-    static float invT=0;
-    public static String id,cad,id_sect, rstring, sum, res;
-    String hora,minutos,segundos,ampm;
-    Calendar calendario;    
-    public static int rowCount, numfac, rs1;
-    public static boolean estado;
+public class CuentasCorrientes extends javax.swing.JInternalFrame {
     
+    Conexion con;
+    ResultSet rs;
+    static int j=0;
+    static String result;
+    public static String id, sum, res;
+    public static boolean estado;
+    String clienteId = "";
+
     public CuentasCorrientes() {
         initComponents();
+        searchUsers();
     }
-    
+
     /**
      * This method is called from within the constructor to initialize the form.
      * WARNING: Do NOT modify this code. The content of this method is always
@@ -50,83 +37,32 @@ public class CuentasCorrientes extends javax.swing.JFrame {
     private void initComponents() {
 
         jLabel1 = new javax.swing.JLabel();
-        jTbusc = new javax.swing.JTextField();
+        searchUser = new javax.swing.JTextField();
+        jScrollPane1 = new javax.swing.JScrollPane();
+        accountTable = new javax.swing.JTable();
+        jLabel2 = new javax.swing.JLabel();
+        newImport = new javax.swing.JTextField();
+        save = new javax.swing.JButton();
+        cancel = new javax.swing.JButton();
         jLabel3 = new javax.swing.JLabel();
         jLabel4 = new javax.swing.JLabel();
-        jButton1 = new javax.swing.JButton();
-        jButton2 = new javax.swing.JButton();
-        jLabel6 = new javax.swing.JLabel();
-        jTfecha = new javax.swing.JTextField();
-        jFsaldo = new javax.swing.JFormattedTextField();
-        jFsumres = new javax.swing.JFormattedTextField();
-        jScrollPane1 = new javax.swing.JScrollPane();
-        jTtabla_clie = new javax.swing.JTable();
-        jLabel5 = new javax.swing.JLabel();
-        jButton3 = new javax.swing.JButton();
-        jFSaldParc = new javax.swing.JFormattedTextField();
-        jLabel7 = new javax.swing.JLabel();
-        jPanel1 = new javax.swing.JPanel();
-        jFId = new javax.swing.JTextField();
+        totalDue = new javax.swing.JTextField();
+        totalPaid = new javax.swing.JTextField();
 
-        setBackground(new java.awt.Color(255, 255, 255));
-        getContentPane().setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
+        setClosable(true);
+        setMinimumSize(new java.awt.Dimension(880, 610));
 
-        jLabel1.setFont(new java.awt.Font("Microsoft JhengHei", 1, 14)); // NOI18N
-        jLabel1.setText("Buscar cliente");
-        getContentPane().add(jLabel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(50, 10, -1, -1));
+        jLabel1.setText("Buscar cliente:");
 
-        jTbusc.addKeyListener(new java.awt.event.KeyAdapter() {
-            public void keyPressed(java.awt.event.KeyEvent evt) {
-                jTbuscKeyPressed(evt);
+        searchUser.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyReleased(java.awt.event.KeyEvent evt) {
+                searchUserKeyReleased(evt);
             }
         });
-        getContentPane().add(jTbusc, new org.netbeans.lib.awtextra.AbsoluteConstraints(50, 30, 200, -1));
 
-        jLabel3.setFont(new java.awt.Font("Microsoft JhengHei", 1, 14)); // NOI18N
-        jLabel3.setText("Estado saldo");
-        getContentPane().add(jLabel3, new org.netbeans.lib.awtextra.AbsoluteConstraints(50, 220, -1, -1));
+        jScrollPane1.setMinimumSize(new java.awt.Dimension(880, 610));
 
-        jLabel4.setFont(new java.awt.Font("Microsoft JhengHei", 1, 14)); // NOI18N
-        jLabel4.setText("Nuevo importe");
-        getContentPane().add(jLabel4, new org.netbeans.lib.awtextra.AbsoluteConstraints(50, 250, -1, -1));
-
-        jButton1.setText("OK");
-        jButton1.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jButton1ActionPerformed(evt);
-            }
-        });
-        getContentPane().add(jButton1, new org.netbeans.lib.awtextra.AbsoluteConstraints(50, 330, 79, -1));
-
-        jButton2.setText("Eliminar");
-        jButton2.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jButton2ActionPerformed(evt);
-            }
-        });
-        getContentPane().add(jButton2, new org.netbeans.lib.awtextra.AbsoluteConstraints(140, 330, -1, -1));
-
-        jLabel6.setFont(new java.awt.Font("Microsoft JhengHei", 1, 14)); // NOI18N
-        jLabel6.setText("Fecha ultimo pago");
-        getContentPane().add(jLabel6, new org.netbeans.lib.awtextra.AbsoluteConstraints(50, 190, -1, -1));
-        getContentPane().add(jTfecha, new org.netbeans.lib.awtextra.AbsoluteConstraints(260, 190, 160, -1));
-
-        jFsaldo.setFormatterFactory(new javax.swing.text.DefaultFormatterFactory(new javax.swing.text.NumberFormatter()));
-        jFsaldo.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jFsaldoActionPerformed(evt);
-            }
-        });
-        getContentPane().add(jFsaldo, new org.netbeans.lib.awtextra.AbsoluteConstraints(260, 220, 160, -1));
-
-        jFsumres.addKeyListener(new java.awt.event.KeyAdapter() {
-            public void keyPressed(java.awt.event.KeyEvent evt) {
-                jFsumresKeyPressed(evt);
-            }
-        });
-        getContentPane().add(jFsumres, new org.netbeans.lib.awtextra.AbsoluteConstraints(260, 250, 160, -1));
-
-        jTtabla_clie.setModel(new javax.swing.table.DefaultTableModel(
+        accountTable.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
 
             },
@@ -134,412 +70,278 @@ public class CuentasCorrientes extends javax.swing.JFrame {
 
             }
         ));
-        jTtabla_clie.setCellSelectionEnabled(true);
-        jTtabla_clie.addMouseListener(new java.awt.event.MouseAdapter() {
+        accountTable.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
-                jTtabla_clieMouseClicked(evt);
+                accountTableMouseClicked(evt);
             }
         });
-        jScrollPane1.setViewportView(jTtabla_clie);
+        jScrollPane1.setViewportView(accountTable);
 
-        getContentPane().add(jScrollPane1, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 60, 410, 70));
+        jLabel2.setText("Pago de deuda recibido");
 
-        jLabel5.setFont(new java.awt.Font("Microsoft JhengHei", 1, 14)); // NOI18N
-        jLabel5.setText("Saldo parcial");
-        getContentPane().add(jLabel5, new org.netbeans.lib.awtextra.AbsoluteConstraints(50, 280, -1, -1));
+        newImport.setText("0.00");
+        newImport.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyReleased(java.awt.event.KeyEvent evt) {
+                newImportKeyReleased(evt);
+            }
+        });
 
-        jButton3.setText("Calc");
-        jButton3.addActionListener(new java.awt.event.ActionListener() {
+        save.setText("Guardar");
+        save.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jButton3ActionPerformed(evt);
+                saveActionPerformed(evt);
             }
         });
-        getContentPane().add(jButton3, new org.netbeans.lib.awtextra.AbsoluteConstraints(230, 330, 70, -1));
-        getContentPane().add(jFSaldParc, new org.netbeans.lib.awtextra.AbsoluteConstraints(260, 280, 160, -1));
 
-        jLabel7.setText("$");
-        getContentPane().add(jLabel7, new org.netbeans.lib.awtextra.AbsoluteConstraints(240, 280, -1, -1));
-
-        jPanel1.setBackground(new java.awt.Color(255, 255, 255));
-
-        jFId.addActionListener(new java.awt.event.ActionListener() {
+        cancel.setText("Cancelar");
+        cancel.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jFIdActionPerformed(evt);
+                cancelActionPerformed(evt);
             }
         });
-        jPanel1.add(jFId);
 
-        getContentPane().add(jPanel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 440, 380));
+        jLabel3.setText("Total a pagar");
+
+        jLabel4.setText("Total pagado");
+
+        totalDue.setEditable(false);
+        totalDue.setText("0.00");
+
+        totalPaid.setEditable(false);
+        totalPaid.setText("0.00");
+
+        javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
+        getContentPane().setLayout(layout);
+        layout.setHorizontalGroup(
+            layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(layout.createSequentialGroup()
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(layout.createSequentialGroup()
+                        .addGap(23, 23, 23)
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(jScrollPane1, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, 707, Short.MAX_VALUE)
+                            .addGroup(layout.createSequentialGroup()
+                                .addComponent(jLabel1)
+                                .addGap(26, 26, 26)
+                                .addComponent(searchUser, javax.swing.GroupLayout.PREFERRED_SIZE, 124, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addGap(0, 0, Short.MAX_VALUE))))
+                    .addGroup(layout.createSequentialGroup()
+                        .addGap(51, 51, 51)
+                        .addComponent(save)
+                        .addGap(25, 25, 25)
+                        .addComponent(cancel)
+                        .addGap(0, 512, Short.MAX_VALUE)))
+                .addContainerGap())
+            .addGroup(layout.createSequentialGroup()
+                .addGap(34, 34, 34)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(layout.createSequentialGroup()
+                        .addComponent(jLabel3)
+                        .addGap(46, 46, 46)
+                        .addComponent(totalDue, javax.swing.GroupLayout.PREFERRED_SIZE, 55, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(80, 80, 80)
+                        .addComponent(jLabel4)
+                        .addGap(39, 39, 39)
+                        .addComponent(totalPaid, javax.swing.GroupLayout.PREFERRED_SIZE, 55, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addGroup(layout.createSequentialGroup()
+                        .addComponent(jLabel2)
+                        .addGap(72, 72, 72)
+                        .addComponent(newImport, javax.swing.GroupLayout.PREFERRED_SIZE, 55, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+        );
+        layout.setVerticalGroup(
+            layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(layout.createSequentialGroup()
+                .addGap(18, 18, 18)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(jLabel1)
+                    .addComponent(searchUser, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGap(18, 18, 18)
+                .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 182, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 12, Short.MAX_VALUE)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(jLabel3)
+                    .addComponent(jLabel4)
+                    .addComponent(totalDue, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(totalPaid, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGap(18, 18, 18)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(jLabel2)
+                    .addComponent(newImport, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGap(18, 18, 18)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(save)
+                    .addComponent(cancel))
+                .addGap(33, 33, 33))
+        );
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
-    private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
-
-        String idcliente= jTtabla_clie.getValueAt(jTtabla_clie.getSelectedRow(), 0).toString();
-        String idusuario = Integer.toString(Login.userId);
-        
+    private void saveActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_saveActionPerformed
+     
         try {
-                // se comienza la conexion con la base de datos
-                try {
-                    con = new Conexion();
+            con = new Conexion();
 
-                } catch (ClassNotFoundException ex) {
-                    Logger.getLogger(PantallaPrincipal.class.getName()).log(Level.SEVERE, null, ex);
-                } catch (SQLException ex) {
-                    Logger.getLogger(PantallaPrincipal.class.getName()).log(Level.SEVERE, null, ex);
-                } catch (InstantiationException ex) {
-                    Logger.getLogger(PantallaPrincipal.class.getName()).log(Level.SEVERE, null, ex);
-                } catch (IllegalAccessException ex) {
-                    Logger.getLogger(PantallaPrincipal.class.getName()).log(Level.SEVERE, null, ex);
-                }    
-                //se obtienen los valores de los jTextField
+            BigDecimal paiment = new BigDecimal(newImport.getText());
+            BigDecimal currentBalance = new BigDecimal(totalDue.getText());
+            System.out.println(paiment);
+            System.out.println(currentBalance);
+            BigDecimal resultado = currentBalance.subtract(paiment);
+            System.out.println(resultado);
+            System.out.println(clienteId);
+            String updateAccount = "INSERT INTO cuentas_corrientes (fecha_cta_cte, total, resta, clientes_id_clientes, usuarios_id_usuario, ventas_id_venta) VALUES (CURRENT_TIMESTAMP, '"+resultado+"', '"+newImport.getText()+"', "+clienteId+", "+Login.userId+", 0)";
+            con.ejecutar(updateAccount);
+            JOptionPane.showMessageDialog(null, "Operaci�n realizada, saldo actual: "+resultado+".");
+            getValues();
+        } catch (ClassNotFoundException | SQLException | InstantiationException | IllegalAccessException ex) {
+            Logger.getLogger(PantallaPrincipal.class.getName()).log(Level.SEVERE, null, ex);
+        }
+    }//GEN-LAST:event_saveActionPerformed
 
-                String sumres = jFsumres.getText();
-                String saldoActual = jFsaldo.getText();
-                int saldoActualN = Integer.parseInt(saldoActual);
-                String saldoParcial = jFSaldParc.getText();
-                int sumres1 = Integer.parseInt(sumres);
-                int resultado = saldoActualN-sumres1;
-                jFId.setVisible(false);
-                if(sumres1 > 0){
-                   sum = jFsumres.getText();
-                   id = jFId.getText();
-                   String sql3 = "UPDATE `cuenta_corriente` SET `total`= '"+resultado+"', "
-                           + "`suma` = '"+sum+"'"
-                           + "WHERE `id_cuenta_corriente` = '"+id+"'";
-                   //jFSaldParc.addItem(resultado);
-                   con.ejecutar(sql3);
-                }else{
-                   res = jFsumres.getText();
-                    String sql3 = "UPDATE `cuenta_corriente` SET `total`= '"+resultado+"', "
-                           + "`resta` = '"+res+"'"
-                           + "WHERE `id_cuenta_corriente` = '"+id+"'";
-                   con.ejecutar(sql3);
-                }
-                //sentencias sql para insertar los datos en la base de datos
-                
+    private void accountTableMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_accountTableMouseClicked
+        int Opcion=this.accountTable.getSelectedRow();
+        id =  accountTable.getValueAt(Opcion,0).toString();
+        try {
+            con = new Conexion();
 
-                //funcion para ejecutar la query
-                
-                
-                JOptionPane.showMessageDialog(null, "Operación realizada, saldo actual: "+resultado+".");
-            } catch (SQLException ex) {
-                Logger.getLogger(PantallaPrincipal.class.getName()).log(Level.SEVERE, null, ex);
+            String nom= searchUser.getText();
+            String sql ="SELECT * FROM cuentas_corrientes WHERE clientes_id_clientes LIKE '"+id+"%' AND (select max(fecha_cta_cte) from cuenta_corriente)";
+            rs = con.Consulta(sql);
+            if(rs==null) {
+                JOptionPane.showMessageDialog(null, "No hay registro en la base de datos");
             }
-    
-        
-    }//GEN-LAST:event_jButton1ActionPerformed
-
-    private void jTbuscKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_jTbuscKeyPressed
-                 
- try {
-                    // se comienza la conexion con la base de datos
-                    try {
-                        con = new Conexion();
-
-                    } catch (ClassNotFoundException ex) {
-                        Logger.getLogger(ModuloVenta.class.getName()).log(Level.SEVERE, null, ex);
-                    } catch (SQLException ex) {
-                        Logger.getLogger(ModuloVenta.class.getName()).log(Level.SEVERE, null, ex);
-                    } catch (InstantiationException ex) {
-                        Logger.getLogger(ModuloVenta.class.getName()).log(Level.SEVERE, null, ex);
-                    } catch (IllegalAccessException ex) {
-                        Logger.getLogger(ModuloVenta.class.getName()).log(Level.SEVERE, null, ex);
-                    }
-
-                    String nom= jTbusc.getText();
-                    String sql ="SELECT * FROM clientes WHERE nombre LIKE '"+nom+"%'";
-                    rs = con.Consulta(sql);
-
-                    if(rs==null)
-                    JOptionPane.showMessageDialog(null, "Cliente "+jTbusc.getText()+" no encontrado");
- 
-                    //prueba 1
-                   
-                    // fin prueba
-                    
-                    //Para establecer el modelo al JTable
-
-                    DefaultTableModel buscar = new DefaultTableModel(){
-                        @Override
-                        public boolean isCellEditable(int rowIndex, int vColIndex) {
-                            return false;
-                        }};
-                        this.jTtabla_clie.setModel(buscar);
-                        buscar.addColumn("ID Cliente");
-                        buscar.addColumn("Nombre");
-                        buscar.addColumn("Apellido");
-                        //Obteniendo la informacion de las columnas que estan siendo consultadas
-                      /*  ResultSetMetaData rsMd = rs.getMetaData();
-                        //La cantidad de columnas que tiene la consulta
-                        int cantidadColumnas = rsMd.getColumnCount();
-                        //Establecer como cabezeras el nombre de las colimnas
-                        for (int i = 1; i <= cantidadColumnas; i++) {
-                            buscar.addColumn(rsMd.getColumnLabel(i));
-                        }
-*/
-                        int y=0;
-                        while (rs.next()) {
-                            
-                           Object[] fila = new Object[3];
-
-                           //for (int i = 0; i < 3; i++) {
-//int i = 0;
-  //                            fila[i]=rs.getObject(i+1);
-                            //Object[] fila = new Object[3];//Creamos un Objeto con tantos parámetros como datos retorne cada fila 
-                                              // de la consulta
-                fila[0] = rs.getInt("id_clientes"); //Lo que hay entre comillas son los campos de la base de datos
-                fila[1] = rs.getString("nombre");
-                fila[2] = rs.getString("apellido");
-                buscar.addRow(fila); // Añade una fila al final del modelo de la tabla
-                            //}
-                            //buscar.addRow(fila);
-                           // for(int l=0;l<7;l++)
-                           // buscar.isCellEditable(y, l);
-                           // y++;
-                       // jTable1.updateUI();
-                        }
-    
-                    } catch (SQLException ex) {
-                        Logger.getLogger(ModuloVenta.class.getName()).log(Level.SEVERE, null, ex);
-                    }
-                  /*  if(evt.getKeyCode() == KeyEvent.VK_ENTER){
-                        jTcant.requestFocusInWindow();
-                        jTable1.selectAll();
-                        jTcant.selectAll();
-                    }*/
-    }//GEN-LAST:event_jTbuscKeyPressed
-
-    private void jTtabla_clieMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jTtabla_clieMouseClicked
-              
-        int Opcion=this.jTtabla_clie.getSelectedRow();
-        //muestra el no. de renglon
-        // JOptionPane.showMessageDialog(rootPane,Opcion);
-        id =  jTtabla_clie.getValueAt(Opcion,0).toString();
-        //this.id_sect = (this.jTsector.getValueAt(Opcion, 0).toString());
-       try {
-                    // se comienza la conexion con la base de datos
-                    try {
-                        con = new Conexion();
-
-                    } catch (ClassNotFoundException | SQLException | InstantiationException | IllegalAccessException ex) {
-                        Logger.getLogger(ModuloVenta.class.getName()).log(Level.SEVERE, null, ex);
-                    }
-
-                    String nom= jTbusc.getText();
-                    String sql ="SELECT * FROM cuenta_corriente WHERE clientes_id_clientes LIKE '"+id+"%' AND (select max(fecha) from cuenta_corriente)";
-                    rs = con.Consulta(sql);
-
-                    if(rs==null)
-                    JOptionPane.showMessageDialog(null, "No hay registro en la base de datos");
- 
-                    //prueba 1
-                   
-                    // fin prueba
-                    
-                    //Para establecer el modelo al JTable
-
-                  /*  DefaultTableModel buscar = new DefaultTableModel(){
-                        @Override
-                        public boolean isCellEditable(int rowIndex, int vColIndex) {
-                            return false;
-                        }};
-                        this.jTtabla_clie.setModel(buscar);
-                        buscar.addColumn("ID Cliente");
-                        buscar.addColumn("Nombre");
-                        buscar.addColumn("Apellido");
-                        //Obteniendo la informacion de las columnas que estan siendo consultadas
-                      /*  ResultSetMetaData rsMd = rs.getMetaData();
-                        //La cantidad de columnas que tiene la consulta
-                        int cantidadColumnas = rsMd.getColumnCount();
-                        //Establecer como cabezeras el nombre de las colimnas
-                        for (int i = 1; i <= cantidadColumnas; i++) {
-                            buscar.addColumn(rsMd.getColumnLabel(i));
-                        }
-*/
-                        int y=0;
-                        while (rs.next()) {
-                            
-                           //Object[] fila = new Object[3];*/
-
-                           //for (int i = 0; i < 3; i++) {
-//int i = 0;
-  //                            fila[i]=rs.getObject(i+1);
-                            //Object[] fila = new Object[3];//Creamos un Objeto con tantos parámetros como datos retorne cada fila 
-                   String fecha;                           // de la consulta
-               fecha  = rs.getString("fecha"); //Lo que hay entre comillas son los campos de la base de datos
-               
-               jTfecha.setText(fecha);
-               
+            while (rs.next()) {
+                String fecha;
+                fecha  = rs.getString("fecha_cta_cte");
                 String saldo;
                 saldo = rs.getString("total");
-                jFsaldo.setText(saldo);
                 String id;
                 id = rs.getString("id_cuenta_corriente");
-                jFId.setText(id);
-               
-               // fila[2] = rs.getString("apellido");
-               // buscar.addRow(fila); // Añade una fila al final del modelo de la tabla
-                            //}
-                            //buscar.addRow(fila);
-                           // for(int l=0;l<7;l++)
-                           // buscar.isCellEditable(y, l);
-                           // y++;
-                       // jTable1.updateUI();
-                        }
-    
-                    } catch (SQLException ex) {
-                        Logger.getLogger(ModuloVenta.class.getName()).log(Level.SEVERE, null, ex);
-                    }
-        jTfecha.enable(false);
-        jFsaldo.enable(false);
-        
-    }//GEN-LAST:event_jTtabla_clieMouseClicked
-
-    private void jFsumresKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_jFsumresKeyPressed
-      if(evt.getKeyCode() == KeyEvent.VK_ENTER) {
-      // Enter was pressed. Your code goes here.
-   
-   
-      //   String nombre = Tproductosv.getValueAt(aux, 1).toString();
-        //        String precio = Tproductosv.getValueAt(aux, 2).toString();
-                //  String existString = "30";
-                // int exist1 = integer.parseInt(existString);
-                //-String exist = Tproductos.getValueAt(aux, 4).toString();
-                //String existString = "30";
-                //int exist1 = integer.parseInt(existString);
-                String aux2 = jFsaldo.getText();
-                float tot = Float.parseFloat(aux2);
-                //String cant = JOptionPane.showInputDialog("Cantidad: ");
-                //String cant1 = cant;
-                String cant = jFsumres.getText();
-                String cant1 = cant;
-                //int cant2 = Integer.parseInt(cant);
-
-
-                    float cantidad = Float.parseFloat(cant1);
-                    //exist = exist - cant1;
-                    //tot=tot*cantidad;
-                    total=tot+cantidad;
-                    String aux3 = String.valueOf(total);
-                    jFSaldParc.setText(aux3);
-
-                 /*   DefaultTableModel temp = (DefaultTableModel)
-                    Tlistav.getModel();
-
-                    Object nuevo[]= {temp.getRowCount()+1,"",""};
-                    temp.addRow(nuevo);
-
-                    Tlistav.setValueAt(nombre, j, 0);
-                    Tlistav.setValueAt(precio, j, 1);
-                    Tlistav.setValueAt(cant1, j, 2);
-                    j++;//Aumenta el contador
-
-                
-*/
-                //Agregar la modificacion a la BD y limpiar la tabla y el textbox....
-          //      jTvscaningv.setText("");
-          //      jTvscaningv.requestFocusInWindow();
-          //      Tproductosv.setModel(new DefaultTableModel());
-      } else if (jFsumres.getText().length()==0){
-          jFSaldParc.setText("");
-      }
-    }//GEN-LAST:event_jFsumresKeyPressed
-
-    private void jButton3ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton3ActionPerformed
-         try        
-    {
-        Runtime rt = Runtime.getRuntime();           
-        Process p = rt.exec("calc");            
-        p.waitFor();        
-    }        
-    catch ( IOException ioe )       
-    {            
-        ioe.printStackTrace();
-    }         
-    catch ( InterruptedException ie )
-    {            
-        ie.printStackTrace();     
-    }
-
-    }//GEN-LAST:event_jButton3ActionPerformed
-
-    private void jButton2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton2ActionPerformed
-        jTbusc.setText("");
-        jTfecha.setText("");
-                jFsaldo.setText("");
-                jFsumres.setText("");
-                        jFSaldParc.setText("");
-        
-        DefaultTableModel modelo = (DefaultTableModel)jTtabla_clie.getModel();
-int fila = jTtabla_clie.getSelectedRow();
-modelo.removeRow(fila); 
-    }//GEN-LAST:event_jButton2ActionPerformed
-
-    private void jFsaldoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jFsaldoActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_jFsaldoActionPerformed
-
-    private void jFIdActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jFIdActionPerformed
-        // TODO add your handling code here:
-        jFId.setVisible(false);
-    }//GEN-LAST:event_jFIdActionPerformed
-
-    /**
-     * @param args the command line arguments
-     */
-    public static void main(String args[]) {
-        /* Set the Nimbus look and feel */
-        //<editor-fold defaultstate="collapsed" desc=" Look and feel setting code (optional) ">
-        /* If Nimbus (introduced in Java SE 6) is not available, stay with the default look and feel.
-         * For details see http://download.oracle.com/javase/tutorial/uiswing/lookandfeel/plaf.html 
-         */
-        try {
-            for (javax.swing.UIManager.LookAndFeelInfo info : javax.swing.UIManager.getInstalledLookAndFeels()) {
-                if ("Nimbus".equals(info.getName())) {
-                    javax.swing.UIManager.setLookAndFeel(info.getClassName());
-                    break;
-                }
             }
-        } catch (ClassNotFoundException ex) {
-            java.util.logging.Logger.getLogger(CuentasCorrientes.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
-        } catch (InstantiationException ex) {
-            java.util.logging.Logger.getLogger(CuentasCorrientes.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
-        } catch (IllegalAccessException ex) {
-            java.util.logging.Logger.getLogger(CuentasCorrientes.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
-        } catch (javax.swing.UnsupportedLookAndFeelException ex) {
-            java.util.logging.Logger.getLogger(CuentasCorrientes.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            DefaultTableModel temp = (DefaultTableModel) accountTable.getModel();
+
+            Object nuevo[] = {temp.getRowCount()+1,"",""};
+            temp.addRow(nuevo);
+            int showTicket = this.accountTable.getSelectedRow();
+            System.out.println(showTicket);
+            if(showTicket == 1) {
+                JOptionPane.showConfirmDialog(null, estado);
+            }
+        } catch (ClassNotFoundException | SQLException | InstantiationException | IllegalAccessException ex) {
+            Logger.getLogger(ModuloVenta.class.getName()).log(Level.SEVERE, null, ex);
         }
-        //</editor-fold>
-        //</editor-fold>
+    }//GEN-LAST:event_accountTableMouseClicked
 
-        /* Create and display the form */
-        java.awt.EventQueue.invokeLater(new Runnable() {
-            public void run() {
-                new CuentasCorrientes().setVisible(true);
+    private void searchUserKeyReleased(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_searchUserKeyReleased
+        int evento=evt.getKeyCode();
+        String nom = searchUser.getText();
+        j = 0;
+        if(evento==10 ){
+            DefaultTableModel eliminarTodo = (DefaultTableModel) accountTable.getModel();
+            eliminarTodo.setRowCount(0);
+            eliminarTodo.setColumnCount(0);
+            j = 0;
+            try {
+                con = new Conexion();
+
+                String [] stringParts = nom.split(",");
+                String names = stringParts[0];
+                String lastNames = stringParts[1].substring(1);
+                String getClientId = "SELECT * FROM clientes WHERE nombres = '"+names+"' AND apellidos = '"+lastNames+"'";
+                rs = con.Consulta(getClientId);
+
+                while(rs.next()){
+                    clienteId =  rs.getString("id_clientes");
+                }
+                getValues();
+                newImport.requestFocus();
+                newImport.selectAll();
+            } catch (ClassNotFoundException | SQLException | InstantiationException | IllegalAccessException ex) {
+                Logger.getLogger(AbmClientes.class.getName()).log(Level.SEVERE, null, ex);
             }
-        });
+            }
+    }//GEN-LAST:event_searchUserKeyReleased
+
+    private void newImportKeyReleased(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_newImportKeyReleased
+        if(evt.getKeyCode() == KeyEvent.VK_ENTER){
+            save.requestFocus();
+        }
+    }//GEN-LAST:event_newImportKeyReleased
+
+    private void cancelActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_cancelActionPerformed
+        clearCtaCteFields();
+    }//GEN-LAST:event_cancelActionPerformed
+
+    public void searchUsers(){
+        try {
+            con = new Conexion();
+            TextAutoCompleter textAutoAcompleter = new TextAutoCompleter(searchUser);
+            String sql ="SELECT id_clientes, nombres, apellidos FROM clientes";
+            rs = con.Consulta(sql);
+            while(rs.next()){
+                String nombreApellido = rs.getString("nombres")+", "+rs.getString("apellidos");
+                result = nombreApellido;
+                textAutoAcompleter.addItem(result);
+            }            
+        } catch (ClassNotFoundException | SQLException | InstantiationException | IllegalAccessException ex) {
+            Logger.getLogger(AbmClientes.class.getName()).log(Level.SEVERE, null, ex);
+        }
+    }
+    private void getValues(){
+        DefaultTableModel eliminarTodo = (DefaultTableModel) accountTable.getModel();
+        eliminarTodo.setColumnCount(0);
+        eliminarTodo.setRowCount(0);
+        try{
+            String getAccount = "SELECT * FROM cuentas_corrientes WHERE clientes_id_clientes = ? ORDER BY fecha_cta_cte DESC";
+            rs = con.find(getAccount, clienteId);
+            DefaultTableModel temp = (DefaultTableModel) accountTable.getModel();
+            temp.addColumn("Fecha");
+            temp.addColumn("Comprado");
+            temp.addColumn("Nro Ticket");
+            temp.addColumn("Pagado");
+            temp.addColumn("Totales");
+            Object[] fila = new Object[5];                
+            while(rs.next()) {
+                fila[0] = Utils.formatDateWithMonths(rs.getTimestamp("fecha_cta_cte"));
+                fila[1] = rs.getFloat("suma");
+                fila[2] = rs.getInt("numero_ticket");
+                fila[3] = rs.getFloat("resta");
+                fila[4] = rs.getFloat("total");
+                temp.addRow(fila);
+            }
+            String getDue = "SELECT total FROM cuentas_corrientes WHERE clientes_id_clientes = ?";
+            rs = con.find(getDue, clienteId);
+            while(rs.next()){
+                totalDue.setText(rs.getString("total"));
+            }
+        } catch (SQLException ex) {
+            Logger.getLogger(CuentasCorrientes.class.getName()).log(Level.SEVERE, null, ex);
+        }
+    }
+    
+    public void clearCtaCteFields(){
+        searchUser.setText("");
+        DefaultTableModel eliminarTodo = (DefaultTableModel) accountTable.getModel();
+        eliminarTodo.setColumnCount(0);
+        eliminarTodo.setRowCount(0);
+        totalDue.setText("0.00");
+        totalPaid.setText("0.00");
+        newImport.setText("0.00");
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    private javax.swing.JButton jButton1;
-    private javax.swing.JButton jButton2;
-    private javax.swing.JButton jButton3;
-    private javax.swing.JTextField jFId;
-    private javax.swing.JFormattedTextField jFSaldParc;
-    private javax.swing.JFormattedTextField jFsaldo;
-    private javax.swing.JFormattedTextField jFsumres;
+    private javax.swing.JTable accountTable;
+    private javax.swing.JButton cancel;
     private javax.swing.JLabel jLabel1;
+    private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel3;
     private javax.swing.JLabel jLabel4;
-    private javax.swing.JLabel jLabel5;
-    private javax.swing.JLabel jLabel6;
-    private javax.swing.JLabel jLabel7;
-    private javax.swing.JPanel jPanel1;
     private javax.swing.JScrollPane jScrollPane1;
-    private javax.swing.JTextField jTbusc;
-    private javax.swing.JTextField jTfecha;
-    private javax.swing.JTable jTtabla_clie;
+    private javax.swing.JTextField newImport;
+    private javax.swing.JButton save;
+    private javax.swing.JTextField searchUser;
+    private javax.swing.JTextField totalDue;
+    private javax.swing.JTextField totalPaid;
     // End of variables declaration//GEN-END:variables
 }

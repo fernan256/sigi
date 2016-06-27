@@ -673,13 +673,13 @@ jcventas.enable();
                    
                 con = new Conexion();
                 } catch (ClassNotFoundException ex) {
-                    Logger.getLogger(Compras.class.getName()).log(Level.SEVERE, null, ex);
+                    Logger.getLogger(BajaModificacionOrdenesCompras.class.getName()).log(Level.SEVERE, null, ex);
                 } catch (SQLException ex) {
-                    Logger.getLogger(Compras.class.getName()).log(Level.SEVERE, null, ex);
+                    Logger.getLogger(BajaModificacionOrdenesCompras.class.getName()).log(Level.SEVERE, null, ex);
                 } catch (InstantiationException ex) {
-                    Logger.getLogger(Compras.class.getName()).log(Level.SEVERE, null, ex);
+                    Logger.getLogger(BajaModificacionOrdenesCompras.class.getName()).log(Level.SEVERE, null, ex);
                 } catch (IllegalAccessException ex) {
-                    Logger.getLogger(Compras.class.getName()).log(Level.SEVERE, null, ex);
+                    Logger.getLogger(BajaModificacionOrdenesCompras.class.getName()).log(Level.SEVERE, null, ex);
                 }
                 String sql = "SELECT * FROM usuarios ORDER BY nombres";
 
@@ -710,7 +710,7 @@ jcventas.enable();
                 }
                  }
             } catch (SQLException ex) {
-          Logger.getLogger(Compras.class.getName()).log(Level.SEVERE, null, ex);
+          Logger.getLogger(BajaModificacionOrdenesCompras.class.getName()).log(Level.SEVERE, null, ex);
             }
     } 
 
