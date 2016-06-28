@@ -1,6 +1,8 @@
 package Connection;
 
 import java.sql.*;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 
 public class Conexion {
     private Connection con;
@@ -18,7 +20,7 @@ public class Conexion {
     public void conectar() throws SQLException{
         String URL_bd="jdbc:mysql://localhost:3306/sigi?useUnicode=true&characterEncoding=utf-8";
         String user="root";
-        String password="dedito@974";
+        String password="";
         con=DriverManager.getConnection(URL_bd,user,password);
         sentSQL=con.createStatement(ResultSet.TYPE_SCROLL_SENSITIVE, ResultSet.CONCUR_UPDATABLE);
     }
@@ -58,6 +60,16 @@ public class Conexion {
     
     public void Cerrar() throws SQLException {
         this.con.close();
+    }
+    public void Comandos(String com){
+        try{
+            sentSQL = (Statement) con.createStatement();
+            sentSQL.execute(com);
+            sentSQL.close();
+            con.close();
+        } catch (SQLException ex) {
+            Logger.getLogger(Conexion.class.getName()).log(Level.SEVERE, null, ex);
+        }
     }
 }
 
