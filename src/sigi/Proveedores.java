@@ -1,5 +1,6 @@
 package sigi;
 
+import Utils.ExportarExcel;
 import Connection.Conexion;
 import com.mxrck.autocompleter.TextAutoCompleter;
 import java.io.File;
@@ -75,15 +76,28 @@ public class Proveedores extends javax.swing.JInternalFrame {
         jLabel2 = new javax.swing.JLabel();
         searchProvider = new javax.swing.JTextField();
 
+        setBackground(new java.awt.Color(255, 255, 255));
         setClosable(true);
 
+        newProviderName.setFont(new java.awt.Font("Arial", 0, 12)); // NOI18N
+
+        newProviderLastname.setFont(new java.awt.Font("Arial", 0, 12)); // NOI18N
+
+        newCompanyName.setFont(new java.awt.Font("Arial", 0, 12)); // NOI18N
+
+        newProviderAddress.setFont(new java.awt.Font("Arial", 0, 12)); // NOI18N
+
+        newProviderEmail.setFont(new java.awt.Font("Arial", 0, 12)); // NOI18N
+
         providerArticleDescription.setColumns(20);
+        providerArticleDescription.setFont(new java.awt.Font("Arial", 0, 12)); // NOI18N
         providerArticleDescription.setRows(5);
         jScrollPane1.setViewportView(providerArticleDescription);
 
+        jLabel1.setFont(new java.awt.Font("Arial", 1, 16)); // NOI18N
         jLabel1.setText("Descripción de productos");
 
-        newProvider.setFont(new java.awt.Font("Microsoft JhengHei", 1, 18)); // NOI18N
+        newProvider.setFont(new java.awt.Font("Arial", 1, 18)); // NOI18N
         newProvider.setText("Crear");
         newProvider.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -91,7 +105,7 @@ public class Proveedores extends javax.swing.JInternalFrame {
             }
         });
 
-        cleanFields.setFont(new java.awt.Font("Microsoft JhengHei", 1, 18)); // NOI18N
+        cleanFields.setFont(new java.awt.Font("Arial", 1, 18)); // NOI18N
         cleanFields.setText("Borrar");
         cleanFields.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
@@ -99,7 +113,7 @@ public class Proveedores extends javax.swing.JInternalFrame {
             }
         });
 
-        deleteProvider.setFont(new java.awt.Font("Microsoft JhengHei", 1, 18)); // NOI18N
+        deleteProvider.setFont(new java.awt.Font("Arial", 1, 18)); // NOI18N
         deleteProvider.setText("Eliminar");
         deleteProvider.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -107,27 +121,43 @@ public class Proveedores extends javax.swing.JInternalFrame {
             }
         });
 
+        jLabel3.setFont(new java.awt.Font("Arial", 1, 16)); // NOI18N
         jLabel3.setText("Nombre");
 
+        jLabel4.setFont(new java.awt.Font("Arial", 1, 16)); // NOI18N
         jLabel4.setText("Apellido");
 
+        jLabel5.setFont(new java.awt.Font("Arial", 1, 16)); // NOI18N
         jLabel5.setText("Empresa");
 
+        jLabel6.setFont(new java.awt.Font("Arial", 1, 16)); // NOI18N
         jLabel6.setText("Dirección");
 
+        jLabel7.setFont(new java.awt.Font("Arial", 1, 16)); // NOI18N
         jLabel7.setText("Telefono");
 
+        jLabel8.setFont(new java.awt.Font("Arial", 1, 16)); // NOI18N
         jLabel8.setText("Celular");
 
+        jLabel9.setFont(new java.awt.Font("Arial", 1, 16)); // NOI18N
         jLabel9.setText("Fax");
 
+        jLabel10.setFont(new java.awt.Font("Arial", 1, 16)); // NOI18N
         jLabel10.setText("Mail");
 
+        jLabel11.setFont(new java.awt.Font("Arial", 1, 16)); // NOI18N
         jLabel11.setText("Cuit/Cuil");
 
+        jLabel12.setFont(new java.awt.Font("Arial", 1, 16)); // NOI18N
         jLabel12.setText("Buscar");
 
-        modifieProvider.setFont(new java.awt.Font("Microsoft JhengHei", 1, 18)); // NOI18N
+        newProviderPhone.setFont(new java.awt.Font("Arial", 0, 12)); // NOI18N
+
+        newProviderCelphone.setFont(new java.awt.Font("Arial", 0, 12)); // NOI18N
+
+        newProviderFax.setFont(new java.awt.Font("Arial", 0, 12)); // NOI18N
+
+        modifieProvider.setFont(new java.awt.Font("Arial", 1, 18)); // NOI18N
         modifieProvider.setText("Modificar");
         modifieProvider.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -135,7 +165,9 @@ public class Proveedores extends javax.swing.JInternalFrame {
             }
         });
 
-        exportToXls.setFont(new java.awt.Font("Microsoft JhengHei", 1, 18)); // NOI18N
+        newProviderCuilCuit.setFont(new java.awt.Font("Arial", 0, 12)); // NOI18N
+
+        exportToXls.setFont(new java.awt.Font("Arial", 1, 18)); // NOI18N
         exportToXls.setText("A XLS");
         exportToXls.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -143,8 +175,10 @@ public class Proveedores extends javax.swing.JInternalFrame {
             }
         });
 
+        jLabel2.setFont(new java.awt.Font("Arial", 1, 16)); // NOI18N
         jLabel2.setText("Activo/Inactivo");
 
+        searchProvider.setFont(new java.awt.Font("Arial", 0, 12)); // NOI18N
         searchProvider.addKeyListener(new java.awt.event.KeyAdapter() {
             public void keyReleased(java.awt.event.KeyEvent evt) {
                 searchProviderKeyReleased(evt);
@@ -156,7 +190,7 @@ public class Proveedores extends javax.swing.JInternalFrame {
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
-                .addContainerGap()
+                .addGap(25, 25, 25)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(layout.createSequentialGroup()
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -190,7 +224,7 @@ public class Proveedores extends javax.swing.JInternalFrame {
                                         .addGap(18, 18, 18)
                                         .addComponent(searchProvider, javax.swing.GroupLayout.PREFERRED_SIZE, 225, javax.swing.GroupLayout.PREFERRED_SIZE))
                                     .addComponent(newProviderActive))
-                                .addContainerGap(141, Short.MAX_VALUE))
+                                .addContainerGap(110, Short.MAX_VALUE))
                             .addGroup(layout.createSequentialGroup()
                                 .addComponent(newProviderEmail, javax.swing.GroupLayout.PREFERRED_SIZE, 302, javax.swing.GroupLayout.PREFERRED_SIZE)
                                 .addGap(0, 0, Short.MAX_VALUE))))
@@ -208,12 +242,12 @@ public class Proveedores extends javax.swing.JInternalFrame {
                                 .addComponent(modifieProvider)
                                 .addGap(18, 18, 18)
                                 .addComponent(exportToXls)))
-                        .addGap(0, 339, Short.MAX_VALUE))))
+                        .addGap(0, 322, Short.MAX_VALUE))))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
-                .addContainerGap()
+                .addGap(25, 25, 25)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(layout.createSequentialGroup()
                         .addComponent(jLabel3)
@@ -223,35 +257,35 @@ public class Proveedores extends javax.swing.JInternalFrame {
                             .addComponent(newProviderName, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                             .addComponent(jLabel12)
                             .addComponent(searchProvider, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)))
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)))
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(newProviderLastname, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(jLabel4))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(newCompanyName, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(jLabel5))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(newProviderAddress, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(jLabel6))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel7)
                     .addComponent(newProviderPhone, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel8)
                     .addComponent(newProviderCelphone, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel9)
                     .addComponent(newProviderFax, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(newProviderEmail, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(jLabel10))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel11)
                     .addComponent(newProviderCuilCuit, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
@@ -261,7 +295,7 @@ public class Proveedores extends javax.swing.JInternalFrame {
                     .addComponent(jLabel2))
                 .addGap(18, 18, 18)
                 .addComponent(jLabel1)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 85, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(18, 18, 18)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
@@ -270,7 +304,7 @@ public class Proveedores extends javax.swing.JInternalFrame {
                     .addComponent(deleteProvider)
                     .addComponent(modifieProvider)
                     .addComponent(exportToXls))
-                .addContainerGap(183, Short.MAX_VALUE))
+                .addContainerGap(116, Short.MAX_VALUE))
         );
 
         pack();
@@ -351,15 +385,15 @@ public class Proveedores extends javax.swing.JInternalFrame {
     private void exportToXlsActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_exportToXlsActionPerformed
         try {
             con = new Conexion();    
-            String sql ="SELECT * FROM proveedores";
-            rs = con.Consulta(sql);
+            String getAllProviders = "SELECT * FROM proveedores";
+            rs = con.Consulta(getAllProviders);
             DefaultTableModel buscar = new DefaultTableModel(){
                 @Override
                 public boolean isCellEditable(int rowIndex, int vColIndex) {
                     return false;
                 }
             };
-            this.proveedoresTabla.setModel(buscar);
+            proveedoresTabla.setModel(buscar);
             ResultSetMetaData rsMd = rs.getMetaData();
             int cantidadColumnas = rsMd.getColumnCount();
             for (int i = 1; i <= cantidadColumnas; i++) {
@@ -377,6 +411,7 @@ public class Proveedores extends javax.swing.JInternalFrame {
                     y++;
                 }
             }
+            con.Cerrar();
         } catch (ClassNotFoundException | SQLException | InstantiationException | IllegalAccessException ex) {
             Logger.getLogger(Proveedores.class.getName()).log(Level.SEVERE, null, ex);
         }
@@ -404,55 +439,42 @@ public class Proveedores extends javax.swing.JInternalFrame {
         if(evento==10 ){
             String bool;
             try {
-                    // se comienza la conexion con la base de datos
-                    try {
-                        con = new Conexion();
-
-                    } catch (ClassNotFoundException | SQLException | InstantiationException | IllegalAccessException ex) {
-                        Logger.getLogger(Proveedores.class.getName()).log(Level.SEVERE, null, ex);
+                con = new Conexion();
+                String sql ="SELECT * FROM proveedores WHERE empresa LIKE '"+nom+"%'";
+                rs = con.Consulta(sql);    
+                if(rs == null) {
+                    JOptionPane.showMessageDialog(null, "No se encontro el proveedor: "+searchProvider.getText()+" ");
+                }
+                while(rs.next()){       
+                    id =  rs.getString("id_proveedor");
+                    this.newProviderName.setText(rs.getString("nombre"));
+                    this.newProviderLastname.setText(rs.getString("apellido"));
+                    this.newProviderAddress.setText(rs.getString("direccion"));
+                    this.newProviderEmail.setText(rs.getString("mail"));
+                    this.newProviderPhone.setText(rs.getString("telefono"));
+                    this.newProviderCelphone.setText(rs.getString("cel"));
+                    this.newCompanyName.setText(rs.getString("empresa"));
+                    this.providerArticleDescription.setText(rs.getString("descripcion"));
+                    this.newProviderFax.setText(rs.getString("fax"));
+                    this.newProviderCuilCuit.setText(rs.getString("cuit")); 
+                    if(rs.getInt("activo") == 1) {
+                        bool = "true";
+                    } else {
+                        bool = "false";
                     }
-
-                    
-                    String sql ="SELECT * FROM proveedores WHERE empresa LIKE '"+nom+"%'";
-                    rs = con.Consulta(sql);
-                    
-                    if(rs == null) {
-                       JOptionPane.showMessageDialog(null, "No se encontro el proveedor: "+searchProvider.getText()+" ");
+                    String bool1 = bool;
+                    boolean bool2 = Boolean.parseBoolean(bool1);
+                    if(bool2==true){
+                        newProviderActive.setSelected(true);
+                    }else{
+                        newProviderActive.setSelected(false);
                     }
-                    while(rs.next()){
-                       
-                        id =  rs.getString("id_proveedor");
-                        this.newProviderName.setText(rs.getString("nombre"));
-                        this.newProviderLastname.setText(rs.getString("apellido"));
-                        this.newProviderAddress.setText(rs.getString("direccion"));
-                        this.newProviderEmail.setText(rs.getString("mail"));
-                        this.newProviderPhone.setText(rs.getString("telefono"));
-                        this.newProviderCelphone.setText(rs.getString("cel"));
-                        this.newCompanyName.setText(rs.getString("empresa"));
-                        this.providerArticleDescription.setText(rs.getString("descripcion"));
-                        this.newProviderFax.setText(rs.getString("fax"));
-                        this.newProviderCuilCuit.setText(rs.getString("cuit")); 
-                        if(rs.getInt("activo") == 1) {
-                            bool = "true";
-                        } else {
-                            bool = "false";
-                        }
-                        String bool1 = bool;
-                        boolean bool2 = Boolean.parseBoolean(bool1);
-                        System.out.println(bool2);
-                        if(bool2==true){
-                            newProviderActive.setSelected(true);
-                        }else{
-                            newProviderActive.setSelected(false);
-                        }
-                    }
-                    System.out.println(result);
-
-                    } catch (SQLException ex) {
-                        Logger.getLogger(Proveedores.class.getName()).log(Level.SEVERE, null, ex);
-                    }
-         
+                }
+                con.Cerrar();
+            } catch (ClassNotFoundException | SQLException | InstantiationException | IllegalAccessException ex) {
+                Logger.getLogger(Proveedores.class.getName()).log(Level.SEVERE, null, ex);
             }
+        }
     }//GEN-LAST:event_searchProviderKeyReleased
     
     public void searchItems(){
