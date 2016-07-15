@@ -4,9 +4,11 @@ import Utils.ImprimirTicket;
 import Utils.Utils;
 import Connection.Conexion;
 import java.awt.event.KeyEvent;
+import java.io.BufferedWriter;
 import java.io.File;
 import java.io.FileWriter;
 import java.io.IOException;
+import java.io.PrintWriter;
 import java.math.BigDecimal;
 import java.math.RoundingMode;
 import java.sql.ResultSet;
@@ -81,19 +83,23 @@ public class CierreZ extends javax.swing.JDialog {
 
         setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
         setTitle("Cierre X");
+        setBackground(new java.awt.Color(255, 255, 255));
         setModal(true);
         setResizable(false);
 
         jLabel1.setFont(new java.awt.Font("Ubuntu", 1, 24)); // NOI18N
         jLabel1.setText("Cierre Z");
 
+        jLabel2.setFont(new java.awt.Font("Arial", 1, 16)); // NOI18N
         jLabel2.setText("Usuario");
 
         userName.setEditable(false);
+        userName.setFont(new java.awt.Font("Arial", 0, 12)); // NOI18N
 
-        jLabel3.setFont(new java.awt.Font("Ubuntu", 1, 18)); // NOI18N
+        jLabel3.setFont(new java.awt.Font("Arial", 1, 16)); // NOI18N
         jLabel3.setText("Totales Caja");
 
+        cash.setFont(new java.awt.Font("Arial", 0, 12)); // NOI18N
         cash.setText("0.00");
         cash.addKeyListener(new java.awt.event.KeyAdapter() {
             public void keyReleased(java.awt.event.KeyEvent evt) {
@@ -102,21 +108,26 @@ public class CierreZ extends javax.swing.JDialog {
         });
 
         ctaCte.setEditable(false);
+        ctaCte.setFont(new java.awt.Font("Arial", 0, 12)); // NOI18N
         ctaCte.setText("0.00");
 
+        jLabel4.setFont(new java.awt.Font("Arial", 1, 16)); // NOI18N
         jLabel4.setText("Efectivo");
 
+        jLabel5.setFont(new java.awt.Font("Arial", 1, 16)); // NOI18N
         jLabel5.setText("Cuenta Corriente");
 
-        jLabel6.setFont(new java.awt.Font("Ubuntu", 1, 18)); // NOI18N
+        jLabel6.setFont(new java.awt.Font("Arial", 1, 16)); // NOI18N
         jLabel6.setText("Devoluciones");
 
         returns.setEditable(false);
+        returns.setFont(new java.awt.Font("Arial", 0, 12)); // NOI18N
         returns.setText("0.00");
 
-        jLabel7.setFont(new java.awt.Font("Ubuntu", 1, 18)); // NOI18N
+        jLabel7.setFont(new java.awt.Font("Arial", 1, 16)); // NOI18N
         jLabel7.setText("Pago a proveedor con efectivo de la caja");
 
+        providersPayments.setFont(new java.awt.Font("Arial", 0, 12)); // NOI18N
         providersPayments.setText("0.00");
         providersPayments.addKeyListener(new java.awt.event.KeyAdapter() {
             public void keyReleased(java.awt.event.KeyEvent evt) {
@@ -125,21 +136,24 @@ public class CierreZ extends javax.swing.JDialog {
         });
 
         totalEndDay.setEditable(false);
+        totalEndDay.setFont(new java.awt.Font("Arial", 0, 12)); // NOI18N
         totalEndDay.setText("0.00");
 
         differences.setEditable(false);
+        differences.setFont(new java.awt.Font("Arial", 0, 12)); // NOI18N
         differences.setText("0.00");
 
-        jLabel8.setFont(new java.awt.Font("Ubuntu", 1, 18)); // NOI18N
+        jLabel8.setFont(new java.awt.Font("Arial", 1, 16)); // NOI18N
         jLabel8.setText("Total fin del día");
 
-        jLabel9.setFont(new java.awt.Font("Ubuntu", 1, 18)); // NOI18N
+        jLabel9.setFont(new java.awt.Font("Arial", 1, 16)); // NOI18N
         jLabel9.setText("Total diferencia");
 
-        jLabel10.setFont(new java.awt.Font("Ubuntu", 1, 18)); // NOI18N
+        jLabel10.setFont(new java.awt.Font("Arial", 1, 16)); // NOI18N
         jLabel10.setText("Total del sistema");
 
         systemTotal.setEditable(false);
+        systemTotal.setFont(new java.awt.Font("Arial", 0, 12)); // NOI18N
 
         closeDay.setFont(new java.awt.Font("Ubuntu", 1, 24)); // NOI18N
         closeDay.setText("Cierre caja");
@@ -157,45 +171,57 @@ public class CierreZ extends javax.swing.JDialog {
             }
         });
 
-        jLabel11.setFont(new java.awt.Font("Ubuntu", 1, 18)); // NOI18N
+        jLabel11.setFont(new java.awt.Font("Arial", 1, 16)); // NOI18N
         jLabel11.setText("Anulaciones");
 
         totalCanceledTickets.setEditable(false);
+        totalCanceledTickets.setFont(new java.awt.Font("Arial", 0, 12)); // NOI18N
         totalCanceledTickets.setText("0.00");
 
+        jLabel12.setFont(new java.awt.Font("Arial", 1, 16)); // NOI18N
         jLabel12.setText("Inicio de caja");
 
+        jLabel13.setFont(new java.awt.Font("Arial", 1, 16)); // NOI18N
         jLabel13.setText("Fecha apertura");
 
+        openDate.setFont(new java.awt.Font("Arial", 0, 12)); // NOI18N
+
         initialMoney.setEditable(false);
+        initialMoney.setFont(new java.awt.Font("Arial", 0, 12)); // NOI18N
         initialMoney.setText("0.00");
 
-        jLabel14.setFont(new java.awt.Font("Ubuntu", 1, 18)); // NOI18N
+        jLabel14.setFont(new java.awt.Font("Arial", 1, 16)); // NOI18N
         jLabel14.setText("Descuentos");
 
         discounts.setEditable(false);
+        discounts.setFont(new java.awt.Font("Arial", 0, 12)); // NOI18N
         discounts.setText("0.00");
 
-        jLabel15.setFont(new java.awt.Font("Ubuntu", 1, 18)); // NOI18N
+        jLabel15.setFont(new java.awt.Font("Arial", 1, 16)); // NOI18N
         jLabel15.setText("Rango Tickets");
 
+        jLabel16.setFont(new java.awt.Font("Arial", 1, 16)); // NOI18N
         jLabel16.setText("Desde");
 
         ticketNumberFrom.setEditable(false);
+        ticketNumberFrom.setFont(new java.awt.Font("Arial", 0, 12)); // NOI18N
         ticketNumberFrom.setText("0");
 
+        jLabel17.setFont(new java.awt.Font("Arial", 1, 16)); // NOI18N
         jLabel17.setText("Hasta");
 
         ticketNumberTo.setEditable(false);
+        ticketNumberTo.setFont(new java.awt.Font("Arial", 0, 12)); // NOI18N
         ticketNumberTo.setText("0");
 
-        jLabel18.setFont(new java.awt.Font("Ubuntu", 0, 12)); // NOI18N
+        jLabel18.setFont(new java.awt.Font("Arial", 1, 9)); // NOI18N
         jLabel18.setText("(Ingresar efectivo sin inicio de caja)");
 
-        jLabel19.setFont(new java.awt.Font("Ubuntu", 1, 18)); // NOI18N
+        jLabel19.setFont(new java.awt.Font("Arial", 1, 16)); // NOI18N
         jLabel19.setText("Retiros de Caja");
 
         cashWithdrawal.setEditable(false);
+        cashWithdrawal.setFont(new java.awt.Font("Arial", 0, 12)); // NOI18N
         cashWithdrawal.setText("0.00");
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
@@ -205,7 +231,7 @@ public class CierreZ extends javax.swing.JDialog {
             .addGroup(layout.createSequentialGroup()
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(layout.createSequentialGroup()
-                        .addGap(45, 45, 45)
+                        .addGap(25, 25, 25)
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addGroup(layout.createSequentialGroup()
                                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -215,58 +241,60 @@ public class CierreZ extends javax.swing.JDialog {
                                     .addComponent(jLabel15))
                                 .addGap(61, 61, 61)
                                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                    .addComponent(userName, javax.swing.GroupLayout.PREFERRED_SIZE, 311, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                    .addComponent(userName, javax.swing.GroupLayout.PREFERRED_SIZE, 290, javax.swing.GroupLayout.PREFERRED_SIZE)
                                     .addComponent(openDate, javax.swing.GroupLayout.PREFERRED_SIZE, 180, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                    .addComponent(initialMoney, javax.swing.GroupLayout.PREFERRED_SIZE, 97, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                                    .addComponent(initialMoney, javax.swing.GroupLayout.PREFERRED_SIZE, 100, javax.swing.GroupLayout.PREFERRED_SIZE)))
                             .addGroup(layout.createSequentialGroup()
                                 .addGap(181, 181, 181)
                                 .addComponent(jLabel17)
                                 .addGap(18, 18, 18)
-                                .addComponent(ticketNumberTo, javax.swing.GroupLayout.PREFERRED_SIZE, 41, javax.swing.GroupLayout.PREFERRED_SIZE))
+                                .addComponent(ticketNumberTo, javax.swing.GroupLayout.PREFERRED_SIZE, 100, javax.swing.GroupLayout.PREFERRED_SIZE))
                             .addComponent(jLabel3)
                             .addGroup(layout.createSequentialGroup()
                                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
                                     .addComponent(jLabel8, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                                    .addComponent(totalEndDay, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.PREFERRED_SIZE, 133, javax.swing.GroupLayout.PREFERRED_SIZE))
+                                    .addComponent(totalEndDay, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.PREFERRED_SIZE, 100, javax.swing.GroupLayout.PREFERRED_SIZE))
                                 .addGap(129, 129, 129)
                                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
                                     .addComponent(jLabel9, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                                    .addComponent(differences, javax.swing.GroupLayout.PREFERRED_SIZE, 136, javax.swing.GroupLayout.PREFERRED_SIZE))
+                                    .addComponent(differences, javax.swing.GroupLayout.PREFERRED_SIZE, 100, javax.swing.GroupLayout.PREFERRED_SIZE))
                                 .addGap(120, 120, 120)
                                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
                                     .addComponent(jLabel10, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                                    .addComponent(systemTotal, javax.swing.GroupLayout.PREFERRED_SIZE, 147, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                                    .addComponent(systemTotal, javax.swing.GroupLayout.PREFERRED_SIZE, 100, javax.swing.GroupLayout.PREFERRED_SIZE)))
                             .addGroup(layout.createSequentialGroup()
                                 .addComponent(jLabel16)
                                 .addGap(18, 18, 18)
-                                .addComponent(ticketNumberFrom, javax.swing.GroupLayout.PREFERRED_SIZE, 39, javax.swing.GroupLayout.PREFERRED_SIZE))
+                                .addComponent(ticketNumberFrom, javax.swing.GroupLayout.PREFERRED_SIZE, 100, javax.swing.GroupLayout.PREFERRED_SIZE))
                             .addGroup(layout.createSequentialGroup()
                                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                    .addComponent(jLabel4)
-                                    .addComponent(jLabel18)
-                                    .addComponent(cash, javax.swing.GroupLayout.PREFERRED_SIZE, 134, javax.swing.GroupLayout.PREFERRED_SIZE))
-                                .addGap(82, 82, 82)
+                                    .addComponent(cash, javax.swing.GroupLayout.PREFERRED_SIZE, 100, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                    .addGroup(layout.createSequentialGroup()
+                                        .addComponent(jLabel4)
+                                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                        .addComponent(jLabel18)))
+                                .addGap(14, 14, 14)
                                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                                     .addComponent(jLabel5, javax.swing.GroupLayout.PREFERRED_SIZE, 134, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                    .addComponent(ctaCte, javax.swing.GroupLayout.PREFERRED_SIZE, 121, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                                    .addComponent(ctaCte, javax.swing.GroupLayout.PREFERRED_SIZE, 100, javax.swing.GroupLayout.PREFERRED_SIZE)))
                             .addComponent(jLabel7)
-                            .addComponent(providersPayments, javax.swing.GroupLayout.PREFERRED_SIZE, 133, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(providersPayments, javax.swing.GroupLayout.PREFERRED_SIZE, 100, javax.swing.GroupLayout.PREFERRED_SIZE)
                             .addGroup(layout.createSequentialGroup()
                                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                                     .addComponent(jLabel6)
-                                    .addComponent(returns, javax.swing.GroupLayout.PREFERRED_SIZE, 108, javax.swing.GroupLayout.PREFERRED_SIZE))
+                                    .addComponent(returns, javax.swing.GroupLayout.PREFERRED_SIZE, 100, javax.swing.GroupLayout.PREFERRED_SIZE))
                                 .addGap(30, 30, 30)
                                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
                                     .addComponent(jLabel11, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                                    .addComponent(totalCanceledTickets))
+                                    .addComponent(totalCanceledTickets, javax.swing.GroupLayout.DEFAULT_SIZE, 100, Short.MAX_VALUE))
                                 .addGap(58, 58, 58)
                                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
                                     .addComponent(jLabel14, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                                    .addComponent(discounts))
+                                    .addComponent(discounts, javax.swing.GroupLayout.DEFAULT_SIZE, 100, Short.MAX_VALUE))
                                 .addGap(61, 61, 61)
                                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                                     .addComponent(jLabel19)
-                                    .addComponent(cashWithdrawal, javax.swing.GroupLayout.PREFERRED_SIZE, 102, javax.swing.GroupLayout.PREFERRED_SIZE)))))
+                                    .addComponent(cashWithdrawal, javax.swing.GroupLayout.PREFERRED_SIZE, 100, javax.swing.GroupLayout.PREFERRED_SIZE)))))
                     .addGroup(layout.createSequentialGroup()
                         .addGap(300, 300, 300)
                         .addComponent(jLabel1, javax.swing.GroupLayout.PREFERRED_SIZE, 141, javax.swing.GroupLayout.PREFERRED_SIZE))
@@ -280,7 +308,7 @@ public class CierreZ extends javax.swing.JDialog {
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
-                .addContainerGap()
+                .addGap(25, 25, 25)
                 .addComponent(jLabel1)
                 .addGap(18, 18, 18)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
@@ -296,28 +324,27 @@ public class CierreZ extends javax.swing.JDialog {
                     .addComponent(initialMoney, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addGap(18, 18, 18)
                 .addComponent(jLabel15)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel16)
                     .addComponent(ticketNumberFrom, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(jLabel17)
                     .addComponent(ticketNumberTo, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addGap(18, 18, 18)
                 .addComponent(jLabel3)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(layout.createSequentialGroup()
                         .addComponent(jLabel5)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(ctaCte, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(39, 39, 39))
+                        .addComponent(ctaCte, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                     .addGroup(layout.createSequentialGroup()
-                        .addComponent(jLabel4)
-                        .addGap(6, 6, 6)
-                        .addComponent(jLabel18)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                        .addComponent(cash, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)))
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                            .addComponent(jLabel4)
+                            .addComponent(jLabel18))
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(cash, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                .addGap(18, 18, 18)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addComponent(jLabel6)
                     .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
@@ -331,7 +358,7 @@ public class CierreZ extends javax.swing.JDialog {
                     .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                         .addComponent(discounts, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addComponent(cashWithdrawal, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addGap(18, 18, 18)
                 .addComponent(jLabel7)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(providersPayments, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
@@ -359,6 +386,7 @@ public class CierreZ extends javax.swing.JDialog {
 
     private void closeDayActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_closeDayActionPerformed
         Object[] options = {"Aceptar", "Cancelar"};
+        String salto = System.getProperty("line.separator");
         int dataCorrect = JOptionPane.showOptionDialog(null, "Los datos del cierre son correctos?", "Cierre Z", JOptionPane.PLAIN_MESSAGE, JOptionPane.WARNING_MESSAGE, null, options, options[0]);
         if(dataCorrect == 0){
             try{
@@ -384,31 +412,34 @@ public class CierreZ extends javax.swing.JDialog {
                     PantallaPrincipalVendedor.moduloVentaVendedor.setEnabled(true);
                 }
                 String ticketHeader = ""+Login.companyName+
-                                "\nCUIL: "+Login.companyCuilCuit+
-                                "\n"+Login.companyAddress+" - "+Login.companyDepartment+" - "+Login.companyProvince+
-                                "\n-----------------------------------------"+
-                                "\nCierre Nro: "+cierre_numero+
-                                "\nFecha: "+Utils.currentDateFormated()+
-                                "\n-----------------------------------------";
-                closeTicket = ticketHeader+"\nUsuario: "+Login.userName+
-                              "\n-----------------------------------------"+
-                              "\n\b\tTICKETS EMITIDOS"+
-                              "\n\n  Desde:\t\t"+ticketNumberFrom.getText()+
-                              "\n  Hasta:\t\t"+ticketNumberTo.getText()+
-                              "\n\n  TOTAL TICKETS:\t"+auxSystemTotal+
-                              "\n-----------------------------------------"+
-                              "\n\b\tMOVIMIENTOS DE CAJA"+
-                              "\n\n  Efectivo:\t\t"+cash.getText()+
-                              "\n  Cuentas Corrientes:\t"+ctaCte.getText()+
-                              "\n  Descuentos:\t\t"+discounts.getText()+
-                              "\n  Anulaciones:\t\t"+totalCanceledTickets.getText()+
-                              "\n  Devoluciones:\t\t"+returns.getText()+
-                              "\n  Retiro Efectivo:\t"+cashWithdrawal.getText()+
-                              "\n-----------------------------------------"+
-                              "\n\b\tTOTALES"+
-                              "\n\n  Total del sistema:\t"+systemTotal.getText()+
-                              "\n  Recuento de Caja:\t"+totalEndDay.getText()+
-                              "\n  Diferencia:\t\t"+differences.getText()+"";
+                                salto+"C.U.I.T.: "+Login.companyCuilCuit+
+                                salto+"Ing. Brutos: "+Login.companyIg+
+                                salto+Login.companyAddress+" N° "+Login.companyAddressNumber+
+                                salto+Login.companyDepartment+" - "+Login.companyProvince+" - "+Login.companyCp+
+                                salto+"Inicio Actividades: "+Utils.formatDateOnly(Login.companyInitActivities)+
+                                salto+"--------------------------------"+
+                                salto+"Cierre Nro: "+cierre_numero+
+                                salto+"Fecha: "+Utils.currentDateFormated()+
+                                salto+"--------------------------------";
+                closeTicket = ticketHeader+salto+"Usuario: "+Login.userName+
+                              salto+"--------------------------------"+
+                              salto+"\t"+"TICKETS EMITIDOS"+
+                              salto+"  Desde:\t\t"+ticketNumberFrom.getText()+
+                              salto+"  Hasta:\t\t"+ticketNumberTo.getText()+
+                              salto+salto+"  TOTAL TICKETS:\t"+auxSystemTotal+
+                              salto+"--------------------------------"+
+                              salto+"\t"+"MOVIMIENTOS DE CAJA"+
+                              salto+salto+"  Efectivo:\t\t"+cash.getText()+
+                              salto+"  Cuentas Corrientes:\t"+ctaCte.getText()+
+                              salto+"  Descuentos:\t\t"+discounts.getText()+
+                              salto+"  Anulaciones:\t\t"+totalCanceledTickets.getText()+
+                              salto+"  Devoluciones:\t\t"+returns.getText()+
+                              salto+"  Retiro Efectivo:\t"+cashWithdrawal.getText()+
+                              salto+"--------------------------------"+
+                              salto+"\t"+"TOTALES"+
+                              salto+salto+"  Total del sistema:\t"+systemTotal.getText()+
+                              salto+"  Recuento de Caja:\t"+totalEndDay.getText()+
+                              salto+"  Diferencia:\t\t"+differences.getText()+"";
                 
                 Object[] printOption = {"Imprimir", "Guardar"};
                 int printCloseData = JOptionPane.showOptionDialog(null, closeTicket, "Cierre Z", JOptionPane.PLAIN_MESSAGE, JOptionPane.WARNING_MESSAGE, null, printOption, printOption[0]);
@@ -423,11 +454,14 @@ public class CierreZ extends javax.swing.JDialog {
                     JFileChooser dialog = new JFileChooser();
                     int save = dialog.showSaveDialog(CierreZ.this);
                     if (save == JFileChooser.APPROVE_OPTION) {
+                        File dir = dialog.getSelectedFile().getAbsoluteFile();
                         try{
-                            File dir = dialog.getSelectedFile().getAbsoluteFile();
-                            try (FileWriter saveFile = new FileWriter(dir)) {
-                                saveFile.write(closeTicket);
-                            }
+                            FileWriter saveFile = new FileWriter(dir+".txt");
+                            BufferedWriter bw = new BufferedWriter(saveFile);
+                            PrintWriter wr = new PrintWriter(bw);  
+                            wr.write(closeTicket);
+                            wr.close();
+                            bw.close();
                         } catch (IOException ex) {
                             Logger.getLogger(CierreZ.class.getName()).log(Level.SEVERE, null, ex);
                         }
@@ -437,6 +471,7 @@ public class CierreZ extends javax.swing.JDialog {
                 providersPayments.setText("0.00");
                 totalEndDay.setText("0.00");
                 differences.setText("0.00");
+                con.Cerrar();
                 this.dispose();
             } catch (ClassNotFoundException | SQLException | InstantiationException | IllegalAccessException ex) {
                 Logger.getLogger(CierreZ.class.getName()).log(Level.SEVERE, null, ex);
@@ -501,12 +536,12 @@ public class CierreZ extends javax.swing.JDialog {
                 idCaja = rs.getInt("id_caja");
             }            
             String h = openDatePos.substring(0, openDatePos.length() - 2);
-            String getSystemTotal = "SELECT SUM(total) suma_total FROM ventas WHERE fecha_venta > '"+h+"' AND fecha_venta < date_format('"+h+"', '%Y-%m-%d 23:59:59')";
+            String getSystemTotal = "SELECT SUM(total) suma_total FROM ventas WHERE fecha_venta > '"+h+"' AND fecha_venta < date_format(CURRENT_TIMESTAMP, '%Y-%m-%d 23:59:59')";
             rs = con.Consulta(getSystemTotal);
             while(rs.next()) {
                 auxSystemTotal = rs.getFloat("suma_total");
             }
-            String getTotalcancels = "SELECT SUM(total) total_anulaciones FROM anular_ticket WHERE fecha_anular_ticket > '"+h+"' AND fecha_anular_ticket < date_format('"+h+"', '%Y-%m-%d 23:59:59')";
+            String getTotalcancels = "SELECT SUM(total) total_anulaciones FROM anular_ticket WHERE fecha_anular_ticket > '"+h+"' AND fecha_anular_ticket < date_format(CURRENT_TIMESTAMP, '%Y-%m-%d 23:59:59')";
             rs = con.Consulta(getTotalcancels);
             while(rs.next()) {
                 auxCancels = rs.getFloat("total_anulaciones");
@@ -516,7 +551,7 @@ public class CierreZ extends javax.swing.JDialog {
             } else {
                 totalCanceledTickets.setText("0.00");
             }
-            String getDiscounts = "SELECT SUM(descuento) total_discounts FROM ventas WHERE fecha_venta > '"+h+"' AND fecha_venta < date_format('"+h+"', '%Y-%m-%d 23:59:59')";
+            String getDiscounts = "SELECT SUM(descuento) total_discounts FROM ventas WHERE fecha_venta > '"+h+"' AND fecha_venta < date_format(CURRENT_TIMESTAMP, '%Y-%m-%d 23:59:59')";
             rs = con.Consulta(getDiscounts);
             while(rs.next()) {
                 auxDiscounts = rs.getFloat("total_discounts");
@@ -526,7 +561,7 @@ public class CierreZ extends javax.swing.JDialog {
             } else {
                 discounts.setText("0.00");
             }            
-            String getTotalReturns = "SELECT SUM(valor_devuelto) total_devoluciones FROM devoluciones WHERE fecha_devolucion > '"+h+"' AND fecha_devolucion < date_format('"+h+"', '%Y-%m-%d 23:59:59')";
+            String getTotalReturns = "SELECT SUM(valor_devuelto) total_devoluciones FROM devoluciones WHERE fecha_devolucion > '"+h+"' AND fecha_devolucion < date_format(CURRENT_TIMESTAMP, '%Y-%m-%d 23:59:59')";
             rs = con.Consulta(getTotalReturns);
             while(rs.next()) {
                 auxReturns = rs.getFloat("total_devoluciones");
@@ -536,14 +571,14 @@ public class CierreZ extends javax.swing.JDialog {
             } else {
                 returns.setText("0.00");
             }
-            String getOpeningInfo = "SELECT * FROM caja WHERE fecha_apertura >= '"+h+"' AND fecha_apertura < date_format('"+h+"', '%Y-%m-%d 23:59:59')";
+            String getOpeningInfo = "SELECT * FROM caja WHERE fecha_apertura >= '"+h+"' AND fecha_apertura < date_format(CURRENT_TIMESTAMP, '%Y-%m-%d 23:59:59')";
             rs = con.Consulta(getOpeningInfo);
             while(rs.next()) {
                 initialMoney.setText(rs.getString("apertura"));
             }
             String s = new SimpleDateFormat("dd/MM/yyyy HH:mm:ss").format(openDateAsDate);
             openDate.setText(h);
-            String getCtaCteTotal = "SELECT SUM(total) ctaCte_total FROM ventas WHERE fecha_venta > '"+h+"' AND fecha_venta < date_format('"+h+"', '%Y-%m-%d 23:59:59') AND forma_pago_id_forma_pago = 2";
+            String getCtaCteTotal = "SELECT SUM(total) ctaCte_total FROM ventas WHERE fecha_venta > '"+h+"' AND fecha_venta < date_format(CURRENT_TIMESTAMP, '%Y-%m-%d 23:59:59') AND forma_pago_id_forma_pago = 2";
             rs = con.Consulta(getCtaCteTotal);
             String cta = "";
             while(rs.next()) {
@@ -556,7 +591,7 @@ public class CierreZ extends javax.swing.JDialog {
             }
             totales = auxSystemTotal - auxReturns - auxCancels - auxCtaCte;
             systemTotal.setText(String.format(Locale.ENGLISH, "%.2f", totales));
-            String getTicketRange = "SELECT numero_ticket FROM detalle_venta WHERE fecha_detalle_venta > ('"+h+"') AND fecha_detalle_venta < date_format('"+h+"', '%Y-%m-%d 23:59:59')";
+            String getTicketRange = "SELECT numero_ticket FROM detalle_venta WHERE fecha_detalle_venta > ('"+h+"') AND fecha_detalle_venta < date_format(CURRENT_TIMESTAMP, '%Y-%m-%d 23:59:59')";
             rs = con.Consulta(getTicketRange);
             ArrayList ticketNro = new ArrayList();
             while(rs.next()) {
@@ -571,7 +606,7 @@ public class CierreZ extends javax.swing.JDialog {
                 ticketNumberFrom.setText("0");
                 ticketNumberTo.setText("0");
             }
-            String getWithdrawalTotal = "SELECT SUM(monto_retirado) suma_total FROM retiro_dinero WHERE fecha_retiro > '"+h+"' AND fecha_retiro < date_format('"+h+"', '%Y-%m-%d 23:59:59')";
+            String getWithdrawalTotal = "SELECT SUM(monto_retirado) suma_total FROM retiro_dinero WHERE fecha_retiro > '"+h+"' AND fecha_retiro < date_format(CURRENT_TIMESTAMP, '%Y-%m-%d 23:59:59')";
             rs = con.Consulta(getWithdrawalTotal);
             while(rs.next()) {
                 if(rs.getInt("suma_total") != 0) {
@@ -581,6 +616,7 @@ public class CierreZ extends javax.swing.JDialog {
                     cashWithdrawal.setText("0.00");
                 }
             }
+            con.Cerrar();
         } catch (ClassNotFoundException | SQLException | InstantiationException | IllegalAccessException ex) {
             Logger.getLogger(CierreZ.class.getName()).log(Level.SEVERE, null, ex);
         }
