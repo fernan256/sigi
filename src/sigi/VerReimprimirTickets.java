@@ -13,6 +13,7 @@ import java.sql.Timestamp;
 import java.util.ArrayList;
 import java.util.logging.Level;
 import java.util.logging.Logger;
+import javax.swing.JOptionPane;
 
 public class VerReimprimirTickets extends javax.swing.JInternalFrame {
     Conexion con;
@@ -26,8 +27,9 @@ public class VerReimprimirTickets extends javax.swing.JInternalFrame {
     private String ticket = null, salesUserName = null, salesUserLastName = null, ticketBody = "", ticketNumber = null;
     Timestamp saleDate = null;
     private BigDecimal salesTotal = new BigDecimal(BigInteger.ZERO), discount = new BigDecimal(BigInteger.ZERO);
-    private int paymentWay = 0, totalAccount = 0;
-    private BigDecimal cash = new BigDecimal(BigInteger.ZERO), exchange = new BigDecimal(BigInteger.ZERO);
+    private int paymentWay = 0, totalAccount = 0, articleType = 0;
+    private BigDecimal cash = new BigDecimal(BigInteger.ZERO), exchange = new BigDecimal(BigInteger.ZERO), price = new BigDecimal(BigInteger.ZERO);
+    private String salto = System.getProperty("line.separator");
     
     public VerReimprimirTickets() {
         initComponents();
@@ -43,12 +45,13 @@ public class VerReimprimirTickets extends javax.swing.JInternalFrame {
         showTicket = new javax.swing.JTextArea();
         printTicket = new javax.swing.JButton();
 
+        setBackground(new java.awt.Color(255, 255, 255));
         setClosable(true);
 
-        jLabel1.setFont(new java.awt.Font("Ubuntu", 1, 24)); // NOI18N
+        jLabel1.setFont(new java.awt.Font("Arial", 1, 24)); // NOI18N
         jLabel1.setText("N° Ticket");
 
-        ticketToSearch.setFont(new java.awt.Font("Ubuntu", 1, 24)); // NOI18N
+        ticketToSearch.setFont(new java.awt.Font("Arial", 1, 24)); // NOI18N
         ticketToSearch.setForeground(new java.awt.Color(234, 33, 33));
         ticketToSearch.addKeyListener(new java.awt.event.KeyAdapter() {
             public void keyReleased(java.awt.event.KeyEvent evt) {
@@ -57,10 +60,11 @@ public class VerReimprimirTickets extends javax.swing.JInternalFrame {
         });
 
         showTicket.setColumns(20);
+        showTicket.setFont(new java.awt.Font("Arial", 0, 12)); // NOI18N
         showTicket.setRows(5);
         jScrollPane1.setViewportView(showTicket);
 
-        printTicket.setFont(new java.awt.Font("Ubuntu", 1, 24)); // NOI18N
+        printTicket.setFont(new java.awt.Font("Arial", 1, 18)); // NOI18N
         printTicket.setText("Imprimir");
         printTicket.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -73,35 +77,27 @@ public class VerReimprimirTickets extends javax.swing.JInternalFrame {
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
+                .addGap(25, 25, 25)
+                .addComponent(jLabel1)
+                .addGap(27, 27, 27)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(layout.createSequentialGroup()
-                        .addGap(22, 22, 22)
-                        .addComponent(jLabel1)
-                        .addGap(27, 27, 27)
-                        .addComponent(ticketToSearch, javax.swing.GroupLayout.PREFERRED_SIZE, 131, javax.swing.GroupLayout.PREFERRED_SIZE))
-                    .addGroup(layout.createSequentialGroup()
-                        .addGap(298, 298, 298)
-                        .addComponent(printTicket, javax.swing.GroupLayout.PREFERRED_SIZE, 242, javax.swing.GroupLayout.PREFERRED_SIZE))
-                    .addGroup(layout.createSequentialGroup()
-                        .addGap(98, 98, 98)
-                        .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 580, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                .addContainerGap(176, Short.MAX_VALUE))
+                    .addComponent(printTicket, javax.swing.GroupLayout.PREFERRED_SIZE, 242, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(ticketToSearch, javax.swing.GroupLayout.PREFERRED_SIZE, 131, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 430, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addContainerGap(269, Short.MAX_VALUE))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
+                .addGap(25, 25, 25)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(layout.createSequentialGroup()
-                        .addGap(31, 31, 31)
-                        .addComponent(ticketToSearch, javax.swing.GroupLayout.PREFERRED_SIZE, 46, javax.swing.GroupLayout.PREFERRED_SIZE))
-                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                        .addGap(30, 30, 30)
-                        .addComponent(jLabel1, javax.swing.GroupLayout.PREFERRED_SIZE, 47, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                .addGap(46, 46, 46)
+                    .addComponent(ticketToSearch, javax.swing.GroupLayout.PREFERRED_SIZE, 46, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(jLabel1, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, 47, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGap(23, 23, 23)
                 .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 360, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                .addComponent(printTicket, javax.swing.GroupLayout.PREFERRED_SIZE, 81, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(17, Short.MAX_VALUE))
+                .addGap(18, 18, 18)
+                .addComponent(printTicket, javax.swing.GroupLayout.PREFERRED_SIZE, 50, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addContainerGap(68, Short.MAX_VALUE))
         );
 
         pack();
@@ -111,11 +107,13 @@ public class VerReimprimirTickets extends javax.swing.JInternalFrame {
         if(evt.getKeyCode() == KeyEvent.VK_ENTER){
             try{
             con = new Conexion();
-            String ticketNumber = ticketToSearch.getText();
+            ticketNumber = ticketToSearch.getText();
+            System.out.println(ticketNumber);
             String getTicket = "SELECT t1.*, lpad(t1.numero_ticket, 6, 0) ticket_number, t2.*, t3.*, t4.nombres, t4.apellidos FROM detalle_venta t1 JOIN ventas t2 ON t2.id_venta = t1.ventas_id_venta JOIN descripcion_articulos t3 ON t3.id_articulo = t1.id_articulo INNER JOIN usuarios t4 ON t4.id_usuario = t2.id_usuario WHERE t1.numero_ticket = '"+ticketNumber+"'";
             rs = con.Consulta(getTicket);
-            
+            int numRows = 0;
             while(rs.next()){
+                numRows++;
                 j++;
                 paymentWay = rs.getInt("forma_pago_id_forma_pago");
                 scanning.add(rs.getString("scanning"));
@@ -131,57 +129,75 @@ public class VerReimprimirTickets extends javax.swing.JInternalFrame {
                 salesUserLastName = rs.getString("apellidos");
                 ticketNumber = rs.getString("ticket_number");
                 saleDate = rs.getTimestamp("fecha_venta");
+                articleType = rs.getInt("tipo_articulo_id");
             }
-            String ticketHeader = "\bFACTURA NO FISCAL"+
-                            "\n-----------------------------------------"+
-                            "\n"+Login.companyName+
-                            "\nCUIT Nro: "+Login.companyCuilCuit+
-                            "\n"+Login.companyAddress+" - "+Login.companyDepartment+" - "+Login.companyProvince+
-                            "\n-----------------------------------------"+
-                            "\nTicket Nro: "+ticketNumber+" \nFecha: "+Utils.formatDate(saleDate)+"\n"+
-                            "\n-----------------------------------------"+
-                            "\n\bCONSUMIDOR FINAL"+
-                            "\n"+
-                            "\n-----------------------------------------"+
-                            "\nCant./Precio Unit."+
-                            "\nDescripción (%IVA)[%BI]\tIMPORTE"+
-                            "\n-----------------------------------------";
-            for (int i=0;i<j;i++){
-                ticketBody = ticketBody + "\n"+salesQuantity.get(i)+" x "+salesPrice.get(i)+
-                        "\n"+scanning.get(i).substring(0, 5)+" "+articleName.get(i).substring(0, 4)+" "+articleBrand.get(i).substring(0, 4)+"\t"+(new BigDecimal(salesPrice.get(i)).multiply(new BigDecimal(salesQuantity.get(i)))).setScale(2, RoundingMode.CEILING)+""+
-                        "\n...";                        
+            if(numRows != 0){
+                String ticketHeader = "FACTURA NO FISCAL"+
+                                salto+"--------------------------------"+
+                                salto+Login.companyName+
+                                salto+"C.U.I.T.: "+Login.companyCuilCuit+
+                                salto+"Ing. Brutos: "+Login.companyIg+
+                                salto+Login.companyAddress+" N° "+Login.companyAddressNumber+
+                                salto+Login.companyDepartment+" - "+Login.companyProvince+" - "+Login.companyCp+
+                                salto+"Inicio Actividades: "+Utils.formatDateOnly(Login.companyInitActivities)+
+                                salto+"--------------------------------"+
+                                salto+"Ticket Nro: "+ticketNumber+
+                                salto+"Fecha: "+Utils.formatDate(saleDate)+
+                                salto+"--------------------------------"+
+                                salto+"CONSUMIDOR FINAL"+
+                                salto+"--------------------------------"+
+                                salto+"Cant./Precio Unit."+
+                                salto+"Descripcion (%IVA)[%BI]\tIMPORTE"+
+                                salto+"--------------------------------";
+                for (int i=0;i<j;i++){
+                    if(articleType == 1){
+                        price = new BigDecimal(salesPrice.get(i)).multiply(new BigDecimal(salesQuantity.get(i))).setScale(2, RoundingMode.CEILING);
+                    } else {
+                        price = new BigDecimal(salesPrice.get(i)).multiply(new BigDecimal(salesQuantity.get(i))).divide(new BigDecimal(1000)).setScale(2, RoundingMode.CEILING);
+                    }
+                    if(discount != new BigDecimal(0.00).setScale(2, RoundingMode.CEILING)) {
+                        ticketBody = ticketBody+salto+salesQuantity.get(i)+" x "+salesPrice.get(i)+
+                                   salto+scanning.get(i)+" "+articleName.get(i).substring(0, 4)+" "+articleBrand.get(i).substring(0, 4)+"\t"+price+""+
+                                   salto+"...";
+                    } else {
+                        ticketBody = ticketBody+salto+salesQuantity.get(i)+" x "+salesPrice.get(i)+
+                                salto+scanning.get(i)+" "+articleName.get(i).substring(0, 4)+" "+articleBrand.get(i).substring(0, 4)+"\t"+price+""+
+                                salto+"BONIFICACION\t\t-"+discount+
+                                salto+"...";
+                    }                 
+                }
+                if(paymentWay == 1) {
+                    ticket = ticketHeader + ticketBody +salto+salto+"TOTAL \t\t"+salesTotal+
+                                                salto+salto+"Recibi(MOS) "+
+                                                salto+"SU PAGO \t\t"+cash+
+                                                salto+"Su vuelto \t\t"+exchange+
+                                                salto+"--------------------------------"+
+                                                salto+"Lo atendio: "+salesUserName+" "+salesUserLastName+
+                                                salto+salto+"GRACIAS POR SU COMPRA."+
+                                                salto+"--------------------------------"+
+                                                salto+"FACTURA NO FISCAL";
+                } else{
+                    //cambiar total de estado cuenta
+                    ticket = ticketHeader + ticketBody +
+                                        salto+salto+"TOTAL \t\t\t"+salesTotal+
+                                        salto+salto+"Recibi(MOS)"+
+                                        salto+salto+"SU PAGO \t\t"+salesTotal+
+                                        salto+"Su vuelto \t\t"+exchange+
+                                        salto+"-----------------------------------------"+
+                                        salto+"Cuenta Corriente"+
+                                        salto+"Nombre: \t"+VentasCtaCte.clientName+
+                                        salto+"Estado cuenta: \t"+totalAccount+
+                                        salto+"-----------------------------------------"+
+                                        salto+"Lo atendio: "+salesUserName+" "+salesUserLastName+
+                                        salto+salto+"GRACIAS POR SU COMPRA."+
+                                        salto+"-----------------------------------------"+
+                                        salto+"FACTURA NO FISCAL";
+                }
+                showTicket.setText(ticket);
+            }else{
+                JOptionPane.showMessageDialog(null, "El ticket N° "+ticketNumber+" ingresado no existe");
             }
-            if(paymentWay == 1) {
-                ticket = ticketHeader + ticketBody +"\nSubtotal \t\t"+salesTotal+
-                                    "\nDescuento \t\t"+discount+
-                                    "\n\n\bTOTAL \t\t"+salesTotal+
-                                    "\n\nRecibi(MOS) "+
-                                    "\nSU PAGO \t\t"+cash+
-                                    "\nSU VUELTO \t\t"+exchange+
-                                    "\n-----------------------------------------"+
-                                    "\nLe atendio: "+salesUserName+" "+salesUserLastName+""+
-                                    "\n\nGRACIAS POR SU COMPRA."+
-                                    "\n-----------------------------------------"+
-                                    "\n\bFACTURA NO FISCAL";
-            } else{
-                //cambiar total de estado cuenta
-                ticket = ticketHeader + ticketBody +"\nSubtotal \t\t"+salesTotal+
-                                     "\nDescuento \t\t"+discount+
-                                     "\n\n\bTOTAL \t\t"+salesTotal+
-                                     "\n\nRecibi(MOS)"+
-                                     "\nSU PAGO \t\t"+salesTotal+
-                                     "\nSU VUELTO \t\t0.00"+
-                                     "\n-----------------------------------------"+
-                                     "\nCuenta Corriente"+
-                                     "\n\bNombre: \t"+VentasCtaCte.clientName+
-                                     "\n\bEstado cuenta: \t"+totalAccount+
-                                     "\n-----------------------------------------"+
-                                     "\nLe atendio: "+salesUserName+" "+salesUserLastName+""+
-                                     "\n\nGRACIAS POR SU COMPRA."+
-                                     "\n-----------------------------------------"+
-                                     "\n\bFACTURA NO FISCAL";
-            }
-            showTicket.setText(ticket);
+            con.Cerrar();
         } catch (ClassNotFoundException | SQLException | InstantiationException | IllegalAccessException ex) {
             Logger.getLogger(VerReimprimirTickets.class.getName()).log(Level.SEVERE, null, ex);
         }
