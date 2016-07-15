@@ -1,4 +1,3 @@
-
 package sigi;
 
 import java.sql.ResultSet;
@@ -21,7 +20,7 @@ public class PantallaPrincipalVendedor extends javax.swing.JFrame {
     public PantallaPrincipalVendedor() { 
         
         initComponents();
-        jLuserName.setText(Login.userName);
+        showUserName.setText("Usuario: "+Login.userName);
         this.setLocationRelativeTo(null);
         this.setExtendedState(JFrame.MAXIMIZED_BOTH);                                   
     }
@@ -37,7 +36,7 @@ public class PantallaPrincipalVendedor extends javax.swing.JFrame {
         salesManeTree = new javax.swing.JTree();
         moduloVentaVendedor = new javax.swing.JButton();
         jButton2 = new javax.swing.JButton();
-        jLuserName = new javax.swing.JLabel();
+        showUserName = new javax.swing.JLabel();
         jLabel1 = new javax.swing.JLabel();
         jLabel3 = new javax.swing.JLabel();
         jMenuBar1 = new javax.swing.JMenuBar();
@@ -55,13 +54,16 @@ public class PantallaPrincipalVendedor extends javax.swing.JFrame {
         desktopPane.setForeground(new java.awt.Color(255, 255, 255));
         desktopPane.setMaximumSize(new java.awt.Dimension(1680, 960));
         desktopPane.setPreferredSize(new java.awt.Dimension(1024, 768));
-        getContentPane().add(desktopPane, new org.netbeans.lib.awtextra.AbsoluteConstraints(240, 90, 1040, 620));
+        getContentPane().add(desktopPane, new org.netbeans.lib.awtextra.AbsoluteConstraints(240, 90, 1100, 590));
 
+        salesManeTree.setFont(new java.awt.Font("Arial", 0, 12)); // NOI18N
         javax.swing.tree.DefaultMutableTreeNode treeNode1 = new javax.swing.tree.DefaultMutableTreeNode("Menu");
         javax.swing.tree.DefaultMutableTreeNode treeNode2 = new javax.swing.tree.DefaultMutableTreeNode("Articulos");
         javax.swing.tree.DefaultMutableTreeNode treeNode3 = new javax.swing.tree.DefaultMutableTreeNode("ABM Articulos");
         treeNode2.add(treeNode3);
         treeNode3 = new javax.swing.tree.DefaultMutableTreeNode("Stock");
+        treeNode2.add(treeNode3);
+        treeNode3 = new javax.swing.tree.DefaultMutableTreeNode("Importar/Exportar Articulos");
         treeNode2.add(treeNode3);
         treeNode1.add(treeNode2);
         treeNode2 = new javax.swing.tree.DefaultMutableTreeNode("Ajustes");
@@ -89,8 +91,8 @@ public class PantallaPrincipalVendedor extends javax.swing.JFrame {
         salesManeTree.setModel(new javax.swing.tree.DefaultTreeModel(treeNode1));
         salesManeTree.setToolTipText("");
         salesManeTree.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
-        salesManeTree.setMaximumSize(new java.awt.Dimension(170, 171));
-        salesManeTree.setPreferredSize(new java.awt.Dimension(170, 171));
+        salesManeTree.setMaximumSize(new java.awt.Dimension(124, 144));
+        salesManeTree.setPreferredSize(new java.awt.Dimension(124, 144));
         salesManeTree.setRootVisible(false);
         salesManeTree.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
@@ -99,7 +101,7 @@ public class PantallaPrincipalVendedor extends javax.swing.JFrame {
         });
         jScrollPane2.setViewportView(salesManeTree);
 
-        getContentPane().add(jScrollPane2, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 140, 210, 340));
+        getContentPane().add(jScrollPane2, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 140, 210, 540));
 
         moduloVentaVendedor.setBackground(new java.awt.Color(255, 255, 255));
         moduloVentaVendedor.setIcon(new javax.swing.ImageIcon(getClass().getResource("/imagenes/carritoVentas.png"))); // NOI18N
@@ -112,17 +114,18 @@ public class PantallaPrincipalVendedor extends javax.swing.JFrame {
                 moduloVentaVendedorActionPerformed(evt);
             }
         });
-        getContentPane().add(moduloVentaVendedor, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 0, 280, 80));
+        getContentPane().add(moduloVentaVendedor, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 5, 400, 65));
 
         jButton2.setBackground(new java.awt.Color(255, 255, 255));
         jButton2.setIcon(new javax.swing.ImageIcon(getClass().getResource("/imagenes/info.jpg"))); // NOI18N
         jButton2.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
-        getContentPane().add(jButton2, new org.netbeans.lib.awtextra.AbsoluteConstraints(1220, 10, 61, 58));
+        getContentPane().add(jButton2, new org.netbeans.lib.awtextra.AbsoluteConstraints(1280, 10, 61, 58));
 
-        jLuserName.setFont(new java.awt.Font("Arial", 1, 24)); // NOI18N
-        getContentPane().add(jLuserName, new org.netbeans.lib.awtextra.AbsoluteConstraints(910, 10, 290, 30));
+        showUserName.setFont(new java.awt.Font("Arial", 1, 24)); // NOI18N
+        showUserName.setForeground(new java.awt.Color(255, 255, 255));
+        getContentPane().add(showUserName, new org.netbeans.lib.awtextra.AbsoluteConstraints(870, 30, 390, 30));
 
-        jLabel1.setFont(new java.awt.Font("Microsoft JhengHei", 1, 24)); // NOI18N
+        jLabel1.setFont(new java.awt.Font("Arial", 1, 24)); // NOI18N
         jLabel1.setForeground(new java.awt.Color(227, 243, 253));
         jLabel1.setText("Modulos");
         getContentPane().add(jLabel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 100, 248, -1));
@@ -169,6 +172,7 @@ public class PantallaPrincipalVendedor extends javax.swing.JFrame {
     CuentasCorrientes objIC5=new CuentasCorrientes();
     Stock objIC6=new Stock();
     VerReimprimirTickets objIC7 = new VerReimprimirTickets();
+    ImportarExportarArticulos objIC8 = new ImportarExportarArticulos();
     
     private void salesManeTreeMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_salesManeTreeMouseClicked
         
@@ -188,20 +192,6 @@ public class PantallaPrincipalVendedor extends javax.swing.JFrame {
                     objIC1.setSize(desktopPane.getSize());
                 }
                 break;
-            case "ABM Cliente":
-                if(objIC2.isShowing() == true){
-                    try {
-                        objIC2.setSelected(true);
-                    } catch (PropertyVetoException ex) {
-                        Logger.getLogger(PantallaPrincipalVendedor.class.getName()).log(Level.SEVERE, null, ex);
-                    }
-                }else{
-                    objIC2.clearCrudCustomersFields();
-                    desktopPane.add(objIC2);
-                    objIC2.show();
-                    objIC2.setSize(desktopPane.getSize());
-                }
-                break;
             case "Stock":
                 if(objIC6.isShowing() == true){
                     try {
@@ -214,6 +204,34 @@ public class PantallaPrincipalVendedor extends javax.swing.JFrame {
                     desktopPane.add(objIC6);
                     objIC6.show();
                     objIC6.setSize(desktopPane.getSize());
+                }
+                break;
+            case "Importar/Exportar Articulos":
+                if(objIC8.isShowing() == true){
+                    try {
+                        objIC8.setSelected(true);
+                    } catch (PropertyVetoException ex) {
+                        Logger.getLogger(PantallaPrincipalVendedor.class.getName()).log(Level.SEVERE, null, ex);
+                    }
+                }else{
+                    objIC8.cleanImportExportFields();
+                    desktopPane.add(objIC8);
+                    objIC8.show();
+                    objIC8.setSize(desktopPane.getSize());
+                }
+                break;
+            case "ABM Cliente":
+                if(objIC2.isShowing() == true){
+                    try {
+                        objIC2.setSelected(true);
+                    } catch (PropertyVetoException ex) {
+                        Logger.getLogger(PantallaPrincipalVendedor.class.getName()).log(Level.SEVERE, null, ex);
+                    }
+                }else{
+                    objIC2.clearCrudCustomersFields();
+                    desktopPane.add(objIC2);
+                    objIC2.show();
+                    objIC2.setSize(desktopPane.getSize());
                 }
                 break;
             case "ABM Cuentas Corrientes":
@@ -313,6 +331,7 @@ public class PantallaPrincipalVendedor extends javax.swing.JFrame {
             } else {
                 openPos();
             }
+            con.Cerrar();
         } catch (SQLException | ClassNotFoundException | InstantiationException | IllegalAccessException ex) {
             Logger.getLogger(PantallaPrincipalVendedor.class.getName()).log(Level.SEVERE, null, ex);
         }
@@ -348,6 +367,7 @@ public class PantallaPrincipalVendedor extends javax.swing.JFrame {
             moduloVentaVendedor.setEnabled(false);
             ModuloVenta venta = new ModuloVenta();
             venta.setVisible(true);
+            con.Cerrar();
         } catch (SQLException ex) {
             Logger.getLogger(ModuloVenta.class.getName()).log(Level.SEVERE, null, ex);
         }                                                        
@@ -376,12 +396,12 @@ public class PantallaPrincipalVendedor extends javax.swing.JFrame {
     private javax.swing.JButton jButton2;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel3;
-    private javax.swing.JLabel jLuserName;
     private javax.swing.JMenuBar jMenuBar1;
     private javax.swing.JPopupMenu jPopupMenu1;
     private javax.swing.JPopupMenu jPopupMenu2;
     private javax.swing.JScrollPane jScrollPane2;
     public static javax.swing.JButton moduloVentaVendedor;
     private javax.swing.JTree salesManeTree;
+    private javax.swing.JLabel showUserName;
     // End of variables declaration//GEN-END:variables
 }
