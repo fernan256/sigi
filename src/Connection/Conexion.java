@@ -4,7 +4,7 @@ import java.sql.*;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 
-public class Conexion {
+public final class Conexion {
     private Connection con;
     private Statement  sentSQL;
     private ResultSet rst;
@@ -20,7 +20,7 @@ public class Conexion {
     public void conectar() throws SQLException{
         String URL_bd="jdbc:mysql://localhost:3306/sigi?useUnicode=true&characterEncoding=utf-8";
         String user="root";
-        String password="";
+        String password = "";
         con=DriverManager.getConnection(URL_bd,user,password);
         sentSQL=con.createStatement(ResultSet.TYPE_SCROLL_SENSITIVE, ResultSet.CONCUR_UPDATABLE);
     }
