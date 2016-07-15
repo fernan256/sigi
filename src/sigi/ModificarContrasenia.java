@@ -30,8 +30,6 @@ public class ModificarContrasenia extends javax.swing.JFrame {
         repeatNewPass = new javax.swing.JPasswordField();
         changePass = new javax.swing.JButton();
         cancel = new javax.swing.JButton();
-        jLabel4 = new javax.swing.JLabel();
-        jPanel1 = new javax.swing.JPanel();
         jMenuBar1 = new javax.swing.JMenuBar();
         close = new javax.swing.JMenu();
         closeApp = new javax.swing.JMenuItem();
@@ -39,47 +37,35 @@ public class ModificarContrasenia extends javax.swing.JFrame {
         about = new javax.swing.JMenuItem();
 
         setTitle("Modificar Contraseña");
+        setBackground(new java.awt.Color(255, 255, 255));
         setMinimumSize(new java.awt.Dimension(400, 400));
         setResizable(false);
-        getContentPane().setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
-        getContentPane().add(actualPass, new org.netbeans.lib.awtextra.AbsoluteConstraints(217, 80, 146, -1));
 
-        jLabel1.setText("Contraseña Actual:");
-        getContentPane().add(jLabel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(70, 83, -1, -1));
+        jLabel1.setFont(new java.awt.Font("Arial", 1, 16)); // NOI18N
+        jLabel1.setText("Contraseña Actual");
 
-        jLabel2.setText("Contraseña Nueva:");
-        getContentPane().add(jLabel2, new org.netbeans.lib.awtextra.AbsoluteConstraints(70, 115, -1, -1));
+        jLabel2.setFont(new java.awt.Font("Arial", 1, 16)); // NOI18N
+        jLabel2.setText("Contraseña Nueva");
 
-        jLabel3.setText("Repetir Contraseña:");
-        getContentPane().add(jLabel3, new org.netbeans.lib.awtextra.AbsoluteConstraints(64, 147, -1, -1));
-        getContentPane().add(newPass, new org.netbeans.lib.awtextra.AbsoluteConstraints(217, 112, 146, -1));
-        getContentPane().add(repeatNewPass, new org.netbeans.lib.awtextra.AbsoluteConstraints(217, 144, 146, -1));
+        jLabel3.setFont(new java.awt.Font("Arial", 1, 16)); // NOI18N
+        jLabel3.setText("Repetir Contraseña");
 
         changePass.setBackground(new java.awt.Color(204, 204, 204));
+        changePass.setFont(new java.awt.Font("Arial", 1, 18)); // NOI18N
         changePass.setText("Cambiar");
         changePass.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 changePassActionPerformed(evt);
             }
         });
-        getContentPane().add(changePass, new org.netbeans.lib.awtextra.AbsoluteConstraints(110, 196, 91, 35));
 
+        cancel.setFont(new java.awt.Font("Arial", 1, 18)); // NOI18N
         cancel.setText("Cancelar");
         cancel.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 cancelActionPerformed(evt);
             }
         });
-        getContentPane().add(cancel, new org.netbeans.lib.awtextra.AbsoluteConstraints(240, 196, 88, 33));
-
-        jLabel4.setBackground(new java.awt.Color(0, 153, 255));
-        jLabel4.setBorder(javax.swing.BorderFactory.createTitledBorder(null, "Cambiar contraseña", javax.swing.border.TitledBorder.LEFT, javax.swing.border.TitledBorder.DEFAULT_POSITION, new java.awt.Font("Tahoma", 1, 14))); // NOI18N
-        jLabel4.setName(""); // NOI18N
-        getContentPane().add(jLabel4, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 10, 380, 270));
-        jLabel4.getAccessibleContext().setAccessibleDescription("Cambiar contraseña actual");
-
-        jPanel1.setBackground(new java.awt.Color(255, 255, 255));
-        getContentPane().add(jPanel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 400, 280));
 
         close.setText("Archivo");
 
@@ -108,6 +94,56 @@ public class ModificarContrasenia extends javax.swing.JFrame {
 
         setJMenuBar(jMenuBar1);
 
+        javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
+        getContentPane().setLayout(layout);
+        layout.setHorizontalGroup(
+            layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(layout.createSequentialGroup()
+                .addGap(25, 25, 25)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
+                    .addGroup(layout.createSequentialGroup()
+                        .addComponent(jLabel2)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                        .addComponent(newPass, javax.swing.GroupLayout.PREFERRED_SIZE, 146, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addGroup(layout.createSequentialGroup()
+                        .addComponent(jLabel1)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                        .addComponent(actualPass, javax.swing.GroupLayout.PREFERRED_SIZE, 146, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addGroup(layout.createSequentialGroup()
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
+                                .addComponent(jLabel3)
+                                .addGap(18, 18, 18))
+                            .addGroup(layout.createSequentialGroup()
+                                .addComponent(changePass)
+                                .addGap(42, 42, 42)))
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(cancel)
+                            .addComponent(repeatNewPass, javax.swing.GroupLayout.PREFERRED_SIZE, 146, javax.swing.GroupLayout.PREFERRED_SIZE))))
+                .addContainerGap(41, Short.MAX_VALUE))
+        );
+        layout.setVerticalGroup(
+            layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(layout.createSequentialGroup()
+                .addGap(25, 25, 25)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(jLabel1)
+                    .addComponent(actualPass, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGap(10, 10, 10)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(newPass, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(jLabel2))
+                .addGap(9, 9, 9)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(repeatNewPass, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(jLabel3))
+                .addGap(18, 18, 18)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                    .addComponent(changePass)
+                    .addComponent(cancel))
+                .addContainerGap())
+        );
+
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
@@ -129,8 +165,6 @@ private void changePassActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FI
                 getSalt = rs.getString("salt");
             }
             String oldPassword = ConfigVar.get_SHA_1_Pass(Arrays.toString(actualPass.getPassword()), getSalt);
-            System.out.println("comparePass: " +comparePass);
-            System.out.println("oldPassword: "+oldPassword);
             if(comparePass.equals(oldPassword)) {
                 String salt = ConfigVar.getSalt();
                 String newPassword = ConfigVar.get_SHA_1_Pass(Arrays.toString(newPass.getPassword()), salt);
@@ -149,6 +183,7 @@ private void changePassActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FI
             } else {
                 JOptionPane.showMessageDialog(null, "La contraseña actual incorrecta");
             }
+            con.Cerrar();
         } catch (ClassNotFoundException | SQLException | InstantiationException | IllegalAccessException | NoSuchAlgorithmException ex) {
             Logger.getLogger(ModificarContrasenia.class.getName()).log(Level.SEVERE, null, ex);
         }
@@ -189,10 +224,8 @@ private void closeAppActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRS
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel3;
-    private javax.swing.JLabel jLabel4;
     private javax.swing.JMenu jMenu2;
     private javax.swing.JMenuBar jMenuBar1;
-    private javax.swing.JPanel jPanel1;
     private javax.swing.JPasswordField newPass;
     private javax.swing.JPasswordField repeatNewPass;
     // End of variables declaration//GEN-END:variables
