@@ -25,10 +25,7 @@ public class PantallaPrincipal extends javax.swing.JFrame {
     
     public PantallaPrincipal() {         
         initComponents();
-        String location = "imagenes/systecIcono.png";
-        ImageIcon img = new ImageIcon(location);
-        this.setIconImage(img.getImage());
-        jLuserName.setText(Login.userName);
+        showAdminName.setText("Admin: "+Login.userName);
         this.setLocationRelativeTo(null);
         this.setExtendedState(JFrame.MAXIMIZED_BOTH);
     }
@@ -42,8 +39,8 @@ public class PantallaPrincipal extends javax.swing.JFrame {
         jScrollPane2 = new javax.swing.JScrollPane();
         jTree1 = new javax.swing.JTree();
         moduloVentaAdmin = new javax.swing.JButton();
-        jButton2 = new javax.swing.JButton();
-        jLuserName = new javax.swing.JLabel();
+        adminHelp = new javax.swing.JButton();
+        showAdminName = new javax.swing.JLabel();
         jLabel1 = new javax.swing.JLabel();
         backgroundImage = new javax.swing.JLabel();
         jMenuBar1 = new javax.swing.JMenuBar();
@@ -55,7 +52,6 @@ public class PantallaPrincipal extends javax.swing.JFrame {
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setTitle("Principal");
         setName("pantallaPrincipal"); // NOI18N
-        setPreferredSize(new java.awt.Dimension(1500, 900));
         setSize(new java.awt.Dimension(1500, 900));
         getContentPane().setLayout(null);
 
@@ -64,13 +60,17 @@ public class PantallaPrincipal extends javax.swing.JFrame {
         desktopPane.setMaximumSize(new java.awt.Dimension(1680, 960));
         desktopPane.setPreferredSize(new java.awt.Dimension(1024, 768));
         getContentPane().add(desktopPane);
-        desktopPane.setBounds(240, 90, 1040, 620);
+        desktopPane.setBounds(240, 90, 1100, 590);
+
+        jScrollPane2.setFont(new java.awt.Font("Arial", 0, 12)); // NOI18N
 
         javax.swing.tree.DefaultMutableTreeNode treeNode1 = new javax.swing.tree.DefaultMutableTreeNode("Menu");
         javax.swing.tree.DefaultMutableTreeNode treeNode2 = new javax.swing.tree.DefaultMutableTreeNode("Articulos");
         javax.swing.tree.DefaultMutableTreeNode treeNode3 = new javax.swing.tree.DefaultMutableTreeNode("ABM Articulos");
         treeNode2.add(treeNode3);
         treeNode3 = new javax.swing.tree.DefaultMutableTreeNode("Stock");
+        treeNode2.add(treeNode3);
+        treeNode3 = new javax.swing.tree.DefaultMutableTreeNode("Importar/Exportar Articulos");
         treeNode2.add(treeNode3);
         treeNode1.add(treeNode2);
         treeNode2 = new javax.swing.tree.DefaultMutableTreeNode("Ordenes de Compras");
@@ -128,7 +128,7 @@ public class PantallaPrincipal extends javax.swing.JFrame {
         jScrollPane2.setViewportView(jTree1);
 
         getContentPane().add(jScrollPane2);
-        jScrollPane2.setBounds(20, 140, 210, 450);
+        jScrollPane2.setBounds(20, 140, 210, 540);
 
         moduloVentaAdmin.setBackground(new java.awt.Color(255, 255, 255));
         moduloVentaAdmin.setIcon(new javax.swing.ImageIcon(getClass().getResource("/imagenes/carritoVentas.png"))); // NOI18N
@@ -142,19 +142,25 @@ public class PantallaPrincipal extends javax.swing.JFrame {
             }
         });
         getContentPane().add(moduloVentaAdmin);
-        moduloVentaAdmin.setBounds(20, 0, 280, 80);
+        moduloVentaAdmin.setBounds(20, 5, 400, 65);
 
-        jButton2.setBackground(new java.awt.Color(255, 255, 255));
-        jButton2.setIcon(new javax.swing.ImageIcon(getClass().getResource("/imagenes/info.jpg"))); // NOI18N
-        jButton2.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
-        getContentPane().add(jButton2);
-        jButton2.setBounds(1220, 10, 61, 58);
+        adminHelp.setBackground(new java.awt.Color(255, 255, 255));
+        adminHelp.setIcon(new javax.swing.ImageIcon(getClass().getResource("/imagenes/info.jpg"))); // NOI18N
+        adminHelp.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
+        adminHelp.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                adminHelpActionPerformed(evt);
+            }
+        });
+        getContentPane().add(adminHelp);
+        adminHelp.setBounds(1280, 20, 61, 58);
 
-        jLuserName.setFont(new java.awt.Font("Arial", 1, 24)); // NOI18N
-        getContentPane().add(jLuserName);
-        jLuserName.setBounds(910, 10, 290, 30);
+        showAdminName.setFont(new java.awt.Font("Arial", 1, 24)); // NOI18N
+        showAdminName.setForeground(new java.awt.Color(255, 255, 255));
+        getContentPane().add(showAdminName);
+        showAdminName.setBounds(870, 30, 390, 30);
 
-        jLabel1.setFont(new java.awt.Font("Microsoft JhengHei", 1, 24)); // NOI18N
+        jLabel1.setFont(new java.awt.Font("Arial", 1, 24)); // NOI18N
         jLabel1.setForeground(new java.awt.Color(227, 243, 253));
         jLabel1.setText("Modulos");
         getContentPane().add(jLabel1);
@@ -204,9 +210,7 @@ public class PantallaPrincipal extends javax.swing.JFrame {
     BuscarFacturas objIC7 = new BuscarFacturas();
     Configuraciones objIC8 = new Configuraciones();
     CuentasCorrientes objIC9 = new CuentasCorrientes();
-    ImportarExportar objIC10 = new ImportarExportar();
     OrdenesCompras objIC11 = new OrdenesCompras();
-    ManejoPermisos objIC12=new ManejoPermisos();
     Proveedores objIC13 = new Proveedores();
     Stock objIC14 = new Stock();
     ReportesVentas objIC15 = new ReportesVentas();
@@ -215,6 +219,7 @@ public class PantallaPrincipal extends javax.swing.JFrame {
     RecepcionOrdenCompra objIC19 = new RecepcionOrdenCompra();
     ReporteDetalleVentas objIC20 = new ReporteDetalleVentas();
     ReporteStock objIC21 = new ReporteStock();
+    ImportarExportarArticulos objIC22 = new ImportarExportarArticulos();
 
     private void jTree1MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jTree1MouseClicked
         //Evitar el java.lang.NullPointerException del jtree cuando se hace clic fuera del mismo
@@ -248,6 +253,20 @@ public class PantallaPrincipal extends javax.swing.JFrame {
                     objIC14.setSize(desktopPane.getSize());
                 }
                 break;
+            case "Importar/Exportar Articulos":
+                if(objIC22.isShowing() == true){
+                    try {
+                        objIC22.setSelected(true);
+                    } catch (PropertyVetoException ex) {
+                        Logger.getLogger(PantallaPrincipalVendedor.class.getName()).log(Level.SEVERE, null, ex);
+                    }
+                }else{
+                    objIC22.cleanImportExportFields();
+                    desktopPane.add(objIC22);
+                    objIC22.show();
+                    objIC22.setSize(desktopPane.getSize());
+                }
+                break;
             case "Orden de Compra":
                 if(objIC11.isShowing() == true){
                     try {
@@ -256,7 +275,7 @@ public class PantallaPrincipal extends javax.swing.JFrame {
                         Logger.getLogger(PantallaPrincipalVendedor.class.getName()).log(Level.SEVERE, null, ex);
                     }
                 }else{
-                    //objIC11.clearFields();
+                    objIC11.clearOCFields();
                     desktopPane.add(objIC11);
                     objIC11.show();
                     objIC11.setSize(desktopPane.getSize());
@@ -270,7 +289,7 @@ public class PantallaPrincipal extends javax.swing.JFrame {
                         Logger.getLogger(PantallaPrincipalVendedor.class.getName()).log(Level.SEVERE, null, ex);
                     }
                 }else{
-                    //objIC19.clearFields();
+                    objIC19.clearReceptionPurchaseOrderFields();
                     desktopPane.add(objIC19);
                     objIC19.show();
                     objIC19.setSize(desktopPane.getSize());
@@ -301,7 +320,7 @@ public class PantallaPrincipal extends javax.swing.JFrame {
                     objIC5.clearAdjustmentPOSFields();
                     desktopPane.add(objIC5);
                     objIC5.show();
-                    //objIC5.setSize(desktopPane.getSize());
+                    objIC5.setSize(desktopPane.getSize());
                 }
                 break;
             case "ABM Cliente":
@@ -372,7 +391,7 @@ public class PantallaPrincipal extends javax.swing.JFrame {
                         Logger.getLogger(PantallaPrincipalVendedor.class.getName()).log(Level.SEVERE, null, ex);
                     }
                 }else{
-                    //objIC15.clearReportsFields();
+                    objIC15.clearSalesReportFields();
                     desktopPane.add(objIC15);
                     objIC15.show();
                     objIC15.setSize(desktopPane.getSize());
@@ -386,7 +405,7 @@ public class PantallaPrincipal extends javax.swing.JFrame {
                         Logger.getLogger(PantallaPrincipalVendedor.class.getName()).log(Level.SEVERE, null, ex);
                     }
                 }else{
-                    //objIC15.clearReportsFields();
+                    objIC21.clearStockReportFields();
                     desktopPane.add(objIC21);
                     objIC21.show();
                     objIC21.setSize(desktopPane.getSize());
@@ -400,7 +419,7 @@ public class PantallaPrincipal extends javax.swing.JFrame {
                         Logger.getLogger(PantallaPrincipalVendedor.class.getName()).log(Level.SEVERE, null, ex);
                     }
                 }else{
-                    //objIC20.clearReportsFields();
+                    objIC20.clearSalesDetailReportFields();
                     desktopPane.add(objIC20);
                     objIC20.show();
                     objIC20.setSize(desktopPane.getSize());
@@ -414,7 +433,7 @@ public class PantallaPrincipal extends javax.swing.JFrame {
                         Logger.getLogger(PantallaPrincipalVendedor.class.getName()).log(Level.SEVERE, null, ex);
                     }
                 }else{
-                    //objIC16.clearBackUpFields();
+                    objIC16.clearBackUpFields();
                     desktopPane.add(objIC16);
                     objIC16.show();
                     objIC16.setSize(desktopPane.getSize());
@@ -431,20 +450,6 @@ public class PantallaPrincipal extends javax.swing.JFrame {
                     desktopPane.add(objIC8);
                     objIC8.show();
                     objIC8.setSize(desktopPane.getSize());
-                }
-                break;
-            case "Permisos":
-                if(objIC12.isShowing() == true){
-                    try {
-                        objIC12.setSelected(true);
-                    } catch (PropertyVetoException ex) {
-                        Logger.getLogger(PantallaPrincipalVendedor.class.getName()).log(Level.SEVERE, null, ex);
-                    }
-                }else{
-                    //objIC12.clearPermissionsFields();
-                    desktopPane.add(objIC12);
-                    objIC12.show();
-                    //objIC12.setSize(desktopPane.getSize());
                 }
                 break;
             default:
@@ -465,6 +470,7 @@ public class PantallaPrincipal extends javax.swing.JFrame {
             moduloVentaAdmin.setEnabled(false);
             ModuloVenta venta = new ModuloVenta();
             venta.setVisible(true);
+            con.Cerrar();
         } catch (SQLException ex) {
             Logger.getLogger(ModuloVenta.class.getName()).log(Level.SEVERE, null, ex);
         }                                                        
@@ -527,10 +533,16 @@ public class PantallaPrincipal extends javax.swing.JFrame {
             } else {
                 openPos();
             }
+            con.Cerrar();
         } catch (SQLException | ClassNotFoundException | InstantiationException | IllegalAccessException ex) {
             Logger.getLogger(PantallaPrincipalVendedor.class.getName()).log(Level.SEVERE, null, ex);
         }
     }//GEN-LAST:event_moduloVentaAdminActionPerformed
+
+    private void adminHelpActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_adminHelpActionPerformed
+        AyudaAdmin help = new AyudaAdmin(this, true);
+        help.setVisible(true);
+    }//GEN-LAST:event_adminHelpActionPerformed
 
     /**
     * @param args the command line arguments
@@ -547,20 +559,20 @@ public class PantallaPrincipal extends javax.swing.JFrame {
         
     }
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.JButton adminHelp;
     private javax.swing.JLabel backgroundImage;
     private javax.swing.JMenuItem changePassword;
     private javax.swing.JMenu changePasswordMenu;
     public static javax.swing.JDesktopPane desktopPane;
     private javax.swing.JMenuItem exit;
     private javax.swing.JMenu exitMenu;
-    private javax.swing.JButton jButton2;
     private javax.swing.JLabel jLabel1;
-    private javax.swing.JLabel jLuserName;
     private javax.swing.JMenuBar jMenuBar1;
     private javax.swing.JPopupMenu jPopupMenu1;
     private javax.swing.JScrollPane jScrollPane2;
     private javax.swing.JTree jTree1;
     public static javax.swing.JButton moduloVentaAdmin;
+    private javax.swing.JLabel showAdminName;
     // End of variables declaration//GEN-END:variables
   
 }
