@@ -16,14 +16,15 @@ import javax.swing.table.DefaultTableModel;
 public class RecepcionOrdenCompra extends javax.swing.JInternalFrame {
     Conexion con;
     ResultSet rs;
-    int j = 0;
+    private int j = 0, k = 0;
+    
     public RecepcionOrdenCompra() {
         initComponents();
         paymentType.insertItemAt("", 0);
         paymentType.insertItemAt("Efectivo", 1);
         paymentType.insertItemAt("Cuena Corriente", 2);
-        Date date = new Date();
-        receptionDate.setDate(date);
+        Date recpDate = new Date();
+        receptionDate.setDate(recpDate);
         acceptReception.setEnabled(false);
     }
 
@@ -52,21 +53,36 @@ public class RecepcionOrdenCompra extends javax.swing.JInternalFrame {
         purchaseResult = new javax.swing.JTable();
         jLabel1 = new javax.swing.JLabel();
         purchaseOrderNumber = new javax.swing.JTextField();
+        clearFields = new javax.swing.JButton();
 
+        setBackground(new java.awt.Color(255, 255, 255));
         setClosable(true);
 
+        jLabel2.setFont(new java.awt.Font("Arial", 1, 16)); // NOI18N
         jLabel2.setText("Proveedor");
 
+        providorName.setFont(new java.awt.Font("Arial", 0, 12)); // NOI18N
+
+        jLabel3.setFont(new java.awt.Font("Arial", 1, 16)); // NOI18N
         jLabel3.setText("Fecha Recepción");
 
+        receptionDate.setFont(new java.awt.Font("Arial", 0, 12)); // NOI18N
+
+        jLabel4.setFont(new java.awt.Font("Arial", 1, 16)); // NOI18N
         jLabel4.setText("Forma de Pago");
 
+        paymentType.setFont(new java.awt.Font("Arial", 0, 12)); // NOI18N
+
+        jLabel5.setFont(new java.awt.Font("Arial", 1, 16)); // NOI18N
         jLabel5.setText("Fecha de Pedido");
 
         orderDate.setEditable(false);
+        orderDate.setFont(new java.awt.Font("Arial", 0, 12)); // NOI18N
 
+        jLabel6.setFont(new java.awt.Font("Arial", 1, 16)); // NOI18N
         jLabel6.setText("Articulos");
 
+        itemsPurchaseOrder.setFont(new java.awt.Font("Arial", 0, 12)); // NOI18N
         itemsPurchaseOrder.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
 
@@ -115,6 +131,7 @@ public class RecepcionOrdenCompra extends javax.swing.JInternalFrame {
             itemsPurchaseOrder.getColumnModel().getColumn(9).setMaxWidth(0);
         }
 
+        deleteItem.setFont(new java.awt.Font("Arial", 1, 18)); // NOI18N
         deleteItem.setText("Eliminar ITEM");
         deleteItem.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -122,8 +139,12 @@ public class RecepcionOrdenCompra extends javax.swing.JInternalFrame {
             }
         });
 
+        jLabel7.setFont(new java.awt.Font("Arial", 1, 16)); // NOI18N
         jLabel7.setText("TOTAL DE OC");
 
+        totalPurchase.setFont(new java.awt.Font("Arial", 1, 14)); // NOI18N
+
+        acceptReception.setFont(new java.awt.Font("Arial", 1, 18)); // NOI18N
         acceptReception.setText("RECEPCION");
         acceptReception.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -131,14 +152,17 @@ public class RecepcionOrdenCompra extends javax.swing.JInternalFrame {
             }
         });
 
+        jLabel8.setFont(new java.awt.Font("Arial", 1, 16)); // NOI18N
         jLabel8.setText("Buscar por fecha");
 
+        orderPurchaseDate.setFont(new java.awt.Font("Arial", 0, 12)); // NOI18N
         orderPurchaseDate.addPropertyChangeListener(new java.beans.PropertyChangeListener() {
             public void propertyChange(java.beans.PropertyChangeEvent evt) {
                 orderPurchaseDatePropertyChange(evt);
             }
         });
 
+        purchaseResult.setFont(new java.awt.Font("Arial", 0, 12)); // NOI18N
         purchaseResult.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
 
@@ -176,14 +200,25 @@ public class RecepcionOrdenCompra extends javax.swing.JInternalFrame {
             purchaseResult.getColumnModel().getColumn(3).setResizable(false);
         }
 
+        jLabel1.setFont(new java.awt.Font("Arial", 1, 16)); // NOI18N
         jLabel1.setText("N° Orden de Compra");
+
+        purchaseOrderNumber.setFont(new java.awt.Font("Arial", 0, 12)); // NOI18N
+
+        clearFields.setFont(new java.awt.Font("Arial", 1, 18)); // NOI18N
+        clearFields.setText("Borrar Campos");
+        clearFields.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                clearFieldsActionPerformed(evt);
+            }
+        });
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
-                .addGap(33, 33, 33)
+                .addGap(25, 25, 25)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(layout.createSequentialGroup()
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -208,15 +243,15 @@ public class RecepcionOrdenCompra extends javax.swing.JInternalFrame {
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addGroup(layout.createSequentialGroup()
                                 .addComponent(jLabel6)
-                                .addGap(87, 87, 87)
+                                .addGap(104, 104, 104)
                                 .addComponent(deleteItem)
-                                .addGap(74, 74, 74)
+                                .addGap(60, 60, 60)
                                 .addComponent(acceptReception)
-                                .addGap(86, 86, 86)
+                                .addGap(84, 84, 84)
                                 .addComponent(jLabel7)
-                                .addGap(62, 62, 62)
+                                .addGap(50, 50, 50)
                                 .addComponent(totalPurchase, javax.swing.GroupLayout.PREFERRED_SIZE, 136, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                .addGap(0, 81, Short.MAX_VALUE))
+                                .addGap(0, 0, Short.MAX_VALUE))
                             .addComponent(jScrollPane1))
                         .addContainerGap())
                     .addGroup(layout.createSequentialGroup()
@@ -224,54 +259,54 @@ public class RecepcionOrdenCompra extends javax.swing.JInternalFrame {
                             .addGroup(layout.createSequentialGroup()
                                 .addComponent(jLabel8)
                                 .addGap(26, 26, 26)
-                                .addComponent(orderPurchaseDate, javax.swing.GroupLayout.PREFERRED_SIZE, 181, javax.swing.GroupLayout.PREFERRED_SIZE))
+                                .addComponent(orderPurchaseDate, javax.swing.GroupLayout.PREFERRED_SIZE, 181, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addGap(111, 111, 111)
+                                .addComponent(clearFields))
                             .addComponent(jScrollPane3, javax.swing.GroupLayout.PREFERRED_SIZE, 756, javax.swing.GroupLayout.PREFERRED_SIZE))
-                        .addGap(0, 0, Short.MAX_VALUE))))
+                        .addGap(0, 320, Short.MAX_VALUE))))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
-                .addGap(18, 18, 18)
+                .addGap(20, 20, 20)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                    .addComponent(clearFields, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                     .addComponent(orderPurchaseDate, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                     .addComponent(jLabel8, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
                 .addGap(18, 18, 18)
                 .addComponent(jScrollPane3, javax.swing.GroupLayout.PREFERRED_SIZE, 130, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(35, 35, 35)
+                .addGap(18, 18, 18)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel2)
                     .addComponent(providorName, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(jLabel5)
                     .addComponent(orderDate, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addGap(18, 18, 18)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
                     .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                         .addComponent(jLabel1)
                         .addComponent(purchaseOrderNumber, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                     .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                        .addComponent(receptionDate, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                        .addComponent(receptionDate, javax.swing.GroupLayout.DEFAULT_SIZE, 21, Short.MAX_VALUE)
                         .addComponent(jLabel3, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)))
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(layout.createSequentialGroup()
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addGroup(layout.createSequentialGroup()
-                                .addGap(19, 19, 19)
-                                .addComponent(jLabel4))
-                            .addGroup(layout.createSequentialGroup()
-                                .addGap(18, 18, 18)
-                                .addComponent(paymentType, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                        .addGap(22, 22, 22)
-                        .addComponent(jLabel6))
+                        .addGap(19, 19, 19)
+                        .addComponent(jLabel4))
+                    .addGroup(layout.createSequentialGroup()
+                        .addGap(18, 18, 18)
+                        .addComponent(paymentType, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                     .addGroup(layout.createSequentialGroup()
                         .addGap(64, 64, 64)
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                             .addComponent(deleteItem)
                             .addComponent(jLabel7)
                             .addComponent(totalPurchase, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(acceptReception))))
+                            .addComponent(acceptReception)
+                            .addComponent(jLabel6))))
                 .addGap(18, 18, 18)
-                .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 243, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 151, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addContainerGap(108, Short.MAX_VALUE))
         );
 
         pack();
@@ -309,9 +344,9 @@ public class RecepcionOrdenCompra extends javax.swing.JInternalFrame {
 
     private void orderPurchaseDatePropertyChange(java.beans.PropertyChangeEvent evt) {//GEN-FIRST:event_orderPurchaseDatePropertyChange
         if(evt.getPropertyName().equals("date")){
-            DefaultTableModel eliminarTodo = (DefaultTableModel) purchaseResult.getModel();
-            eliminarTodo.setRowCount(0);
-            j = 0;
+            DefaultTableModel eliminarTodos = (DefaultTableModel) purchaseResult.getModel();
+            eliminarTodos.setRowCount(0);
+            k = 0;
             getPurchaseFromDB();
         }
     }//GEN-LAST:event_orderPurchaseDatePropertyChange
@@ -333,19 +368,17 @@ public class RecepcionOrdenCompra extends javax.swing.JInternalFrame {
                                         + "WHERE t1.id_ordenes_compra = '"+purchaseId+"' "
                                         + "AND t3.aceptar_eliminar_producto = 1";
                 rs = con.Consulta(getPurchaseOrder);
+                DefaultTableModel temp = (DefaultTableModel)
+                itemsPurchaseOrder.getModel();
+                Object nuevo[]= {temp.getRowCount()+1,"",""};
+                String itemNumber = Integer.toString (j+1);
                 while(rs.next()){
                     providorName.setText(rs.getString("empresa"));
                     orderDate.setText(Utils.formatDateWithMonths(rs.getDate("fecha_pedido")));
                     purchaseOrderNumber.setText(rs.getString("id_ordenes_compra"));
-
                     BigDecimal auxTotal = null;
-                    DefaultTableModel temp = (DefaultTableModel)
-                    itemsPurchaseOrder.getModel();
-
-                    Object nuevo[]= {temp.getRowCount()+1,"",""};
                     temp.addRow(nuevo);
-                    String item = Integer.toString (j+1);
-                    itemsPurchaseOrder.setValueAt(item, j, 0);
+                    itemsPurchaseOrder.setValueAt(itemNumber, j, 0);
                     itemsPurchaseOrder.setValueAt(rs.getString("scanning"), j, 1);
                     itemsPurchaseOrder.setValueAt(rs.getString("nombre_producto"), j, 2);
                     itemsPurchaseOrder.setValueAt(rs.getString("marca"), j, 3);
@@ -360,6 +393,7 @@ public class RecepcionOrdenCompra extends javax.swing.JInternalFrame {
                 setTotal();
                 acceptReception.setEnabled(true);
             }
+            con.Cerrar();
         } catch (ClassNotFoundException | SQLException | InstantiationException | IllegalAccessException ex) {
             Logger.getLogger(RecepcionOrdenCompra.class.getName()).log(Level.SEVERE, null, ex);
         }
@@ -371,6 +405,7 @@ public class RecepcionOrdenCompra extends javax.swing.JInternalFrame {
             paymentType.requestFocus();
         } else {
             try {
+                con = new Conexion();
                 Integer oldStockBalance [] = new Integer[j];
                 Integer quantityRequested [] = new Integer[j];
                 Integer newStockBalance [] = new Integer[j];
@@ -384,7 +419,7 @@ public class RecepcionOrdenCompra extends javax.swing.JInternalFrame {
                     stockIdToMovement [i] = Integer.parseInt(itemsPurchaseOrder.getValueAt(i, 9).toString());
                     String updateStock = "UPDATE stock SET saldo_stock = "+newStockBalance[i]+" WHERE id_articulo ="+idUpdateArt[i]+"";
                     con.ejecutar(updateStock);
-                    String insertStockMovement = "INSERT INTO (fecha_movimiento_stock, entrada, stock_id_stock) VALUES ("+quantityRequested[i]+", CURRENT_TIMESTAMP, '"+stockIdToMovement[i]+"')";
+                    String insertStockMovement = "INSERT INTO movimiento_stock (fecha_movimiento_stock, entrada, stock_id_stock) VALUES (CURRENT_TIMESTAMP, "+quantityRequested[i]+", '"+stockIdToMovement[i]+"')";
                     con.ejecutar(insertStockMovement);
                     String updateArticle = "UPDATE oc_productos SET aceptar_eliminar_producto = 2 WHERE id_articulo = "+idUpdateArt[i]+" AND id_orden_de_compra = '"+purchaseOrderNumber.getText()+"'";
                     con.ejecutar(updateArticle);
@@ -393,11 +428,15 @@ public class RecepcionOrdenCompra extends javax.swing.JInternalFrame {
                 con.ejecutar(updatePurchaseOrder);
                 con.Cerrar();
                 clearReceptionPurchaseOrderFields();
-            } catch (SQLException ex) {
-               Logger.getLogger(RecepcionOrdenCompra.class.getName()).log(Level.SEVERE, null, ex);
+            } catch (ClassNotFoundException | SQLException | InstantiationException | IllegalAccessException ex) {
+                Logger.getLogger(RecepcionOrdenCompra.class.getName()).log(Level.SEVERE, null, ex);
             }
         }
     }//GEN-LAST:event_acceptReceptionActionPerformed
+
+    private void clearFieldsActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_clearFieldsActionPerformed
+        clearReceptionPurchaseOrderFields();
+    }//GEN-LAST:event_clearFieldsActionPerformed
     
     private void setTotal(){
         BigDecimal addResult = new BigDecimal(BigInteger.ZERO);
@@ -418,17 +457,16 @@ public class RecepcionOrdenCompra extends javax.swing.JInternalFrame {
             con = new Conexion();
             String getPurchaseInfo = "SELECT t1.id_ordenes_compra, t1.id_proveedor, t1.fecha_pedido, t1.estado_orden, t2.empresa, t3.descripcion FROM ordenes_compra t1 INNER JOIN proveedores t2 ON t2.id_proveedor = t1.id_proveedor INNER JOIN estado_orden_compra t3 ON t3.id_estado_orden_compra = t1.estado_orden WHERE t1.fecha_pedido >= date_format('"+Utils.formatDateForConfig(orderPurchaseDate.getDate())+"', '%Y-%m-%d 00:00:00') AND t1.fecha_pedido < date_format('"+Utils.formatDateForConfig(orderPurchaseDate.getDate())+"', '%Y-%m-%d 23:59:59') AND estado_orden = 1";
             rs = con.Consulta(getPurchaseInfo);
+            DefaultTableModel temporal = (DefaultTableModel)
+            purchaseResult.getModel();
+            Object showPurchase[]= {temporal.getRowCount()+1,"",""};
             while(rs.next()) {
-                DefaultTableModel temporal = (DefaultTableModel)
-                purchaseResult.getModel();
-
-                Object showPurchase[]= {temporal.getRowCount()+1,"",""};
                 temporal.addRow(showPurchase);
-                purchaseResult.setValueAt(rs.getInt("id_ordenes_compra"), j, 0);
-                purchaseResult.setValueAt(rs.getString("empresa"), j, 1);
-                purchaseResult.setValueAt(rs.getString("fecha_pedido"), j, 2);
-                purchaseResult.setValueAt(rs.getString("descripcion"), j, 3);
-                j++;
+                purchaseResult.setValueAt(rs.getInt("id_ordenes_compra"), k, 0);
+                purchaseResult.setValueAt(rs.getString("empresa"), k, 1);
+                purchaseResult.setValueAt(rs.getString("fecha_pedido"), k, 2);
+                purchaseResult.setValueAt(rs.getString("descripcion"), k, 3);
+                k++;
             }
             con.Cerrar();
         } catch (SQLException | ClassNotFoundException | InstantiationException | IllegalAccessException ex) {
@@ -439,20 +477,22 @@ public class RecepcionOrdenCompra extends javax.swing.JInternalFrame {
     public void clearReceptionPurchaseOrderFields(){
         DefaultTableModel deleteItemsTable = (DefaultTableModel) itemsPurchaseOrder.getModel();
         deleteItemsTable.setRowCount(0);
+        j = 0;
         DefaultTableModel deletePurchaseResult = (DefaultTableModel) purchaseResult.getModel();
         deletePurchaseResult.setRowCount(0);
-        j = 0;
-        getPurchaseFromDB();
+        k = 0;
         receptionDate.setDate(null);
         paymentType.setSelectedIndex(0);
         providorName.setText("");
         orderDate.setText("");
         purchaseOrderNumber.setText("");
         totalPurchase.setText("");
+        orderPurchaseDate.setDate(null);
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton acceptReception;
+    private javax.swing.JButton clearFields;
     private javax.swing.JButton deleteItem;
     private javax.swing.JTable itemsPurchaseOrder;
     private javax.swing.JLabel jLabel1;
