@@ -27,6 +27,11 @@ public class Utils {
         String fecha = formatDate.format(thisDate);
         return fecha; 
     }
+    public static String formatDateOnly(Date thisDate) {
+        SimpleDateFormat formatDate = new SimpleDateFormat("dd'/'MM'/'yyyy");
+        String fecha = formatDate.format(thisDate);
+        return fecha; 
+    }
     public static String formatDateForConfig(Date thisDate) {
         if(thisDate == null) {
             Date getDate = new Date();
