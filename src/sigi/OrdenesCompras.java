@@ -31,7 +31,6 @@ public class OrdenesCompras extends javax.swing.JInternalFrame {
         searchScanning.selectAll();
     }
 
-
     @SuppressWarnings("unchecked")
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
@@ -48,6 +47,7 @@ public class OrdenesCompras extends javax.swing.JInternalFrame {
         jLabel6 = new javax.swing.JLabel();
         jButton1 = new javax.swing.JButton();
 
+        setBackground(new java.awt.Color(255, 255, 255));
         setClosable(true);
         addPropertyChangeListener(new java.beans.PropertyChangeListener() {
             public void propertyChange(java.beans.PropertyChangeEvent evt) {
@@ -55,11 +55,13 @@ public class OrdenesCompras extends javax.swing.JInternalFrame {
             }
         });
 
+        providers.setFont(new java.awt.Font("Arial", 0, 12)); // NOI18N
         providers.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "Proveedor" }));
 
-        jLabel1.setFont(new java.awt.Font("Microsoft JhengHei", 1, 24)); // NOI18N
+        jLabel1.setFont(new java.awt.Font("Arial", 1, 16)); // NOI18N
         jLabel1.setText("Seleccionar Proveedor");
 
+        itemsInPurchaseOrder.setFont(new java.awt.Font("Arial", 0, 12)); // NOI18N
         itemsInPurchaseOrder.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
 
@@ -102,15 +104,15 @@ public class OrdenesCompras extends javax.swing.JInternalFrame {
             itemsInPurchaseOrder.getColumnModel().getColumn(9).setMaxWidth(0);
         }
 
-        cancel.setFont(new java.awt.Font("Ubuntu", 1, 18)); // NOI18N
-        cancel.setText("Cancelar");
+        cancel.setFont(new java.awt.Font("Arial", 1, 18)); // NOI18N
+        cancel.setText("Borrar Campos");
         cancel.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 cancelActionPerformed(evt);
             }
         });
 
-        searchScanning.setFont(new java.awt.Font("Ubuntu", 1, 36)); // NOI18N
+        searchScanning.setFont(new java.awt.Font("Arial", 1, 36)); // NOI18N
         searchScanning.addKeyListener(new java.awt.event.KeyAdapter() {
             public void keyReleased(java.awt.event.KeyEvent evt) {
                 searchScanningKeyReleased(evt);
@@ -119,9 +121,9 @@ public class OrdenesCompras extends javax.swing.JInternalFrame {
 
         totalPurchase.setEditable(false);
         totalPurchase.setText("0.00");
-        totalPurchase.setFont(new java.awt.Font("Ubuntu", 1, 36)); // NOI18N
+        totalPurchase.setFont(new java.awt.Font("Arial", 1, 36)); // NOI18N
 
-        create.setFont(new java.awt.Font("Ubuntu", 1, 18)); // NOI18N
+        create.setFont(new java.awt.Font("Arial", 1, 18)); // NOI18N
         create.setText("Crear");
         create.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -129,12 +131,13 @@ public class OrdenesCompras extends javax.swing.JInternalFrame {
             }
         });
 
-        jLabel5.setFont(new java.awt.Font("Microsoft JhengHei", 1, 24)); // NOI18N
+        jLabel5.setFont(new java.awt.Font("Arial", 1, 16)); // NOI18N
         jLabel5.setText("Scanning");
 
-        jLabel6.setFont(new java.awt.Font("Ubuntu", 1, 36)); // NOI18N
+        jLabel6.setFont(new java.awt.Font("Arial", 1, 36)); // NOI18N
         jLabel6.setText("TOTAL");
 
+        jButton1.setFont(new java.awt.Font("Arial", 1, 18)); // NOI18N
         jButton1.setText("Eliminar Articulo");
         jButton1.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -147,48 +150,49 @@ public class OrdenesCompras extends javax.swing.JInternalFrame {
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
-                .addGap(23, 23, 23)
+                .addGap(25, 25, 25)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(layout.createSequentialGroup()
-                        .addGap(137, 137, 137)
-                        .addComponent(create, javax.swing.GroupLayout.PREFERRED_SIZE, 262, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                        .addComponent(cancel, javax.swing.GroupLayout.PREFERRED_SIZE, 280, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addGroup(layout.createSequentialGroup()
+                                .addGap(200, 200, 200)
+                                .addComponent(create, javax.swing.GroupLayout.PREFERRED_SIZE, 262, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                                .addComponent(cancel, javax.swing.GroupLayout.PREFERRED_SIZE, 280, javax.swing.GroupLayout.PREFERRED_SIZE))
+                            .addGroup(layout.createSequentialGroup()
+                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                                    .addGroup(layout.createSequentialGroup()
+                                        .addComponent(jLabel5)
+                                        .addGap(25, 25, 25)
+                                        .addComponent(searchScanning))
+                                    .addGroup(layout.createSequentialGroup()
+                                        .addComponent(jLabel1)
+                                        .addGap(18, 18, 18)
+                                        .addComponent(providers, javax.swing.GroupLayout.PREFERRED_SIZE, 271, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                                .addGap(69, 69, 69)
+                                .addComponent(jButton1)))
+                        .addGap(0, 114, Short.MAX_VALUE))
                     .addGroup(layout.createSequentialGroup()
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
-                            .addGroup(javax.swing.GroupLayout.Alignment.LEADING, layout.createSequentialGroup()
-                                .addGap(7, 7, 7)
-                                .addComponent(jLabel5)
-                                .addGap(18, 18, 18)
-                                .addComponent(searchScanning))
-                            .addGroup(javax.swing.GroupLayout.Alignment.LEADING, layout.createSequentialGroup()
-                                .addComponent(jLabel1)
-                                .addGap(18, 18, 18)
-                                .addComponent(providers, javax.swing.GroupLayout.PREFERRED_SIZE, 271, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                        .addGap(69, 69, 69)
-                        .addComponent(jButton1)))
-                .addGap(0, 116, Short.MAX_VALUE))
-            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                .addContainerGap()
-                .addComponent(jScrollPane1)
-                .addContainerGap())
-            .addGroup(layout.createSequentialGroup()
-                .addContainerGap()
-                .addComponent(jLabel6, javax.swing.GroupLayout.PREFERRED_SIZE, 133, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(totalPurchase, javax.swing.GroupLayout.PREFERRED_SIZE, 210, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(jScrollPane1, javax.swing.GroupLayout.Alignment.TRAILING)
+                            .addGroup(layout.createSequentialGroup()
+                                .addComponent(jLabel6, javax.swing.GroupLayout.PREFERRED_SIZE, 133, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                .addComponent(totalPurchase, javax.swing.GroupLayout.PREFERRED_SIZE, 175, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addGap(0, 0, Short.MAX_VALUE)))
+                        .addContainerGap())))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
-                .addGap(10, 10, 10)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                .addGap(20, 20, 20)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
                     .addGroup(layout.createSequentialGroup()
                         .addComponent(providers, javax.swing.GroupLayout.PREFERRED_SIZE, 29, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(2, 2, 2))
-                    .addComponent(jLabel1))
-                .addGap(18, 18, 18)
+                        .addGap(20, 20, 20))
+                    .addGroup(layout.createSequentialGroup()
+                        .addComponent(jLabel1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                        .addGap(18, 18, 18)))
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
                     .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                         .addComponent(searchScanning, javax.swing.GroupLayout.PREFERRED_SIZE, 41, javax.swing.GroupLayout.PREFERRED_SIZE)
@@ -201,12 +205,12 @@ public class OrdenesCompras extends javax.swing.JInternalFrame {
                 .addGap(18, 18, 18)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel6, javax.swing.GroupLayout.PREFERRED_SIZE, 40, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(totalPurchase, javax.swing.GroupLayout.PREFERRED_SIZE, 52, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addGap(33, 33, 33)
+                    .addComponent(totalPurchase, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGap(90, 90, 90)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
                     .addComponent(cancel, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                    .addComponent(create, javax.swing.GroupLayout.PREFERRED_SIZE, 79, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addContainerGap(79, Short.MAX_VALUE))
+                    .addComponent(create, javax.swing.GroupLayout.PREFERRED_SIZE, 50, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addContainerGap(20, Short.MAX_VALUE))
         );
 
         pack();
@@ -236,16 +240,16 @@ public class OrdenesCompras extends javax.swing.JInternalFrame {
                 j = itemsInPurchaseOrder.getRowCount();
                 String auxCantidadSolicitada[] = new String[j];
                 String auxIdArt[] = new String[j];
-
                 for (int i=0; i<j; i++) {
                     auxIdArt[i] = itemsInPurchaseOrder.getValueAt(i, 8).toString();
                     auxCantidadSolicitada[i] = itemsInPurchaseOrder.getValueAt(i, 6).toString();
-                    venta = "INSERT INTO oc_productos (id_orden_de_compra, id_articulo, cantidad) VALUES ('"+idOrdenCompra+"', '"+auxIdArt[i]+"', '"+auxCantidadSolicitada[i]+"')";
+                    venta = "INSERT INTO oc_productos (id_orden_de_compra, id_articulo, cantidad, aceptar_eliminar_producto) VALUES ('"+idOrdenCompra+"', '"+auxIdArt[i]+"', '"+auxCantidadSolicitada[i]+"', 1)";
                     con.ejecutar(venta);
                 }
                 JOptionPane.showMessageDialog(null, "Orden de Compra N° "+idOrdenCompra+" generada");
                 clearOCFields();
             }
+            con.Cerrar();
         }catch (ClassNotFoundException | InstantiationException | IllegalAccessException | SQLException ex) {
             Logger.getLogger(OrdenesCompras.class.getName()).log(Level.SEVERE, null, ex);
         }
@@ -285,10 +289,8 @@ public class OrdenesCompras extends javax.swing.JInternalFrame {
                     } else {
                         auxTotal = cantiSolicitada.multiply(new BigDecimal(costo_producto)).setScale(2, RoundingMode.CEILING).divide(new BigDecimal(1000));
                     }
-
                     DefaultTableModel temp = (DefaultTableModel)
                     itemsInPurchaseOrder.getModel();
-
                     Object nuevo[]= {temp.getRowCount()+1,"",""};
                     temp.addRow(nuevo);
                     String item = Integer.toString (j+1);
@@ -312,6 +314,7 @@ public class OrdenesCompras extends javax.swing.JInternalFrame {
                     AltaArticuloRapida altaRapida = new AltaArticuloRapida();
                     altaRapida.setVisible(true);
                 }
+                //con.Cerrar();
             } catch (ClassNotFoundException | InstantiationException | IllegalAccessException | SQLException ex) {
                 Logger.getLogger(OrdenesCompras.class.getName()).log(Level.SEVERE, null, ex);
             }
@@ -347,6 +350,7 @@ public class OrdenesCompras extends javax.swing.JInternalFrame {
             if(numRows == 0) {
                 JOptionPane.showMessageDialog(null, "No hay Proveedores Cargados en el Sistema");
             }
+            con.Cerrar();
         } catch (ClassNotFoundException | SQLException | InstantiationException | IllegalAccessException ex) {
             Logger.getLogger(BajaModificacionOrdenesCompras.class.getName()).log(Level.SEVERE, null, ex);
         }
