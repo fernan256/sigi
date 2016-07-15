@@ -31,15 +31,19 @@ public class BuscarArticulos extends javax.swing.JDialog {
         jButton2 = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
+        setBackground(new java.awt.Color(255, 255, 255));
 
+        jLabel1.setFont(new java.awt.Font("Arial", 1, 16)); // NOI18N
         jLabel1.setText("Nombre Articulo");
 
+        productName.setFont(new java.awt.Font("Arial", 0, 12)); // NOI18N
         productName.addKeyListener(new java.awt.event.KeyAdapter() {
             public void keyReleased(java.awt.event.KeyEvent evt) {
                 productNameKeyReleased(evt);
             }
         });
 
+        resultTable.setFont(new java.awt.Font("Arial", 0, 12)); // NOI18N
         resultTable.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
                 {},
@@ -58,6 +62,7 @@ public class BuscarArticulos extends javax.swing.JDialog {
         });
         jScrollPane1.setViewportView(resultTable);
 
+        jButton2.setFont(new java.awt.Font("Arial", 1, 18)); // NOI18N
         jButton2.setText("Cancelar");
         jButton2.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -73,12 +78,12 @@ public class BuscarArticulos extends javax.swing.JDialog {
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(layout.createSequentialGroup()
                         .addContainerGap()
-                        .addComponent(jScrollPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 656, Short.MAX_VALUE))
+                        .addComponent(jScrollPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 781, Short.MAX_VALUE))
                     .addGroup(layout.createSequentialGroup()
                         .addGap(21, 21, 21)
                         .addComponent(jLabel1)
                         .addGap(32, 32, 32)
-                        .addComponent(productName, javax.swing.GroupLayout.PREFERRED_SIZE, 203, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addComponent(productName, javax.swing.GroupLayout.PREFERRED_SIZE, 290, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addGap(0, 0, Short.MAX_VALUE)))
                 .addContainerGap())
             .addGroup(layout.createSequentialGroup()
@@ -94,7 +99,7 @@ public class BuscarArticulos extends javax.swing.JDialog {
                     .addComponent(jLabel1)
                     .addComponent(productName, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addGap(18, 18, 18)
-                .addComponent(jScrollPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 216, Short.MAX_VALUE)
+                .addComponent(jScrollPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 215, Short.MAX_VALUE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addComponent(jButton2, javax.swing.GroupLayout.PREFERRED_SIZE, 56, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addContainerGap())
@@ -135,6 +140,7 @@ public class BuscarArticulos extends javax.swing.JDialog {
                 fila[6] = rs.getString("id_articulo");
                 buscar.addRow(fila);
             }
+            con.Cerrar();
         } catch (ClassNotFoundException | InstantiationException | IllegalAccessException | SQLException ex) {
             Logger.getLogger(OrdenesCompras.class.getName()).log(Level.SEVERE, null, ex);
         }
