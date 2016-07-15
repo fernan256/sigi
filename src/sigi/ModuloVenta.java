@@ -5,6 +5,7 @@ import Utils.Utils;
 import Connection.Conexion;
 import java.awt.event.KeyEvent;
 import java.math.BigDecimal;
+import java.math.BigInteger;
 import java.math.RoundingMode;
 import java.sql.ResultSet;
 import java.sql.SQLException;
@@ -67,6 +68,7 @@ public class ModuloVenta extends javax.swing.JFrame {
         cashWithdrawal = new javax.swing.JButton();
         searchArticles = new javax.swing.JButton();
 
+        setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
         setBackground(new java.awt.Color(255, 255, 255));
         setCursor(new java.awt.Cursor(java.awt.Cursor.DEFAULT_CURSOR));
         setMinimumSize(new java.awt.Dimension(880, 610));
@@ -302,48 +304,49 @@ public class ModuloVenta extends javax.swing.JFrame {
     
     private void scanningKeyReleased(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_scanningKeyReleased
         this.setFocusable(true);
-        if(evt.getKeyCode() == KeyEvent.VK_F1){
-            salesFunction(1);
-        } else if(evt.getKeyCode() == KeyEvent.VK_F2){
-            sendTotalVentas = totalVentas.getText();
-            VentasCtaCte cta = new VentasCtaCte(this, true);
-            cta.setVisible(true);
-            if(VentasCtaCte.value == 1) {
-                salesFunction(2);
-            } else {
-            }
-        }
-        if((evt.getKeyCode() == KeyEvent.VK_C) && ((evt.getModifiers() & KeyEvent.CTRL_MASK) != 0)) {
-            String cantidadString = JOptionPane.showInputDialog("Cantidad", "0");
-            if(cantidadString != null) {
-                cantidad = cantidadString;
-            }
-        }
-        if((evt.getKeyCode() == KeyEvent.VK_D) && ((evt.getModifiers() & KeyEvent.CTRL_MASK) != 0)) {
-            String descuentoString = JOptionPane.showInputDialog("Descuento", "0.00");
-            if(descuentoString != null) {
-                descuento = descuentoString;
-            }
-        }
-        if((evt.getKeyCode() == KeyEvent.VK_P) && ((evt.getModifiers() & KeyEvent.CTRL_MASK) != 0)) {
-            String cantidadString = JOptionPane.showInputDialog("Cantidad", "0");
-            if(cantidadString != null) {
-                int cant = Integer.parseInt(cantidadString);
-                float aux = (float)cant / 1000;
-                cantidad = Float.toString(aux);
-            }
+        String cantidadString = "";
+        String descuentoString = "";
+        switch (evt.getKeyCode()) {
+            case KeyEvent.VK_F1:
+                salesFunction(1);
+                break;
+            case KeyEvent.VK_F2:
+                sendTotalVentas = totalVentas.getText();
+                VentasCtaCte cta = new VentasCtaCte(this, true);
+                cta.setVisible(true);
+                if(VentasCtaCte.value == 1) {
+                    salesFunction(2);
+                } else {
+                }   
+                break;
+            case KeyEvent.VK_F3:
+                cantidadString = JOptionPane.showInputDialog("Cantidad", "0");
+                if(cantidadString != null) {
+                    cantidad = cantidadString;
+                }
+                break;
+            case KeyEvent.VK_F5:
+                descuentoString = JOptionPane.showInputDialog("Descuento", "0.00");
+                if(descuentoString != null) {
+                    descuento = Utils.formatCurrency(descuentoString.length(), descuentoString);
+                }
+                break;
+            case KeyEvent.VK_F4:
+                cantidadString = JOptionPane.showInputDialog("Peso", "0");
+                if(cantidadString != null) {
+                    int cant = Integer.parseInt(cantidadString);
+                    float aux = (float)cant / 1000;
+                    cantidad = Float.toString(aux);
+                }
+                break;
+            default:
+                break;
         }
         try {
-            try {
-                con = new Conexion();
-            } catch (ClassNotFoundException | SQLException | InstantiationException | IllegalAccessException ex) {
-                Logger.getLogger(ModuloVenta.class.getName()).log(Level.SEVERE, null, ex);
-            }
-
+            con = new Conexion();
             String searchScanning= scanning.getText();
             String getArticlesDescription = "SELECT descripcion_articulos.id_articulo, descripcion_articulos.scanning, descripcion_articulos.nombre_producto, descripcion_articulos.marca, descripcion_articulos.precio_venta, descripcion_articulos.tipo_articulo_id, stock.saldo_stock, stock.id_stock FROM descripcion_articulos INNER JOIN stock ON stock.id_articulo = descripcion_articulos.id_articulo WHERE descripcion_articulos.scanning = ?";
             rs = con.find(getArticlesDescription, searchScanning);
-            
             int numberOfRows = 0;
             while (rs.next()) {
                 ++numberOfRows;
@@ -359,7 +362,8 @@ public class ModuloVenta extends javax.swing.JFrame {
             if(numberOfRows == 1){
                 fillInTableData();
             }
-        } catch (SQLException ex) {
+            con.Cerrar();
+        } catch (ClassNotFoundException | SQLException | InstantiationException | IllegalAccessException ex) {
             Logger.getLogger(ModuloVenta.class.getName()).log(Level.SEVERE, null, ex);
         }
     }//GEN-LAST:event_scanningKeyReleased
@@ -402,6 +406,7 @@ public class ModuloVenta extends javax.swing.JFrame {
         BigDecimal exchange = BigDecimal.ZERO;
         BigDecimal totalAccount = BigDecimal.ZERO;
         int paymentType = 1;
+        String salto = System.getProperty("line.separator");
         getTotalVentas = new BigDecimal(totalVentas.getText());
         if(j==0) {
             JOptionPane.showMessageDialog(null, "No hay ningun elemento  en la Tabla de Venta");
@@ -424,6 +429,7 @@ public class ModuloVenta extends javax.swing.JFrame {
                     BigDecimal nuevoStock[] = new BigDecimal[j];
                     String idArticulos[] = new String[j];
                     String stockIdToSave [] = new String[j];
+                    BigDecimal discount [] = new BigDecimal[j];
 
                     for (int i=0; i<j; i++) {
                         scanningArticulo[i] = tablaCompras.getValueAt(i, 0).toString();
@@ -435,10 +441,11 @@ public class ModuloVenta extends javax.swing.JFrame {
                         tipoArticulo[i] = Integer.parseInt(tablaCompras.getValueAt(i, 9).toString());
                         idArticulos[i] = tablaCompras.getValueAt(i, 10).toString();
                         stockIdToSave[i] = tablaCompras.getValueAt(i, 11).toString();
+                        discount[i] = new BigDecimal(tablaCompras.getValueAt(i, 5).toString());
                         if(tipoArticulo[i] == 1) {
                             cantidadVenta[i] = new BigDecimal(tablaCompras.getValueAt(i, 7).toString());
                         } else {
-                            cantidadVenta[i] = new BigDecimal(tablaCompras.getValueAt(i, 7).toString()).multiply(new BigDecimal(1000));
+                            cantidadVenta[i] = new BigDecimal(tablaCompras.getValueAt(i, 7).toString()).multiply(new BigDecimal(1000)).setScale(0);
                         }
                         nuevoStock[i] = cantidadStock[i].subtract(cantidadVenta[i]);
                         guardarStock[i] = Integer.parseInt(nuevoStock[i].toString());
@@ -446,6 +453,8 @@ public class ModuloVenta extends javax.swing.JFrame {
                         con.ejecutar(updateStockStatus);
                         String insertStockMovement = "INSERT INTO movimiento_stock (fecha_movimiento_stock, salida, stock_id_stock) VALUES (CURRENT_TIMESTAMP, "+cantidadVenta[i]+", "+stockIdToSave[i]+")";
                         con.ejecutar(insertStockMovement);
+                        discount[i] = discount[i].add(discount[i]);
+                        descuento = discount[i].toString();
                     }
                     if(saleTypo == 2) {
                         paymentType = 2;
@@ -474,6 +483,7 @@ public class ModuloVenta extends javax.swing.JFrame {
                         con.ejecutar(insertSaleDetail);
                     }
                     if(saleTypo == 2) {
+                        System.out.println(VentasCtaCte.accountStatus);
                         BigDecimal auxAccount = new BigDecimal(VentasCtaCte.accountStatus);
                         BigDecimal totalSalesToAdd = new BigDecimal(sendTotalVentas);
                         totalAccount = auxAccount.add(totalSalesToAdd).subtract(descuentoAuxiliar);
@@ -484,25 +494,43 @@ public class ModuloVenta extends javax.swing.JFrame {
                             Logger.getLogger(ModuloVenta.class.getName()).log(Level.SEVERE, null, ex);
                         }
                     }
-                    String ticketHeader = "\bFACTURA NO FISCAL"+
-                                    "\n-----------------------------------------"+
-                                    "\n"+Login.companyName+
-                                    "\nCUIT Nro: "+Login.companyCuilCuit+
-                                    "\n"+Login.companyAddress+" - "+Login.companyDepartment+" - "+Login.companyProvince+
-                                    "\n-----------------------------------------"+
-                                    "\nTicket Nro: "+ticketNumber+" \nFecha: "+Utils.currentDateFormated()+"\n"+
-                                    "\n-----------------------------------------"+
-                                    "\n\bCONSUMIDOR FINAL"+
-                                    "\n"+
-                                    "\n-----------------------------------------"+
-                                    "\nCant./Precio Unit."+
-                                    "\nDescripción (%IVA)[%BI]\tIMPORTE"+
-                                    "\n-----------------------------------------";
+                    String ticketHeader = "FACTURA NO FISCAL"+
+                                    salto+"--------------------------------"+
+                                    salto+Login.companyName+
+                                    salto+"C.U.I.T.: "+Login.companyCuilCuit+
+                                    salto+"Ing. Brutos: "+Login.companyIg+
+                                    salto+Login.companyAddress+" N° "+Login.companyAddressNumber+
+                                    salto+Login.companyDepartment+" - "+Login.companyProvince+" - "+Login.companyCp+
+                                    salto+"Inicio Actividades: "+Utils.formatDateOnly(Login.companyInitActivities)+
+                                    salto+"--------------------------------"+
+                                    salto+"Ticket Nro: "+ticketNumber+
+                                    salto+"Fecha: "+Utils.currentDateFormated()+
+                                    salto+"--------------------------------"+
+                                    salto+"CONSUMIDOR FINAL"+
+                                    salto+"--------------------------------"+
+                                    salto+"Cant./Precio Unit."+
+                                    salto+"Descripcion (%IVA)[%BI]\tIMPORTE"+
+                                    salto+"--------------------------------";
                     String ticketBody="";
+                    BigDecimal price = new BigDecimal(BigInteger.ZERO);
+                    BigDecimal compareDiscount = new BigDecimal(0.00).setScale(2, RoundingMode.CEILING);
                     for (int i=0;i<j;i++){
-                        ticketBody = ticketBody+"\n"+cantidadVenta[i]+" x "+precioVenta[i]+
-                                "\n"+scanningArticulo[i].substring(0, 5)+" "+nombreProducto[i].substring(0, 4)+" "+marcaProducto[i].substring(0, 4)+"\t\t"+precioVenta[i].multiply(cantidadVenta[i]).setScale(2, RoundingMode.CEILING)+""+
-                                "\n...";
+                        discount[i] = new BigDecimal(tablaCompras.getValueAt(i, 5).toString());
+                        if(tipoArticulo[i] == 1){
+                             price = precioVenta[i].multiply(cantidadVenta[i]).setScale(2, RoundingMode.CEILING);
+                        } else {
+                            price = precioVenta[i].multiply(cantidadVenta[i]).divide(new BigDecimal(1000)).setScale(2, RoundingMode.CEILING);
+                        }
+                        if(discount[i].equals(compareDiscount)) {
+                            ticketBody = ticketBody+salto+cantidadVenta[i]+" x "+precioVenta[i]+
+                                salto+scanningArticulo[i]+" "+nombreProducto[i].substring(0, 4)+" "+marcaProducto[i].substring(0, 4)+"\t"+price+""+
+                                salto+"...";
+                        } else {
+                            ticketBody = ticketBody+salto+cantidadVenta[i]+" x "+precioVenta[i]+
+                                salto+scanningArticulo[i]+" "+nombreProducto[i].substring(0, 4)+" "+marcaProducto[i].substring(0, 4)+"\t"+price+""+
+                                salto+"BONIFICACION\t\t-"+discount[i]+
+                                salto+"...";
+                        }
                     }
                     if (saleTypo == 1) {
                         cashPayment = new BigDecimal(cash);
@@ -512,36 +540,34 @@ public class ModuloVenta extends javax.swing.JFrame {
                     }
                     exchange = cashPayment.subtract(getTotalVentas).setScale(2, RoundingMode.CEILING);
                     if(saleTypo == 1) {
-                        ticket = ticketHeader+ticketBody+"\nSubtotal \t\t"+totalVentas.getText()+
-                                            "\nDescuento \t\t"+descuento+
-                                            "\n\n\bTOTAL \t\t\t"+totalVentas.getText()+
-                                            "\n\nRecibi(MOS) "+
-                                            "\nSU PAGO \t\t"+Utils.formatCurrency(cash.length(), cash)+
-                                            "\nSu vuelto \t\t"+exchange+
-                                            "\n-----------------------------------------"+
-                                            "\nLe atendio: "+Login.userName+
-                                            "\n\nGRACIAS POR SU COMPRA."+
-                                            "\n-----------------------------------------"+
-                                            "\n\bFACTURA NO FISCAL";
-                        JOptionPane.showMessageDialog(null, "Venta Realizada\n\nTotal a Cobrar: $ "+getTotalVentas+"\nCambio: $ "+exchange);
+                        ticket = ticketHeader+ticketBody+
+                                            salto+salto+"TOTAL \t\t\t"+totalVentas.getText()+
+                                            salto+salto+"Recibi(MOS) "+
+                                            salto+"SU PAGO \t\t"+cash+
+                                            salto+"Su vuelto \t\t"+exchange+
+                                            salto+"--------------------------------"+
+                                            salto+"Lo atendio: "+Login.userName+
+                                            salto+salto+"GRACIAS POR SU COMPRA."+
+                                            salto+"--------------------------------"+
+                                            salto+"FACTURA NO FISCAL";
+                        JOptionPane.showMessageDialog(null, "Venta Realizada"+salto+salto+"Total a Cobrar: $ "+getTotalVentas+salto+"Cambio: $ "+exchange);
                     } else{
                         //cambiar total de estado cuenta
-                        ticket = ticketHeader+ticketBody+"\nSubtotal \t\t"+totalVentas.getText()+
-                                             "\nDescuento \t\t"+descuento+
-                                             "\n\n\bTOTAL \t\t\t"+totalVentas.getText()+
-                                             "\n\nRecibi(MOS)"+
-                                             "\nSU PAGO \t\t"+totalVentas.getText()+
-                                             "\nSu vuelto \t\t"+exchange+
-                                             "\n-----------------------------------------"+
-                                             "\nCuenta Corriente"+
-                                             "\n\bNombre: \t"+VentasCtaCte.clientName+
-                                             "\n\bEstado cuenta: \t"+totalAccount+
-                                             "\n-----------------------------------------"+
-                                             "\nLe atendio: "+Login.userName+
-                                             "\n\nGRACIAS POR SU COMPRA."+
-                                             "\n-----------------------------------------"+
-                                             "\n\bFACTURA NO FISCAL";
-                        JOptionPane.showMessageDialog(null, "Venta Realizada\n\nTotal a Cobrar: $ "+getTotalVentas+"\nCambio: $ 0.00");
+                        ticket = ticketHeader+ticketBody+
+                                            salto+salto+"TOTAL \t\t\t"+totalVentas.getText()+
+                                            salto+salto+"Recibi(MOS)"+
+                                            salto+salto+"SU PAGO \t\t"+totalVentas.getText()+
+                                            salto+"Su vuelto \t\t"+exchange+
+                                            salto+"-----------------------------------------"+
+                                            salto+"Cuenta Corriente"+
+                                            salto+"Nombre: \t"+VentasCtaCte.clientName+
+                                            salto+"Estado cuenta: \t"+totalAccount+
+                                            salto+"-----------------------------------------"+
+                                            salto+"Lo atendio: "+Login.userName+
+                                            salto+salto+"GRACIAS POR SU COMPRA."+
+                                            salto+"-----------------------------------------"+
+                                            salto+"FACTURA NO FISCAL";
+                        JOptionPane.showMessageDialog(null, "Venta Realizada"+salto+salto+"Total a Cobrar: $ "+getTotalVentas+salto+"Cambio: $ 0.00");
                     }
                     if(Login.printStatus == 1) {
                         int print = ImprimirTicket.printTicket(ticket);
@@ -561,6 +587,7 @@ public class ModuloVenta extends javax.swing.JFrame {
                     DefaultTableModel temp = (DefaultTableModel) tablaCompras.getModel();
                     temp.setRowCount(0);
                     j=0;
+                    con.Cerrar();
                 } catch (ClassNotFoundException | InstantiationException | IllegalAccessException | SQLException ex1) {
                     Logger.getLogger(ModuloVenta.class.getName()).log(Level.SEVERE, null, ex1);
                 }
