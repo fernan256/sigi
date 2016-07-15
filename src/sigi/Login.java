@@ -6,9 +6,9 @@ import java.awt.event.KeyEvent;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.Arrays;
+import java.util.Date;
 import java.util.logging.Level;
 import java.util.logging.Logger;
-import javax.swing.ImageIcon;
 import javax.swing.JOptionPane;
 
 public class Login extends javax.swing.JFrame {
@@ -21,14 +21,11 @@ public class Login extends javax.swing.JFrame {
     public static int userId;
     public static String userName;
     public static int status = 0, compareIds = 0, cajaId = 0, initialCash = 0, printStatus = 0;
-    public static String fecha = null, companyName = null, companyCuilCuit = null, companyAddress = null, companyProvince = null, companyDepartment = null;
+    public static String fecha = null, companyName = null, companyCuilCuit = null, companyAddress = null, companyProvince = null, companyDepartment = null, companyCp = null, companyIg = null, companyAddressNumber = null;
+    public static Date companyInitActivities = null;
     
     public Login() {
         initComponents();
-        String location = "imagenes/systecIcono.png";
-        ImageIcon img = new ImageIcon(location);
-        this.setIconImage(img.getImage());
-        //this.setIconImage(new ImageIcon(getClass().getResource("imagenes/carritoVentas.png")).getImage());
     }
     
     @SuppressWarnings("unchecked")
@@ -54,13 +51,14 @@ public class Login extends javax.swing.JFrame {
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setTitle("Entrar al Sistema");
+        setIconImage(getIconImage());
         setMinimumSize(new java.awt.Dimension(274, 226));
         setResizable(false);
 
         jPanel1.setBackground(new java.awt.Color(255, 255, 255));
 
-        jLabel4.setFont(new java.awt.Font("Verdana", 1, 12)); // NOI18N
-        jLabel4.setText("Usuario:");
+        jLabel4.setFont(new java.awt.Font("Arial", 1, 16)); // NOI18N
+        jLabel4.setText("Usuario");
 
         loginUser.addKeyListener(new java.awt.event.KeyAdapter() {
             public void keyReleased(java.awt.event.KeyEvent evt) {
@@ -68,9 +66,10 @@ public class Login extends javax.swing.JFrame {
             }
         });
 
-        jLabel5.setFont(new java.awt.Font("Verdana", 1, 12)); // NOI18N
-        jLabel5.setText("Contraseña:");
+        jLabel5.setFont(new java.awt.Font("Arial", 1, 16)); // NOI18N
+        jLabel5.setText("Contraseña");
 
+        loginBton.setFont(new java.awt.Font("Arial", 1, 18)); // NOI18N
         loginBton.setText("Ingresar");
         loginBton.addKeyListener(new java.awt.event.KeyAdapter() {
             public void keyReleased(java.awt.event.KeyEvent evt) {
@@ -83,31 +82,35 @@ public class Login extends javax.swing.JFrame {
         jPanel1Layout.setHorizontalGroup(
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel1Layout.createSequentialGroup()
-                .addGap(55, 55, 55)
-                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                    .addGroup(jPanel1Layout.createSequentialGroup()
-                        .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(jLabel4)
-                            .addComponent(loginUser, javax.swing.GroupLayout.PREFERRED_SIZE, 210, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(jLabel5)
-                            .addComponent(passWord, javax.swing.GroupLayout.PREFERRED_SIZE, 210, javax.swing.GroupLayout.PREFERRED_SIZE))
-                        .addContainerGap(66, Short.MAX_VALUE))
-                    .addGroup(jPanel1Layout.createSequentialGroup()
-                        .addComponent(loginBton, javax.swing.GroupLayout.PREFERRED_SIZE, 100, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(120, 120, 120))))
+                .addContainerGap(25, Short.MAX_VALUE)
+                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
+                        .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                            .addGroup(jPanel1Layout.createSequentialGroup()
+                                .addComponent(jLabel5)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                                .addComponent(passWord, javax.swing.GroupLayout.PREFERRED_SIZE, 210, javax.swing.GroupLayout.PREFERRED_SIZE))
+                            .addGroup(jPanel1Layout.createSequentialGroup()
+                                .addComponent(jLabel4)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                                .addComponent(loginUser, javax.swing.GroupLayout.PREFERRED_SIZE, 210, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                        .addContainerGap())
+                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
+                        .addComponent(loginBton, javax.swing.GroupLayout.PREFERRED_SIZE, 139, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(103, 103, 103))))
         );
         jPanel1Layout.setVerticalGroup(
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel1Layout.createSequentialGroup()
-                .addContainerGap()
-                .addComponent(jLabel4)
-                .addGap(4, 4, 4)
-                .addComponent(loginUser, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(33, 33, 33)
+                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(jLabel4)
+                    .addComponent(loginUser, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addGap(18, 18, 18)
-                .addComponent(jLabel5)
-                .addGap(4, 4, 4)
-                .addComponent(passWord, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(jLabel5)
+                    .addComponent(passWord, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGap(33, 33, 33)
                 .addComponent(loginBton, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addContainerGap(28, Short.MAX_VALUE))
         );
@@ -223,6 +226,7 @@ public class Login extends javax.swing.JFrame {
                         loginUser.selectAll();
                     }
                 }
+                con.Cerrar();
             } catch (ClassNotFoundException | SQLException | InstantiationException | IllegalAccessException ex) {
                 Logger.getLogger(PantallaPrincipal.class.getName()).log(Level.SEVERE, null, ex);
             }
@@ -264,6 +268,7 @@ public class Login extends javax.swing.JFrame {
                     fecha = rs2.getString("fecha_apertura");
                 }
             }
+            con2.Cerrar();
         } catch (SQLException | ClassNotFoundException | InstantiationException | IllegalAccessException ex) {
             Logger.getLogger(Login.class.getName()).log(Level.SEVERE, null, ex);
         }
@@ -278,14 +283,16 @@ public class Login extends javax.swing.JFrame {
                 initialCash = rs2.getInt("caja_inicial");
                 printStatus = rs2.getInt("print_status");
             }
+            con2.Cerrar();
         } catch (SQLException | ClassNotFoundException | InstantiationException | IllegalAccessException ex) {
             Logger.getLogger(Login.class.getName()).log(Level.SEVERE, null, ex);
         }
     }
     
-    public static void companyData(){
+    public static void companyData() throws ClassNotFoundException{
         try {
-            String getTicketInfo = "select t1.nombre, t1.direccion, t1.departamento, t1.provincia, t2.cuit_cuil from empresa t1 inner join datos_fiscales t2 where t1.id_empresa = 1 AND t2.id_datos_fiscales = 1";
+            con2 = new Conexion();
+            String getTicketInfo = "select t1.nombre, t1.direccion, t1.direccion_numero, t1.departamento, t1.provincia, t1.codigo_postal, t2.cuit_cuil, t2.ingresos_brutos, t2.fecha_inicio_actividad from empresa t1 inner join datos_fiscales t2 where t1.id_empresa = 1 AND t2.id_datos_fiscales = 1";
             rs2 = con2.Consulta(getTicketInfo);
             while(rs2.next()) {
                 companyName = rs2.getString("nombre");
@@ -293,11 +300,21 @@ public class Login extends javax.swing.JFrame {
                 companyDepartment= rs2.getString("departamento");
                 companyCuilCuit = rs2.getString("cuit_cuil");
                 companyProvince = rs2.getString("provincia");
+                companyCp = rs2.getString("codigo_postal");
+                companyIg = rs2.getString("ingresos_brutos");
+                companyInitActivities = rs2.getDate("fecha_inicio_actividad");
+                companyAddressNumber = rs2.getString("direccion_numero");
             }
+            con2.Cerrar();
         } catch (SQLException ex) {
+            Logger.getLogger(Login.class.getName()).log(Level.SEVERE, null, ex);
+        } catch (InstantiationException ex) {
+            Logger.getLogger(Login.class.getName()).log(Level.SEVERE, null, ex);
+        } catch (IllegalAccessException ex) {
             Logger.getLogger(Login.class.getName()).log(Level.SEVERE, null, ex);
         }
     }
+    
     /**
     * @param args the command line arguments
     */
