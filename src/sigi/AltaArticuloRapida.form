@@ -24,7 +24,7 @@
     <DimensionLayout dim="0">
       <Group type="103" groupAlignment="0" attributes="0">
           <Group type="102" alignment="0" attributes="0">
-              <EmptySpace min="22" pref="22" max="-2" attributes="0"/>
+              <EmptySpace min="-2" pref="25" max="-2" attributes="0"/>
               <Group type="103" groupAlignment="0" attributes="0">
                   <Group type="102" alignment="0" attributes="0">
                       <EmptySpace min="-2" pref="88" max="-2" attributes="0"/>
@@ -56,54 +56,54 @@
                       </Group>
                   </Group>
               </Group>
-              <EmptySpace pref="28" max="32767" attributes="0"/>
+              <EmptySpace pref="53" max="32767" attributes="0"/>
           </Group>
       </Group>
     </DimensionLayout>
     <DimensionLayout dim="1">
       <Group type="103" groupAlignment="0" attributes="0">
           <Group type="102" alignment="0" attributes="0">
-              <EmptySpace min="-2" pref="31" max="-2" attributes="0"/>
+              <EmptySpace min="-2" pref="25" max="-2" attributes="0"/>
               <Group type="103" groupAlignment="3" attributes="0">
                   <Component id="jLabel2" alignment="3" min="-2" pref="24" max="-2" attributes="0"/>
-                  <Component id="newScanning" alignment="3" min="-2" pref="30" max="-2" attributes="0"/>
+                  <Component id="newScanning" alignment="3" min="-2" max="-2" attributes="0"/>
               </Group>
-              <EmptySpace max="-2" attributes="0"/>
+              <EmptySpace type="unrelated" max="-2" attributes="0"/>
               <Group type="103" groupAlignment="3" attributes="0">
                   <Component id="jLabel18" alignment="3" min="-2" pref="27" max="-2" attributes="0"/>
-                  <Component id="articleName" alignment="3" pref="30" max="32767" attributes="0"/>
+                  <Component id="articleName" alignment="3" max="32767" attributes="0"/>
               </Group>
-              <EmptySpace max="-2" attributes="0"/>
+              <EmptySpace type="unrelated" max="-2" attributes="0"/>
               <Group type="103" groupAlignment="3" attributes="0">
                   <Component id="jLabel17" alignment="3" min="-2" pref="24" max="-2" attributes="0"/>
-                  <Component id="brand" alignment="3" min="-2" pref="30" max="-2" attributes="0"/>
+                  <Component id="brand" alignment="3" min="-2" max="-2" attributes="0"/>
               </Group>
-              <EmptySpace max="-2" attributes="0"/>
+              <EmptySpace type="unrelated" max="-2" attributes="0"/>
               <Group type="103" groupAlignment="3" attributes="0">
                   <Component id="jLabel3" alignment="3" min="-2" pref="24" max="-2" attributes="0"/>
-                  <Component id="quantity" alignment="3" min="-2" pref="30" max="-2" attributes="0"/>
+                  <Component id="quantity" alignment="3" min="-2" max="-2" attributes="0"/>
               </Group>
-              <EmptySpace max="-2" attributes="0"/>
+              <EmptySpace type="unrelated" max="-2" attributes="0"/>
               <Group type="103" groupAlignment="3" attributes="0">
                   <Component id="jLabel4" alignment="3" min="-2" max="-2" attributes="0"/>
-                  <Component id="stockMin" alignment="3" min="-2" pref="30" max="-2" attributes="0"/>
+                  <Component id="stockMin" alignment="3" min="-2" max="-2" attributes="0"/>
               </Group>
-              <EmptySpace max="-2" attributes="0"/>
+              <EmptySpace type="unrelated" max="-2" attributes="0"/>
               <Group type="103" groupAlignment="0" max="-2" attributes="0">
-                  <Component id="costPrice" pref="30" max="32767" attributes="0"/>
-                  <Component id="jLabel11" min="-2" pref="27" max="-2" attributes="0"/>
+                  <Component id="costPrice" max="32767" attributes="0"/>
+                  <Component id="jLabel11" pref="0" max="32767" attributes="0"/>
               </Group>
-              <EmptySpace max="-2" attributes="0"/>
+              <EmptySpace type="unrelated" max="-2" attributes="0"/>
               <Group type="103" groupAlignment="3" attributes="0">
                   <Component id="jLabel13" alignment="3" min="-2" pref="30" max="-2" attributes="0"/>
-                  <Component id="salePrice" alignment="3" min="-2" pref="30" max="-2" attributes="0"/>
+                  <Component id="salePrice" alignment="3" min="-2" max="-2" attributes="0"/>
               </Group>
-              <EmptySpace max="-2" attributes="0"/>
+              <EmptySpace type="unrelated" max="-2" attributes="0"/>
               <Group type="103" groupAlignment="3" attributes="0">
                   <Component id="jLabel1" alignment="3" min="-2" max="-2" attributes="0"/>
-                  <Component id="articleType" alignment="3" min="-2" pref="30" max="-2" attributes="0"/>
+                  <Component id="articleType" alignment="3" min="-2" max="-2" attributes="0"/>
               </Group>
-              <EmptySpace min="-2" pref="27" max="-2" attributes="0"/>
+              <EmptySpace type="separate" max="-2" attributes="0"/>
               <Group type="103" groupAlignment="3" attributes="0">
                   <Component id="cancel" alignment="3" min="-2" pref="54" max="-2" attributes="0"/>
                   <Component id="addArticle" alignment="3" min="-2" pref="54" max="-2" attributes="0"/>
@@ -117,13 +117,16 @@
     <Component class="javax.swing.JLabel" name="jLabel2">
       <Properties>
         <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
-          <Font name="Verdana" size="18" style="1"/>
+          <Font name="Arial" size="18" style="1"/>
         </Property>
         <Property name="text" type="java.lang.String" value="Scanning"/>
       </Properties>
     </Component>
     <Component class="javax.swing.JTextField" name="newScanning">
       <Properties>
+        <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
+          <Font name="Arial" size="12" style="0"/>
+        </Property>
         <Property name="maximumSize" type="java.awt.Dimension" editor="org.netbeans.modules.form.RADConnectionPropertyEditor">
           <Connection code="null" type="code"/>
         </Property>
@@ -135,25 +138,31 @@
     <Component class="javax.swing.JLabel" name="jLabel18">
       <Properties>
         <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
-          <Font name="Verdana" size="18" style="1"/>
+          <Font name="Arial" size="18" style="1"/>
         </Property>
         <Property name="text" type="java.lang.String" value="Nombre del Producto"/>
       </Properties>
     </Component>
     <Component class="javax.swing.JTextField" name="articleName">
       <Properties>
+        <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
+          <Font name="Arial" size="12" style="0"/>
+        </Property>
         <Property name="autoscrolls" type="boolean" value="false"/>
       </Properties>
     </Component>
     <Component class="javax.swing.JTextField" name="brand">
       <Properties>
+        <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
+          <Font name="Arial" size="12" style="0"/>
+        </Property>
         <Property name="autoscrolls" type="boolean" value="false"/>
       </Properties>
     </Component>
     <Component class="javax.swing.JLabel" name="jLabel17">
       <Properties>
         <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
-          <Font name="Verdana" size="18" style="1"/>
+          <Font name="Arial" size="18" style="1"/>
         </Property>
         <Property name="text" type="java.lang.String" value="Marca"/>
       </Properties>
@@ -161,25 +170,31 @@
     <Component class="javax.swing.JLabel" name="jLabel3">
       <Properties>
         <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
-          <Font name="Verdana" size="18" style="1"/>
+          <Font name="Arial" size="18" style="1"/>
         </Property>
         <Property name="text" type="java.lang.String" value="Cantidad"/>
       </Properties>
     </Component>
     <Component class="javax.swing.JTextField" name="quantity">
       <Properties>
+        <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
+          <Font name="Arial" size="12" style="0"/>
+        </Property>
         <Property name="autoscrolls" type="boolean" value="false"/>
       </Properties>
     </Component>
     <Component class="javax.swing.JTextField" name="costPrice">
       <Properties>
+        <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
+          <Font name="Arial" size="12" style="0"/>
+        </Property>
         <Property name="autoscrolls" type="boolean" value="false"/>
       </Properties>
     </Component>
     <Component class="javax.swing.JLabel" name="jLabel11">
       <Properties>
         <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
-          <Font name="Verdana" size="18" style="1"/>
+          <Font name="Arial" size="18" style="1"/>
         </Property>
         <Property name="text" type="java.lang.String" value="Precio de costo"/>
       </Properties>
@@ -187,18 +202,24 @@
     <Component class="javax.swing.JLabel" name="jLabel13">
       <Properties>
         <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
-          <Font name="Verdana" size="18" style="1"/>
+          <Font name="Arial" size="18" style="1"/>
         </Property>
         <Property name="text" type="java.lang.String" value="Precio de venta"/>
       </Properties>
     </Component>
     <Component class="javax.swing.JTextField" name="salePrice">
       <Properties>
+        <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
+          <Font name="Arial" size="12" style="0"/>
+        </Property>
         <Property name="autoscrolls" type="boolean" value="false"/>
       </Properties>
     </Component>
     <Component class="javax.swing.JButton" name="addArticle">
       <Properties>
+        <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
+          <Font name="Arial" size="18" style="1"/>
+        </Property>
         <Property name="text" type="java.lang.String" value="Agregar"/>
       </Properties>
       <Events>
@@ -207,6 +228,9 @@
     </Component>
     <Component class="javax.swing.JButton" name="cancel">
       <Properties>
+        <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
+          <Font name="Arial" size="18" style="1"/>
+        </Property>
         <Property name="text" type="java.lang.String" value="Cancelar"/>
       </Properties>
       <Events>
@@ -215,6 +239,9 @@
     </Component>
     <Component class="javax.swing.JComboBox" name="articleType">
       <Properties>
+        <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
+          <Font name="Arial" size="12" style="0"/>
+        </Property>
         <Property name="model" type="javax.swing.ComboBoxModel" editor="org.netbeans.modules.form.editors2.ComboBoxModelEditor">
           <StringArray count="0"/>
         </Property>
@@ -226,7 +253,7 @@
     <Component class="javax.swing.JLabel" name="jLabel1">
       <Properties>
         <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
-          <Font name="Verdana" size="18" style="1"/>
+          <Font name="Arial" size="18" style="1"/>
         </Property>
         <Property name="text" type="java.lang.String" value="Tipo Articulo"/>
       </Properties>
@@ -234,13 +261,16 @@
     <Component class="javax.swing.JLabel" name="jLabel4">
       <Properties>
         <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
-          <Font name="Verdana" size="18" style="1"/>
+          <Font name="Arial" size="18" style="1"/>
         </Property>
         <Property name="text" type="java.lang.String" value="Stock M&#xed;nimo"/>
       </Properties>
     </Component>
     <Component class="javax.swing.JTextField" name="stockMin">
       <Properties>
+        <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
+          <Font name="Arial" size="12" style="0"/>
+        </Property>
         <Property name="text" type="java.lang.String" value="0"/>
       </Properties>
     </Component>
