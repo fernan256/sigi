@@ -19,7 +19,7 @@ public class BajaModificacionOrdenesCompras extends javax.swing.JInternalFrame {
    
     public BajaModificacionOrdenesCompras() {
         initComponents();
-        llenar_combo_prov();
+        FillInProviders();
     }
 
     @SuppressWarnings("unchecked")
@@ -40,6 +40,7 @@ public class BajaModificacionOrdenesCompras extends javax.swing.JInternalFrame {
         deleteItem = new javax.swing.JButton();
         jLabel1 = new javax.swing.JLabel();
         totalPurchase = new javax.swing.JTextField();
+        jButton1 = new javax.swing.JButton();
 
         jTable1.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
@@ -54,33 +55,30 @@ public class BajaModificacionOrdenesCompras extends javax.swing.JInternalFrame {
         ));
         jScrollPane1.setViewportView(jTable1);
 
+        setBackground(new java.awt.Color(255, 255, 255));
         setClosable(true);
-        setIconifiable(true);
-        setMaximizable(true);
-        setResizable(true);
         setMaximumSize(new java.awt.Dimension(1500, 960));
         setPreferredSize(getPreferredSize());
-        getContentPane().setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
-        jLabel59.setFont(new java.awt.Font("Tahoma", 1, 12)); // NOI18N
+        jLabel59.setFont(new java.awt.Font("Arial", 1, 16)); // NOI18N
         jLabel59.setText("Proveedor");
-        getContentPane().add(jLabel59, new org.netbeans.lib.awtextra.AbsoluteConstraints(30, 20, -1, -1));
 
+        jBcompra.setFont(new java.awt.Font("Arial", 1, 18)); // NOI18N
         jBcompra.setText("Editar");
         jBcompra.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 jBcompraActionPerformed(evt);
             }
         });
-        getContentPane().add(jBcompra, new org.netbeans.lib.awtextra.AbsoluteConstraints(30, 500, 140, 30));
 
+        getProvider.setFont(new java.awt.Font("Arial", 0, 12)); // NOI18N
         getProvider.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 getProviderActionPerformed(evt);
             }
         });
-        getContentPane().add(getProvider, new org.netbeans.lib.awtextra.AbsoluteConstraints(150, 20, 290, -1));
 
+        purchaseDetail.setFont(new java.awt.Font("Arial", 0, 12)); // NOI18N
         purchaseDetail.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
 
@@ -121,20 +119,18 @@ public class BajaModificacionOrdenesCompras extends javax.swing.JInternalFrame {
             purchaseDetail.getColumnModel().getColumn(6).setResizable(false);
         }
 
-        getContentPane().add(jScrollPane2, new org.netbeans.lib.awtextra.AbsoluteConstraints(30, 280, 800, 200));
+        jLabel72.setFont(new java.awt.Font("Arial", 1, 16)); // NOI18N
+        jLabel72.setText("Detalle Compra");
 
-        jLabel72.setFont(new java.awt.Font("Tahoma", 1, 12)); // NOI18N
-        jLabel72.setText("Detalle compra:");
-        getContentPane().add(jLabel72, new org.netbeans.lib.awtextra.AbsoluteConstraints(30, 250, -1, -1));
-
+        deletePurchase.setFont(new java.awt.Font("Arial", 1, 18)); // NOI18N
         deletePurchase.setText("Eliminar Orden de Compra");
         deletePurchase.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 deletePurchaseActionPerformed(evt);
             }
         });
-        getContentPane().add(deletePurchase, new org.netbeans.lib.awtextra.AbsoluteConstraints(500, 20, 210, 30));
 
+        result.setFont(new java.awt.Font("Arial", 0, 12)); // NOI18N
         result.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
 
@@ -172,19 +168,83 @@ public class BajaModificacionOrdenesCompras extends javax.swing.JInternalFrame {
             result.getColumnModel().getColumn(3).setResizable(false);
         }
 
-        getContentPane().add(jScrollPane3, new org.netbeans.lib.awtextra.AbsoluteConstraints(30, 60, 800, 160));
-
+        deleteItem.setFont(new java.awt.Font("Arial", 1, 18)); // NOI18N
         deleteItem.setText("Eliminar Articulo");
         deleteItem.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 deleteItemActionPerformed(evt);
             }
         });
-        getContentPane().add(deleteItem, new org.netbeans.lib.awtextra.AbsoluteConstraints(220, 500, -1, -1));
 
+        jLabel1.setFont(new java.awt.Font("Arial", 1, 16)); // NOI18N
         jLabel1.setText("TOTAL ORDEN DE COMPRA");
-        getContentPane().add(jLabel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(340, 240, -1, -1));
-        getContentPane().add(totalPurchase, new org.netbeans.lib.awtextra.AbsoluteConstraints(540, 240, 170, -1));
+
+        totalPurchase.setFont(new java.awt.Font("Arial", 1, 18)); // NOI18N
+
+        jButton1.setFont(new java.awt.Font("Arial", 1, 18)); // NOI18N
+        jButton1.setText("Borrar Campos");
+        jButton1.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton1ActionPerformed(evt);
+            }
+        });
+
+        javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
+        getContentPane().setLayout(layout);
+        layout.setHorizontalGroup(
+            layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(layout.createSequentialGroup()
+                .addGap(25, 25, 25)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(layout.createSequentialGroup()
+                        .addComponent(jLabel59)
+                        .addGap(40, 40, 40)
+                        .addComponent(getProvider, javax.swing.GroupLayout.PREFERRED_SIZE, 290, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(60, 60, 60)
+                        .addComponent(deletePurchase, javax.swing.GroupLayout.PREFERRED_SIZE, 300, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(jScrollPane3, javax.swing.GroupLayout.PREFERRED_SIZE, 800, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addGroup(layout.createSequentialGroup()
+                        .addComponent(jLabel72)
+                        .addGap(213, 213, 213)
+                        .addComponent(jLabel1)
+                        .addGap(22, 22, 22)
+                        .addComponent(totalPurchase, javax.swing.GroupLayout.PREFERRED_SIZE, 100, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(jScrollPane2, javax.swing.GroupLayout.PREFERRED_SIZE, 800, javax.swing.GroupLayout.PREFERRED_SIZE)))
+            .addGroup(layout.createSequentialGroup()
+                .addGap(110, 110, 110)
+                .addComponent(jBcompra, javax.swing.GroupLayout.PREFERRED_SIZE, 140, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(50, 50, 50)
+                .addComponent(deleteItem)
+                .addGap(49, 49, 49)
+                .addComponent(jButton1))
+        );
+        layout.setVerticalGroup(
+            layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(layout.createSequentialGroup()
+                .addGap(25, 25, 25)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                    .addComponent(deletePurchase, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(getProvider)
+                    .addComponent(jLabel59, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                .addGap(10, 10, 10)
+                .addComponent(jScrollPane3, javax.swing.GroupLayout.PREFERRED_SIZE, 160, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(20, 20, 20)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(layout.createSequentialGroup()
+                        .addGap(10, 10, 10)
+                        .addComponent(jLabel72))
+                    .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
+                        .addComponent(jLabel1, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                        .addComponent(totalPurchase, javax.swing.GroupLayout.Alignment.LEADING)))
+                .addGap(11, 11, 11)
+                .addComponent(jScrollPane2, javax.swing.GroupLayout.PREFERRED_SIZE, 200, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(18, 18, 18)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(jBcompra, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(deleteItem)
+                    .addComponent(jButton1))
+                .addContainerGap(15, Short.MAX_VALUE))
+        );
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
@@ -215,6 +275,7 @@ public class BajaModificacionOrdenesCompras extends javax.swing.JInternalFrame {
                 result.setValueAt(rs.getString("fecha_recepcion"), j, 3);
                 j++;
             }
+            con.Cerrar();
         }catch (ClassNotFoundException | InstantiationException | IllegalAccessException | SQLException ex) {
             Logger.getLogger(BajaModificacionOrdenesCompras.class.getName()).log(Level.SEVERE, null, ex);
         }
@@ -249,6 +310,7 @@ public class BajaModificacionOrdenesCompras extends javax.swing.JInternalFrame {
                 }
                 setTotal();
             }
+            con.Cerrar();
         } catch (SQLException | ClassNotFoundException | InstantiationException | IllegalAccessException ex) {
             Logger.getLogger(BajaModificacionOrdenesCompras.class.getName()).log(Level.SEVERE, null, ex);
         }
@@ -303,8 +365,12 @@ public class BajaModificacionOrdenesCompras extends javax.swing.JInternalFrame {
         }
         setTotal();
     }//GEN-LAST:event_purchaseDetailKeyReleased
+
+    private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
+        clearUpdatePurchaseOrderFields();
+    }//GEN-LAST:event_jButton1ActionPerformed
     
-    public void llenar_combo_prov() {
+    public void FillInProviders() {
         DefaultComboBoxModel modeloCombo = new DefaultComboBoxModel();
         try {       
             con = new Conexion();
@@ -320,13 +386,14 @@ public class BajaModificacionOrdenesCompras extends javax.swing.JInternalFrame {
                 getProvider.setModel(modeloCombo);
                 getProvider.updateUI();
             }  
+            con.Cerrar();
         } catch (SQLException | ClassNotFoundException | InstantiationException | IllegalAccessException ex) {
             Logger.getLogger(BajaModificacionOrdenesCompras.class.getName()).log(Level.SEVERE, null, ex);
         }
     }  
 
     public void clearUpdatePurchaseOrderFields(){
-        llenar_combo_prov();
+        FillInProviders();
         DefaultTableModel restoreResultTable = (DefaultTableModel) result.getModel();
         restoreResultTable.setRowCount(0);
         j = 0;
@@ -354,6 +421,7 @@ public class BajaModificacionOrdenesCompras extends javax.swing.JInternalFrame {
     private javax.swing.JButton deletePurchase;
     private javax.swing.JComboBox getProvider;
     private javax.swing.JButton jBcompra;
+    private javax.swing.JButton jButton1;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel59;
     private javax.swing.JLabel jLabel72;
