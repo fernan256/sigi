@@ -182,7 +182,7 @@ public class CuentasCorrientes extends javax.swing.JInternalFrame {
      
         try {
             con = new Conexion();
-
+            newImport.setText(Utils.formatCurrency(newImport.getText().length(), newImport.getText()));
             BigDecimal paiment = new BigDecimal(newImport.getText());
             BigDecimal currentBalance = new BigDecimal(totalDue.getText());
             BigDecimal resultado = currentBalance.subtract(paiment);
