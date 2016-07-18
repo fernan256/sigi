@@ -70,7 +70,7 @@
                   <Component id="restaurarBd" alignment="3" min="-2" pref="40" max="-2" attributes="0"/>
                   <Component id="restoreRout" alignment="3" min="-2" max="-2" attributes="0"/>
               </Group>
-              <EmptySpace pref="455" max="32767" attributes="0"/>
+              <EmptySpace pref="459" max="32767" attributes="0"/>
           </Group>
       </Group>
     </DimensionLayout>
