@@ -5,6 +5,7 @@ import Utils.Utils;
 import com.mxrck.autocompleter.TextAutoCompleter;
 import java.sql.ResultSet;
 import java.sql.SQLException;
+import java.util.Date;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 
@@ -19,6 +20,7 @@ public class VentasCtaCte extends javax.swing.JDialog {
     public static String clienteId = null, clientName = null;
     public static String accountStatus = "";
     public static int value;
+    Date showLastUpdateDate;
     /**
      * Creates new form VentasCtaCte
      * @param parent
@@ -175,6 +177,7 @@ public class VentasCtaCte extends javax.swing.JDialog {
                     suma = rs.getInt("suma");
                     resta = rs.getInt("resta");
                     fecha = rs.getString("fecha_cta_cte");
+                    showLastUpdateDate = rs.getTimestamp("fecha_cta_cte");
                 }
                 String getClientName = "SELECT nombres, apellidos FROM clientes WHERE id_clientes = ?";
                 rs = con.find(getClientName, clienteId);
@@ -184,7 +187,7 @@ public class VentasCtaCte extends javax.swing.JDialog {
                 account.setText(total);
                 accountStatus = total;
                 totalSale.setText(ModuloVenta.sendTotalVentas);
-                lastUpdate.setText(fecha);
+                lastUpdate.setText(Utils.formatDate(showLastUpdateDate));
                 sales.requestFocus();
                 con.Cerrar();
             } catch (ClassNotFoundException | SQLException | InstantiationException | IllegalAccessException ex) {
