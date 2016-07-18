@@ -6,7 +6,6 @@ import Utils.Utils;
 import java.io.File;
 import java.io.IOException;
 import java.math.BigDecimal;
-import java.math.BigInteger;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.ArrayList;
@@ -243,13 +242,11 @@ public class ImportarExportarArticulos extends javax.swing.JInternalFrame {
             int ax = JOptionPane.showConfirmDialog(null, "Confirma guardar datos en la base local?");
             if(ax == JOptionPane.YES_OPTION){
                 j = importExportTable.getRowCount();
-                String ID = null;
                 if (j==0){
                     JOptionPane.showMessageDialog(null, "No hay ningun elemento  en la Tabla de Venta");
                 }else{
                     try {
                         con = new Conexion();
-                        
                         String articleName[] = new String[j];
                         String articleBrand[] = new String[j];
                         BigDecimal scanning[] = new BigDecimal[j];
@@ -268,7 +265,7 @@ public class ImportarExportarArticulos extends javax.swing.JInternalFrame {
                             salesPrice[i] = new BigDecimal(Utils.objectToString(importExportTable.getValueAt(i, 4)));
                             stock[i] = new BigDecimal(Utils.objectToString(importExportTable.getValueAt(i, 5)));
                             stockMin[i] = new BigDecimal(Utils.objectToString(importExportTable.getValueAt(i, 6)));
-                            articleType[i] = Integer.parseInt(Utils.objectToString(importExportTable.getValueAt(i, 7)).toString());
+                            articleType[i] = Integer.parseInt(Utils.objectToString(importExportTable.getValueAt(i, 7)));
                             String insertArticulos = "INSERT INTO descripcion_articulos (scanning, nombre_producto, marca, precio_costo, precio_venta, tipo_articulo_id) VALUES ('"+scanning[i]+"', '"+articleName[i]+"', '"+articleBrand[i]+"', '"+costPrice[i]+"','"+salesPrice[i]+"', '"+articleType[i]+"')";
                             con.ejecutar(insertArticulos);
                             String getArticuloId = "SELECT LAST_INSERT_ID() AS id_articulo";
@@ -292,8 +289,8 @@ public class ImportarExportarArticulos extends javax.swing.JInternalFrame {
                     } catch (ClassNotFoundException | SQLException | InstantiationException | IllegalAccessException ex) {
                         Logger.getLogger(PantallaPrincipal.class.getName()).log(Level.SEVERE, null, ex);
                     }
-            }  
-            JOptionPane.showMessageDialog(null, "Datos guardados");
+            }
+            JOptionPane.showMessageDialog(null, "Se guardaron "+j+" productos.");
             }else if(ax == JOptionPane.NO_OPTION)
                 JOptionPane.showMessageDialog(null, "Cancelar");
         } catch (BiffException e) {
