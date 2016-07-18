@@ -3,6 +3,7 @@ package Connection;
 import java.sql.*;
 import java.util.logging.Level;
 import java.util.logging.Logger;
+import javax.swing.JOptionPane;
 
 public final class Conexion {
     private Connection con;
@@ -10,17 +11,15 @@ public final class Conexion {
     private ResultSet rst;
     PreparedStatement ps = null;
 
-
     public Conexion() throws ClassNotFoundException,SQLException,InstantiationException,IllegalAccessException{
         String controlador="com.mysql.jdbc.Driver";
         Class.forName(controlador).newInstance();
         conectar();
     }
-
     public void conectar() throws SQLException{
         String URL_bd="jdbc:mysql://localhost:3306/sigi?useUnicode=true&characterEncoding=utf-8";
         String user="root";
-        String password = "";
+        String password = "dedox132";
         con=DriverManager.getConnection(URL_bd,user,password);
         sentSQL=con.createStatement(ResultSet.TYPE_SCROLL_SENSITIVE, ResultSet.CONCUR_UPDATABLE);
     }
@@ -65,10 +64,10 @@ public final class Conexion {
         try{
             sentSQL = (Statement) con.createStatement();
             sentSQL.execute(com);
-            sentSQL.close();
-            con.close();
+            //sentSQL.close();
+            //con.close();
         } catch (SQLException ex) {
-            Logger.getLogger(Conexion.class.getName()).log(Level.SEVERE, null, ex);
+            JOptionPane.showMessageDialog(null, ErroresdeConexion.MessageError(ex.getErrorCode(), ex.getMessage()));
         }
     }
 }
