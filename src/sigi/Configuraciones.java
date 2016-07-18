@@ -2,6 +2,7 @@ package sigi;
 
 import Utils.Utils;
 import Connection.Conexion;
+import Connection.Conexion_login;
 import com.mxrck.autocompleter.TextAutoCompleter;
 import Utils.ConfigVar;
 import java.security.NoSuchAlgorithmException;
@@ -15,6 +16,7 @@ import static sigi.Proveedores.result;
 
 public class Configuraciones extends javax.swing.JInternalFrame {
     Conexion con;
+    Conexion_login conUser;
     ResultSet rs;
     int updateId = 0;
     
@@ -1022,10 +1024,10 @@ public class Configuraciones extends javax.swing.JInternalFrame {
     }
     private void searchFc(){
         try {
-            con = new Conexion();
+            conUser = new Conexion_login();
             TextAutoCompleter textAutoAcompleter = new TextAutoCompleter(serachUser);
             String sql ="SELECT user FROM usuarios";
-            rs = con.Consulta(sql);
+            rs = conUser.Consulta(sql);
             while(rs.next()){
                 result = rs.getString("user");
                 textAutoAcompleter.addItem(result);
