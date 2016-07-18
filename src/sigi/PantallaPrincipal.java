@@ -12,7 +12,6 @@ import java.beans.PropertyVetoException;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 import javax.swing.JOptionPane;
-import javax.swing.ImageIcon;
 import sigi.reports.ReporteDetalleVentas;
 import sigi.reports.ReporteStock;
 
@@ -22,6 +21,7 @@ public class PantallaPrincipal extends javax.swing.JFrame {
     static int j=0; 
     static float total=0;
     int userId = Login.userId;
+    private Dimension dim;
     
     public PantallaPrincipal() {         
         initComponents();
