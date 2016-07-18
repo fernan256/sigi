@@ -1,6 +1,7 @@
 package sigi;
 
 import Connection.Conexion;
+import Connection.Conexion_login;
 import Utils.ConfigVar;
 import java.awt.event.KeyEvent;
 import java.sql.ResultSet;
@@ -12,7 +13,7 @@ import java.util.logging.Logger;
 import javax.swing.JOptionPane;
 
 public class Login extends javax.swing.JFrame {
-    Conexion con;
+    Conexion_login con;
     ResultSet rs;
     String rol;
     public static Conexion con2;
@@ -175,7 +176,7 @@ public class Login extends javax.swing.JFrame {
             JOptionPane.showMessageDialog(null,"Faltan campos por llenar");
         } else{
             try {
-                con = new Conexion();
+                con = new Conexion_login();
                 String getSalt = "SELECT id_usuario, password, salt FROM usuarios WHERE user = '"+usuario+"'";
                 String salt = "";
                 rs = con.Consulta(getSalt);
