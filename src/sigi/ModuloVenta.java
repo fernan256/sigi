@@ -3,6 +3,7 @@ package sigi;
 import Utils.ImprimirTicket;
 import Utils.Utils;
 import Connection.Conexion;
+import java.awt.Font;
 import java.awt.event.KeyEvent;
 import java.math.BigDecimal;
 import java.math.BigInteger;
@@ -67,6 +68,7 @@ public class ModuloVenta extends javax.swing.JFrame {
         cancelTicket = new javax.swing.JButton();
         cashWithdrawal = new javax.swing.JButton();
         searchArticles = new javax.swing.JButton();
+        printTicketFont = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
         setBackground(new java.awt.Color(255, 255, 255));
@@ -239,6 +241,9 @@ public class ModuloVenta extends javax.swing.JFrame {
             }
         });
         getContentPane().add(searchArticles, new org.netbeans.lib.awtextra.AbsoluteConstraints(520, 30, 220, 60));
+
+        printTicketFont.setFont(new java.awt.Font("Times New Roman", 0, 10)); // NOI18N
+        getContentPane().add(printTicketFont, new org.netbeans.lib.awtextra.AbsoluteConstraints(620, 70, 50, 10));
 
         pack();
         setLocationRelativeTo(null);
@@ -483,8 +488,12 @@ public class ModuloVenta extends javax.swing.JFrame {
                         con.ejecutar(insertSaleDetail);
                     }
                     if(saleTypo == 2) {
-                        System.out.println(VentasCtaCte.accountStatus);
-                        BigDecimal auxAccount = new BigDecimal(VentasCtaCte.accountStatus);
+                        BigDecimal auxAccount;
+                        if(VentasCtaCte.accountStatus.isEmpty()){
+                            auxAccount = new BigDecimal(BigInteger.ZERO);
+                        }else{
+                            auxAccount = new BigDecimal(VentasCtaCte.accountStatus);
+                        }
                         BigDecimal totalSalesToAdd = new BigDecimal(sendTotalVentas);
                         totalAccount = auxAccount.add(totalSalesToAdd).subtract(descuentoAuxiliar);
                         String insertCtaCte = "INSERT INTO cuentas_corrientes (fecha_cta_cte, total, suma, clientes_id_clientes, usuarios_id_usuario, ventas_id_venta, numero_ticket) VALUES ('"+saleDateToSave+"', "+totalAccount+", "+totalSalesToAdd+", "+clientIDM+", "+userId+", "+saleId+", "+ticketNumber+")";
@@ -570,7 +579,8 @@ public class ModuloVenta extends javax.swing.JFrame {
                         JOptionPane.showMessageDialog(null, "Venta Realizada"+salto+salto+"Total a Cobrar: $ "+getTotalVentas+salto+"Cambio: $ 0.00");
                     }
                     if(Login.printStatus == 1) {
-                        int print = ImprimirTicket.printTicket(ticket);
+                        printTicketFont.setText(ticket);
+                        int print = ImprimirTicket.printTicket(printTicketFont.getText());
                         if(print == 1) {
                             ticket = null;
                         } else {
@@ -680,6 +690,7 @@ public class ModuloVenta extends javax.swing.JFrame {
     private javax.swing.JLabel jLabel7;
     private javax.swing.JScrollPane jScrollPane18;
     private javax.swing.JButton printTicket;
+    private javax.swing.JLabel printTicketFont;
     private javax.swing.JButton returns;
     private javax.swing.JTextField scanning;
     private javax.swing.JButton searchArticles;
