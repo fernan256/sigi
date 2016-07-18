@@ -1,6 +1,7 @@
 package sigi;
 
 import Connection.Conexion;
+import Connection.Conexion_login;
 import com.mxrck.autocompleter.TextAutoCompleter;
 import java.awt.event.KeyEvent;
 import java.sql.ResultSet;
@@ -11,10 +12,12 @@ import java.util.logging.Logger;
 
 public class AjusteCaja extends javax.swing.JInternalFrame {
     Conexion con;
+    Conexion_login conUser;
     ResultSet rs;
     static float total = 0;
     static int j = 0;
     static String result;
+    int idUser = 0;
     
     public AjusteCaja() {
         initComponents();
@@ -322,29 +325,29 @@ public class AjusteCaja extends javax.swing.JInternalFrame {
     public void getValues(String fecha){
         try {
             con = new Conexion();
-            String getCloseInfo = "SELECT t1.*, t2.apertura, t3.nombres, t3.apellidos FROM cierre_caja t1 INNER JOIN caja t2 INNER JOIN usuarios t3 WHERE t1.fecha_cierre > date_format('"+fecha+"', '%Y-%m-%d 00:00:00') AND t1.fecha_cierre < date_format('"+fecha+"', '%Y-%m-%d 23:59:59') AND t1.id_cierre_caja = t2.cierre_numero AND t1.id_usuario = t3.id_usuario";
+            String getCloseInfo = "SELECT t1.*, t2.apertura, t2.id_usuario FROM cierre_caja t1 INNER JOIN caja t2 WHERE t1.fecha_cierre > date_format('"+fecha+"', '%Y-%m-%d 00:00:00') AND t1.fecha_cierre < date_format('"+fecha+"', '%Y-%m-%d 23:59:59') AND t1.id_cierre_caja = t2.cierre_numero";
             rs = con.Consulta(getCloseInfo);
             while(rs.next()) {
-                //auxSystemTotal = rs.getFloat("suma_total");
                 systemTotal.setText(rs.getString("total_calculado"));
                 endDayTotal.setText(rs.getString("total_real"));
                 differences.setText(rs.getString("diferencia_caja"));
                 closeDate.setText(rs.getString("fecha_cierre"));
                 initialMoney.setText(rs.getString("apertura"));
                 closeNumber.setText(rs.getString("id_cierre_caja"));
+                idUser = rs.getInt("id_usuario");
+            }
+            conUser = new Conexion_login();
+            String getUserInfo = "SELECT nombres, apellidos FROM usuarios WHERE id_usuario = "+idUser+"";
+            rs = conUser.Consulta(getUserInfo);
+            while(rs.next()){
                 userName.setText(rs.getString("nombres") + " " + rs.getString("apellidos"));
             }
-            //totalCash.setText(String.format(Locale.ENGLISH, "%.2f", auxSystemTotal));
             String getTicketRange = "SELECT numero_ticket FROM detalle_venta WHERE fecha_detalle_venta > date_format('"+fecha+"', '%Y-%m-%d 00:00:00') AND fecha_detalle_venta < date_format('"+fecha+"', '%Y-%m-%d 23:59:59')";
             rs = con.Consulta(getTicketRange);
             ArrayList ticketNro = new ArrayList();
             while(rs.next()) {
-                //ctaCte.setText(rs.getString("ctaCte_total"));
                 ticketNro.add(rs.getString("numero_ticket"));
-                //ticketNumberTo
             }
-            //ticketNumberFrom.setText(ticketNro.get(0).toString());
-            //ticketNumberTo.setText(ticketNro.get(ticketNro.size() - 1).toString());
             con.Cerrar();
         } catch (ClassNotFoundException | SQLException | InstantiationException | IllegalAccessException ex) {
             Logger.getLogger(CierreZ.class.getName()).log(Level.SEVERE, null, ex);
