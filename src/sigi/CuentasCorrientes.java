@@ -122,32 +122,35 @@ public class CuentasCorrientes extends javax.swing.JInternalFrame {
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
-                .addGap(25, 25, 25)
-                .addComponent(jLabel1)
-                .addGap(26, 26, 26)
-                .addComponent(searchUser, javax.swing.GroupLayout.PREFERRED_SIZE, 290, javax.swing.GroupLayout.PREFERRED_SIZE))
-            .addGroup(layout.createSequentialGroup()
-                .addGap(25, 25, 25)
-                .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 777, javax.swing.GroupLayout.PREFERRED_SIZE))
-            .addGroup(layout.createSequentialGroup()
-                .addGap(25, 25, 25)
-                .addComponent(jLabel3)
-                .addGap(46, 46, 46)
-                .addComponent(totalDue, javax.swing.GroupLayout.PREFERRED_SIZE, 100, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(80, 80, 80)
-                .addComponent(jLabel4)
-                .addGap(39, 39, 39)
-                .addComponent(totalPaid, javax.swing.GroupLayout.PREFERRED_SIZE, 100, javax.swing.GroupLayout.PREFERRED_SIZE))
-            .addGroup(layout.createSequentialGroup()
-                .addGap(25, 25, 25)
-                .addComponent(jLabel2)
-                .addGap(72, 72, 72)
-                .addComponent(newImport, javax.swing.GroupLayout.PREFERRED_SIZE, 100, javax.swing.GroupLayout.PREFERRED_SIZE))
-            .addGroup(layout.createSequentialGroup()
-                .addGap(278, 278, 278)
-                .addComponent(save)
-                .addGap(25, 25, 25)
-                .addComponent(cancel))
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(layout.createSequentialGroup()
+                        .addGap(25, 25, 25)
+                        .addComponent(jLabel1)
+                        .addGap(26, 26, 26)
+                        .addComponent(searchUser, javax.swing.GroupLayout.PREFERRED_SIZE, 290, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addGroup(layout.createSequentialGroup()
+                        .addGap(25, 25, 25)
+                        .addComponent(jLabel3)
+                        .addGap(46, 46, 46)
+                        .addComponent(totalDue, javax.swing.GroupLayout.PREFERRED_SIZE, 100, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(80, 80, 80)
+                        .addComponent(jLabel4)
+                        .addGap(39, 39, 39)
+                        .addComponent(totalPaid, javax.swing.GroupLayout.PREFERRED_SIZE, 100, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addGroup(layout.createSequentialGroup()
+                        .addGap(25, 25, 25)
+                        .addComponent(jLabel2)
+                        .addGap(72, 72, 72)
+                        .addComponent(newImport, javax.swing.GroupLayout.PREFERRED_SIZE, 100, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addGroup(layout.createSequentialGroup()
+                        .addGap(278, 278, 278)
+                        .addComponent(save, javax.swing.GroupLayout.PREFERRED_SIZE, 190, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(168, 168, 168)
+                        .addComponent(cancel, javax.swing.GroupLayout.PREFERRED_SIZE, 190, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addGroup(layout.createSequentialGroup()
+                        .addGap(25, 25, 25)
+                        .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 910, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                .addContainerGap(42, Short.MAX_VALUE))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -170,19 +173,17 @@ public class CuentasCorrientes extends javax.swing.JInternalFrame {
                     .addComponent(newImport, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addGap(18, 18, 18)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(save)
-                    .addComponent(cancel))
-                .addContainerGap(131, Short.MAX_VALUE))
+                    .addComponent(save, javax.swing.GroupLayout.PREFERRED_SIZE, 40, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(cancel, javax.swing.GroupLayout.PREFERRED_SIZE, 40, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addContainerGap(135, Short.MAX_VALUE))
         );
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
     private void saveActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_saveActionPerformed
-     
         try {
             con = new Conexion();
-            newImport.setText(Utils.formatCurrency(newImport.getText().length(), newImport.getText()));
             BigDecimal paiment = new BigDecimal(newImport.getText());
             BigDecimal currentBalance = new BigDecimal(totalDue.getText());
             BigDecimal resultado = currentBalance.subtract(paiment);
@@ -221,7 +222,6 @@ public class CuentasCorrientes extends javax.swing.JInternalFrame {
             Object nuevo[] = {temp.getRowCount()+1,"",""};
             temp.addRow(nuevo);
             int showTicket = this.accountTable.getSelectedRow();
-            System.out.println(showTicket);
             if(showTicket == 1) {
                 JOptionPane.showConfirmDialog(null, estado);
             }
@@ -264,6 +264,7 @@ public class CuentasCorrientes extends javax.swing.JInternalFrame {
 
     private void newImportKeyReleased(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_newImportKeyReleased
         if(evt.getKeyCode() == KeyEvent.VK_ENTER){
+            newImport.setText(Utils.formatCurrency(newImport.getText().length(), newImport.getText()));
             save.requestFocus();
         }
     }//GEN-LAST:event_newImportKeyReleased
