@@ -14,6 +14,7 @@ public class BuscarArticulos extends javax.swing.JDialog {
     Conexion con;
     ResultSet rs;
     public static int fillInTable = 0;
+    private int j = 0;
     public BuscarArticulos(java.awt.Frame parent, boolean modal) {
         super(parent, modal);
         initComponents();
@@ -46,21 +47,49 @@ public class BuscarArticulos extends javax.swing.JDialog {
         resultTable.setFont(new java.awt.Font("Arial", 0, 12)); // NOI18N
         resultTable.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
-                {},
-                {},
-                {},
-                {}
+
             },
             new String [] {
-
+                "Scanning", "Nombre Producto", "Marca", "Precio", "Stock", "tipoArticulo", "idArticulo", "idStock"
             }
-        ));
+        ) {
+            Class[] types = new Class [] {
+                java.lang.Integer.class, java.lang.String.class, java.lang.String.class, java.lang.String.class, java.lang.Integer.class, java.lang.Integer.class, java.lang.Integer.class, java.lang.Object.class
+            };
+            boolean[] canEdit = new boolean [] {
+                false, true, false, false, false, true, true, true
+            };
+
+            public Class getColumnClass(int columnIndex) {
+                return types [columnIndex];
+            }
+
+            public boolean isCellEditable(int rowIndex, int columnIndex) {
+                return canEdit [columnIndex];
+            }
+        });
         resultTable.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
                 resultTableMouseClicked(evt);
             }
         });
         jScrollPane1.setViewportView(resultTable);
+        if (resultTable.getColumnModel().getColumnCount() > 0) {
+            resultTable.getColumnModel().getColumn(0).setResizable(false);
+            resultTable.getColumnModel().getColumn(1).setResizable(false);
+            resultTable.getColumnModel().getColumn(2).setResizable(false);
+            resultTable.getColumnModel().getColumn(3).setResizable(false);
+            resultTable.getColumnModel().getColumn(4).setResizable(false);
+            resultTable.getColumnModel().getColumn(5).setMinWidth(0);
+            resultTable.getColumnModel().getColumn(5).setPreferredWidth(0);
+            resultTable.getColumnModel().getColumn(5).setMaxWidth(0);
+            resultTable.getColumnModel().getColumn(6).setMinWidth(0);
+            resultTable.getColumnModel().getColumn(6).setPreferredWidth(0);
+            resultTable.getColumnModel().getColumn(6).setMaxWidth(0);
+            resultTable.getColumnModel().getColumn(7).setMinWidth(0);
+            resultTable.getColumnModel().getColumn(7).setPreferredWidth(0);
+            resultTable.getColumnModel().getColumn(7).setMaxWidth(0);
+        }
 
         jButton2.setFont(new java.awt.Font("Arial", 1, 18)); // NOI18N
         jButton2.setText("Cancelar");
@@ -87,8 +116,8 @@ public class BuscarArticulos extends javax.swing.JDialog {
                         .addGap(0, 0, Short.MAX_VALUE)))
                 .addContainerGap())
             .addGroup(layout.createSequentialGroup()
-                .addGap(239, 239, 239)
-                .addComponent(jButton2, javax.swing.GroupLayout.PREFERRED_SIZE, 158, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(267, 267, 267)
+                .addComponent(jButton2, javax.swing.GroupLayout.PREFERRED_SIZE, 251, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
         layout.setVerticalGroup(
@@ -111,34 +140,22 @@ public class BuscarArticulos extends javax.swing.JDialog {
     private void productNameKeyReleased(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_productNameKeyReleased
         try {
             con = new Conexion();
-            String sql = "SELECT t1.*, t2.stock_min, t2.saldo_stock FROM descripcion_articulos AS t1 INNER JOIN stock AS t2 ON t1.id_articulo = t2.id_articulo WHERE t1.nombre_producto LIKE '"+productName.getText()+"%'";
+            String sql = "SELECT t1.*, t2.stock_min, t2.saldo_stock, t2.id_stock FROM descripcion_articulos AS t1 INNER JOIN stock AS t2 ON t1.id_articulo = t2.id_articulo WHERE t1.nombre_producto LIKE '"+productName.getText()+"%'";
             rs = con.Consulta(sql);
-            
-            DefaultTableModel buscar = new DefaultTableModel(){
-                @Override
-                public boolean isCellEditable(int rowIndex, int vColIndex) {
-                    return false;
-                }
-            };
-            this.resultTable.setModel(buscar);
-            buscar.addColumn("Scanning");
-            buscar.addColumn("Nombre Producto");
-            buscar.addColumn("Marca");
-            buscar.addColumn("Precio Costo");
-            buscar.addColumn("Stock");
-            buscar.addColumn("tipo");
-            buscar.addColumn("art_id");
-            
+            DefaultTableModel temp = (DefaultTableModel)
+            resultTable.getModel();
+            Object nuevo[]= {temp.getRowCount()+1,"",""};
             while (rs.next()) {
-                Object[] fila = new Object[7];
-                fila[0] = rs.getString("scanning");
-                fila[1] = rs.getString("nombre_producto");
-                fila[2] = rs.getString("marca");
-                fila[3] = rs.getFloat("precio_costo");
-                fila[4] = rs.getInt("saldo_stock");
-                fila[5] = rs.getInt("tipo_articulo_id");
-                fila[6] = rs.getString("id_articulo");
-                buscar.addRow(fila);
+                temp.addRow(nuevo);
+                resultTable.setValueAt(rs.getString("scanning"), j, 0);
+                resultTable.setValueAt(rs.getString("nombre_producto"), j, 1);
+                resultTable.setValueAt(rs.getString("marca"), j, 2);
+                resultTable.setValueAt(rs.getFloat("precio_costo"), j, 3);
+                resultTable.setValueAt(rs.getInt("saldo_stock"), j, 4);
+                resultTable.setValueAt(rs.getInt("tipo_articulo_id"), j, 5);
+                resultTable.setValueAt(rs.getInt("id_articulo"), j, 6);
+                resultTable.setValueAt(rs.getInt("id_stock"), j, 7);
+                j++;
             }
             con.Cerrar();
         } catch (ClassNotFoundException | InstantiationException | IllegalAccessException | SQLException ex) {
@@ -159,6 +176,7 @@ public class BuscarArticulos extends javax.swing.JDialog {
             ModuloVenta.cantidadEnStock = new BigDecimal (resultTable.getValueAt(aux, 4).toString());
             ModuloVenta.tipo = (int) resultTable.getValueAt(aux, 5);
             ModuloVenta.articleId = resultTable.getValueAt(aux, 6).toString();
+            ModuloVenta.stockId = (int) resultTable.getValueAt(aux, 7);
             fillInTable = 1;
             this.dispose();
         }
