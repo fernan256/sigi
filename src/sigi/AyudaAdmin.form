@@ -26,9 +26,13 @@
   <Layout>
     <DimensionLayout dim="0">
       <Group type="103" groupAlignment="0" attributes="0">
-          <Group type="102" attributes="0">
+          <Group type="102" alignment="0" attributes="0">
               <EmptySpace min="25" pref="25" max="-2" attributes="0"/>
               <Group type="103" groupAlignment="0" attributes="0">
+                  <Component id="jScrollPane3" alignment="0" min="-2" pref="769" max="-2" attributes="0"/>
+                  <Component id="jLabel3" alignment="0" min="-2" max="-2" attributes="0"/>
+                  <Component id="jScrollPane2" min="-2" pref="769" max="-2" attributes="0"/>
+                  <Component id="jLabel2" min="-2" max="-2" attributes="0"/>
                   <Component id="jLabel1" min="-2" max="-2" attributes="0"/>
                   <Component id="jScrollPane1" min="-2" pref="769" max="-2" attributes="0"/>
               </Group>
@@ -42,6 +46,15 @@
               <Component id="jLabel1" min="-2" max="-2" attributes="0"/>
               <EmptySpace min="11" pref="11" max="-2" attributes="0"/>
               <Component id="jScrollPane1" min="-2" pref="153" max="-2" attributes="0"/>
+              <EmptySpace type="separate" max="-2" attributes="0"/>
+              <Component id="jLabel2" min="-2" max="-2" attributes="0"/>
+              <EmptySpace type="unrelated" max="-2" attributes="0"/>
+              <Component id="jScrollPane2" min="-2" max="-2" attributes="0"/>
+              <EmptySpace type="separate" max="-2" attributes="0"/>
+              <Component id="jLabel3" min="-2" max="-2" attributes="0"/>
+              <EmptySpace type="unrelated" max="-2" attributes="0"/>
+              <Component id="jScrollPane3" min="-2" pref="90" max="-2" attributes="0"/>
+              <EmptySpace pref="119" max="32767" attributes="0"/>
           </Group>
       </Group>
     </DimensionLayout>
@@ -69,10 +82,64 @@
               <Font name="Arial" size="12" style="0"/>
             </Property>
             <Property name="rows" type="int" value="5"/>
-            <Property name="text" type="java.lang.String" value="En este modulo se realizan las ventas, para las cuales se puede utilizar un lector de codigo de barras o buscar los articulos por nombre.&#xa;Atajos de teclado:&#xa;F1 -&gt; Venta en Efectivo&#xa;F2 -&gt; Venta en Cuenta Corriente&#xa;F3 -&gt; Ingresar cantidad de un producto por unidad&#xa;F4 -&gt; Ingresar cantidad de un producto pesable&#xa;F5 -&gt; Ingresar valor de un descuento aplicado a un producto"/>
+            <Property name="text" type="java.lang.String" value="En este modulo se realizan las ventas, para las cuales se puede utilizar un lector de codigo de barras o buscar los articulos por nombre.&#xa;Atajos de teclado:&#xa;F1 -&gt; Venta en Efectivo&#xa;F2 -&gt; Venta en Cuenta Corriente&#xa;F3 -&gt; Ingresar cantidad de un producto por unidad&#xa;F4 -&gt; Ingresar cantidad de un producto pesable&#xa;F5 -&gt; Ingresar valor de un descuento aplicado a un producto&#xa;&#xa;Buscar Art&#xed;culos:&#xa;Para buscar un producto por nombre se debe hacer clic en Buscar Articulos, se abrira una nueva ventana. Ah&#xed; buscaremos los articulos por&#xa;nombres. Al ir introduciendo letras en la tabla de resultado nos ir&#xe1;n apareciendo coinsidencias. Una vez encontrado el art&#xed;culo que queremos&#xa;agregar debemos hacer clic sobre dicha fila y el articulo se agregar&#xe1; autom&#xe1;ticamente al listado de ventas.&#xa;&#xa;"/>
           </Properties>
         </Component>
       </SubComponents>
     </Container>
+    <Component class="javax.swing.JLabel" name="jLabel2">
+      <Properties>
+        <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
+          <Font name="Arial" size="16" style="1"/>
+        </Property>
+        <Property name="text" type="java.lang.String" value="Anular Ticket"/>
+      </Properties>
+    </Component>
+    <Container class="javax.swing.JScrollPane" name="jScrollPane2">
+      <AuxValues>
+        <AuxValue name="autoScrollPane" type="java.lang.Boolean" value="true"/>
+      </AuxValues>
+
+      <Layout class="org.netbeans.modules.form.compat2.layouts.support.JScrollPaneSupportLayout"/>
+      <SubComponents>
+        <Component class="javax.swing.JTextArea" name="jTextArea2">
+          <Properties>
+            <Property name="columns" type="int" value="20"/>
+            <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
+              <Font name="Arial" size="12" style="0"/>
+            </Property>
+            <Property name="rows" type="int" value="5"/>
+            <Property name="text" type="java.lang.String" value="Al anular un ticket, se deben volver a ingresar los pruductos al stock. Esto no hace autom&#xe1;ticamente por una cuesti&#xf3;n de seguridad.&#xa;&#xa;En el caso de que el ticket anulado corresponda a alguna cuenta corriente, el valor del ticket se tiene que restar manualmente en la &#xa;cuenta corriente correspondiente, ingresando en Cuentas Corrientes -&gt; ABM Cuentas Corrientes."/>
+          </Properties>
+        </Component>
+      </SubComponents>
+    </Container>
+    <Container class="javax.swing.JScrollPane" name="jScrollPane3">
+      <AuxValues>
+        <AuxValue name="autoScrollPane" type="java.lang.Boolean" value="true"/>
+      </AuxValues>
+
+      <Layout class="org.netbeans.modules.form.compat2.layouts.support.JScrollPaneSupportLayout"/>
+      <SubComponents>
+        <Component class="javax.swing.JTextArea" name="jTextArea3">
+          <Properties>
+            <Property name="columns" type="int" value="20"/>
+            <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
+              <Font name="Arial" size="12" style="0"/>
+            </Property>
+            <Property name="rows" type="int" value="5"/>
+            <Property name="text" type="java.lang.String" value="Al usar la herramienta para importar tanto usuarios como articulos, se tiene que usar el formato de excel dado, debe estar guardado&#xa;como Excel 97 que genera un archivo .xls.&#xa;&#xa;En el caso de Importar usuarios, no se deben dejar en blanco los campos Telefono, Celular, Fecha de Nacimiento y Fecha de Alta.&#xa;En los primieros 2 casos con colocar un cero basta. Para las fechas porner alguna fecha en el siguiente formato 2016-08-02."/>
+          </Properties>
+        </Component>
+      </SubComponents>
+    </Container>
+    <Component class="javax.swing.JLabel" name="jLabel3">
+      <Properties>
+        <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
+          <Font name="Arial" size="16" style="1"/>
+        </Property>
+        <Property name="text" type="java.lang.String" value="Importar/Exportar"/>
+      </Properties>
+    </Component>
   </SubComponents>
 </Form>
