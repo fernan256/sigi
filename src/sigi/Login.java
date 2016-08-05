@@ -16,8 +16,8 @@ public class Login extends javax.swing.JFrame {
     Conexion_login con;
     ResultSet rs;
     String rol;
-    public static Conexion con2;
-    public static ResultSet rs2;
+    public static Conexion conPub;
+    public static ResultSet rsPub;
     public static int userRol;
     public static int userId;
     public static String userName;
@@ -243,33 +243,21 @@ public class Login extends javax.swing.JFrame {
     
     public static void getStatus() {
         try {
-            con2 = new Conexion();
-            String getLastOpening = "SELECT id_caja, estado, id_usuario, fecha_apertura FROM caja WHERE estado = 1 OR estado = 3";
-            rs2 = con2.Consulta(getLastOpening);
+            conPub = new Conexion();
+            String getLastOpening = "SELECT id_caja, estado, id_usuario, fecha_apertura FROM caja WHERE estado = 1 OR estado = 3 AND id_usuario = "+userId+"";
+            rsPub = conPub.Consulta(getLastOpening);
             int numRows = 0;
-            while(rs2.next()) {
+            while(rsPub.next()) {
                 ++numRows;
-                status = rs2.getInt("estado");
-                compareIds = rs2.getInt("id_usuario");
-                fecha = rs2.getString("fecha_apertura");
-                cajaId = rs2.getInt("id_caja");
+                status = rsPub.getInt("estado");
+                compareIds = rsPub.getInt("id_usuario");
+                fecha = rsPub.getString("fecha_apertura");
+                cajaId = rsPub.getInt("id_caja");
             }
             if(numRows == 0) {
-                String getLastOpen = "SELECT MAX(id_caja) AS id FROM caja";
-                rs2 = con2.Consulta(getLastOpen);
-                int idCaja = 0;
-                while(rs2.next()) {
-                    idCaja = rs2.getInt("id");
-                }
-                String getLastStatus = "SELECT id_caja, estado, id_usuario, fecha_apertura FROM caja WHERE id_caja = "+idCaja+"";
-                rs2 = con2.Consulta(getLastStatus);
-                while(rs2.next()){
-                    status = rs2.getInt("estado");
-                    compareIds = rs2.getInt("id_usuario");
-                    fecha = rs2.getString("fecha_apertura");
-                }
+                status = 0;
             }
-            con2.Cerrar();
+            conPub.Cerrar();
         } catch (SQLException | ClassNotFoundException | InstantiationException | IllegalAccessException ex) {
             Logger.getLogger(Login.class.getName()).log(Level.SEVERE, null, ex);
         }
@@ -277,14 +265,14 @@ public class Login extends javax.swing.JFrame {
     
     public static void cashAndPrintStatus(){
         try{
-            con2 = new Conexion();
+            conPub = new Conexion();
             String getInitialConfig = "select * from configuracion_inicial";
-            rs2 = con2.Consulta(getInitialConfig);
-            while(rs2.next()){
-                initialCash = rs2.getInt("caja_inicial");
-                printStatus = rs2.getInt("print_status");
+            rsPub = conPub.Consulta(getInitialConfig);
+            while(rsPub.next()){
+                initialCash = rsPub.getInt("caja_inicial");
+                printStatus = rsPub.getInt("print_status");
             }
-            con2.Cerrar();
+            conPub.Cerrar();
         } catch (SQLException | ClassNotFoundException | InstantiationException | IllegalAccessException ex) {
             Logger.getLogger(Login.class.getName()).log(Level.SEVERE, null, ex);
         }
@@ -292,21 +280,21 @@ public class Login extends javax.swing.JFrame {
     
     public static void companyData() throws ClassNotFoundException{
         try {
-            con2 = new Conexion();
+            conPub = new Conexion();
             String getTicketInfo = "select t1.nombre, t1.direccion, t1.direccion_numero, t1.departamento, t1.provincia, t1.codigo_postal, t2.cuit_cuil, t2.ingresos_brutos, t2.fecha_inicio_actividad from empresa t1 inner join datos_fiscales t2 where t1.id_empresa = 1 AND t2.id_datos_fiscales = 1";
-            rs2 = con2.Consulta(getTicketInfo);
-            while(rs2.next()) {
-                companyName = rs2.getString("nombre");
-                companyAddress = rs2.getString("direccion");
-                companyDepartment= rs2.getString("departamento");
-                companyCuilCuit = rs2.getString("cuit_cuil");
-                companyProvince = rs2.getString("provincia");
-                companyCp = rs2.getString("codigo_postal");
-                companyIg = rs2.getString("ingresos_brutos");
-                companyInitActivities = rs2.getDate("fecha_inicio_actividad");
-                companyAddressNumber = rs2.getString("direccion_numero");
+            rsPub = conPub.Consulta(getTicketInfo);
+            while(rsPub.next()) {
+                companyName = rsPub.getString("nombre");
+                companyAddress = rsPub.getString("direccion");
+                companyDepartment= rsPub.getString("departamento");
+                companyCuilCuit = rsPub.getString("cuit_cuil");
+                companyProvince = rsPub.getString("provincia");
+                companyCp = rsPub.getString("codigo_postal");
+                companyIg = rsPub.getString("ingresos_brutos");
+                companyInitActivities = rsPub.getDate("fecha_inicio_actividad");
+                companyAddressNumber = rsPub.getString("direccion_numero");
             }
-            con2.Cerrar();
+            conPub.Cerrar();
         } catch (SQLException ex) {
             Logger.getLogger(Login.class.getName()).log(Level.SEVERE, null, ex);
         } catch (InstantiationException ex) {
