@@ -1,6 +1,7 @@
 package sigi;
 
 import Connection.Conexion;
+import Utils.Utils;
 import java.math.BigDecimal;
 import java.sql.ResultSet;
 import java.sql.SQLException;
@@ -35,7 +36,7 @@ public class AnularTicket extends javax.swing.JDialog {
         jLabel2 = new javax.swing.JLabel();
         saleDate = new javax.swing.JTextField();
         jScrollPane1 = new javax.swing.JScrollPane();
-        articles = new javax.swing.JTable();
+        showArticles = new javax.swing.JTable();
         jLabel3 = new javax.swing.JLabel();
         totalReturn = new javax.swing.JTextField();
         cancelTicket = new javax.swing.JButton();
@@ -59,20 +60,20 @@ public class AnularTicket extends javax.swing.JDialog {
 
         saleDate.setFont(new java.awt.Font("Arial", 0, 12)); // NOI18N
 
-        articles.setFont(new java.awt.Font("Arial", 0, 12)); // NOI18N
-        articles.setModel(new javax.swing.table.DefaultTableModel(
+        showArticles.setFont(new java.awt.Font("Arial", 0, 12)); // NOI18N
+        showArticles.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
 
             },
             new String [] {
-                "Scanning", "Nombre", "Marca", "Precio", "Cantidad", "Id articulo", "Tipo articulo"
+                "Scanning", "Nombre", "Marca", "Precio", "Cantidad", "idArticulo", "tipoArticulo", "cantidadStock"
             }
         ) {
             Class[] types = new Class [] {
-                java.lang.String.class, java.lang.String.class, java.lang.String.class, java.lang.String.class, java.lang.String.class, java.lang.String.class, java.lang.String.class
+                java.lang.String.class, java.lang.String.class, java.lang.String.class, java.lang.String.class, java.lang.String.class, java.lang.String.class, java.lang.String.class, java.lang.Integer.class
             };
             boolean[] canEdit = new boolean [] {
-                false, false, false, false, false, true, true
+                false, false, false, false, false, true, true, true
             };
 
             public Class getColumnClass(int columnIndex) {
@@ -83,23 +84,28 @@ public class AnularTicket extends javax.swing.JDialog {
                 return canEdit [columnIndex];
             }
         });
-        jScrollPane1.setViewportView(articles);
-        if (articles.getColumnModel().getColumnCount() > 0) {
-            articles.getColumnModel().getColumn(0).setResizable(false);
-            articles.getColumnModel().getColumn(1).setResizable(false);
-            articles.getColumnModel().getColumn(2).setResizable(false);
-            articles.getColumnModel().getColumn(3).setResizable(false);
-            articles.getColumnModel().getColumn(4).setResizable(false);
-            articles.getColumnModel().getColumn(5).setMinWidth(0);
-            articles.getColumnModel().getColumn(5).setPreferredWidth(0);
-            articles.getColumnModel().getColumn(5).setMaxWidth(0);
-            articles.getColumnModel().getColumn(6).setMinWidth(0);
-            articles.getColumnModel().getColumn(6).setPreferredWidth(0);
-            articles.getColumnModel().getColumn(6).setMaxWidth(0);
+        jScrollPane1.setViewportView(showArticles);
+        if (showArticles.getColumnModel().getColumnCount() > 0) {
+            showArticles.getColumnModel().getColumn(0).setResizable(false);
+            showArticles.getColumnModel().getColumn(1).setResizable(false);
+            showArticles.getColumnModel().getColumn(2).setResizable(false);
+            showArticles.getColumnModel().getColumn(3).setResizable(false);
+            showArticles.getColumnModel().getColumn(4).setResizable(false);
+            showArticles.getColumnModel().getColumn(5).setMinWidth(0);
+            showArticles.getColumnModel().getColumn(5).setPreferredWidth(0);
+            showArticles.getColumnModel().getColumn(5).setMaxWidth(0);
+            showArticles.getColumnModel().getColumn(6).setMinWidth(0);
+            showArticles.getColumnModel().getColumn(6).setPreferredWidth(0);
+            showArticles.getColumnModel().getColumn(6).setMaxWidth(0);
+            showArticles.getColumnModel().getColumn(7).setMinWidth(0);
+            showArticles.getColumnModel().getColumn(7).setPreferredWidth(0);
+            showArticles.getColumnModel().getColumn(7).setMaxWidth(0);
         }
 
         jLabel3.setFont(new java.awt.Font("Arial", 1, 16)); // NOI18N
         jLabel3.setText("TOTAL DEVOLUCIÓN");
+
+        totalReturn.setFont(new java.awt.Font("Arial", 0, 12)); // NOI18N
 
         cancelTicket.setFont(new java.awt.Font("Arial", 1, 18)); // NOI18N
         cancelTicket.setText("Anular ticket");
@@ -121,16 +127,6 @@ public class AnularTicket extends javax.swing.JDialog {
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(layout.createSequentialGroup()
-                .addGap(25, 25, 25)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(jLabel2)
-                    .addComponent(jLabel1))
-                .addGap(18, 18, 18)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                    .addComponent(saleDate, javax.swing.GroupLayout.DEFAULT_SIZE, 290, Short.MAX_VALUE)
-                    .addComponent(ticketNumber, javax.swing.GroupLayout.PREFERRED_SIZE, 100, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
                 .addGap(0, 25, Short.MAX_VALUE)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -141,11 +137,22 @@ public class AnularTicket extends javax.swing.JDialog {
                     .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 660, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addGap(24, 24, 24))
             .addGroup(layout.createSequentialGroup()
-                .addGap(81, 81, 81)
-                .addComponent(cancelTicket, javax.swing.GroupLayout.PREFERRED_SIZE, 187, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                .addComponent(cancel, javax.swing.GroupLayout.PREFERRED_SIZE, 190, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(80, 80, 80))
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(layout.createSequentialGroup()
+                        .addGap(25, 25, 25)
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(jLabel2)
+                            .addComponent(jLabel1))
+                        .addGap(18, 18, 18)
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                            .addComponent(saleDate, javax.swing.GroupLayout.DEFAULT_SIZE, 290, Short.MAX_VALUE)
+                            .addComponent(ticketNumber, javax.swing.GroupLayout.PREFERRED_SIZE, 100, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                    .addGroup(layout.createSequentialGroup()
+                        .addGap(137, 137, 137)
+                        .addComponent(cancelTicket, javax.swing.GroupLayout.PREFERRED_SIZE, 190, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(30, 30, 30)
+                        .addComponent(cancel, javax.swing.GroupLayout.PREFERRED_SIZE, 190, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -166,8 +173,8 @@ public class AnularTicket extends javax.swing.JDialog {
                     .addComponent(totalReturn, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 18, Short.MAX_VALUE)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(cancelTicket, javax.swing.GroupLayout.PREFERRED_SIZE, 60, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(cancel, javax.swing.GroupLayout.PREFERRED_SIZE, 54, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(cancelTicket, javax.swing.GroupLayout.PREFERRED_SIZE, 40, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(cancel, javax.swing.GroupLayout.PREFERRED_SIZE, 40, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addContainerGap())
         );
 
@@ -198,40 +205,20 @@ public class AnularTicket extends javax.swing.JDialog {
                 default:
                     String getTicket = "SELECT * FROM detalle_venta INNER JOIN ventas INNER JOIN descripcion_articulos INNER JOIN stock WHERE detalle_venta.numero_ticket = "+ticketNumber.getText()+" AND detalle_venta.ventas_id_venta = ventas.id_venta AND detalle_venta.id_articulo = descripcion_articulos.id_articulo AND stock.id_articulo = descripcion_articulos.id_articulo";
                     rs = con.Consulta(getTicket);
-                    DefaultTableModel buscar = new DefaultTableModel(){
-                        @Override
-                        public boolean isCellEditable(int rowIndex, int vColIndex) {
-                            return false;
-                        }
-                    };  this.articles.setModel(buscar);
-                    buscar.addColumn("Scanning");
-                    buscar.addColumn("Nombre");
-                    buscar.addColumn("Marca");
-                    buscar.addColumn("Precio");
-                    buscar.addColumn("Cantidad");
-                    buscar.addColumn("id");
-                    buscar.addColumn("tipo");
-                    buscar.addColumn("cantidadStock");
-                    articles.getColumnModel().getColumn(5).setMinWidth(0);
-                    articles.getColumnModel().getColumn(5).setMaxWidth(0);
-                    articles.getColumnModel().getColumn(5).setWidth(0);
-                    articles.getColumnModel().getColumn(6).setMinWidth(0);
-                    articles.getColumnModel().getColumn(6).setMaxWidth(0);
-                    articles.getColumnModel().getColumn(6).setWidth(0);
-                    articles.getColumnModel().getColumn(7).setMinWidth(0);
-                    articles.getColumnModel().getColumn(7).setMaxWidth(0);
-                    articles.getColumnModel().getColumn(7).setWidth(0);
+                    DefaultTableModel temp = (DefaultTableModel)
+                    showArticles.getModel();
+                    Object nuevo[]= {temp.getRowCount()+1,"",""};
                     while (rs.next()) {
-                        Object[] fila = new Object[7];
-                        fila[0] = rs.getString("scanning");
-                        fila[1] = rs.getString("nombre_producto");
-                        fila[2] = rs.getString("marca");
-                        fila[3] = rs.getBigDecimal("precio_venta");
-                        fila[4] = rs.getString("cantidad");
-                        fila[5] = rs.getInt("id_articulo");
-                        fila[6] = rs.getInt("saldo_stock");
-                        buscar.addRow(fila);
-                        saleDate.setText(rs.getString("fecha_venta"));
+                        temp.addRow(nuevo);
+                        showArticles.setValueAt(rs.getString("scanning"), j, 0);
+                        showArticles.setValueAt(rs.getString("nombre_producto"), j, 1);
+                        showArticles.setValueAt(rs.getString("marca"), j, 2);
+                        showArticles.setValueAt(rs.getBigDecimal("precio_venta"), j, 3);
+                        showArticles.setValueAt(rs.getString("cantidad"), j, 4);
+                        showArticles.setValueAt(rs.getInt("id_articulo"), j, 5);
+                        showArticles.setValueAt(rs.getInt("tipo_articulo_id"), j, 6);
+                        showArticles.setValueAt(rs.getInt("saldo_stock"), j, 7);
+                        saleDate.setText(Utils.formatDate(rs.getTimestamp("fecha_venta")));
                         totalReturn.setText(rs.getString("total"));
                         idVenta = rs.getInt("id_venta");
                     }   break;
@@ -243,7 +230,7 @@ public class AnularTicket extends javax.swing.JDialog {
     }//GEN-LAST:event_ticketNumberActionPerformed
 
     private void cancelTicketActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_cancelTicketActionPerformed
-        j = articles.getRowCount();
+        j = showArticles.getRowCount();
         if(j==0) {
             JOptionPane.showMessageDialog(null, "No hay ningun elemento  en la Tabla de Venta");
         } else {
@@ -255,13 +242,13 @@ public class AnularTicket extends javax.swing.JDialog {
                 int guardarStock[] = new int[j];
 
                 for (int i=0; i<j; i++) {
-                    scanningArticulo[i] = articles.getModel().getValueAt(i, 0).toString();
-                    nombreProducto[i] = articles.getModel().getValueAt(i, 1).toString();
-                    marcaProducto[i] = articles.getModel().getValueAt(i, 2).toString();
-                    precioVenta[i]= new BigDecimal(articles.getModel().getValueAt(i, 3).toString());
-                    idArticulos[i] = articles.getModel().getValueAt(i, 5).toString();
-                    cantidadVenta[i] = Float.parseFloat(articles.getModel().getValueAt(i, 4).toString());
-                    cantidadStock[i] = Float.parseFloat(articles.getModel().getValueAt(i, 6).toString());
+                    scanningArticulo[i] = showArticles.getModel().getValueAt(i, 0).toString();
+                    nombreProducto[i] = showArticles.getModel().getValueAt(i, 1).toString();
+                    marcaProducto[i] = showArticles.getModel().getValueAt(i, 2).toString();
+                    precioVenta[i]= new BigDecimal(showArticles.getModel().getValueAt(i, 3).toString());
+                    idArticulos[i] = showArticles.getModel().getValueAt(i, 5).toString();
+                    cantidadVenta[i] = Float.parseFloat(showArticles.getModel().getValueAt(i, 4).toString());
+                    cantidadStock[i] = Float.parseFloat(showArticles.getModel().getValueAt(i, 7).toString());
                     nuevoStock[i] = cantidadStock[i] + cantidadVenta[i];
                     guardarStock[i] = (int)nuevoStock[i];
                     String updateStock = "UPDATE stock SET saldo_stock = "+guardarStock[i]+" WHERE id_articulo ="+idArticulos[i]+"";
@@ -288,7 +275,7 @@ public class AnularTicket extends javax.swing.JDialog {
         ticketNumber.setText("");
         saleDate.setText("");
         totalReturn.setText("0.00");
-        DefaultTableModel temp = (DefaultTableModel) articles.getModel();
+        DefaultTableModel temp = (DefaultTableModel) showArticles.getModel();
         temp.setRowCount(0);
         j=0;
         this.dispose();
@@ -337,7 +324,6 @@ public class AnularTicket extends javax.swing.JDialog {
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    private javax.swing.JTable articles;
     private javax.swing.JButton cancel;
     private javax.swing.JButton cancelTicket;
     private javax.swing.JLabel jLabel1;
@@ -345,6 +331,7 @@ public class AnularTicket extends javax.swing.JDialog {
     private javax.swing.JLabel jLabel3;
     private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JTextField saleDate;
+    private javax.swing.JTable showArticles;
     private javax.swing.JTextField ticketNumber;
     private javax.swing.JTextField totalReturn;
     // End of variables declaration//GEN-END:variables
