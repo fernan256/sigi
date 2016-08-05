@@ -2,6 +2,7 @@ package sigi;
 
 import Utils.Utils;
 import Connection.Conexion;
+import java.awt.event.KeyEvent;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.logging.Level;
@@ -15,6 +16,7 @@ public class RetiroDinero extends javax.swing.JDialog {
         initComponents();
         this.setLocationRelativeTo(null);
         getValues();
+        withdrawal.setEnabled(false);
     }
     
     private void getValues(){
@@ -64,15 +66,22 @@ public class RetiroDinero extends javax.swing.JDialog {
             }
         });
 
+        user.setEditable(false);
         user.setFont(new java.awt.Font("Arial", 0, 12)); // NOI18N
 
         jLabel4.setFont(new java.awt.Font("Arial", 1, 16)); // NOI18N
         jLabel4.setText("Retiro de Diniero");
 
+        withdrawalDate.setEditable(false);
         withdrawalDate.setFont(new java.awt.Font("Arial", 0, 12)); // NOI18N
 
         amount.setFont(new java.awt.Font("Arial", 0, 12)); // NOI18N
         amount.setText("0.00");
+        amount.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyReleased(java.awt.event.KeyEvent evt) {
+                amountKeyReleased(evt);
+            }
+        });
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
@@ -89,11 +98,6 @@ public class RetiroDinero extends javax.swing.JDialog {
                         .addGap(18, 18, 18)
                         .addComponent(user, javax.swing.GroupLayout.PREFERRED_SIZE, 290, javax.swing.GroupLayout.PREFERRED_SIZE))
                     .addGroup(layout.createSequentialGroup()
-                        .addGap(44, 44, 44)
-                        .addComponent(withdrawal)
-                        .addGap(52, 52, 52)
-                        .addComponent(cancel))
-                    .addGroup(layout.createSequentialGroup()
                         .addGap(25, 25, 25)
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addComponent(jLabel2)
@@ -102,7 +106,13 @@ public class RetiroDinero extends javax.swing.JDialog {
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addComponent(amount, javax.swing.GroupLayout.PREFERRED_SIZE, 100, javax.swing.GroupLayout.PREFERRED_SIZE)
                             .addComponent(withdrawalDate, javax.swing.GroupLayout.PREFERRED_SIZE, 150, javax.swing.GroupLayout.PREFERRED_SIZE))))
-                .addContainerGap(21, Short.MAX_VALUE))
+                .addContainerGap(23, Short.MAX_VALUE))
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
+                .addGap(0, 77, Short.MAX_VALUE)
+                .addComponent(withdrawal)
+                .addGap(60, 60, 60)
+                .addComponent(cancel)
+                .addGap(85, 85, 85))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -121,10 +131,11 @@ public class RetiroDinero extends javax.swing.JDialog {
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel3)
                     .addComponent(amount, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addGap(22, 22, 22)
+                .addGap(18, 18, 18)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(withdrawal)
-                    .addComponent(cancel)))
+                    .addComponent(withdrawal, javax.swing.GroupLayout.PREFERRED_SIZE, 40, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(cancel, javax.swing.GroupLayout.PREFERRED_SIZE, 40, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addContainerGap(37, Short.MAX_VALUE))
         );
 
         pack();
@@ -153,6 +164,14 @@ public class RetiroDinero extends javax.swing.JDialog {
         }
         
     }//GEN-LAST:event_withdrawalActionPerformed
+
+    private void amountKeyReleased(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_amountKeyReleased
+        if(evt.getKeyCode() == KeyEvent.VK_ENTER){
+            amount.setText(Utils.formatCurrency(amount.getText().length(), amount.getText()));
+            withdrawal.setEnabled(true);
+            withdrawal.requestFocusInWindow();
+        }
+    }//GEN-LAST:event_amountKeyReleased
 
     /**
      * @param args the command line arguments
