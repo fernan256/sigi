@@ -1,13 +1,11 @@
 package Connection;
 
 import java.sql.*;
-import java.util.logging.Level;
-import java.util.logging.Logger;
 import javax.swing.JOptionPane;
 
 public final class Conexion {
     private Connection con;
-    private Statement  sentSQL;
+    private Statement sentSQL;
     private ResultSet rst;
     PreparedStatement ps = null;
 
@@ -49,7 +47,6 @@ public final class Conexion {
     public ResultSet getDb() throws SQLException {
         ps = con.prepareStatement("show databases");
         rst = ps.executeQuery();
-        System.out.println(rst);
         return rst;
     }
     
