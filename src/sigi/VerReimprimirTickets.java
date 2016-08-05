@@ -2,6 +2,7 @@ package sigi;
 
 import Utils.ImprimirTicket;
 import Connection.Conexion;
+import Connection.Conexion_login;
 import Utils.Utils;
 import java.awt.event.KeyEvent;
 import java.math.BigDecimal;
@@ -17,6 +18,7 @@ import javax.swing.JOptionPane;
 
 public class VerReimprimirTickets extends javax.swing.JInternalFrame {
     Conexion con;
+    Conexion_login conUser;
     ResultSet rs;
     static int j = 0;
     private final ArrayList<String> scanning = new ArrayList<>();
@@ -24,12 +26,14 @@ public class VerReimprimirTickets extends javax.swing.JInternalFrame {
     private final ArrayList<String> salesPrice = new ArrayList<>();
     private final ArrayList<String> articleName = new ArrayList<>();
     private final ArrayList<String> articleBrand = new ArrayList<>();
-    private String ticket = null, salesUserName = null, salesUserLastName = null, ticketBody = "", ticketNumber = null;
+    private String clientName = null, ticket = null, salesUserName = null, salesUserLastName = null, ticketBody = "", ticketNumber = null;
     Timestamp saleDate = null;
     private BigDecimal salesTotal = new BigDecimal(BigInteger.ZERO), discount = new BigDecimal(BigInteger.ZERO);
-    private int paymentWay = 0, totalAccount = 0, articleType = 0;
+    private int paymentWay = 0, articleType = 0, currentAccountId = 0;
+    private float totalAccount = 0;
     private BigDecimal cash = new BigDecimal(BigInteger.ZERO), exchange = new BigDecimal(BigInteger.ZERO), price = new BigDecimal(BigInteger.ZERO);
     private String salto = System.getProperty("line.separator");
+    private int saleUserId = 0;
     
     public VerReimprimirTickets() {
         initComponents();
@@ -81,9 +85,11 @@ public class VerReimprimirTickets extends javax.swing.JInternalFrame {
                 .addComponent(jLabel1)
                 .addGap(27, 27, 27)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(printTicket, javax.swing.GroupLayout.PREFERRED_SIZE, 242, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(ticketToSearch, javax.swing.GroupLayout.PREFERRED_SIZE, 131, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 430, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 430, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addGroup(layout.createSequentialGroup()
+                        .addGap(90, 90, 90)
+                        .addComponent(printTicket, javax.swing.GroupLayout.PREFERRED_SIZE, 242, javax.swing.GroupLayout.PREFERRED_SIZE)))
                 .addContainerGap(269, Short.MAX_VALUE))
         );
         layout.setVerticalGroup(
@@ -96,8 +102,8 @@ public class VerReimprimirTickets extends javax.swing.JInternalFrame {
                 .addGap(23, 23, 23)
                 .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 360, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(18, 18, 18)
-                .addComponent(printTicket, javax.swing.GroupLayout.PREFERRED_SIZE, 50, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(68, Short.MAX_VALUE))
+                .addComponent(printTicket, javax.swing.GroupLayout.PREFERRED_SIZE, 40, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addContainerGap(82, Short.MAX_VALUE))
         );
 
         pack();
@@ -107,14 +113,15 @@ public class VerReimprimirTickets extends javax.swing.JInternalFrame {
         if(evt.getKeyCode() == KeyEvent.VK_ENTER){
             try{
             con = new Conexion();
+            conUser = new Conexion_login();
             ticketNumber = ticketToSearch.getText();
-            System.out.println(ticketNumber);
-            String getTicket = "SELECT t1.*, lpad(t1.numero_ticket, 6, 0) ticket_number, t2.*, t3.*, t4.nombres, t4.apellidos FROM detalle_venta t1 JOIN ventas t2 ON t2.id_venta = t1.ventas_id_venta JOIN descripcion_articulos t3 ON t3.id_articulo = t1.id_articulo INNER JOIN usuarios t4 ON t4.id_usuario = t2.id_usuario WHERE t1.numero_ticket = '"+ticketNumber+"'";
+            String getTicket = "SELECT t1.*, lpad(t1.numero_ticket, 6, 0) ticket_number, t2.*, t3.* FROM detalle_venta t1 JOIN ventas t2 ON t2.id_venta = t1.ventas_id_venta JOIN descripcion_articulos t3 ON t3.id_articulo = t1.id_articulo WHERE t1.numero_ticket = '"+ticketNumber+"'";
             rs = con.Consulta(getTicket);
             int numRows = 0;
             while(rs.next()){
                 numRows++;
                 j++;
+                saleUserId = rs.getInt("id_usuario");
                 paymentWay = rs.getInt("forma_pago_id_forma_pago");
                 scanning.add(rs.getString("scanning"));
                 salesQuantity.add(rs.getString("cantidad"));
@@ -125,11 +132,24 @@ public class VerReimprimirTickets extends javax.swing.JInternalFrame {
                 discount = rs.getBigDecimal("descuento");
                 cash = rs.getBigDecimal("pago_con");
                 exchange = rs.getBigDecimal("vuelto");
-                salesUserName = rs.getString("nombres");
-                salesUserLastName = rs.getString("apellidos");
                 ticketNumber = rs.getString("ticket_number");
                 saleDate = rs.getTimestamp("fecha_venta");
                 articleType = rs.getInt("tipo_articulo_id");
+                currentAccountId = rs.getInt("cuenta_corriente_id");
+            }
+            String getSaleUser = "SELECT nombres, apellidos FROM usuarios WHERE id_usuario = '"+saleUserId+"'";
+            rs = conUser.Consulta(getSaleUser);
+            while(rs.next()){
+                salesUserName = rs.getString("nombres");
+                salesUserLastName = rs.getString("apellidos");
+            }
+            if(paymentWay == 2) {
+                String getClientStatus = "SELECT t1.total, t1.clientes_id_clientes, t2.id_clientes, t2.nombres, t2.apellidos FROM cuentas_corrientes t1 JOIN clientes t2 ON t2.id_clientes = t1.clientes_id_clientes WHERE t1.id_cuenta_corriente = "+currentAccountId+"";
+                rs = con.Consulta(getClientStatus);
+                while(rs.next()){
+                    clientName = rs.getString("nombres") + " " + rs.getString("apellidos");
+                    totalAccount = rs.getFloat("total");
+                }
             }
             if(numRows != 0){
                 String ticketHeader = "FACTURA NO FISCAL"+
@@ -179,13 +199,13 @@ public class VerReimprimirTickets extends javax.swing.JInternalFrame {
                 } else{
                     //cambiar total de estado cuenta
                     ticket = ticketHeader + ticketBody +
-                                        salto+salto+"TOTAL \t\t\t"+salesTotal+
+                                        salto+salto+"TOTAL \t\t"+salesTotal+
                                         salto+salto+"Recibi(MOS)"+
                                         salto+salto+"SU PAGO \t\t"+salesTotal+
                                         salto+"Su vuelto \t\t"+exchange+
                                         salto+"-----------------------------------------"+
                                         salto+"Cuenta Corriente"+
-                                        salto+"Nombre: \t"+VentasCtaCte.clientName+
+                                        salto+"Nombre: \t"+clientName+
                                         salto+"Estado cuenta: \t"+totalAccount+
                                         salto+"-----------------------------------------"+
                                         salto+"Lo atendio: "+salesUserName+" "+salesUserLastName+
