@@ -19,6 +19,11 @@ public class CierreCaja extends javax.swing.JFrame {
     public CierreCaja() {
         initComponents();
         this.setLocationRelativeTo(null);
+        if(Login.userRol == 1) {
+            PantallaPrincipal.moduloVentaAdmin.setEnabled(false);
+        } else {
+            PantallaPrincipalVendedor.moduloVentaVendedor.setEnabled(false);
+        }
     }
 
     @SuppressWarnings("unchecked")
@@ -99,7 +104,7 @@ public class CierreCaja extends javax.swing.JFrame {
                     .addGroup(layout.createSequentialGroup()
                         .addGap(200, 200, 200)
                         .addComponent(jLabel3, javax.swing.GroupLayout.PREFERRED_SIZE, 157, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                .addContainerGap(48, Short.MAX_VALUE))
+                .addContainerGap(25, Short.MAX_VALUE))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
