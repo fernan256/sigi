@@ -17,7 +17,7 @@
     <AuxValue name="FormSettings_listenerGenerationStyle" type="java.lang.Integer" value="0"/>
     <AuxValue name="FormSettings_variablesLocal" type="java.lang.Boolean" value="false"/>
     <AuxValue name="FormSettings_variablesModifier" type="java.lang.Integer" value="2"/>
-    <AuxValue name="designerSize" type="java.awt.Dimension" value="-84,-19,0,5,115,114,0,18,106,97,118,97,46,97,119,116,46,68,105,109,101,110,115,105,111,110,65,-114,-39,-41,-84,95,68,20,2,0,2,73,0,6,104,101,105,103,104,116,73,0,5,119,105,100,116,104,120,112,0,0,3,36,0,0,4,38"/>
+    <AuxValue name="designerSize" type="java.awt.Dimension" value="-84,-19,0,5,115,114,0,18,106,97,118,97,46,97,119,116,46,68,105,109,101,110,115,105,111,110,65,-114,-39,-41,-84,95,68,20,2,0,2,73,0,6,104,101,105,103,104,116,73,0,5,119,105,100,116,104,120,112,0,0,3,36,0,0,4,88"/>
   </AuxValues>
 
   <Layout class="org.netbeans.modules.form.compat2.layouts.DesignAbsoluteLayout">
@@ -32,7 +32,7 @@
       </Properties>
       <Constraints>
         <Constraint layoutClass="org.netbeans.modules.form.compat2.layouts.DesignAbsoluteLayout" value="org.netbeans.modules.form.compat2.layouts.DesignAbsoluteLayout$AbsoluteConstraintsDescription">
-          <AbsoluteConstraints x="0" y="0" width="1050" height="770"/>
+          <AbsoluteConstraints x="0" y="0" width="1100" height="770"/>
         </Constraint>
       </Constraints>
 
@@ -43,69 +43,9 @@
                   <EmptySpace min="25" pref="25" max="-2" attributes="0"/>
                   <Group type="103" groupAlignment="0" attributes="0">
                       <Group type="102" attributes="0">
-                          <Component id="jLabel57" min="-2" max="-2" attributes="0"/>
-                          <EmptySpace min="18" pref="18" max="-2" attributes="0"/>
-                          <Component id="searchUser" min="-2" pref="290" max="-2" attributes="0"/>
-                      </Group>
-                      <Group type="102" attributes="0">
                           <Component id="jLabel5" min="-2" max="-2" attributes="0"/>
                           <EmptySpace min="52" pref="52" max="-2" attributes="0"/>
                           <Component id="department" min="-2" pref="290" max="-2" attributes="0"/>
-                      </Group>
-                      <Group type="102" attributes="0">
-                          <Component id="jLabel58" min="-2" pref="82" max="-2" attributes="0"/>
-                          <EmptySpace min="87" pref="87" max="-2" attributes="0"/>
-                          <Component id="telephone" min="-2" pref="290" max="-2" attributes="0"/>
-                          <EmptySpace min="54" pref="54" max="-2" attributes="0"/>
-                          <Component id="jLabel55" min="-2" max="-2" attributes="0"/>
-                          <EmptySpace min="36" pref="36" max="-2" attributes="0"/>
-                          <Component id="cellPhone" min="-2" pref="290" max="-2" attributes="0"/>
-                      </Group>
-                      <Group type="102" attributes="0">
-                          <Component id="jLabel56" min="-2" max="-2" attributes="0"/>
-                          <EmptySpace min="136" pref="136" max="-2" attributes="0"/>
-                          <Component id="email" min="-2" pref="290" max="-2" attributes="0"/>
-                      </Group>
-                      <Group type="102" attributes="0">
-                          <Component id="jLabel54" min="-2" max="-2" attributes="0"/>
-                          <EmptySpace min="18" pref="18" max="-2" attributes="0"/>
-                          <Component id="activo_cliente" min="-2" max="-2" attributes="0"/>
-                          <EmptySpace min="149" pref="149" max="-2" attributes="0"/>
-                          <Component id="jLabel3" min="-2" max="-2" attributes="0"/>
-                          <EmptySpace min="18" pref="18" max="-2" attributes="0"/>
-                          <Component id="ctaCte_cliente" min="-2" max="-2" attributes="0"/>
-                      </Group>
-                      <Group type="102" attributes="0">
-                          <Component id="jLabel2" min="-2" max="-2" attributes="0"/>
-                          <EmptySpace min="115" pref="115" max="-2" attributes="0"/>
-                          <Component id="jLabel6" min="-2" max="-2" attributes="0"/>
-                      </Group>
-                      <Group type="102" alignment="0" attributes="0">
-                          <Group type="103" groupAlignment="0" max="-2" attributes="0">
-                              <Group type="102" attributes="0">
-                                  <Component id="jLabel53" min="-2" max="-2" attributes="0"/>
-                                  <EmptySpace min="96" pref="96" max="-2" attributes="0"/>
-                                  <Component id="address" min="-2" pref="290" max="-2" attributes="0"/>
-                              </Group>
-                              <Group type="102" attributes="0">
-                                  <Component id="jLabel47" min="-2" max="-2" attributes="0"/>
-                                  <EmptySpace max="32767" attributes="0"/>
-                                  <Component id="name" min="-2" pref="290" max="-2" attributes="0"/>
-                              </Group>
-                          </Group>
-                          <EmptySpace min="49" pref="49" max="-2" attributes="0"/>
-                          <Group type="103" groupAlignment="0" attributes="0">
-                              <Group type="102" alignment="0" attributes="0">
-                                  <Component id="jLabel4" min="-2" max="-2" attributes="0"/>
-                                  <EmptySpace min="18" pref="18" max="-2" attributes="0"/>
-                                  <Component id="province" min="-2" pref="290" max="-2" attributes="0"/>
-                              </Group>
-                              <Group type="102" alignment="1" attributes="0">
-                                  <Component id="jLabel48" min="-2" max="-2" attributes="0"/>
-                                  <EmptySpace min="18" pref="18" max="-2" attributes="0"/>
-                                  <Component id="lastName" min="-2" pref="290" max="-2" attributes="0"/>
-                              </Group>
-                          </Group>
                       </Group>
                       <Group type="102" alignment="0" attributes="0">
                           <Component id="jLabel1" min="-2" max="-2" attributes="0"/>
@@ -113,17 +53,12 @@
                           <Group type="103" groupAlignment="0" attributes="0">
                               <Group type="102" alignment="0" attributes="0">
                                   <Component id="create" min="-2" pref="125" max="-2" attributes="0"/>
-                                  <EmptySpace min="18" pref="18" max="-2" attributes="0"/>
+                                  <EmptySpace min="-2" pref="30" max="-2" attributes="0"/>
                                   <Component id="changeData" min="-2" pref="125" max="-2" attributes="0"/>
-                                  <EmptySpace min="18" pref="18" max="-2" attributes="0"/>
+                                  <EmptySpace min="-2" pref="30" max="-2" attributes="0"/>
                                   <Component id="delete" min="-2" pref="125" max="-2" attributes="0"/>
-                                  <EmptySpace min="18" pref="18" max="-2" attributes="0"/>
+                                  <EmptySpace min="-2" pref="30" max="-2" attributes="0"/>
                                   <Component id="clearFields" min="-2" max="-2" attributes="0"/>
-                              </Group>
-                              <Group type="102" alignment="0" attributes="0">
-                                  <Component id="toXls" min="-2" pref="194" max="-2" attributes="0"/>
-                                  <EmptySpace min="17" pref="17" max="-2" attributes="0"/>
-                                  <Component id="importFromXls" min="-2" pref="198" max="-2" attributes="0"/>
                               </Group>
                               <Group type="102" attributes="0">
                                   <Component id="signUpDate" min="-2" pref="185" max="-2" attributes="0"/>
@@ -134,8 +69,77 @@
                               </Group>
                           </Group>
                       </Group>
+                      <Group type="102" alignment="0" attributes="0">
+                          <Group type="103" groupAlignment="1" max="-2" attributes="0">
+                              <Group type="102" attributes="0">
+                                  <Component id="jLabel57" min="-2" max="-2" attributes="0"/>
+                                  <EmptySpace max="32767" attributes="0"/>
+                                  <Component id="searchUser" min="-2" pref="290" max="-2" attributes="0"/>
+                              </Group>
+                              <Group type="102" alignment="0" attributes="0">
+                                  <Component id="jLabel53" min="-2" max="-2" attributes="0"/>
+                                  <EmptySpace min="96" pref="96" max="-2" attributes="0"/>
+                                  <Component id="address" min="-2" pref="290" max="-2" attributes="0"/>
+                              </Group>
+                              <Group type="102" alignment="0" attributes="0">
+                                  <Component id="jLabel47" min="-2" max="-2" attributes="0"/>
+                                  <EmptySpace max="32767" attributes="0"/>
+                                  <Component id="name" min="-2" pref="290" max="-2" attributes="0"/>
+                              </Group>
+                          </Group>
+                          <EmptySpace min="49" pref="49" max="-2" attributes="0"/>
+                          <Group type="103" groupAlignment="0" attributes="0">
+                              <Group type="102" alignment="1" attributes="0">
+                                  <Component id="jLabel48" min="-2" max="-2" attributes="0"/>
+                                  <EmptySpace min="18" pref="18" max="-2" attributes="0"/>
+                                  <Component id="lastName" min="-2" pref="290" max="-2" attributes="0"/>
+                              </Group>
+                              <Group type="102" alignment="0" attributes="0">
+                                  <Component id="jLabel4" min="-2" max="-2" attributes="0"/>
+                                  <EmptySpace min="18" pref="18" max="-2" attributes="0"/>
+                                  <Group type="103" groupAlignment="0" attributes="0">
+                                      <Component id="cellPhone" min="-2" pref="290" max="-2" attributes="0"/>
+                                      <Component id="province" min="-2" pref="290" max="-2" attributes="0"/>
+                                  </Group>
+                              </Group>
+                          </Group>
+                      </Group>
+                      <Group type="102" alignment="0" attributes="0">
+                          <Group type="103" groupAlignment="0" attributes="0">
+                              <Component id="jLabel58" alignment="0" min="-2" pref="82" max="-2" attributes="0"/>
+                              <Component id="jLabel56" alignment="0" min="-2" max="-2" attributes="0"/>
+                          </Group>
+                          <EmptySpace min="-2" pref="87" max="-2" attributes="0"/>
+                          <Group type="103" groupAlignment="0" attributes="0">
+                              <Component id="email" min="-2" pref="290" max="-2" attributes="0"/>
+                              <Group type="102" attributes="0">
+                                  <Component id="telephone" min="-2" pref="290" max="-2" attributes="0"/>
+                                  <EmptySpace min="54" pref="54" max="-2" attributes="0"/>
+                                  <Component id="jLabel55" min="-2" max="-2" attributes="0"/>
+                              </Group>
+                          </Group>
+                      </Group>
+                      <Group type="102" alignment="0" attributes="0">
+                          <Group type="103" groupAlignment="0" attributes="0">
+                              <Group type="102" alignment="0" attributes="0">
+                                  <Component id="jLabel54" min="-2" max="-2" attributes="0"/>
+                                  <EmptySpace min="18" pref="18" max="-2" attributes="0"/>
+                                  <Component id="activo_cliente" min="-2" max="-2" attributes="0"/>
+                              </Group>
+                              <Component id="jLabel2" alignment="0" min="-2" max="-2" attributes="0"/>
+                          </Group>
+                          <EmptySpace min="-2" pref="120" max="-2" attributes="0"/>
+                          <Group type="103" groupAlignment="0" attributes="0">
+                              <Component id="jLabel6" min="-2" max="-2" attributes="0"/>
+                              <Group type="102" attributes="0">
+                                  <Component id="jLabel3" min="-2" max="-2" attributes="0"/>
+                                  <EmptySpace min="18" pref="18" max="-2" attributes="0"/>
+                                  <Component id="ctaCte_cliente" min="-2" max="-2" attributes="0"/>
+                              </Group>
+                          </Group>
+                      </Group>
                   </Group>
-                  <EmptySpace min="-2" pref="132" max="-2" attributes="0"/>
+                  <EmptySpace min="-2" pref="137" max="-2" attributes="0"/>
               </Group>
           </Group>
         </DimensionLayout>
@@ -143,11 +147,11 @@
           <Group type="103" groupAlignment="0" attributes="0">
               <Group type="102" attributes="0">
                   <EmptySpace min="25" pref="25" max="-2" attributes="0"/>
-                  <Group type="103" groupAlignment="0" attributes="0">
-                      <Component id="jLabel57" min="-2" max="-2" attributes="0"/>
-                      <Component id="searchUser" min="-2" max="-2" attributes="0"/>
+                  <Group type="103" groupAlignment="3" attributes="0">
+                      <Component id="jLabel57" alignment="3" min="-2" max="-2" attributes="0"/>
+                      <Component id="searchUser" alignment="3" min="-2" max="-2" attributes="0"/>
                   </Group>
-                  <EmptySpace type="unrelated" max="-2" attributes="0"/>
+                  <EmptySpace min="-2" pref="11" max="-2" attributes="0"/>
                   <Group type="103" groupAlignment="0" attributes="0">
                       <Component id="jLabel47" min="-2" max="-2" attributes="0"/>
                       <Component id="name" min="-2" max="-2" attributes="0"/>
@@ -182,8 +186,10 @@
                   <Group type="103" groupAlignment="0" attributes="0">
                       <Component id="jLabel58" min="-2" max="-2" attributes="0"/>
                       <Component id="telephone" min="-2" max="-2" attributes="0"/>
-                      <Component id="jLabel55" min="-2" max="-2" attributes="0"/>
-                      <Component id="cellPhone" min="-2" max="-2" attributes="0"/>
+                      <Group type="103" groupAlignment="3" attributes="0">
+                          <Component id="jLabel55" alignment="3" min="-2" max="-2" attributes="0"/>
+                          <Component id="cellPhone" alignment="3" min="-2" max="-2" attributes="0"/>
+                      </Group>
                   </Group>
                   <EmptySpace type="unrelated" max="-2" attributes="0"/>
                   <Group type="103" groupAlignment="0" attributes="0">
@@ -222,17 +228,12 @@
                   </Group>
                   <EmptySpace min="-2" pref="60" max="-2" attributes="0"/>
                   <Group type="103" groupAlignment="0" attributes="0">
-                      <Component id="create" min="-2" pref="50" max="-2" attributes="0"/>
-                      <Component id="changeData" min="-2" pref="50" max="-2" attributes="0"/>
-                      <Component id="delete" min="-2" pref="50" max="-2" attributes="0"/>
-                      <Component id="clearFields" min="-2" pref="50" max="-2" attributes="0"/>
+                      <Component id="create" min="-2" pref="40" max="-2" attributes="0"/>
+                      <Component id="changeData" min="-2" pref="40" max="-2" attributes="0"/>
+                      <Component id="delete" min="-2" pref="40" max="-2" attributes="0"/>
+                      <Component id="clearFields" min="-2" pref="40" max="-2" attributes="0"/>
                   </Group>
-                  <EmptySpace min="35" pref="35" max="-2" attributes="0"/>
-                  <Group type="103" groupAlignment="0" attributes="0">
-                      <Component id="toXls" min="-2" pref="50" max="-2" attributes="0"/>
-                      <Component id="importFromXls" min="-2" pref="50" max="-2" attributes="0"/>
-                  </Group>
-                  <EmptySpace max="-2" attributes="0"/>
+                  <EmptySpace min="-2" pref="352" max="-2" attributes="0"/>
               </Group>
           </Group>
         </DimensionLayout>
@@ -400,17 +401,6 @@
             <Property name="text" type="java.lang.String" value="Eliminar"/>
           </Properties>
         </Component>
-        <Component class="javax.swing.JButton" name="toXls">
-          <Properties>
-            <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
-              <Font name="Arial" size="18" style="1"/>
-            </Property>
-            <Property name="text" type="java.lang.String" value="Exportar a Excel"/>
-          </Properties>
-          <Events>
-            <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="toXlsActionPerformed"/>
-          </Events>
-        </Component>
         <Component class="javax.swing.JTextField" name="searchUser">
           <Properties>
             <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
@@ -491,7 +481,7 @@
             <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
               <Font name="Arial" size="9" style="1"/>
             </Property>
-            <Property name="text" type="java.lang.String" value="(Checckbox tildado indica activo, sin tildar inactivo)"/>
+            <Property name="text" type="java.lang.String" value="(Checkbox tildado indica activo, sin tildar inactivo)"/>
           </Properties>
         </Component>
         <Component class="javax.swing.JLabel" name="jLabel6">
@@ -499,19 +489,8 @@
             <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
               <Font name="Arial" size="9" style="1"/>
             </Property>
-            <Property name="text" type="java.lang.String" value="(Checckbox tildado indica activo, sin tildar inactivo)"/>
+            <Property name="text" type="java.lang.String" value="(Checkbox tildado indica activo, sin tildar inactivo)"/>
           </Properties>
-        </Component>
-        <Component class="javax.swing.JButton" name="importFromXls">
-          <Properties>
-            <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
-              <Font name="Arial" size="18" style="1"/>
-            </Property>
-            <Property name="text" type="java.lang.String" value="Importar de Excel"/>
-          </Properties>
-          <Events>
-            <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="importFromXlsActionPerformed"/>
-          </Events>
         </Component>
       </SubComponents>
     </Container>

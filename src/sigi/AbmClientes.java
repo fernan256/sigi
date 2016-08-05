@@ -31,9 +31,7 @@ public class AbmClientes extends javax.swing.JInternalFrame {
     private String id;
     private int j = 0;
     final JTable exportImportTable = new JTable();
-    
- private static DefaultTableModel modelo;
-
+    private static DefaultTableModel modelo;
     private JFileChooser FileChooser = new JFileChooser();
     private Vector columna = new Vector();
     private Vector filas = new Vector();
@@ -68,7 +66,6 @@ public class AbmClientes extends javax.swing.JInternalFrame {
         clearFields = new javax.swing.JButton();
         changeData = new javax.swing.JButton();
         delete = new javax.swing.JButton();
-        toXls = new javax.swing.JButton();
         searchUser = new javax.swing.JTextField();
         jLabel58 = new javax.swing.JLabel();
         telephone = new javax.swing.JTextField();
@@ -82,7 +79,6 @@ public class AbmClientes extends javax.swing.JInternalFrame {
         signUpDate = new com.toedter.calendar.JDateChooser();
         jLabel2 = new javax.swing.JLabel();
         jLabel6 = new javax.swing.JLabel();
-        importFromXls = new javax.swing.JButton();
 
         setClosable(true);
         getContentPane().setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
@@ -158,14 +154,6 @@ public class AbmClientes extends javax.swing.JInternalFrame {
         delete.setFont(new java.awt.Font("Arial", 1, 18)); // NOI18N
         delete.setText("Eliminar");
 
-        toXls.setFont(new java.awt.Font("Arial", 1, 18)); // NOI18N
-        toXls.setText("Exportar a Excel");
-        toXls.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                toXlsActionPerformed(evt);
-            }
-        });
-
         searchUser.setFont(new java.awt.Font("Arial", 0, 12)); // NOI18N
         searchUser.addKeyListener(new java.awt.event.KeyAdapter() {
             public void keyReleased(java.awt.event.KeyEvent evt) {
@@ -195,117 +183,101 @@ public class AbmClientes extends javax.swing.JInternalFrame {
         jLabel1.setText("Fecha de Alta");
 
         jLabel2.setFont(new java.awt.Font("Arial", 1, 9)); // NOI18N
-        jLabel2.setText("(Checckbox tildado indica activo, sin tildar inactivo)");
+        jLabel2.setText("(Checkbox tildado indica activo, sin tildar inactivo)");
 
         jLabel6.setFont(new java.awt.Font("Arial", 1, 9)); // NOI18N
-        jLabel6.setText("(Checckbox tildado indica activo, sin tildar inactivo)");
-
-        importFromXls.setFont(new java.awt.Font("Arial", 1, 18)); // NOI18N
-        importFromXls.setText("Importar de Excel");
-        importFromXls.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                importFromXlsActionPerformed(evt);
-            }
-        });
+        jLabel6.setText("(Checkbox tildado indica activo, sin tildar inactivo)");
 
         javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
         jPanel1.setLayout(jPanel1Layout);
         jPanel1Layout.setHorizontalGroup(
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel1Layout.createSequentialGroup()
+                .addGap(25, 25, 25)
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(jPanel1Layout.createSequentialGroup()
-                        .addGap(25, 25, 25)
-                        .addComponent(jLabel57)
-                        .addGap(18, 18, 18)
-                        .addComponent(searchUser, javax.swing.GroupLayout.PREFERRED_SIZE, 290, javax.swing.GroupLayout.PREFERRED_SIZE))
-                    .addGroup(jPanel1Layout.createSequentialGroup()
-                        .addGap(25, 25, 25)
                         .addComponent(jLabel5)
                         .addGap(52, 52, 52)
                         .addComponent(department, javax.swing.GroupLayout.PREFERRED_SIZE, 290, javax.swing.GroupLayout.PREFERRED_SIZE))
                     .addGroup(jPanel1Layout.createSequentialGroup()
-                        .addGap(25, 25, 25)
-                        .addComponent(jLabel58, javax.swing.GroupLayout.PREFERRED_SIZE, 82, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(87, 87, 87)
-                        .addComponent(telephone, javax.swing.GroupLayout.PREFERRED_SIZE, 290, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(54, 54, 54)
-                        .addComponent(jLabel55)
-                        .addGap(36, 36, 36)
-                        .addComponent(cellPhone, javax.swing.GroupLayout.PREFERRED_SIZE, 290, javax.swing.GroupLayout.PREFERRED_SIZE))
-                    .addGroup(jPanel1Layout.createSequentialGroup()
-                        .addGap(25, 25, 25)
-                        .addComponent(jLabel56)
-                        .addGap(136, 136, 136)
-                        .addComponent(email, javax.swing.GroupLayout.PREFERRED_SIZE, 290, javax.swing.GroupLayout.PREFERRED_SIZE))
-                    .addGroup(jPanel1Layout.createSequentialGroup()
-                        .addGap(25, 25, 25)
-                        .addComponent(jLabel54)
-                        .addGap(18, 18, 18)
-                        .addComponent(activo_cliente)
-                        .addGap(149, 149, 149)
-                        .addComponent(jLabel3)
-                        .addGap(18, 18, 18)
-                        .addComponent(ctaCte_cliente))
-                    .addGroup(jPanel1Layout.createSequentialGroup()
-                        .addGap(25, 25, 25)
-                        .addComponent(jLabel2)
-                        .addGap(115, 115, 115)
-                        .addComponent(jLabel6))
-                    .addGroup(jPanel1Layout.createSequentialGroup()
-                        .addGap(25, 25, 25)
-                        .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                            .addGroup(jPanel1Layout.createSequentialGroup()
-                                .addComponent(jLabel53)
-                                .addGap(96, 96, 96)
-                                .addComponent(address, javax.swing.GroupLayout.PREFERRED_SIZE, 290, javax.swing.GroupLayout.PREFERRED_SIZE))
-                            .addGroup(jPanel1Layout.createSequentialGroup()
-                                .addComponent(jLabel47)
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                                .addComponent(name, javax.swing.GroupLayout.PREFERRED_SIZE, 290, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                        .addGap(49, 49, 49)
-                        .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addGroup(jPanel1Layout.createSequentialGroup()
-                                .addComponent(jLabel4)
-                                .addGap(18, 18, 18)
-                                .addComponent(province, javax.swing.GroupLayout.PREFERRED_SIZE, 290, javax.swing.GroupLayout.PREFERRED_SIZE))
-                            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
-                                .addComponent(jLabel48)
-                                .addGap(18, 18, 18)
-                                .addComponent(lastName, javax.swing.GroupLayout.PREFERRED_SIZE, 290, javax.swing.GroupLayout.PREFERRED_SIZE))))
-                    .addGroup(jPanel1Layout.createSequentialGroup()
-                        .addGap(25, 25, 25)
                         .addComponent(jLabel1)
                         .addGap(18, 18, 18)
                         .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addGroup(jPanel1Layout.createSequentialGroup()
                                 .addComponent(create, javax.swing.GroupLayout.PREFERRED_SIZE, 125, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                .addGap(18, 18, 18)
+                                .addGap(30, 30, 30)
                                 .addComponent(changeData, javax.swing.GroupLayout.PREFERRED_SIZE, 125, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                .addGap(18, 18, 18)
+                                .addGap(30, 30, 30)
                                 .addComponent(delete, javax.swing.GroupLayout.PREFERRED_SIZE, 125, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                .addGap(18, 18, 18)
+                                .addGap(30, 30, 30)
                                 .addComponent(clearFields))
-                            .addGroup(jPanel1Layout.createSequentialGroup()
-                                .addComponent(toXls, javax.swing.GroupLayout.PREFERRED_SIZE, 194, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                .addGap(17, 17, 17)
-                                .addComponent(importFromXls, javax.swing.GroupLayout.PREFERRED_SIZE, 198, javax.swing.GroupLayout.PREFERRED_SIZE))
                             .addGroup(jPanel1Layout.createSequentialGroup()
                                 .addComponent(signUpDate, javax.swing.GroupLayout.PREFERRED_SIZE, 185, javax.swing.GroupLayout.PREFERRED_SIZE)
                                 .addGap(47, 47, 47)
                                 .addComponent(jLabel49)
                                 .addGap(38, 38, 38)
-                                .addComponent(birthDate, javax.swing.GroupLayout.PREFERRED_SIZE, 185, javax.swing.GroupLayout.PREFERRED_SIZE)))))
-                .addGap(132, 132, 132))
+                                .addComponent(birthDate, javax.swing.GroupLayout.PREFERRED_SIZE, 185, javax.swing.GroupLayout.PREFERRED_SIZE))))
+                    .addGroup(jPanel1Layout.createSequentialGroup()
+                        .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
+                            .addGroup(jPanel1Layout.createSequentialGroup()
+                                .addComponent(jLabel57)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                                .addComponent(searchUser, javax.swing.GroupLayout.PREFERRED_SIZE, 290, javax.swing.GroupLayout.PREFERRED_SIZE))
+                            .addGroup(javax.swing.GroupLayout.Alignment.LEADING, jPanel1Layout.createSequentialGroup()
+                                .addComponent(jLabel53)
+                                .addGap(96, 96, 96)
+                                .addComponent(address, javax.swing.GroupLayout.PREFERRED_SIZE, 290, javax.swing.GroupLayout.PREFERRED_SIZE))
+                            .addGroup(javax.swing.GroupLayout.Alignment.LEADING, jPanel1Layout.createSequentialGroup()
+                                .addComponent(jLabel47)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                                .addComponent(name, javax.swing.GroupLayout.PREFERRED_SIZE, 290, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                        .addGap(49, 49, 49)
+                        .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
+                                .addComponent(jLabel48)
+                                .addGap(18, 18, 18)
+                                .addComponent(lastName, javax.swing.GroupLayout.PREFERRED_SIZE, 290, javax.swing.GroupLayout.PREFERRED_SIZE))
+                            .addGroup(jPanel1Layout.createSequentialGroup()
+                                .addComponent(jLabel4)
+                                .addGap(18, 18, 18)
+                                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                    .addComponent(cellPhone, javax.swing.GroupLayout.PREFERRED_SIZE, 290, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                    .addComponent(province, javax.swing.GroupLayout.PREFERRED_SIZE, 290, javax.swing.GroupLayout.PREFERRED_SIZE)))))
+                    .addGroup(jPanel1Layout.createSequentialGroup()
+                        .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(jLabel58, javax.swing.GroupLayout.PREFERRED_SIZE, 82, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(jLabel56))
+                        .addGap(87, 87, 87)
+                        .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(email, javax.swing.GroupLayout.PREFERRED_SIZE, 290, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addGroup(jPanel1Layout.createSequentialGroup()
+                                .addComponent(telephone, javax.swing.GroupLayout.PREFERRED_SIZE, 290, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addGap(54, 54, 54)
+                                .addComponent(jLabel55))))
+                    .addGroup(jPanel1Layout.createSequentialGroup()
+                        .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addGroup(jPanel1Layout.createSequentialGroup()
+                                .addComponent(jLabel54)
+                                .addGap(18, 18, 18)
+                                .addComponent(activo_cliente))
+                            .addComponent(jLabel2))
+                        .addGap(120, 120, 120)
+                        .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(jLabel6)
+                            .addGroup(jPanel1Layout.createSequentialGroup()
+                                .addComponent(jLabel3)
+                                .addGap(18, 18, 18)
+                                .addComponent(ctaCte_cliente)))))
+                .addGap(137, 137, 137))
         );
         jPanel1Layout.setVerticalGroup(
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel1Layout.createSequentialGroup()
                 .addGap(25, 25, 25)
-                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel57)
                     .addComponent(searchUser, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addGap(11, 11, 11)
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addComponent(jLabel47)
                     .addComponent(name, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
@@ -332,8 +304,9 @@ public class AbmClientes extends javax.swing.JInternalFrame {
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addComponent(jLabel58)
                     .addComponent(telephone, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jLabel55)
-                    .addComponent(cellPhone, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                        .addComponent(jLabel55)
+                        .addComponent(cellPhone, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(jPanel1Layout.createSequentialGroup()
@@ -363,37 +336,17 @@ public class AbmClientes extends javax.swing.JInternalFrame {
                     .addComponent(birthDate, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addGap(60, 60, 60)
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(create, javax.swing.GroupLayout.PREFERRED_SIZE, 50, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(changeData, javax.swing.GroupLayout.PREFERRED_SIZE, 50, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(delete, javax.swing.GroupLayout.PREFERRED_SIZE, 50, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(clearFields, javax.swing.GroupLayout.PREFERRED_SIZE, 50, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addGap(35, 35, 35)
-                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(toXls, javax.swing.GroupLayout.PREFERRED_SIZE, 50, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(importFromXls, javax.swing.GroupLayout.PREFERRED_SIZE, 50, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addContainerGap())
+                    .addComponent(create, javax.swing.GroupLayout.PREFERRED_SIZE, 40, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(changeData, javax.swing.GroupLayout.PREFERRED_SIZE, 40, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(delete, javax.swing.GroupLayout.PREFERRED_SIZE, 40, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(clearFields, javax.swing.GroupLayout.PREFERRED_SIZE, 40, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGap(352, 352, 352))
         );
 
-        getContentPane().add(jPanel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 1050, 770));
+        getContentPane().add(jPanel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 1100, 770));
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
-
-    private void importFromXlsActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_importFromXlsActionPerformed
-        JFileChooser examinar = new JFileChooser();
-        examinar.setFileFilter(new FileNameExtensionFilter("Archivo Excel", "xls"));
-        int opcion = examinar.showSaveDialog(AbmClientes.this);
-        File archivoExcel = null;
-        if (opcion == JFileChooser.APPROVE_OPTION) {
-            archivoExcel = examinar.getSelectedFile().getAbsoluteFile();
-            try {
-                CrearTabla(archivoExcel);
-            } catch(IOException ex) {
-                Logger.getLogger(AltaModificaionArticulos.class.getName()).log(Level.SEVERE, null, ex);
-                JOptionPane.showMessageDialog(null, "Error" + ex);
-            }
-        }
-    }//GEN-LAST:event_importFromXlsActionPerformed
 
     private void searchUserKeyReleased(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_searchUserKeyReleased
         String nom = searchUser.getText();
@@ -437,68 +390,6 @@ public class AbmClientes extends javax.swing.JInternalFrame {
             }
         }
     }//GEN-LAST:event_searchUserKeyReleased
-
-    private void toXlsActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_toXlsActionPerformed
-        try {
-            con = new Conexion();
-            String getAllClients = "SELECT * FROM clientes";
-            rs = con.Consulta(getAllClients);
-            DefaultTableModel buscar = new DefaultTableModel(){
-                @Override
-                public boolean isCellEditable(int rowIndex, int vColIndex) {
-                    return false;
-                }
-            };
-            this.exportImportTable.setModel(buscar);
-            buscar.addColumn("Nombres");
-            buscar.addColumn("Apellidos");
-            buscar.addColumn("Dirección");
-            buscar.addColumn("Provincia");
-            buscar.addColumn("Departamento");
-            buscar.addColumn("Celular");
-            buscar.addColumn("Telefono");
-            buscar.addColumn("Mail");
-            buscar.addColumn("Fecha Alta");
-            buscar.addColumn("Fecha Nacimiento");
-            buscar.addColumn("Activo");
-            buscar.addColumn("Cuenta Corriente");
-            int y=0;
-            while(rs.next()){
-                Object[] fila = new Object[12];
-                fila[0] = rs.getString("nombres");
-                fila[1] = rs.getString("apellidos");
-                fila[2] = rs.getString("direccion");
-                fila[3] = rs.getString("provincia");
-                fila[4] = rs.getString("departamento");
-                fila[5] = rs.getString("celular");
-                fila[6] = rs.getString("telefono");
-                fila[7] = rs.getString("mail");
-                fila[8] = rs.getString("fecha_alta");
-                fila[9] = rs.getString("fecha_nac");
-                fila[10] = rs.getString("activo");
-                fila[11] = rs.getString("ctacte");
-                buscar.addRow(fila);
-            }
-            con.Cerrar();
-        } catch (ClassNotFoundException | SQLException | InstantiationException | IllegalAccessException ex) {
-            Logger.getLogger(AltaModificaionArticulos.class.getName()).log(Level.SEVERE, null, ex);
-        }
-        JFileChooser dialog = new JFileChooser();
-        int opcion = dialog.showSaveDialog(AbmClientes.this);
-        if (opcion == JFileChooser.APPROVE_OPTION) {
-            File dir = dialog.getSelectedFile();
-            try {
-                List<JTable> tb = new ArrayList<JTable>();
-                tb.add(exportImportTable);
-                ExportarExcel excelExporter = new ExportarExcel(tb, new File(dir.getAbsolutePath() + ".xls"));
-                if (excelExporter.export()) {
-                    JOptionPane.showMessageDialog(null, "TABLAS EXPORTADOS CON EXITOS!");
-                }
-            } catch (Exception ex) {
-                ex.printStackTrace();
-            }
-        }
-    }//GEN-LAST:event_toXlsActionPerformed
 
     private void changeDataActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_changeDataActionPerformed
         if (name.getText().equals("")||lastName.getText().equals("")){
@@ -551,7 +442,7 @@ public class AbmClientes extends javax.swing.JInternalFrame {
                 int activo = valorActivo ? 1 : 0;
                 boolean valorCtaCte = ctaCte_cliente.isSelected();
                 int ctaCte = valorCtaCte ? 1 : 0;
-                String sql = "INSERT INTO clientes (nombres, apellidos, direccion, provincia, departemento, telefono, celular, mail, fecha_alta, fecha_nac, activo, ctacte) "
+                String sql = "INSERT INTO clientes (nombres, apellidos, direccion, provincia, departamento, telefono, celular, mail, fecha_alta, fecha_nac, activo, ctacte) "
                 + "   VALUES ('"+nombres+"', '"+apellidos+"', "+direccion+", "+provincia+", "+departamento+", "+telefono+", "+cel+", "+mail+", '"+Utils.formatDateForConfig(signUpDate.getDate())+"', '"+Utils.formatDateForConfig(birthDate.getDate())+"', "+activo+", "+ctaCte+")";
                 con.ejecutar(sql);
                 con.Cerrar();
@@ -681,8 +572,10 @@ public class AbmClientes extends javax.swing.JInternalFrame {
         lastName.setText("");
         address.setText("");
         telephone.setText("");
+        department.setText("");
         cellPhone.setText("");
         email.setText("");
+        signUpDate.setDate(null);
         birthDate.setDate(null);
         activo_cliente.setSelected(false);
         ctaCte_cliente.setSelected(false);
@@ -699,7 +592,6 @@ public class AbmClientes extends javax.swing.JInternalFrame {
     private javax.swing.JButton delete;
     private javax.swing.JTextField department;
     private javax.swing.JTextField email;
-    private javax.swing.JButton importFromXls;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel3;
@@ -722,6 +614,5 @@ public class AbmClientes extends javax.swing.JInternalFrame {
     private javax.swing.JTextField searchUser;
     private com.toedter.calendar.JDateChooser signUpDate;
     private javax.swing.JTextField telephone;
-    private javax.swing.JButton toXls;
     // End of variables declaration//GEN-END:variables
 }
