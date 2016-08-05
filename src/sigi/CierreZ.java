@@ -3,6 +3,7 @@ package sigi;
 import Utils.ImprimirTicket;
 import Utils.Utils;
 import Connection.Conexion;
+import Utils.ImprimirCierre;
 import java.awt.event.KeyEvent;
 import java.io.BufferedWriter;
 import java.io.File;
@@ -299,11 +300,11 @@ public class CierreZ extends javax.swing.JDialog {
                         .addGap(300, 300, 300)
                         .addComponent(jLabel1, javax.swing.GroupLayout.PREFERRED_SIZE, 141, javax.swing.GroupLayout.PREFERRED_SIZE))
                     .addGroup(layout.createSequentialGroup()
-                        .addGap(104, 104, 104)
+                        .addGap(90, 90, 90)
                         .addComponent(closeDay, javax.swing.GroupLayout.PREFERRED_SIZE, 209, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addGap(129, 129, 129)
                         .addComponent(cancel, javax.swing.GroupLayout.PREFERRED_SIZE, 209, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                .addContainerGap(90, Short.MAX_VALUE))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -395,78 +396,29 @@ public class CierreZ extends javax.swing.JDialog {
                 if(compare < 0 || compare > 0) {
                     JOptionPane.showMessageDialog(null, "El cierre dio una diferencia de " +compare+ " debe realizar el ajuste correspondiente en el modulo Ajuste de Caja");
                 }
-                String saveClosingDay = "INSERT INTO cierre_caja (id_caja, fecha_cierre, id_usuario, id_tipo_cierre, total_calculado, total_real, diferencia_caja, devoluciones, anulaciones, pago_prov_efectivo_caja, descuentos, ticket_desde, ticket_hasta, retiro_efectivo) "
-                        + "             VALUES ("+idCaja+", CURRENT_TIMESTAMP, "+Login.userId+", 2, '"+systemTotal.getText()+"', '"+totalEndDay.getText()+"', '"+differences.getText()+"', '"+returns.getText()+"', '"+totalCanceledTickets.getText()+"', '"+providersPayments.getText()+"', '"+discounts.getText()+"', '"+ticketNumberFrom.getText()+"', '"+ticketNumberTo.getText()+"', '"+cashWithdrawal.getText()+"')";
+                String saveClosingDay = "INSERT INTO cierre_caja (id_caja, fecha_cierre, id_usuario, id_tipo_cierre, total_calculado, total_real, diferencia_caja, devoluciones, anulaciones, pago_prov_efectivo_caja, descuentos, total_cta_cte, ticket_desde, ticket_hasta, retiro_efectivo) "
+                                        + "VALUES ("+idCaja+", CURRENT_TIMESTAMP, "+Login.userId+", 2, '"+systemTotal.getText()+"', '"+totalEndDay.getText()+"', '"+differences.getText()+"', '"+returns.getText()+"', '"+totalCanceledTickets.getText()+"', '"+providersPayments.getText()+"', '"+discounts.getText()+"', '"+ctaCte.getText()+"', '"+ticketNumberFrom.getText()+"', '"+ticketNumberTo.getText()+"', '"+cashWithdrawal.getText()+"')";
                 con.ejecutar(saveClosingDay);
                 String getLastClose = "SELECT LAST_INSERT_ID() AS cierre_caja FROM cierre_caja";
-                int cierre_numero = 0;
+                int closeDayNumber = 0;
                 rs = con.Consulta(getLastClose);
                 while (rs.next()) {
-                    cierre_numero = rs.getInt("cierre_caja");
+                    closeDayNumber = rs.getInt("cierre_caja");
                 }
-                String updateCaja = "UPDATE caja SET fecha_cierre = CURRENT_TIME, cierre_numero = "+cierre_numero+", estado = 2 WHERE id_caja = "+idCaja+"";
+                String updateCaja = "UPDATE caja SET fecha_cierre = CURRENT_TIME, cierre_numero = "+closeDayNumber+", estado = 2 WHERE id_caja = "+idCaja+"";
                 con.ejecutar(updateCaja);
                 if(Login.userRol == 1) {
                     PantallaPrincipal.moduloVentaAdmin.setEnabled(true);
                 } else if (Login.userRol == 2) {
                     PantallaPrincipalVendedor.moduloVentaVendedor.setEnabled(true);
                 }
-                String ticketHeader = ""+Login.companyName+
-                                salto+"C.U.I.T.: "+Login.companyCuilCuit+
-                                salto+"Ing. Brutos: "+Login.companyIg+
-                                salto+Login.companyAddress+" N° "+Login.companyAddressNumber+
-                                salto+Login.companyDepartment+" - "+Login.companyProvince+" - "+Login.companyCp+
-                                salto+"Inicio Actividades: "+Utils.formatDateOnly(Login.companyInitActivities)+
-                                salto+"--------------------------------"+
-                                salto+"Cierre Nro: "+cierre_numero+
-                                salto+"Fecha: "+Utils.currentDateFormated()+
-                                salto+"--------------------------------";
-                closeTicket = ticketHeader+salto+"Usuario: "+Login.userName+
-                              salto+"--------------------------------"+
-                              salto+"\t"+"TICKETS EMITIDOS"+
-                              salto+"  Desde:\t\t"+ticketNumberFrom.getText()+
-                              salto+"  Hasta:\t\t"+ticketNumberTo.getText()+
-                              salto+salto+"  TOTAL TICKETS:\t"+auxSystemTotal+
-                              salto+"--------------------------------"+
-                              salto+"\t"+"MOVIMIENTOS DE CAJA"+
-                              salto+salto+"  Efectivo:\t\t"+cash.getText()+
-                              salto+"  Cuentas Corrientes:\t"+ctaCte.getText()+
-                              salto+"  Descuentos:\t\t"+discounts.getText()+
-                              salto+"  Anulaciones:\t\t"+totalCanceledTickets.getText()+
-                              salto+"  Devoluciones:\t\t"+returns.getText()+
-                              salto+"  Retiro Efectivo:\t"+cashWithdrawal.getText()+
-                              salto+"--------------------------------"+
-                              salto+"\t"+"TOTALES"+
-                              salto+salto+"  Total del sistema:\t"+systemTotal.getText()+
-                              salto+"  Recuento de Caja:\t"+totalEndDay.getText()+
-                              salto+"  Diferencia:\t\t"+differences.getText()+"";
-                
-                Object[] printOption = {"Imprimir", "Guardar"};
-                int printCloseData = JOptionPane.showOptionDialog(null, closeTicket, "Cierre Z", JOptionPane.PLAIN_MESSAGE, JOptionPane.WARNING_MESSAGE, null, printOption, printOption[0]);
-                if(printCloseData == 0){
-                    int print = ImprimirTicket.printTicket(closeTicket);
-                    if(print == 1){
-                        closeTicket = "";
-                    } else {
-                        System.out.println(print);
-                    }
-                } else {
-                    JFileChooser dialog = new JFileChooser();
-                    int save = dialog.showSaveDialog(CierreZ.this);
-                    if (save == JFileChooser.APPROVE_OPTION) {
-                        File dir = dialog.getSelectedFile().getAbsoluteFile();
-                        try{
-                            FileWriter saveFile = new FileWriter(dir+".txt");
-                            BufferedWriter bw = new BufferedWriter(saveFile);
-                            PrintWriter wr = new PrintWriter(bw);  
-                            wr.write(closeTicket);
-                            wr.close();
-                            bw.close();
-                        } catch (IOException ex) {
-                            Logger.getLogger(CierreZ.class.getName()).log(Level.SEVERE, null, ex);
-                        }
-                    }
-                }
+                ImprimirCierre.printClosingDay(ticketNumberFrom.getText(), ticketNumberTo.getText(), 
+                                                String.valueOf(closeDayNumber), String.valueOf(auxSystemTotal), 
+                                                cash.getText(), ctaCte.getText(), discounts.getText(), 
+                                                totalCanceledTickets.getText(), returns.getText(), 
+                                                cashWithdrawal.getText(), systemTotal.getText(), 
+                                                totalEndDay.getText(), differences.getText(), 0, "", "", "",
+                                                providersPayments.getText());
                 cash.setText("0.00");
                 providersPayments.setText("0.00");
                 totalEndDay.setText("0.00");
@@ -494,16 +446,16 @@ public class CierreZ extends javax.swing.JDialog {
             if(cash.getText().equals("0.00")) {
                 closeDay.requestFocusInWindow();
             } else {
+                String convertPrividersPayment = Utils.formatCurrency(providersPayments.getText().length(), providersPayments.getText());
+                providersPayments.setText(convertPrividersPayment);
                 BigDecimal auxCash = new BigDecimal(cash.getText());
                 BigDecimal auxProvidersPayment = new BigDecimal(providersPayments.getText());
-                BigDecimal total = BigDecimal.ZERO, totalSystem = BigDecimal.ZERO, totalDifference = BigDecimal.ZERO;
+                BigDecimal total = BigDecimal.ZERO, totalDifference = BigDecimal.ZERO;
                 BigDecimal auxiliarSytesmTotal = new BigDecimal(systemTotal.getText());
-                total = auxCash.add(auxWithdrawal).subtract(auxProvidersPayment).setScale(2, RoundingMode.CEILING);
-                totalSystem = auxiliarSytesmTotal.subtract(auxProvidersPayment).setScale(2, RoundingMode.CEILING);
+                total = auxCash.add(auxWithdrawal).add(auxProvidersPayment).setScale(2, RoundingMode.CEILING);
                 totalEndDay.setText(total.toString());
-                systemTotal.setText(totalSystem.toString());
                 totalEndDay.requestFocusInWindow();
-                totalDifference = total.subtract(totalSystem);
+                totalDifference = total.subtract(auxiliarSytesmTotal);
                 differences.setText(totalDifference.toString());
                 closeDay.requestFocusInWindow();
             }
@@ -524,17 +476,16 @@ public class CierreZ extends javax.swing.JDialog {
     public void getValues(){
         try {
             con = new Conexion();
-            
             String openDatePos = null;
             Date openDateAsDate = null;
             float auxCancels = 0, auxReturns = 0, totales = 0, auxCtaCte = 0, auxDiscounts = 0;
-            String getLastOpen = "SELECT id_caja, fecha_apertura FROM caja WHERE estado = ?";
-            rs = con.find(getLastOpen, "1");
+            String getLastOpen = "SELECT id_caja, fecha_apertura FROM caja WHERE estado = 1 OR estado = 3 AND id_usuario = "+Login.userId+"";
+            rs = con.Consulta(getLastOpen);
             while (rs.next()) {
                 openDatePos = rs.getString("fecha_apertura");
                 openDateAsDate = rs.getDate("fecha_apertura");
                 idCaja = rs.getInt("id_caja");
-            }            
+            }
             String h = openDatePos.substring(0, openDatePos.length() - 2);
             String getSystemTotal = "SELECT SUM(total) suma_total FROM ventas WHERE fecha_venta > '"+h+"' AND fecha_venta < date_format(CURRENT_TIMESTAMP, '%Y-%m-%d 23:59:59')";
             rs = con.Consulta(getSystemTotal);
