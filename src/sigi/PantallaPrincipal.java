@@ -3,6 +3,7 @@ package sigi;
 
 import sigi.reports.ReportesVentas;
 import Connection.Conexion;
+import Connection.Conexion_login;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import javax.swing.JFrame;
@@ -16,6 +17,7 @@ import sigi.reports.ReporteDetalleVentas;
 import sigi.reports.ReporteStock;
 
 public class PantallaPrincipal extends javax.swing.JFrame {
+    Conexion_login con_login;
     Conexion con;
     ResultSet rs;
     static int j=0; 
@@ -39,7 +41,7 @@ public class PantallaPrincipal extends javax.swing.JFrame {
         jScrollPane2 = new javax.swing.JScrollPane();
         jTree1 = new javax.swing.JTree();
         moduloVentaAdmin = new javax.swing.JButton();
-        adminHelp = new javax.swing.JButton();
+        openHelp = new javax.swing.JButton();
         showAdminName = new javax.swing.JLabel();
         jLabel1 = new javax.swing.JLabel();
         backgroundImage = new javax.swing.JLabel();
@@ -87,6 +89,8 @@ public class PantallaPrincipal extends javax.swing.JFrame {
         treeNode1.add(treeNode2);
         treeNode2 = new javax.swing.tree.DefaultMutableTreeNode("Clientes");
         treeNode3 = new javax.swing.tree.DefaultMutableTreeNode("ABM Cliente");
+        treeNode2.add(treeNode3);
+        treeNode3 = new javax.swing.tree.DefaultMutableTreeNode("Importar/Exportar Clientes");
         treeNode2.add(treeNode3);
         treeNode1.add(treeNode2);
         treeNode2 = new javax.swing.tree.DefaultMutableTreeNode("Proveedores");
@@ -144,16 +148,16 @@ public class PantallaPrincipal extends javax.swing.JFrame {
         getContentPane().add(moduloVentaAdmin);
         moduloVentaAdmin.setBounds(20, 5, 400, 65);
 
-        adminHelp.setBackground(new java.awt.Color(255, 255, 255));
-        adminHelp.setIcon(new javax.swing.ImageIcon(getClass().getResource("/imagenes/info.jpg"))); // NOI18N
-        adminHelp.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
-        adminHelp.addActionListener(new java.awt.event.ActionListener() {
+        openHelp.setBackground(new java.awt.Color(255, 255, 255));
+        openHelp.setIcon(new javax.swing.ImageIcon(getClass().getResource("/imagenes/info.jpg"))); // NOI18N
+        openHelp.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
+        openHelp.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                adminHelpActionPerformed(evt);
+                openHelpActionPerformed(evt);
             }
         });
-        getContentPane().add(adminHelp);
-        adminHelp.setBounds(1280, 20, 61, 58);
+        getContentPane().add(openHelp);
+        openHelp.setBounds(1280, 20, 61, 58);
 
         showAdminName.setFont(new java.awt.Font("Arial", 1, 24)); // NOI18N
         showAdminName.setForeground(new java.awt.Color(255, 255, 255));
@@ -220,6 +224,7 @@ public class PantallaPrincipal extends javax.swing.JFrame {
     ReporteDetalleVentas objIC20 = new ReporteDetalleVentas();
     ReporteStock objIC21 = new ReporteStock();
     ImportarExportarArticulos objIC22 = new ImportarExportarArticulos();
+    ImportarExportarClientes objIC23 = new ImportarExportarClientes();
 
     private void jTree1MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jTree1MouseClicked
         //Evitar el java.lang.NullPointerException del jtree cuando se hace clic fuera del mismo
@@ -230,7 +235,7 @@ public class PantallaPrincipal extends javax.swing.JFrame {
                     try {
                         objIC2.setSelected(true);
                     } catch (PropertyVetoException ex) {
-                        Logger.getLogger(PantallaPrincipalVendedor.class.getName()).log(Level.SEVERE, null, ex);
+                        Logger.getLogger(PantallaPrincipal.class.getName()).log(Level.SEVERE, null, ex);
                     }
                 }else{
                     objIC2.clearCrudArticlesFields();
@@ -244,7 +249,7 @@ public class PantallaPrincipal extends javax.swing.JFrame {
                     try {
                         objIC14.setSelected(true);
                     } catch (PropertyVetoException ex) {
-                        Logger.getLogger(PantallaPrincipalVendedor.class.getName()).log(Level.SEVERE, null, ex);
+                        Logger.getLogger(PantallaPrincipal.class.getName()).log(Level.SEVERE, null, ex);
                     }
                 }else{
                     objIC14.clearStockFields();
@@ -258,7 +263,7 @@ public class PantallaPrincipal extends javax.swing.JFrame {
                     try {
                         objIC22.setSelected(true);
                     } catch (PropertyVetoException ex) {
-                        Logger.getLogger(PantallaPrincipalVendedor.class.getName()).log(Level.SEVERE, null, ex);
+                        Logger.getLogger(PantallaPrincipal.class.getName()).log(Level.SEVERE, null, ex);
                     }
                 }else{
                     objIC22.cleanImportExportFields();
@@ -272,7 +277,7 @@ public class PantallaPrincipal extends javax.swing.JFrame {
                     try {
                         objIC11.setSelected(true);
                     } catch (PropertyVetoException ex) {
-                        Logger.getLogger(PantallaPrincipalVendedor.class.getName()).log(Level.SEVERE, null, ex);
+                        Logger.getLogger(PantallaPrincipal.class.getName()).log(Level.SEVERE, null, ex);
                     }
                 }else{
                     objIC11.clearOCFields();
@@ -286,7 +291,7 @@ public class PantallaPrincipal extends javax.swing.JFrame {
                     try {
                         objIC19.setSelected(true);
                     } catch (PropertyVetoException ex) {
-                        Logger.getLogger(PantallaPrincipalVendedor.class.getName()).log(Level.SEVERE, null, ex);
+                        Logger.getLogger(PantallaPrincipal.class.getName()).log(Level.SEVERE, null, ex);
                     }
                 }else{
                     objIC19.clearReceptionPurchaseOrderFields();
@@ -300,7 +305,7 @@ public class PantallaPrincipal extends javax.swing.JFrame {
                     try {
                         objIC1.setSelected(true);
                     } catch (PropertyVetoException ex) {
-                        Logger.getLogger(PantallaPrincipalVendedor.class.getName()).log(Level.SEVERE, null, ex);
+                        Logger.getLogger(PantallaPrincipal.class.getName()).log(Level.SEVERE, null, ex);
                     }
                 }else{
                     objIC1.clearUpdatePurchaseOrderFields();
@@ -314,7 +319,7 @@ public class PantallaPrincipal extends javax.swing.JFrame {
                     try {
                         objIC5.setSelected(true);
                     } catch (PropertyVetoException ex) {
-                        Logger.getLogger(PantallaPrincipalVendedor.class.getName()).log(Level.SEVERE, null, ex);
+                        Logger.getLogger(PantallaPrincipal.class.getName()).log(Level.SEVERE, null, ex);
                     }
                 }else{
                     objIC5.clearAdjustmentPOSFields();
@@ -328,7 +333,7 @@ public class PantallaPrincipal extends javax.swing.JFrame {
                     try {
                         objIC4.setSelected(true);
                     } catch (PropertyVetoException ex) {
-                        Logger.getLogger(PantallaPrincipalVendedor.class.getName()).log(Level.SEVERE, null, ex);
+                        Logger.getLogger(PantallaPrincipal.class.getName()).log(Level.SEVERE, null, ex);
                     }
                 }else{
                     objIC4.clearCrudCustomersFields();
@@ -337,12 +342,26 @@ public class PantallaPrincipal extends javax.swing.JFrame {
                     objIC4.setSize(desktopPane.getSize());
                 }
                 break;
+            case "Importar/Exportar Clientes":
+                if(objIC23.isShowing() == true){
+                    try {
+                        objIC23.setSelected(true);
+                    } catch (PropertyVetoException ex) {
+                        Logger.getLogger(PantallaPrincipal.class.getName()).log(Level.SEVERE, null, ex);
+                    }
+                }else{
+                    objIC23.cleanImportExportClientsFields();
+                    desktopPane.add(objIC23);
+                    objIC23.show();
+                    objIC23.setSize(desktopPane.getSize());
+                }
+                break;
             case "ABM Proveedor":
                 if(objIC13.isShowing() == true){
                     try {
                         objIC13.setSelected(true);
                     } catch (PropertyVetoException ex) {
-                        Logger.getLogger(PantallaPrincipalVendedor.class.getName()).log(Level.SEVERE, null, ex);
+                        Logger.getLogger(PantallaPrincipal.class.getName()).log(Level.SEVERE, null, ex);
                     }
                 }else{
                     objIC13.clearSuppliersFields();
@@ -356,7 +375,7 @@ public class PantallaPrincipal extends javax.swing.JFrame {
                     try {
                         objIC9.setSelected(true);
                     } catch (PropertyVetoException ex) {
-                        Logger.getLogger(PantallaPrincipalVendedor.class.getName()).log(Level.SEVERE, null, ex);
+                        Logger.getLogger(PantallaPrincipal.class.getName()).log(Level.SEVERE, null, ex);
                     }
                 }else{
                     objIC9.clearCtaCteFields();
@@ -388,7 +407,7 @@ public class PantallaPrincipal extends javax.swing.JFrame {
                     try {
                         objIC15.setSelected(true);
                     } catch (PropertyVetoException ex) {
-                        Logger.getLogger(PantallaPrincipalVendedor.class.getName()).log(Level.SEVERE, null, ex);
+                        Logger.getLogger(PantallaPrincipal.class.getName()).log(Level.SEVERE, null, ex);
                     }
                 }else{
                     objIC15.clearSalesReportFields();
@@ -402,7 +421,7 @@ public class PantallaPrincipal extends javax.swing.JFrame {
                     try {
                         objIC21.setSelected(true);
                     } catch (PropertyVetoException ex) {
-                        Logger.getLogger(PantallaPrincipalVendedor.class.getName()).log(Level.SEVERE, null, ex);
+                        Logger.getLogger(PantallaPrincipal.class.getName()).log(Level.SEVERE, null, ex);
                     }
                 }else{
                     objIC21.clearStockReportFields();
@@ -416,7 +435,7 @@ public class PantallaPrincipal extends javax.swing.JFrame {
                     try {
                         objIC20.setSelected(true);
                     } catch (PropertyVetoException ex) {
-                        Logger.getLogger(PantallaPrincipalVendedor.class.getName()).log(Level.SEVERE, null, ex);
+                        Logger.getLogger(PantallaPrincipal.class.getName()).log(Level.SEVERE, null, ex);
                     }
                 }else{
                     objIC20.clearSalesDetailReportFields();
@@ -430,7 +449,7 @@ public class PantallaPrincipal extends javax.swing.JFrame {
                     try {
                         objIC16.setSelected(true);
                     } catch (PropertyVetoException ex) {
-                        Logger.getLogger(PantallaPrincipalVendedor.class.getName()).log(Level.SEVERE, null, ex);
+                        Logger.getLogger(PantallaPrincipal.class.getName()).log(Level.SEVERE, null, ex);
                     }
                 }else{
                     objIC16.clearBackUpFields();
@@ -444,7 +463,7 @@ public class PantallaPrincipal extends javax.swing.JFrame {
                     try {
                         objIC8.setSelected(true);
                     } catch (PropertyVetoException ex) {
-                        Logger.getLogger(PantallaPrincipalVendedor.class.getName()).log(Level.SEVERE, null, ex);
+                        Logger.getLogger(PantallaPrincipal.class.getName()).log(Level.SEVERE, null, ex);
                     }
                 }else{
                     desktopPane.add(objIC8);
@@ -494,6 +513,7 @@ public class PantallaPrincipal extends javax.swing.JFrame {
     private void moduloVentaAdminActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_moduloVentaAdminActionPerformed
         try {
             con = new Conexion();
+            con_login = new Conexion_login();
             Login.getStatus();
             if(Login.status == 1 || Login.status == 3) {
                 if (userId == Login.compareIds) {
@@ -504,6 +524,7 @@ public class PantallaPrincipal extends javax.swing.JFrame {
                             cierre.setVisible(true);
                             break;
                         case 3:
+                            PantallaPrincipal.moduloVentaAdmin.setEnabled(false);
                             int option = JOptionPane.showOptionDialog(null, "Se había hecho un cierre X de la caja, elegir una opción.", "Caja", JOptionPane.YES_NO_OPTION, JOptionPane.INFORMATION_MESSAGE, null, new String[]{"Abrir caja", "Hacer cierre"}, "Abrir caja");
                             if(option == 0) {
                                 String updateSalesStatus = "UPDATE caja SET estado = 1 WHERE id_caja = "+Login.cajaId+"";
@@ -522,7 +543,7 @@ public class PantallaPrincipal extends javax.swing.JFrame {
                     }
                 } else {
                     String getUser = "SELECT nombres, apellidos FROM usuarios WHERE id_usuario = "+Login.compareIds+"";
-                    rs = con.Consulta(getUser);
+                    rs = con_login.Consulta(getUser);
                     String names = null, lastNames = null;
                     while(rs.next()) {
                         names = rs.getString("nombres");
@@ -534,15 +555,16 @@ public class PantallaPrincipal extends javax.swing.JFrame {
                 openPos();
             }
             con.Cerrar();
+            con_login.Cerrar();
         } catch (SQLException | ClassNotFoundException | InstantiationException | IllegalAccessException ex) {
-            Logger.getLogger(PantallaPrincipalVendedor.class.getName()).log(Level.SEVERE, null, ex);
+            Logger.getLogger(PantallaPrincipal.class.getName()).log(Level.SEVERE, null, ex);
         }
     }//GEN-LAST:event_moduloVentaAdminActionPerformed
 
-    private void adminHelpActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_adminHelpActionPerformed
+    private void openHelpActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_openHelpActionPerformed
         AyudaAdmin help = new AyudaAdmin(this, true);
         help.setVisible(true);
-    }//GEN-LAST:event_adminHelpActionPerformed
+    }//GEN-LAST:event_openHelpActionPerformed
 
     /**
     * @param args the command line arguments
@@ -559,7 +581,6 @@ public class PantallaPrincipal extends javax.swing.JFrame {
         
     }
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    private javax.swing.JButton adminHelp;
     private javax.swing.JLabel backgroundImage;
     private javax.swing.JMenuItem changePassword;
     private javax.swing.JMenu changePasswordMenu;
@@ -572,6 +593,7 @@ public class PantallaPrincipal extends javax.swing.JFrame {
     private javax.swing.JScrollPane jScrollPane2;
     private javax.swing.JTree jTree1;
     public static javax.swing.JButton moduloVentaAdmin;
+    private javax.swing.JButton openHelp;
     private javax.swing.JLabel showAdminName;
     // End of variables declaration//GEN-END:variables
   
