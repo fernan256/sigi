@@ -22,6 +22,11 @@ public class Utils {
         String fecha = formatDate.format(thisDate);
         return fecha; 
     }
+    public static String formatLastMinute(Date thisDate) {
+        SimpleDateFormat formatDate = new SimpleDateFormat("yyyy'-'MM'-'dd 23:59:59");
+        String fecha = formatDate.format(thisDate);
+        return fecha; 
+    }
     public static String formatToTimestamp(Date thisDate) {
         SimpleDateFormat formatDate = new SimpleDateFormat("yyyy'-'MM'-'dd HH:mm:ss.S");
         String fecha = formatDate.format(thisDate);
