@@ -3,7 +3,6 @@ package sigi;
 import Connection.Conexion;
 import java.sql.ResultSet;
 import java.sql.SQLException;
-import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Locale;
 import java.util.logging.Level;
@@ -109,8 +108,10 @@ public class CierreX extends javax.swing.JDialog {
             }
         });
 
+        userName.setEditable(false);
         userName.setFont(new java.awt.Font("Arial", 0, 12)); // NOI18N
 
+        openDate.setEditable(false);
         openDate.setFont(new java.awt.Font("Arial", 0, 12)); // NOI18N
 
         openingCash.setEditable(false);
@@ -159,71 +160,71 @@ public class CierreX extends javax.swing.JDialog {
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                .addComponent(jLabel1)
-                .addGap(227, 227, 227))
             .addGroup(layout.createSequentialGroup()
+                .addGap(25, 25, 25)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(layout.createSequentialGroup()
-                        .addGap(25, 25, 25)
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addGroup(layout.createSequentialGroup()
-                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                    .addComponent(jLabel2)
-                                    .addComponent(jLabel3))
-                                .addGap(68, 68, 68)
-                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                    .addComponent(openDate, javax.swing.GroupLayout.PREFERRED_SIZE, 142, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                    .addComponent(userName, javax.swing.GroupLayout.PREFERRED_SIZE, 290, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                            .addGroup(layout.createSequentialGroup()
-                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                    .addComponent(jLabel5)
-                                    .addComponent(jLabel12)
-                                    .addGroup(layout.createSequentialGroup()
-                                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                            .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                                .addComponent(jLabel8)
-                                                .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                                                    .addComponent(jLabel9)
-                                                    .addGap(31, 31, 31)))
-                                            .addComponent(jLabel11)
-                                            .addComponent(jLabel10))
-                                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                            .addGroup(layout.createSequentialGroup()
-                                                .addGap(19, 19, 19)
-                                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                                    .addComponent(returns, javax.swing.GroupLayout.PREFERRED_SIZE, 100, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                                    .addGroup(layout.createSequentialGroup()
-                                                        .addComponent(totalCash, javax.swing.GroupLayout.PREFERRED_SIZE, 100, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                                        .addGap(25, 25, 25)
-                                                        .addComponent(jLabel7))
-                                                    .addComponent(totalCanceledTickets, javax.swing.GroupLayout.PREFERRED_SIZE, 100, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                                    .addComponent(discounts, javax.swing.GroupLayout.PREFERRED_SIZE, 100, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                                            .addGroup(layout.createSequentialGroup()
-                                                .addGap(18, 18, 18)
-                                                .addComponent(providersPayments, javax.swing.GroupLayout.PREFERRED_SIZE, 100, javax.swing.GroupLayout.PREFERRED_SIZE))))
-                                    .addGroup(layout.createSequentialGroup()
-                                        .addComponent(jLabel13)
-                                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                                        .addComponent(ticketNumberFrom, javax.swing.GroupLayout.PREFERRED_SIZE, 100, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                        .addGap(18, 18, 18)
-                                        .addComponent(jLabel14)
-                                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                                        .addComponent(ticketNumberTo, javax.swing.GroupLayout.PREFERRED_SIZE, 100, javax.swing.GroupLayout.PREFERRED_SIZE))
-                                    .addComponent(jLabel6)
-                                    .addGroup(layout.createSequentialGroup()
-                                        .addComponent(jLabel4)
-                                        .addGap(84, 84, 84)
-                                        .addComponent(openingCash, javax.swing.GroupLayout.PREFERRED_SIZE, 100, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                                .addComponent(ctaCte, javax.swing.GroupLayout.PREFERRED_SIZE, 100, javax.swing.GroupLayout.PREFERRED_SIZE))))
+                            .addComponent(jLabel2)
+                            .addComponent(jLabel3))
+                        .addGap(68, 68, 68)
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(openDate, javax.swing.GroupLayout.PREFERRED_SIZE, 142, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(userName, javax.swing.GroupLayout.PREFERRED_SIZE, 290, javax.swing.GroupLayout.PREFERRED_SIZE)))
                     .addGroup(layout.createSequentialGroup()
-                        .addGap(81, 81, 81)
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(jLabel5)
+                            .addComponent(jLabel12)
+                            .addGroup(layout.createSequentialGroup()
+                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                    .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                        .addComponent(jLabel8)
+                                        .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
+                                            .addComponent(jLabel9)
+                                            .addGap(31, 31, 31)))
+                                    .addComponent(jLabel11)
+                                    .addComponent(jLabel10))
+                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                    .addGroup(layout.createSequentialGroup()
+                                        .addGap(19, 19, 19)
+                                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                            .addComponent(returns, javax.swing.GroupLayout.PREFERRED_SIZE, 100, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                            .addGroup(layout.createSequentialGroup()
+                                                .addComponent(totalCash, javax.swing.GroupLayout.PREFERRED_SIZE, 100, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                                .addGap(25, 25, 25)
+                                                .addComponent(jLabel7))
+                                            .addComponent(totalCanceledTickets, javax.swing.GroupLayout.PREFERRED_SIZE, 100, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                            .addComponent(discounts, javax.swing.GroupLayout.PREFERRED_SIZE, 100, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                                    .addGroup(layout.createSequentialGroup()
+                                        .addGap(18, 18, 18)
+                                        .addComponent(providersPayments, javax.swing.GroupLayout.PREFERRED_SIZE, 100, javax.swing.GroupLayout.PREFERRED_SIZE))))
+                            .addGroup(layout.createSequentialGroup()
+                                .addComponent(jLabel13)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                                .addComponent(ticketNumberFrom, javax.swing.GroupLayout.PREFERRED_SIZE, 100, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addGap(18, 18, 18)
+                                .addComponent(jLabel14)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                                .addComponent(ticketNumberTo, javax.swing.GroupLayout.PREFERRED_SIZE, 100, javax.swing.GroupLayout.PREFERRED_SIZE))
+                            .addComponent(jLabel6)
+                            .addGroup(layout.createSequentialGroup()
+                                .addComponent(jLabel4)
+                                .addGap(84, 84, 84)
+                                .addComponent(openingCash, javax.swing.GroupLayout.PREFERRED_SIZE, 100, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                        .addComponent(ctaCte, javax.swing.GroupLayout.PREFERRED_SIZE, 100, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                .addGap(52, 52, 52))
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
+                        .addComponent(jLabel1)
+                        .addGap(227, 227, 227))
+                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
                         .addComponent(closeX, javax.swing.GroupLayout.PREFERRED_SIZE, 186, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addGap(78, 78, 78)
-                        .addComponent(cancel, javax.swing.GroupLayout.PREFERRED_SIZE, 189, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                .addGap(52, 52, 52))
+                        .addComponent(cancel, javax.swing.GroupLayout.PREFERRED_SIZE, 189, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(71, 71, 71))))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -275,11 +276,11 @@ public class CierreX extends javax.swing.JDialog {
                     .addComponent(ticketNumberTo, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(jLabel13)
                     .addComponent(jLabel14))
-                .addGap(18, 18, Short.MAX_VALUE)
+                .addGap(18, 18, 18)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(closeX, javax.swing.GroupLayout.PREFERRED_SIZE, 59, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(cancel, javax.swing.GroupLayout.PREFERRED_SIZE, 59, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addContainerGap())
+                    .addComponent(closeX, javax.swing.GroupLayout.PREFERRED_SIZE, 40, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(cancel, javax.swing.GroupLayout.PREFERRED_SIZE, 40, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
 
         pack();
@@ -289,17 +290,27 @@ public class CierreX extends javax.swing.JDialog {
         this.dispose();
         CierreCaja cerrarCaja = new CierreCaja();
         cerrarCaja.setVisible(true);
+        if(Login.userRol == 1) {
+            PantallaPrincipal.moduloVentaAdmin.setEnabled(false);
+        } else {
+            PantallaPrincipalVendedor.moduloVentaVendedor.setEnabled(false);
+        }
     }//GEN-LAST:event_cancelActionPerformed
 
     private void closeXActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_closeXActionPerformed
         try {
             con = new Conexion();
+            Login.getStatus();
             String xClose = "update caja set estado = 3 where id_caja = "+idCaja+"";
             con.ejecutar(xClose);
             String saveXClose = "INSERT INTO cierre_caja (id_caja, fecha_cierre, id_usuario, id_tipo_cierre, total_calculado, total_real, diferencia_caja, devoluciones, anulaciones, pago_prov_efectivo_caja, descuentos, ticket_desde, ticket_hasta) VALUES ("+idCaja+", CURRENT_TIMESTAMP, "+Login.userId+", 3, '"+totalCash.getText()+"', '"+totalCash.getText()+"', 0, '"+returns.getText()+"', '"+totalCanceledTickets.getText()+"', '"+providersPayments.getText()+"', '"+discounts.getText()+"', '"+ticketNumberFrom.getText()+"', '"+ticketNumberTo.getText()+"')";
             con.ejecutar(saveXClose);
             con.Cerrar();
-            PantallaPrincipalVendedor.moduloVentaVendedor.setEnabled(true);
+            if(Login.userRol == 1) {
+                PantallaPrincipal.moduloVentaAdmin.setEnabled(true);
+            } else {
+                PantallaPrincipalVendedor.moduloVentaVendedor.setEnabled(true);
+            }
             this.dispose();
         } catch (ClassNotFoundException | SQLException | InstantiationException | IllegalAccessException ex) {
             Logger.getLogger(CierreX.class.getName()).log(Level.SEVERE, null, ex);
@@ -319,7 +330,7 @@ public class CierreX extends javax.swing.JDialog {
                 idCaja = rs.getInt("id_caja");
             }
             String openinigDate = fecha.substring(0, fecha.length() - 2);
-            String getSystemTotal = "SELECT SUM(total) suma_total FROM ventas WHERE fecha_venta > ('"+openinigDate+"') AND fecha_venta < date_format('"+openinigDate+"', '%Y-%m-%d 23:59:59')";
+            String getSystemTotal = "SELECT SUM(total) suma_total FROM ventas WHERE fecha_venta > ('"+openinigDate+"') AND fecha_venta < date_format('"+openinigDate+"', '%Y-%m-%d 23:59:59' AND forma_pago_id_forma_pago = 1)";
             rs = con.Consulta(getSystemTotal);
             while(rs.next()) {
                 auxSystemTotal = rs.getFloat("suma_total");
@@ -354,7 +365,6 @@ public class CierreX extends javax.swing.JDialog {
             } else {
                 returns.setText("0.00");
             }
-            System.out.println(openinigDate);
             String getOpeningInfo = "SELECT * FROM caja WHERE fecha_apertura >= ('"+openinigDate+"') AND fecha_apertura < date_format('"+openinigDate+"', '%Y-%m-%d 23:59:59')";
             rs = con.Consulta(getOpeningInfo);
             String dateToFormat = null;
@@ -363,9 +373,6 @@ public class CierreX extends javax.swing.JDialog {
                 openingCash.setText(rs.getString("apertura"));
                 auxInitialDay = rs.getFloat("apertura");
             }
-            //LocalDateTime date = LocalDateTime.parse(dateToFormat, DateTimeFormatter.ofPattern("yyyy-MM-dd HH:mm:ss"));
-            //String newDate = date.format(DateTimeFormatter.ofPattern("yyyy-MM-dd"));
-            //String s = new SimpleDateFormat("dd/MM/yyyy HH:mm:ss").format(fecha2);
             openDate.setText(openinigDate);
             String getCtaCteTotal = "SELECT SUM(total) ctaCte_total FROM ventas WHERE fecha_venta > ('"+openinigDate+"') AND fecha_venta < date_format('"+openinigDate+"', '%Y-%m-%d 23:59:59') AND forma_pago_id_forma_pago = 2";
             rs = con.Consulta(getCtaCteTotal);
@@ -373,7 +380,7 @@ public class CierreX extends javax.swing.JDialog {
                 auxCtaCte = rs.getFloat("ctaCte_total");
             }
             if(auxCtaCte != 0) {
-                ctaCte.setText(Float.toString(auxCtaCte));
+                ctaCte.setText(String.format(Locale.ENGLISH, "%.2f", auxCtaCte));
             } else {
                 ctaCte.setText("0.00");
             }
@@ -384,8 +391,13 @@ public class CierreX extends javax.swing.JDialog {
             while(rs.next()) {
                 ticketNro.add(rs.getString("numero_ticket"));
             }
-            ticketNumberFrom.setText(ticketNro.get(0).toString());
-            ticketNumberTo.setText(ticketNro.get(ticketNro.size() - 1).toString());
+            if(!ticketNro.isEmpty()){
+                ticketNumberFrom.setText(ticketNro.get(0).toString());
+                ticketNumberTo.setText(ticketNro.get(ticketNro.size() - 1).toString());
+            }else {
+                ticketNumberFrom.setText("000");
+                ticketNumberTo.setText("000");
+            }
             con.Cerrar();
         } catch (ClassNotFoundException | SQLException | InstantiationException | IllegalAccessException ex) {
             Logger.getLogger(CierreZ.class.getName()).log(Level.SEVERE, null, ex);
