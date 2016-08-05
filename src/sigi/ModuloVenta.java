@@ -41,7 +41,7 @@ public class ModuloVenta extends javax.swing.JFrame {
     public static String nombre = "", marca = "";
     public static BigDecimal precio = BigDecimal.ZERO;
     public static BigDecimal cantidadEnStock = BigDecimal.ZERO;
-    private int stockId = 0;
+    public static int stockId = 0;
     
     public ModuloVenta() {
         initComponents();
@@ -435,7 +435,7 @@ public class ModuloVenta extends javax.swing.JFrame {
                     String idArticulos[] = new String[j];
                     String stockIdToSave [] = new String[j];
                     BigDecimal discount [] = new BigDecimal[j];
-
+                    int ctaCteId = 0;
                     for (int i=0; i<j; i++) {
                         scanningArticulo[i] = tablaCompras.getValueAt(i, 0).toString();
                         nombreProducto[i] = tablaCompras.getValueAt(i, 1).toString();
@@ -463,6 +463,7 @@ public class ModuloVenta extends javax.swing.JFrame {
                     }
                     if(saleTypo == 2) {
                         paymentType = 2;
+                        ctaCteId = Integer.parseInt(VentasCtaCte.clienteId);
                     }
                     String insertSale = "INSERT INTO ventas (fecha_venta, id_usuario, total, descuento, forma_pago_id_forma_pago, iva_id_iva) VALUES (CURRENT_TIMESTAMP, '"+userId+"', '"+getTotalVentas+"', '"+descuento+"', "+paymentType+", NULL)";
                     con.ejecutar(insertSale);
@@ -497,10 +498,11 @@ public class ModuloVenta extends javax.swing.JFrame {
                         BigDecimal totalSalesToAdd = new BigDecimal(sendTotalVentas);
                         totalAccount = auxAccount.add(totalSalesToAdd).subtract(descuentoAuxiliar);
                         String insertCtaCte = "INSERT INTO cuentas_corrientes (fecha_cta_cte, total, suma, clientes_id_clientes, usuarios_id_usuario, ventas_id_venta, numero_ticket) VALUES ('"+saleDateToSave+"', "+totalAccount+", "+totalSalesToAdd+", "+clientIDM+", "+userId+", "+saleId+", "+ticketNumber+")";
-                        try {
-                            con.ejecutar(insertCtaCte);
-                        } catch (SQLException ex) {
-                            Logger.getLogger(ModuloVenta.class.getName()).log(Level.SEVERE, null, ex);
+                        con.ejecutar(insertCtaCte);
+                        String getCurrentAccountId = "SELECT LAST_INSERT_ID() AS id_cuenta_corriente from cuentas_corrientes";
+                        rs = con.Consulta(getCurrentAccountId);
+                        while(rs.next()){
+                            ctaCteId = rs.getInt("id_cuenta_corriente");
                         }
                     }
                     String ticketHeader = "FACTURA NO FISCAL"+
@@ -587,7 +589,7 @@ public class ModuloVenta extends javax.swing.JFrame {
                             System.out.println(print);
                         }
                     }
-                    String salesDone = "UPDATE detalle_venta SET estado_venta_id_estado_venta = 2, pago_con = "+cashPayment+", vuelto = "+exchange+" WHERE ventas_id_venta = "+saleId;
+                    String salesDone = "UPDATE detalle_venta SET estado_venta_id_estado_venta = 2, pago_con = "+cashPayment+", vuelto = "+exchange+", cuenta_corriente_id = "+ctaCteId+" WHERE ventas_id_venta = "+saleId;
                     con.ejecutar(salesDone);
                     total = BigDecimal.ZERO;
                     scanning.setText("");
