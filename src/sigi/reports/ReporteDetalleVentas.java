@@ -15,6 +15,8 @@ import net.sf.jasperreports.engine.util.JRLoader;
 import net.sf.jasperreports.view.JasperViewer;
 import sigi.Login;
 import Utils.Utils;
+import java.io.InputStream;
+import static net.sf.jasperreports.repo.RepositoryUtil.getInputStream;
 
 public class ReporteDetalleVentas extends javax.swing.JInternalFrame {
     Conexion con;
@@ -125,9 +127,19 @@ public class ReporteDetalleVentas extends javax.swing.JInternalFrame {
             parameter.put("fromDate", Utils.formatDate(fromDate.getDate()));
             parameter.put("toDate", Utils.formatDate(toDate.getDate()));
             parameter.put("todaysDate", Utils.currentDateWithMonth());            
-            String pathW = "C:\\Users\\Diego\\Documents\\NetBeansProjects\\SIGI\\src\\sigi\\reports\\salesDetail.jasper";
+            //String pathW = "C:\\Users\\Diego\\Documents\\NetBeansProjects\\SIGI\\src\\sigi\\reports\\salesDetail.jasper";
             JasperReport jr = null;
-            jr = (JasperReport) JRLoader.loadObjectFromFile(pathW);
+//            jr = (JasperReport) JRLoader.loadObjectFromFile(pathW);
+//            JasperPrint jp = JasperFillManager.fillReport(jr, parameter, con.getConextion());
+//            JasperViewer.viewReport(jp, false);
+            InputStream resource = getInputStream("C:/reports/salesDetail.jasper");
+            //jr = (JasperReport) JRLoader.loadObjectFromFile(pathW);
+            //JasperReport jp = JasperCompileManager.compileReport(getClass().getResourceAsStream("reports/totalSalesReport.jasper"));
+            jr = (JasperReport) JRLoader.loadObject(resource);
+            //JasperReport jr = JasperCompileManager.compileReport( "sigi\\reports\\totalSalesReport.jasper");
+            //JasperPrint jp = JasperFillManager.fillReport(jr, parameter, con.getConextion());
+            //JasperViewer jv = new JasperViewer( jp, false );
+            //jv.viewReport( jp, false );
             JasperPrint jp = JasperFillManager.fillReport(jr, parameter, con.getConextion());
             JasperViewer.viewReport(jp, false);
             con.Cerrar();

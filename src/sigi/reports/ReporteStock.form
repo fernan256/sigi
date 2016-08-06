@@ -33,15 +33,15 @@
                   <Component id="jLabel1" min="-2" max="-2" attributes="0"/>
                   <Group type="102" attributes="0">
                       <Component id="jLabel2" min="-2" max="-2" attributes="0"/>
-                      <EmptySpace min="100" pref="100" max="-2" attributes="0"/>
-                      <Component id="searchArticle" min="-2" pref="128" max="-2" attributes="0"/>
+                      <EmptySpace min="-2" pref="35" max="-2" attributes="0"/>
+                      <Component id="searchArticle" min="-2" pref="200" max="-2" attributes="0"/>
                   </Group>
                   <Group type="102" attributes="0">
-                      <Component id="articleName" min="-2" pref="177" max="-2" attributes="0"/>
-                      <EmptySpace min="104" pref="104" max="-2" attributes="0"/>
-                      <Component id="articleBrand" min="-2" pref="161" max="-2" attributes="0"/>
-                      <EmptySpace min="59" pref="59" max="-2" attributes="0"/>
-                      <Component id="idStock" min="-2" pref="163" max="-2" attributes="0"/>
+                      <Component id="articleName" min="-2" pref="180" max="-2" attributes="0"/>
+                      <EmptySpace min="-2" pref="75" max="-2" attributes="0"/>
+                      <Component id="articleBrand" min="-2" pref="180" max="-2" attributes="0"/>
+                      <EmptySpace min="-2" pref="75" max="-2" attributes="0"/>
+                      <Component id="idStock" min="-2" pref="180" max="-2" attributes="0"/>
                   </Group>
                   <Component id="jScrollPane1" min="-2" pref="700" max="-2" attributes="0"/>
               </Group>

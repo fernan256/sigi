@@ -4,6 +4,7 @@ import Connection.Conexion;
 import Utils.Utils;
 import com.mxrck.autocompleter.TextAutoCompleter;
 import java.awt.event.KeyEvent;
+import java.io.InputStream;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.HashMap;
@@ -17,6 +18,7 @@ import net.sf.jasperreports.engine.JasperFillManager;
 import net.sf.jasperreports.engine.JasperPrint;
 import net.sf.jasperreports.engine.JasperReport;
 import net.sf.jasperreports.engine.util.JRLoader;
+import static net.sf.jasperreports.repo.RepositoryUtil.getInputStream;
 import net.sf.jasperreports.view.JasperViewer;
 import sigi.Login;
 
@@ -122,14 +124,14 @@ public class ReporteStock extends javax.swing.JInternalFrame {
                     .addComponent(jLabel1)
                     .addGroup(layout.createSequentialGroup()
                         .addComponent(jLabel2)
-                        .addGap(100, 100, 100)
-                        .addComponent(searchArticle, javax.swing.GroupLayout.PREFERRED_SIZE, 128, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addGap(35, 35, 35)
+                        .addComponent(searchArticle, javax.swing.GroupLayout.PREFERRED_SIZE, 200, javax.swing.GroupLayout.PREFERRED_SIZE))
                     .addGroup(layout.createSequentialGroup()
-                        .addComponent(articleName, javax.swing.GroupLayout.PREFERRED_SIZE, 177, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(104, 104, 104)
-                        .addComponent(articleBrand, javax.swing.GroupLayout.PREFERRED_SIZE, 161, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(59, 59, 59)
-                        .addComponent(idStock, javax.swing.GroupLayout.PREFERRED_SIZE, 163, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addComponent(articleName, javax.swing.GroupLayout.PREFERRED_SIZE, 180, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(75, 75, 75)
+                        .addComponent(articleBrand, javax.swing.GroupLayout.PREFERRED_SIZE, 180, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(75, 75, 75)
+                        .addComponent(idStock, javax.swing.GroupLayout.PREFERRED_SIZE, 180, javax.swing.GroupLayout.PREFERRED_SIZE))
                     .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 700, javax.swing.GroupLayout.PREFERRED_SIZE)))
         );
         layout.setVerticalGroup(
@@ -163,9 +165,19 @@ public class ReporteStock extends javax.swing.JInternalFrame {
             Map parameter = new HashMap();
             parameter.put("companyName", Login.companyName);
             parameter.put("todaysDate", Utils.currentDateWithMonth());
-            String pathW = "C:\\Users\\Diego\\Documents\\NetBeansProjects\\SIGI\\src\\sigi\\reports\\stockReport.jasper";
+            //String pathW = "C:\\Users\\Diego\\Documents\\NetBeansProjects\\SIGI\\src\\sigi\\reports\\stockReport.jasper";
             JasperReport jr = null;
-            jr = (JasperReport) JRLoader.loadObjectFromFile(pathW);
+//            jr = (JasperReport) JRLoader.loadObjectFromFile(pathW);
+//            JasperPrint jp = JasperFillManager.fillReport(jr, parameter, con.getConextion());
+//            JasperViewer.viewReport(jp, false);
+            InputStream resource = getInputStream("C:/reports/stockReport.jasper");
+            //jr = (JasperReport) JRLoader.loadObjectFromFile(pathW);
+            //JasperReport jp = JasperCompileManager.compileReport(getClass().getResourceAsStream("reports/totalSalesReport.jasper"));
+            jr = (JasperReport) JRLoader.loadObject(resource);
+            //JasperReport jr = JasperCompileManager.compileReport( "sigi\\reports\\totalSalesReport.jasper");
+            //JasperPrint jp = JasperFillManager.fillReport(jr, parameter, con.getConextion());
+            //JasperViewer jv = new JasperViewer( jp, false );
+            //jv.viewReport( jp, false );
             JasperPrint jp = JasperFillManager.fillReport(jr, parameter, con.getConextion());
             JasperViewer.viewReport(jp, false);
             con.Cerrar();

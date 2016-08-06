@@ -12,7 +12,7 @@
 	<parameter name="companyName" class="java.lang.String"/>
 	<parameter name="todaysDate" class="java.lang.String"/>
 	<queryString>
-		<![CDATA[select sum(total), a.id_usuario, a.fecha_venta, sum(descuento), a.forma_pago_id_forma_pago, b.nombre, c.id_usuario, c.nombres, c.apellidos from ventas a join forma_pago b on b.id_forma_pago = a.forma_pago_id_forma_pago join usuarios c on c.id_usuario = a.id_usuario where a.fecha_venta > date_format($P{fromDate},'%Y-%m-%d 00:00:00') AND a.fecha_venta < date_format($P{toDate}, '%Y-%m-%d 23:59:59') group by a.forma_pago_id_forma_pago, a.id_usuario;]]>
+		<![CDATA[select sum(total), a.id_usuario, a.fecha_venta, sum(descuento), a.forma_pago_id_forma_pago, b.nombre, c.id_usuario, c.nombres, c.apellidos from ventas a join forma_pago b on b.id_forma_pago = a.forma_pago_id_forma_pago join usuarios c on c.id_usuario = a.id_usuario where a.fecha_venta > $P{fromDate} AND a.fecha_venta < $P{toDate} group by a.forma_pago_id_forma_pago, a.id_usuario;]]>
 	</queryString>
 	<field name="sum(total)" class="java.math.BigDecimal"/>
 	<field name="id_usuario" class="java.lang.Integer">
