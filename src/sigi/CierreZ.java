@@ -443,7 +443,7 @@ public class CierreZ extends javax.swing.JDialog {
 
     private void providersPaymentsKeyReleased(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_providersPaymentsKeyReleased
         if((evt.getKeyCode() == KeyEvent.VK_ENTER)) {
-            if(cash.getText().equals("0.00")) {
+            if(providersPayments.getText().equals("0.00")) {
                 closeDay.requestFocusInWindow();
             } else {
                 String convertPrividersPayment = Utils.formatCurrency(providersPayments.getText().length(), providersPayments.getText());
