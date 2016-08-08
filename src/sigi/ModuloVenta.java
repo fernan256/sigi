@@ -91,17 +91,20 @@ public class ModuloVenta extends javax.swing.JFrame {
         totalVentas.setText("0.00");
         getContentPane().add(totalVentas, new org.netbeans.lib.awtextra.AbsoluteConstraints(70, 440, 500, 60));
 
-        eliminarFila.setBackground(new java.awt.Color(255, 255, 255));
+        eliminarFila.setFont(new java.awt.Font("Arial", 0, 11)); // NOI18N
         eliminarFila.setIcon(new javax.swing.ImageIcon(getClass().getResource("/imagenes/removeItem.png"))); // NOI18N
+        eliminarFila.setText("Eliminar articulo");
+        eliminarFila.setBorderPainted(false);
         eliminarFila.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 eliminarFilaActionPerformed(evt);
             }
         });
-        getContentPane().add(eliminarFila, new org.netbeans.lib.awtextra.AbsoluteConstraints(200, 540, 60, 60));
+        getContentPane().add(eliminarFila, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 540, 180, 60));
 
-        printTicket.setBackground(new java.awt.Color(231, 224, 224));
+        printTicket.setFont(new java.awt.Font("Arial", 0, 11)); // NOI18N
         printTicket.setIcon(new javax.swing.ImageIcon(getClass().getResource("/imagenes/printTicket.png"))); // NOI18N
+        printTicket.setText("Venta en Efectivo");
         printTicket.setBorderPainted(false);
         printTicket.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
         printTicket.addActionListener(new java.awt.event.ActionListener() {
@@ -109,10 +112,11 @@ public class ModuloVenta extends javax.swing.JFrame {
                 printTicketActionPerformed(evt);
             }
         });
-        getContentPane().add(printTicket, new org.netbeans.lib.awtextra.AbsoluteConstraints(370, 540, 80, 60));
+        getContentPane().add(printTicket, new org.netbeans.lib.awtextra.AbsoluteConstraints(380, 540, 210, 60));
 
         closeDay.setBackground(new java.awt.Color(255, 255, 255));
         closeDay.setIcon(new javax.swing.ImageIcon(getClass().getResource("/imagenes/close.png"))); // NOI18N
+        closeDay.setBorderPainted(false);
         closeDay.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
         closeDay.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -121,8 +125,9 @@ public class ModuloVenta extends javax.swing.JFrame {
         });
         getContentPane().add(closeDay, new org.netbeans.lib.awtextra.AbsoluteConstraints(810, 630, 60, 60));
 
-        borrarTodo.setBackground(new java.awt.Color(255, 255, 255));
+        borrarTodo.setFont(new java.awt.Font("Arial", 0, 11)); // NOI18N
         borrarTodo.setIcon(new javax.swing.ImageIcon(getClass().getResource("/imagenes/emptyCart.png"))); // NOI18N
+        borrarTodo.setText("Vaciar lista");
         borrarTodo.setBorderPainted(false);
         borrarTodo.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
         borrarTodo.addActionListener(new java.awt.event.ActionListener() {
@@ -130,7 +135,7 @@ public class ModuloVenta extends javax.swing.JFrame {
                 borrarTodoActionPerformed(evt);
             }
         });
-        getContentPane().add(borrarTodo, new org.netbeans.lib.awtextra.AbsoluteConstraints(280, 540, 60, 60));
+        getContentPane().add(borrarTodo, new org.netbeans.lib.awtextra.AbsoluteConstraints(210, 540, 160, 60));
 
         jLabel1.setFont(new java.awt.Font("Tahoma", 1, 18)); // NOI18N
         jLabel1.setText("SCANING");
@@ -198,16 +203,21 @@ public class ModuloVenta extends javax.swing.JFrame {
         jLabel7.setText("COMPRA ACTUAL");
         getContentPane().add(jLabel7, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 90, -1, -1));
 
+        ctaCte.setFont(new java.awt.Font("Arial", 0, 11)); // NOI18N
         ctaCte.setIcon(new javax.swing.ImageIcon(getClass().getResource("/imagenes/cta_cte.png"))); // NOI18N
+        ctaCte.setText("Venta en Cuenta Corriente");
+        ctaCte.setBorderPainted(false);
         ctaCte.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 ctaCteActionPerformed(evt);
             }
         });
-        getContentPane().add(ctaCte, new org.netbeans.lib.awtextra.AbsoluteConstraints(490, 540, 80, 60));
+        getContentPane().add(ctaCte, new org.netbeans.lib.awtextra.AbsoluteConstraints(600, 540, 240, 60));
 
+        returns.setFont(new java.awt.Font("Arial", 0, 11)); // NOI18N
         returns.setIcon(new javax.swing.ImageIcon(getClass().getResource("/imagenes/returns.png"))); // NOI18N
         returns.setText("Devoluciones");
+        returns.setBorderPainted(false);
         returns.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 returnsActionPerformed(evt);
@@ -215,8 +225,10 @@ public class ModuloVenta extends javax.swing.JFrame {
         });
         getContentPane().add(returns, new org.netbeans.lib.awtextra.AbsoluteConstraints(460, 620, -1, -1));
 
+        cancelTicket.setFont(new java.awt.Font("Arial", 0, 11)); // NOI18N
         cancelTicket.setIcon(new javax.swing.ImageIcon(getClass().getResource("/imagenes/cancelTicket.png"))); // NOI18N
         cancelTicket.setText("Anular Ticket");
+        cancelTicket.setBorderPainted(false);
         cancelTicket.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 cancelTicketActionPerformed(evt);
@@ -224,17 +236,20 @@ public class ModuloVenta extends javax.swing.JFrame {
         });
         getContentPane().add(cancelTicket, new org.netbeans.lib.awtextra.AbsoluteConstraints(290, 620, -1, -1));
 
+        cashWithdrawal.setFont(new java.awt.Font("Arial", 0, 11)); // NOI18N
         cashWithdrawal.setIcon(new javax.swing.ImageIcon(getClass().getResource("/imagenes/cahsPayment.png"))); // NOI18N
         cashWithdrawal.setText("Retiro");
+        cashWithdrawal.setBorderPainted(false);
         cashWithdrawal.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 cashWithdrawalActionPerformed(evt);
             }
         });
-        getContentPane().add(cashWithdrawal, new org.netbeans.lib.awtextra.AbsoluteConstraints(170, 620, -1, -1));
+        getContentPane().add(cashWithdrawal, new org.netbeans.lib.awtextra.AbsoluteConstraints(160, 620, -1, -1));
 
         searchArticles.setIcon(new javax.swing.ImageIcon(getClass().getResource("/imagenes/searchArt.png"))); // NOI18N
         searchArticles.setText("Buscar Articulos");
+        searchArticles.setBorderPainted(false);
         searchArticles.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 searchArticlesActionPerformed(evt);
