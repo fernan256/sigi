@@ -26,6 +26,10 @@ public class Conexion_login {
         rst=sentSQL.executeQuery(sql);
         return rst;
     }
+    public String ejecutar(String sql) throws SQLException{
+        sentSQL.executeUpdate(sql);
+        return "";
+    }
     public void Cerrar() throws SQLException {
         this.con.close();
     }
