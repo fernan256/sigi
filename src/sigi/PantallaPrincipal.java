@@ -466,6 +466,7 @@ public class PantallaPrincipal extends javax.swing.JFrame {
                         Logger.getLogger(PantallaPrincipal.class.getName()).log(Level.SEVERE, null, ex);
                     }
                 }else{
+                    objIC8.clearUserFields();
                     desktopPane.add(objIC8);
                     objIC8.show();
                     objIC8.setSize(desktopPane.getSize());
