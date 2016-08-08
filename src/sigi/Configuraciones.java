@@ -43,6 +43,12 @@ public class Configuraciones extends javax.swing.JInternalFrame {
         userRol.insertItemAt("Administrador", 1);
         userRol.insertItemAt("Vendedor", 2);
         searchFc();
+        if(firstName.getText().equals("") || lastName.getText().equals("")
+            || userName.getText().equals("") ||newPassword.getPassword().equals("") 
+            || repeatPassword.getPassword().equals("")
+            || userRol.getSelectedItem().equals("")) {
+            addNewUser.setEnabled(true);
+        }
     }
     
     @SuppressWarnings("unchecked")
@@ -835,12 +841,10 @@ public class Configuraciones extends javax.swing.JInternalFrame {
     }//GEN-LAST:event_editFiscalDataActionPerformed
 
     private void addNewUserActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_addNewUserActionPerformed
-        
         if(firstName.getText().equals("") || lastName.getText().equals("")
             || userName.getText().equals("") ||newPassword.getPassword().equals("") 
             || repeatPassword.getPassword().equals("")
-            || userRol.getSelectedItem().equals("")
-            || userActive.isSelected() != true) {
+            || userRol.getSelectedItem().equals("")) {
             
             JOptionPane.showMessageDialog(null,"No puede dejar espacios sin llenar");
         } else{
@@ -850,8 +854,7 @@ public class Configuraciones extends javax.swing.JInternalFrame {
                 String repeatPass = ConfigVar.get_SHA_1_Pass(Arrays.toString(repeatPassword.getPassword()), salt);
                 if(newPass.equals(repeatPass)) {
                     try {
-                        con = new Conexion();
-                        
+                        conUser = new Conexion_login();
                         int userActivated = 0;
                         if(userActive.isSelected()) {
                             userActivated = 1;
@@ -862,19 +865,11 @@ public class Configuraciones extends javax.swing.JInternalFrame {
                         String sql = "INSERT INTO usuarios (nombres, apellidos, user, password, salt, fecha_ingreso, fecha_nacimiento, direccion, telefono, cel, activo, roles_id_roles) "
                                 + "VALUES ('"+firstName.getText()+"', '"+lastName.getText()+"','"+userName.getText()+"','"+newPass+"', '"+salt+"','"+Utils.formatDateForConfig(inDate.getDate())+"', '"+Utils.formatDateForConfig(birthDate.getDate())+"', '"+userAddress.getText()+"', '"+userPhone.getText()+"', '"+userCel.getText()+"', "+userActivated+", '"+userRol.getSelectedIndex()+"')";
                         
-                        con.ejecutar(sql);
+                        conUser.ejecutar(sql);
 
                         JOptionPane.showMessageDialog(null,"Usuario: [ "+userName.getText()+" ] agregado como "+userRol.getSelectedItem()+" ");
-                        // se compara que el usuario de la base de datos es el mismo que el insertado
-                        //se comparan ambas contraseñas encriptadas
-                        
-                        //                    realName.setText("");
-                        //                    lastName.setText("");
-                        //                    userName.setText("");
-                        //                    pass.setText("");
-                        //                    repeatPassword.setText("");
-                        //                    this.dispose();
-                    con.Cerrar();
+                    conUser.Cerrar();
+                    clearUserFields();
                     } catch (ClassNotFoundException | SQLException | InstantiationException | IllegalAccessException ex) {
                         Logger.getLogger(PantallaPrincipal.class.getName()).log(Level.SEVERE, null, ex);
                     }
@@ -896,7 +891,7 @@ public class Configuraciones extends javax.swing.JInternalFrame {
             String repeatPass = ConfigVar.get_SHA_1_Pass(Arrays.toString(repeatPassword.getPassword()), salt);
             if(newPass.equals(repeatPass)) {
                 try {
-                    con = new Conexion();
+                    conUser = new Conexion_login();
 
                     int userActivated = 0;
                     if(userActive.isSelected()) {
@@ -907,10 +902,10 @@ public class Configuraciones extends javax.swing.JInternalFrame {
 
                     String sql = "UPDATE usuarios SET nombres = '"+firstName.getText()+"', apellidos ='"+lastName.getText()+"', user = '"+userName.getText()+"', password = '"+newPass+"', salt = '"+salt+"', fecha_ingreso = '"+Utils.formatDateForConfig(inDate.getDate())+"', fecha_nacimiento = '"+Utils.formatDateForConfig(birthDate.getDate())+"', direccion = '"+userAddress.getText()+"', telefono = '"+userPhone.getText()+"', cel = '"+userCel.getText()+"', activo = "+userActivated+", roles_id_roles = '"+userRol.getSelectedIndex()+"' WHERE id_usuario = "+updateId+"";
 
-                    con.ejecutar(sql);
+                    conUser.ejecutar(sql);
 
                     JOptionPane.showMessageDialog(null,"Usuario: [ "+userName.getText()+" ] actualizado");
-                    con.Cerrar();
+                    conUser.Cerrar();
                 } catch (ClassNotFoundException | SQLException | InstantiationException | IllegalAccessException ex) {
                     Logger.getLogger(PantallaPrincipal.class.getName()).log(Level.SEVERE, null, ex);
                 }
@@ -930,10 +925,9 @@ public class Configuraciones extends javax.swing.JInternalFrame {
         addNewUser.setEnabled(false);
         if(evento==10 ){
             try {
-                con = new Conexion();
-
+                conUser = new Conexion_login();
                 String sql ="SELECT * FROM usuarios WHERE user LIKE '"+nom+"%'";
-                rs = con.Consulta(sql);
+                rs = conUser.Consulta(sql);
                     
                 if(rs == null) {
                    JOptionPane.showMessageDialog(null, "No se encontro el proveedor: "+serachUser.getText()+" ");
@@ -946,16 +940,18 @@ public class Configuraciones extends javax.swing.JInternalFrame {
                     userCel.setText(rs.getString("cel"));
                     userPhone.setText(rs.getString("telefono"));
                     userAddress.setText(rs.getString("direccion"));
-                    userMail.setText(rs.getString("mail"));                    
+                    userMail.setText(rs.getString("mail"));
+                    System.out.println(rs.getString("mail"));
                     userRol.setSelectedIndex(rs.getInt("roles_id_roles"));
-
+                    birthDate.setDate(rs.getDate("fecha_nacimiento"));
+                    inDate.setDate(rs.getDate("fecha_ingreso"));
                     if(rs.getInt("activo") == 1) {
                         userActive.setSelected(true);
                     } else {
                         userActive.setSelected(false);
                     }
                 }
-                con.Cerrar();
+                conUser.Cerrar();
             }catch (ClassNotFoundException | InstantiationException | IllegalAccessException | SQLException ex) {
                 Logger.getLogger(Configuraciones.class.getName()).log(Level.SEVERE, null, ex);
             } 
@@ -1036,6 +1032,22 @@ public class Configuraciones extends javax.swing.JInternalFrame {
         } catch (ClassNotFoundException | SQLException | InstantiationException | IllegalAccessException ex) {
             Logger.getLogger(Proveedores.class.getName()).log(Level.SEVERE, null, ex);
         }
+    }
+    public void clearUserFields(){
+        firstName.setText("") ;
+        lastName.setText("");
+        userName.setText("");
+        newPassword.setText("");
+        repeatPassword.setText("");
+        userRol.setSelectedIndex(0);
+        userActive.setSelected(true);
+        userCel.setText("");
+        userAddress.setText("");
+        userMail.setText("");
+        userPhone.setText("");
+        addNewUser.setEnabled(true);
+        birthDate.setDate(null);
+        inDate.setDate(null);
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
