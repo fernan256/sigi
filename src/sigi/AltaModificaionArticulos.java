@@ -15,6 +15,14 @@ public class AltaModificaionArticulos extends javax.swing.JInternalFrame {
          
     public AltaModificaionArticulos() {
         initComponents();
+        articleType.insertItemAt("", 0);
+        articleType.insertItemAt("Unidad", 1);
+        articleType.insertItemAt("Pesable", 2);
+        articleType.insertItemAt("Celular", 3);
+        articleType.insertItemAt("PC", 4);
+        articleType.insertItemAt("Notebook", 5);
+        articleType.insertItemAt("Tablet", 6);
+        articleType.insertItemAt("Pilas", 7);
     }
     @SuppressWarnings("unchecked")
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
@@ -36,6 +44,8 @@ public class AltaModificaionArticulos extends javax.swing.JInternalFrame {
         jLabel13 = new javax.swing.JLabel();
         articuleBrand = new javax.swing.JTextField();
         jLabel18 = new javax.swing.JLabel();
+        jLabel1 = new javax.swing.JLabel();
+        articleType = new javax.swing.JComboBox<>();
 
         setBackground(new java.awt.Color(255, 255, 255));
         setClosable(true);
@@ -46,7 +56,8 @@ public class AltaModificaionArticulos extends javax.swing.JInternalFrame {
         jLabel3.setFont(new java.awt.Font("Arial", 1, 16)); // NOI18N
         jLabel3.setText("Cantidad");
 
-        scanningToSearch.setFont(new java.awt.Font("Arial", 0, 12)); // NOI18N
+        scanningToSearch.setFont(new java.awt.Font("Arial", 1, 20)); // NOI18N
+        scanningToSearch.setForeground(new java.awt.Color(255, 0, 0));
         scanningToSearch.setMaximumSize(null);
         scanningToSearch.addKeyListener(new java.awt.event.KeyAdapter() {
             public void keyPressed(java.awt.event.KeyEvent evt) {
@@ -114,82 +125,95 @@ public class AltaModificaionArticulos extends javax.swing.JInternalFrame {
         jLabel18.setFont(new java.awt.Font("Arial", 1, 16)); // NOI18N
         jLabel18.setText("Nombre del Producto");
 
+        jLabel1.setFont(new java.awt.Font("Arial", 1, 16)); // NOI18N
+        jLabel1.setText("Tipo de Artículo");
+
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
+                .addGap(25, 25, 25)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(layout.createSequentialGroup()
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addGroup(layout.createSequentialGroup()
-                                .addGap(25, 25, 25)
-                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                    .addComponent(jLabel2)
-                                    .addComponent(jLabel3)
-                                    .addComponent(jLabel17)
-                                    .addComponent(jLabel11)
-                                    .addComponent(jLabel13))
-                                .addGap(59, 59, 59))
-                            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                                .addContainerGap()
-                                .addComponent(jLabel18)
-                                .addGap(18, 18, 18)))
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(articuleName, javax.swing.GroupLayout.PREFERRED_SIZE, 290, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(scanningToSearch, javax.swing.GroupLayout.PREFERRED_SIZE, 290, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addGroup(layout.createSequentialGroup()
-                                .addGap(1, 1, 1)
-                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                    .addComponent(salesPrice, javax.swing.GroupLayout.PREFERRED_SIZE, 100, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                    .addComponent(costPrice, javax.swing.GroupLayout.PREFERRED_SIZE, 100, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                    .addComponent(articuleBrand, javax.swing.GroupLayout.PREFERRED_SIZE, 290, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                    .addComponent(articuleQuantity, javax.swing.GroupLayout.PREFERRED_SIZE, 100, javax.swing.GroupLayout.PREFERRED_SIZE)))))
+                        .addComponent(jLabel3)
+                        .addGap(113, 113, 113)
+                        .addComponent(articuleQuantity, javax.swing.GroupLayout.PREFERRED_SIZE, 100, javax.swing.GroupLayout.PREFERRED_SIZE))
                     .addGroup(layout.createSequentialGroup()
-                        .addGap(200, 200, 200)
+                        .addComponent(jLabel11)
+                        .addGap(63, 63, 63)
+                        .addComponent(costPrice, javax.swing.GroupLayout.PREFERRED_SIZE, 100, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addGroup(layout.createSequentialGroup()
+                        .addComponent(jLabel13)
+                        .addGap(60, 60, 60)
+                        .addComponent(salesPrice, javax.swing.GroupLayout.PREFERRED_SIZE, 100, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addGroup(layout.createSequentialGroup()
                         .addComponent(add, javax.swing.GroupLayout.PREFERRED_SIZE, 125, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addGap(18, 18, 18)
                         .addComponent(cleanFields, javax.swing.GroupLayout.PREFERRED_SIZE, 125, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addGap(18, 18, 18)
                         .addComponent(changeArticule, javax.swing.GroupLayout.PREFERRED_SIZE, 125, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addGap(18, 18, 18)
-                        .addComponent(deleteArticule, javax.swing.GroupLayout.PREFERRED_SIZE, 125, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                .addContainerGap(374, Short.MAX_VALUE))
+                        .addComponent(deleteArticule, javax.swing.GroupLayout.PREFERRED_SIZE, 125, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addGroup(layout.createSequentialGroup()
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(jLabel17)
+                            .addComponent(jLabel1))
+                        .addGap(62, 62, 62)
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                            .addComponent(articuleBrand, javax.swing.GroupLayout.DEFAULT_SIZE, 290, Short.MAX_VALUE)
+                            .addComponent(articleType, 0, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)))
+                    .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
+                        .addGroup(layout.createSequentialGroup()
+                            .addComponent(jLabel2)
+                            .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                            .addComponent(scanningToSearch, javax.swing.GroupLayout.PREFERRED_SIZE, 290, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addGroup(layout.createSequentialGroup()
+                            .addComponent(jLabel18)
+                            .addGap(18, 18, 18)
+                            .addComponent(articuleName, javax.swing.GroupLayout.PREFERRED_SIZE, 290, javax.swing.GroupLayout.PREFERRED_SIZE))))
+                .addGap(549, 549, 549))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
                 .addGap(25, 25, 25)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                    .addComponent(scanningToSearch, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addComponent(scanningToSearch, javax.swing.GroupLayout.DEFAULT_SIZE, 40, Short.MAX_VALUE)
                     .addComponent(jLabel2, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
                 .addGap(18, 18, 18)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(articuleName, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jLabel18))
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(jLabel18)
+                    .addComponent(articuleName, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addGap(18, 18, 18)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(articuleBrand, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jLabel17, javax.swing.GroupLayout.PREFERRED_SIZE, 21, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(jLabel17, javax.swing.GroupLayout.PREFERRED_SIZE, 21, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addGroup(layout.createSequentialGroup()
+                        .addGap(1, 1, 1)
+                        .addComponent(articuleBrand, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
                 .addGap(18, 18, 18)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(articuleQuantity, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jLabel3))
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(jLabel1)
+                    .addComponent(articleType, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addGap(18, 18, 18)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(costPrice, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jLabel11))
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(jLabel3)
+                    .addComponent(articuleQuantity, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addGap(18, 18, 18)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(salesPrice, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jLabel13))
-                .addGap(90, 90, 90)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(jLabel11)
+                    .addComponent(costPrice, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGap(18, 18, 18)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(jLabel13)
+                    .addComponent(salesPrice, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGap(38, 38, 38)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addComponent(add, javax.swing.GroupLayout.PREFERRED_SIZE, 50, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(cleanFields, javax.swing.GroupLayout.PREFERRED_SIZE, 50, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(changeArticule, javax.swing.GroupLayout.PREFERRED_SIZE, 50, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(deleteArticule, javax.swing.GroupLayout.PREFERRED_SIZE, 50, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addContainerGap())
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
 
         pack();
@@ -207,8 +231,9 @@ public class AltaModificaionArticulos extends javax.swing.JInternalFrame {
                 String precio_costo = costPrice.getText();
                 String precio_venta = salesPrice.getText();
                 String scanning = scanningToSearch.getText();
+                int type = articleType.getSelectedIndex();
                 int articuloId = 0, stockId = 0;
-                String insertArticulos = "INSERT INTO `descripcion_articulos`(`scanning`, `nombre_producto`, `marca`, `precio_costo`, `precio_venta`) VALUES ('"+scanning+"', '"+nombre_producto+"', '"+marca+"', '"+precio_costo+"','"+precio_venta+"')";
+                String insertArticulos = "INSERT INTO `descripcion_articulos`(`scanning`, `nombre_producto`, `marca`, `precio_costo`, `precio_venta`, `tipo_articulo_id`) VALUES ('"+scanning+"', '"+nombre_producto+"', '"+marca+"', '"+precio_costo+"','"+precio_venta+"', '"+type+"')";
                 con.ejecutar(insertArticulos);
                 String getArticuloId = "SELECT LAST_INSERT_ID() AS id_articulo";
                 rs = con.Consulta(getArticuloId);
@@ -227,6 +252,7 @@ public class AltaModificaionArticulos extends javax.swing.JInternalFrame {
                 JOptionPane.showMessageDialog(null, "Producto: "+nombre_producto+" agregado.");
                 clearCrudArticlesFields();
                 scanningToSearch.setText("");
+                scanningToSearch.requestFocus();
                 con.Cerrar();
             } catch (ClassNotFoundException | SQLException | InstantiationException | IllegalAccessException ex) {
                 Logger.getLogger(AltaModificaionArticulos.class.getName()).log(Level.SEVERE, null, ex);
@@ -238,27 +264,32 @@ public class AltaModificaionArticulos extends javax.swing.JInternalFrame {
         try {
             con = new Conexion();
             String scanning= scanningToSearch.getText();
-            String getArticles = "SELECT * FROM descripcion_articulos WHERE scanning LIKE '"+scanning+"%'";
-            rs = con.Consulta(getArticles);
-            if(!rs.isBeforeFirst()) {
-                clearCrudArticlesFields();
-                articuleQuantity.setEditable(true);
+            if(!scanning.isEmpty() && scanningToSearch.getText().length() >= 4) {
+                String getArticles = "SELECT * FROM descripcion_articulos WHERE scanning = '"+scanning+"%'";
+                rs = con.Consulta(getArticles);
+                if(!rs.isBeforeFirst()) {
+                    clearCrudArticlesFields();
+                    articuleQuantity.setEditable(true);
+                } else {
+                    while(rs.next()){
+                        idArticle = rs.getInt("id_articulo");
+                        articuleName.setText(rs.getString("nombre_producto"));
+                        articuleBrand.setText(rs.getString("marca"));
+                        costPrice.setText(rs.getString("precio_costo"));
+                        salesPrice.setText(rs.getString("precio_venta"));
+                        articleType.setSelectedIndex(rs.getInt("tipo_articulo_id"));
+                    }
+                    articuleQuantity.setEditable(false);
+                    String getSaldo = "SELECT saldo_stock FROM stock WHERE id_articulo = "+idArticle+"";
+                    rs = con.Consulta(getSaldo);
+                    while(rs.next()){
+                        articuleQuantity.setText(rs.getString("saldo_stock"));
+                    }
+                }
+                con.Cerrar();
             } else {
-                while(rs.next()){
-                    idArticle = rs.getInt("id_articulo");
-                    articuleName.setText(rs.getString("nombre_producto"));
-                    articuleBrand.setText(rs.getString("marca"));
-                    costPrice.setText(rs.getString("precio_costo"));
-                    salesPrice.setText(rs.getString("precio_venta"));
-                }
-                articuleQuantity.setEditable(false);
-                String getSaldo = "SELECT saldo_stock FROM stock WHERE id_articulo = "+idArticle+"";
-                rs = con.Consulta(getSaldo);
-                while(rs.next()){
-                    articuleQuantity.setText(rs.getString("saldo_stock"));
-                }
+                clearCrudArticlesFields();
             }
-            con.Cerrar();
         } catch (ClassNotFoundException | SQLException | InstantiationException | IllegalAccessException ex) {
             Logger.getLogger(AltaModificaionArticulos.class.getName()).log(Level.SEVERE, null, ex);
         }
@@ -281,11 +312,13 @@ public class AltaModificaionArticulos extends javax.swing.JInternalFrame {
             String nombre_producto = articuleName.getText();
             String precio_costo = costPrice.getText();
             String precio_venta = salesPrice.getText();
-            String update = "UPDATE descripcion_articulos SET scanning='"+scanning+"', nombre_producto='"+nombre_producto+"', precio_costo='"+precio_costo+"', precio_venta='"+precio_venta+"' WHERE id_articulo = '"+idArticle+"'";
+            int type = articleType.getSelectedIndex();
+            String update = "UPDATE descripcion_articulos SET scanning='"+scanning+"', nombre_producto='"+nombre_producto+"', precio_costo='"+precio_costo+"', precio_venta='"+precio_venta+"', tipo_articulo_id='"+type+"' WHERE id_articulo = '"+idArticle+"'";
             con.ejecutar(update);
             JOptionPane.showMessageDialog(null, "Datos Actualizados");
             clearCrudArticlesFields();
             scanningToSearch.setText("");
+            scanningToSearch.requestFocus();
             con.Cerrar();
         } catch (ClassNotFoundException | InstantiationException | IllegalAccessException | SQLException ex) {
             Logger.getLogger(AltaModificaionArticulos.class.getName()).log(Level.SEVERE, null, ex);
@@ -298,9 +331,11 @@ public class AltaModificaionArticulos extends javax.swing.JInternalFrame {
         articuleQuantity.setText("");
         costPrice.setText("");
         salesPrice.setText("");
+        articleType.setSelectedIndex(0);
     }
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton add;
+    private javax.swing.JComboBox<String> articleType;
     private javax.swing.JTextField articuleBrand;
     private javax.swing.JTextField articuleName;
     private javax.swing.JTextField articuleQuantity;
@@ -308,6 +343,7 @@ public class AltaModificaionArticulos extends javax.swing.JInternalFrame {
     private javax.swing.JButton cleanFields;
     private javax.swing.JTextField costPrice;
     private javax.swing.JButton deleteArticule;
+    private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel11;
     private javax.swing.JLabel jLabel13;
     private javax.swing.JLabel jLabel17;

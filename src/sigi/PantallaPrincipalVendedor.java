@@ -55,7 +55,7 @@ public class PantallaPrincipalVendedor extends javax.swing.JFrame {
         desktopPane.setForeground(new java.awt.Color(255, 255, 255));
         desktopPane.setMaximumSize(new java.awt.Dimension(1680, 960));
         desktopPane.setPreferredSize(new java.awt.Dimension(1024, 768));
-        getContentPane().add(desktopPane, new org.netbeans.lib.awtextra.AbsoluteConstraints(240, 90, 1100, 590));
+        getContentPane().add(desktopPane, new org.netbeans.lib.awtextra.AbsoluteConstraints(240, 90, 740, 590));
 
         salesManeTree.setFont(new java.awt.Font("Arial", 0, 12)); // NOI18N
         javax.swing.tree.DefaultMutableTreeNode treeNode1 = new javax.swing.tree.DefaultMutableTreeNode("Menu");
@@ -127,11 +127,11 @@ public class PantallaPrincipalVendedor extends javax.swing.JFrame {
                 openHelpActionPerformed(evt);
             }
         });
-        getContentPane().add(openHelp, new org.netbeans.lib.awtextra.AbsoluteConstraints(1280, 10, 61, 58));
+        getContentPane().add(openHelp, new org.netbeans.lib.awtextra.AbsoluteConstraints(920, 10, 61, 58));
 
         showUserName.setFont(new java.awt.Font("Arial", 1, 24)); // NOI18N
         showUserName.setForeground(new java.awt.Color(255, 255, 255));
-        getContentPane().add(showUserName, new org.netbeans.lib.awtextra.AbsoluteConstraints(870, 30, 390, 30));
+        getContentPane().add(showUserName, new org.netbeans.lib.awtextra.AbsoluteConstraints(520, 30, 390, 30));
 
         jLabel1.setFont(new java.awt.Font("Arial", 1, 24)); // NOI18N
         jLabel1.setForeground(new java.awt.Color(227, 243, 253));
@@ -141,7 +141,7 @@ public class PantallaPrincipalVendedor extends javax.swing.JFrame {
         jLabel3.setIcon(new javax.swing.ImageIcon(getClass().getResource("/imagenes/blue_3_by_astoyanov.png"))); // NOI18N
         jLabel3.setText("jLabel3");
         jLabel3.setPreferredSize(new java.awt.Dimension(1200, 700));
-        getContentPane().add(jLabel3, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 1420, 900));
+        getContentPane().add(jLabel3, new org.netbeans.lib.awtextra.AbsoluteConstraints(-60, 0, 1130, 768));
 
         changeMenu.setText("Modificar");
 

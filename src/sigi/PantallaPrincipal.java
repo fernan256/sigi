@@ -54,15 +54,27 @@ public class PantallaPrincipal extends javax.swing.JFrame {
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setTitle("Principal");
         setName("pantallaPrincipal"); // NOI18N
-        setSize(new java.awt.Dimension(1500, 900));
+        setSize(new java.awt.Dimension(1024, 768));
         getContentPane().setLayout(null);
 
         desktopPane.setBackground(new java.awt.Color(188, 186, 186));
         desktopPane.setForeground(new java.awt.Color(255, 255, 255));
         desktopPane.setMaximumSize(new java.awt.Dimension(1680, 960));
         desktopPane.setPreferredSize(new java.awt.Dimension(1024, 768));
+
+        javax.swing.GroupLayout desktopPaneLayout = new javax.swing.GroupLayout(desktopPane);
+        desktopPane.setLayout(desktopPaneLayout);
+        desktopPaneLayout.setHorizontalGroup(
+            desktopPaneLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGap(0, 740, Short.MAX_VALUE)
+        );
+        desktopPaneLayout.setVerticalGroup(
+            desktopPaneLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGap(0, 590, Short.MAX_VALUE)
+        );
+
         getContentPane().add(desktopPane);
-        desktopPane.setBounds(240, 90, 1100, 590);
+        desktopPane.setBounds(240, 90, 740, 590);
 
         jScrollPane2.setFont(new java.awt.Font("Arial", 0, 12)); // NOI18N
 
@@ -157,12 +169,12 @@ public class PantallaPrincipal extends javax.swing.JFrame {
             }
         });
         getContentPane().add(openHelp);
-        openHelp.setBounds(1280, 20, 61, 58);
+        openHelp.setBounds(920, 10, 61, 58);
 
         showAdminName.setFont(new java.awt.Font("Arial", 1, 24)); // NOI18N
         showAdminName.setForeground(new java.awt.Color(255, 255, 255));
         getContentPane().add(showAdminName);
-        showAdminName.setBounds(870, 30, 390, 30);
+        showAdminName.setBounds(520, 30, 390, 30);
 
         jLabel1.setFont(new java.awt.Font("Arial", 1, 24)); // NOI18N
         jLabel1.setForeground(new java.awt.Color(227, 243, 253));
@@ -173,7 +185,7 @@ public class PantallaPrincipal extends javax.swing.JFrame {
         backgroundImage.setIcon(new javax.swing.ImageIcon(getClass().getResource("/imagenes/blue_3_by_astoyanov.png"))); // NOI18N
         backgroundImage.setPreferredSize(new java.awt.Dimension(1200, 700));
         getContentPane().add(backgroundImage);
-        backgroundImage.setBounds(-60, 0, 1500, 900);
+        backgroundImage.setBounds(-60, 0, 1130, 768);
 
         changePasswordMenu.setText("Modificar");
 

@@ -26,7 +26,7 @@
     <DimensionLayout dim="0">
       <Group type="103" groupAlignment="0" attributes="0">
           <Group type="102" attributes="0">
-              <Group type="103" groupAlignment="0" attributes="0">
+              <Group type="103" groupAlignment="0" max="-2" attributes="0">
                   <Group type="102" attributes="0">
                       <EmptySpace min="25" pref="25" max="-2" attributes="0"/>
                       <Component id="jLabel1" min="-2" pref="163" max="-2" attributes="0"/>
@@ -35,7 +35,7 @@
                   </Group>
                   <Group type="102" attributes="0">
                       <EmptySpace min="25" pref="25" max="-2" attributes="0"/>
-                      <Component id="jScrollPane1" min="-2" pref="737" max="-2" attributes="0"/>
+                      <Component id="jScrollPane1" min="-2" pref="650" max="-2" attributes="0"/>
                   </Group>
                   <Group type="102" attributes="0">
                       <EmptySpace min="25" pref="25" max="-2" attributes="0"/>
@@ -44,54 +44,6 @@
                   <Group type="102" attributes="0">
                       <EmptySpace min="25" pref="25" max="-2" attributes="0"/>
                       <Component id="userName" min="-2" pref="290" max="-2" attributes="0"/>
-                  </Group>
-                  <Group type="102" attributes="0">
-                      <EmptySpace min="25" pref="25" max="-2" attributes="0"/>
-                      <Component id="jLabel10" min="-2" max="-2" attributes="0"/>
-                      <EmptySpace min="78" pref="78" max="-2" attributes="0"/>
-                      <Component id="jLabel12" min="-2" max="-2" attributes="0"/>
-                      <EmptySpace min="49" pref="49" max="-2" attributes="0"/>
-                      <Component id="jLabel11" min="-2" max="-2" attributes="0"/>
-                      <EmptySpace min="38" pref="38" max="-2" attributes="0"/>
-                      <Component id="jLabel13" min="-2" max="-2" attributes="0"/>
-                      <EmptySpace min="32" pref="32" max="-2" attributes="0"/>
-                      <Component id="jLabel17" min="-2" max="-2" attributes="0"/>
-                  </Group>
-                  <Group type="102" attributes="0">
-                      <EmptySpace min="25" pref="25" max="-2" attributes="0"/>
-                      <Component id="closeDate" min="-2" pref="150" max="-2" attributes="0"/>
-                      <EmptySpace min="45" pref="45" max="-2" attributes="0"/>
-                      <Component id="closeNumber" min="-2" pref="65" max="-2" attributes="0"/>
-                      <EmptySpace min="115" pref="115" max="-2" attributes="0"/>
-                      <Component id="initialMoney" min="-2" pref="65" max="-2" attributes="0"/>
-                      <EmptySpace min="161" pref="161" max="-2" attributes="0"/>
-                      <Component id="adjustmentNumber" min="-2" pref="65" max="-2" attributes="0"/>
-                      <EmptySpace min="103" pref="103" max="-2" attributes="0"/>
-                      <Component id="adjustmentText" min="-2" pref="126" max="-2" attributes="0"/>
-                  </Group>
-                  <Group type="102" attributes="0">
-                      <EmptySpace min="25" pref="25" max="-2" attributes="0"/>
-                      <Component id="jLabel2" min="-2" pref="177" max="-2" attributes="0"/>
-                      <EmptySpace min="18" pref="18" max="-2" attributes="0"/>
-                      <Component id="jLabel3" min="-2" pref="147" max="-2" attributes="0"/>
-                      <EmptySpace min="33" pref="33" max="-2" attributes="0"/>
-                      <Component id="jLabel4" min="-2" pref="139" max="-2" attributes="0"/>
-                      <EmptySpace min="87" pref="87" max="-2" attributes="0"/>
-                      <Component id="jLabel16" min="-2" max="-2" attributes="0"/>
-                      <EmptySpace min="36" pref="36" max="-2" attributes="0"/>
-                      <Component id="jLabel14" min="-2" max="-2" attributes="0"/>
-                  </Group>
-                  <Group type="102" attributes="0">
-                      <EmptySpace min="25" pref="25" max="-2" attributes="0"/>
-                      <Component id="systemTotal" min="-2" pref="65" max="-2" attributes="0"/>
-                      <EmptySpace min="130" pref="130" max="-2" attributes="0"/>
-                      <Component id="endDayTotal" min="-2" pref="65" max="-2" attributes="0"/>
-                      <EmptySpace min="115" pref="115" max="-2" attributes="0"/>
-                      <Component id="differences" min="-2" pref="65" max="-2" attributes="0"/>
-                      <EmptySpace min="161" pref="161" max="-2" attributes="0"/>
-                      <Component id="adjustmentCash" min="-2" pref="65" max="-2" attributes="0"/>
-                      <EmptySpace min="103" pref="103" max="-2" attributes="0"/>
-                      <Component id="adjustmentDiference" min="-2" pref="65" max="-2" attributes="0"/>
                   </Group>
                   <Group type="102" attributes="0">
                       <EmptySpace min="373" pref="373" max="-2" attributes="0"/>
@@ -113,14 +65,66 @@
                       <EmptySpace min="25" pref="25" max="-2" attributes="0"/>
                       <Component id="jLabel8" min="-2" max="-2" attributes="0"/>
                   </Group>
-                  <Group type="102" alignment="0" attributes="0">
-                      <EmptySpace min="-2" pref="212" max="-2" attributes="0"/>
+                  <Group type="102" attributes="0">
+                      <EmptySpace min="25" pref="25" max="-2" attributes="0"/>
                       <Component id="makeAdjustment" min="-2" pref="251" max="-2" attributes="0"/>
-                      <EmptySpace min="-2" pref="52" max="-2" attributes="0"/>
+                      <EmptySpace min="52" pref="52" max="-2" attributes="0"/>
                       <Component id="printClosingDay" min="-2" max="-2" attributes="0"/>
                   </Group>
+                  <Group type="102" alignment="0" attributes="0">
+                      <EmptySpace min="25" pref="25" max="-2" attributes="0"/>
+                      <Group type="103" groupAlignment="0" attributes="0">
+                          <Group type="102" alignment="0" attributes="0">
+                              <Group type="103" groupAlignment="0" attributes="0">
+                                  <Group type="102" alignment="0" attributes="0">
+                                      <Component id="closeDate" min="-2" pref="150" max="-2" attributes="0"/>
+                                      <EmptySpace min="28" pref="28" max="-2" attributes="0"/>
+                                      <Component id="closeNumber" min="-2" pref="65" max="-2" attributes="0"/>
+                                  </Group>
+                                  <Group type="102" alignment="0" attributes="0">
+                                      <Group type="103" groupAlignment="0" attributes="0">
+                                          <Component id="jLabel2" min="-2" max="-2" attributes="0"/>
+                                          <Component id="systemTotal" min="-2" pref="65" max="-2" attributes="0"/>
+                                      </Group>
+                                      <EmptySpace min="-2" pref="70" max="-2" attributes="0"/>
+                                      <Group type="103" groupAlignment="0" attributes="0">
+                                          <Component id="endDayTotal" min="-2" pref="65" max="-2" attributes="0"/>
+                                          <Component id="jLabel3" min="-2" max="-2" attributes="0"/>
+                                      </Group>
+                                  </Group>
+                              </Group>
+                              <EmptySpace min="-2" pref="40" max="-2" attributes="0"/>
+                              <Group type="103" groupAlignment="0" attributes="0">
+                                  <Component id="jLabel4" alignment="0" min="-2" max="-2" attributes="0"/>
+                                  <Component id="differences" alignment="0" min="-2" pref="65" max="-2" attributes="0"/>
+                                  <Component id="initialMoney" alignment="0" min="-2" pref="65" max="-2" attributes="0"/>
+                              </Group>
+                          </Group>
+                          <Group type="102" alignment="0" attributes="0">
+                              <Component id="jLabel10" min="-2" max="-2" attributes="0"/>
+                              <EmptySpace min="78" pref="78" max="-2" attributes="0"/>
+                              <Component id="jLabel12" min="-2" max="-2" attributes="0"/>
+                              <EmptySpace min="28" pref="28" max="-2" attributes="0"/>
+                              <Component id="jLabel11" min="-2" max="-2" attributes="0"/>
+                          </Group>
+                      </Group>
+                      <EmptySpace type="separate" max="-2" attributes="0"/>
+                      <Group type="103" groupAlignment="0" attributes="0">
+                          <Component id="jLabel13" alignment="0" min="-2" max="-2" attributes="0"/>
+                          <Component id="adjustmentNumber" alignment="0" min="-2" pref="65" max="-2" attributes="0"/>
+                          <Component id="jLabel16" alignment="0" min="-2" max="-2" attributes="0"/>
+                          <Component id="adjustmentCash" alignment="0" min="-2" pref="65" max="-2" attributes="0"/>
+                      </Group>
+                      <EmptySpace type="separate" max="-2" attributes="0"/>
+                      <Group type="103" groupAlignment="0" attributes="0">
+                          <Component id="adjustmentDiference" min="-2" pref="65" max="-2" attributes="0"/>
+                          <Component id="jLabel14" min="-2" max="-2" attributes="0"/>
+                          <Component id="jLabel17" min="-2" max="-2" attributes="0"/>
+                          <Component id="adjustmentText" max="32767" attributes="0"/>
+                      </Group>
+                  </Group>
               </Group>
-              <EmptySpace min="-2" pref="62" max="-2" attributes="0"/>
+              <EmptySpace min="-2" pref="180" max="-2" attributes="0"/>
           </Group>
       </Group>
     </DimensionLayout>
@@ -145,9 +149,11 @@
               <Group type="103" groupAlignment="0" attributes="0">
                   <Component id="jLabel10" min="-2" max="-2" attributes="0"/>
                   <Component id="jLabel12" min="-2" max="-2" attributes="0"/>
-                  <Component id="jLabel11" min="-2" max="-2" attributes="0"/>
-                  <Component id="jLabel13" min="-2" max="-2" attributes="0"/>
-                  <Component id="jLabel17" min="-2" max="-2" attributes="0"/>
+                  <Group type="103" groupAlignment="3" attributes="0">
+                      <Component id="jLabel11" alignment="3" min="-2" max="-2" attributes="0"/>
+                      <Component id="jLabel13" alignment="3" min="-2" max="-2" attributes="0"/>
+                      <Component id="jLabel17" alignment="3" min="-2" max="-2" attributes="0"/>
+                  </Group>
               </Group>
               <EmptySpace min="6" pref="6" max="-2" attributes="0"/>
               <Group type="103" groupAlignment="0" attributes="0">
@@ -157,35 +163,35 @@
                   <Component id="adjustmentNumber" min="-2" max="-2" attributes="0"/>
                   <Component id="adjustmentText" min="-2" max="-2" attributes="0"/>
               </Group>
-              <EmptySpace min="10" pref="10" max="-2" attributes="0"/>
-              <Group type="103" groupAlignment="0" attributes="0">
-                  <Component id="jLabel16" min="-2" max="-2" attributes="0"/>
-                  <Component id="jLabel14" min="-2" max="-2" attributes="0"/>
-                  <Group type="102" attributes="0">
-                      <EmptySpace min="1" pref="1" max="-2" attributes="0"/>
-                      <Group type="103" groupAlignment="0" attributes="0">
-                          <Component id="jLabel2" min="-2" max="-2" attributes="0"/>
-                          <Component id="jLabel3" min="-2" max="-2" attributes="0"/>
-                          <Component id="jLabel4" min="-2" max="-2" attributes="0"/>
-                      </Group>
-                  </Group>
-              </Group>
-              <EmptySpace min="5" pref="5" max="-2" attributes="0"/>
-              <Group type="103" groupAlignment="0" attributes="0">
-                  <Component id="adjustmentCash" min="-2" max="-2" attributes="0"/>
-                  <Component id="adjustmentDiference" min="-2" max="-2" attributes="0"/>
-                  <Group type="102" attributes="0">
-                      <EmptySpace min="1" pref="1" max="-2" attributes="0"/>
-                      <Group type="103" groupAlignment="0" attributes="0">
-                          <Component id="systemTotal" min="-2" max="-2" attributes="0"/>
-                          <Component id="endDayTotal" min="-2" max="-2" attributes="0"/>
-                          <Component id="differences" min="-2" max="-2" attributes="0"/>
-                      </Group>
-                  </Group>
-              </Group>
               <EmptySpace min="-2" pref="11" max="-2" attributes="0"/>
+              <Group type="103" groupAlignment="0" attributes="0">
+                  <Group type="102" attributes="0">
+                      <Component id="jLabel2" min="-2" max="-2" attributes="0"/>
+                      <EmptySpace max="-2" attributes="0"/>
+                      <Component id="systemTotal" min="-2" max="-2" attributes="0"/>
+                  </Group>
+                  <Group type="102" attributes="0">
+                      <Component id="jLabel3" min="-2" max="-2" attributes="0"/>
+                      <EmptySpace max="-2" attributes="0"/>
+                      <Component id="endDayTotal" min="-2" max="-2" attributes="0"/>
+                  </Group>
+                  <Group type="102" attributes="0">
+                      <Group type="103" groupAlignment="0" attributes="0">
+                          <Component id="jLabel4" min="-2" max="-2" attributes="0"/>
+                          <Component id="jLabel16" min="-2" max="-2" attributes="0"/>
+                          <Component id="jLabel14" min="-2" max="-2" attributes="0"/>
+                      </Group>
+                      <EmptySpace max="-2" attributes="0"/>
+                      <Group type="103" groupAlignment="0" attributes="0">
+                          <Component id="differences" min="-2" max="-2" attributes="0"/>
+                          <Component id="adjustmentCash" min="-2" max="-2" attributes="0"/>
+                          <Component id="adjustmentDiference" min="-2" max="-2" attributes="0"/>
+                      </Group>
+                  </Group>
+              </Group>
+              <EmptySpace type="separate" max="-2" attributes="0"/>
               <Component id="jLabel5" min="-2" max="-2" attributes="0"/>
-              <EmptySpace max="-2" attributes="0"/>
+              <EmptySpace min="6" pref="6" max="-2" attributes="0"/>
               <Group type="103" groupAlignment="0" attributes="0">
                   <Component id="jLabel7" min="-2" pref="35" max="-2" attributes="0"/>
                   <Group type="102" attributes="0">
@@ -203,12 +209,11 @@
               </Group>
               <EmptySpace min="11" pref="11" max="-2" attributes="0"/>
               <Component id="jLabel8" min="-2" max="-2" attributes="0"/>
-              <EmptySpace min="-2" pref="15" max="-2" attributes="0"/>
+              <EmptySpace type="separate" max="-2" attributes="0"/>
               <Group type="103" groupAlignment="0" attributes="0">
                   <Component id="makeAdjustment" min="-2" pref="40" max="-2" attributes="0"/>
                   <Component id="printClosingDay" min="-2" pref="40" max="-2" attributes="0"/>
               </Group>
-              <EmptySpace max="32767" attributes="0"/>
           </Group>
       </Group>
     </DimensionLayout>
@@ -233,7 +238,7 @@
     <Component class="javax.swing.JLabel" name="jLabel2">
       <Properties>
         <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
-          <Font name="Arial" size="16" style="1"/>
+          <Font name="Arial" size="13" style="1"/>
         </Property>
         <Property name="text" type="java.lang.String" value="Total del sistema"/>
       </Properties>
@@ -241,7 +246,7 @@
     <Component class="javax.swing.JLabel" name="jLabel3">
       <Properties>
         <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
-          <Font name="Arial" size="16" style="1"/>
+          <Font name="Arial" size="13" style="1"/>
         </Property>
         <Property name="text" type="java.lang.String" value="Total en la caja"/>
       </Properties>
@@ -257,7 +262,7 @@
     <Component class="javax.swing.JLabel" name="jLabel4">
       <Properties>
         <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
-          <Font name="Arial" size="16" style="1"/>
+          <Font name="Arial" size="13" style="1"/>
         </Property>
         <Property name="text" type="java.lang.String" value="Diferencia"/>
       </Properties>
@@ -308,7 +313,7 @@
     <Component class="javax.swing.JLabel" name="jLabel9">
       <Properties>
         <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
-          <Font name="Arial" size="16" style="1"/>
+          <Font name="Arial" size="13" style="1"/>
         </Property>
         <Property name="text" type="java.lang.String" value="Usuario del d&#xed;a"/>
       </Properties>
@@ -335,7 +340,7 @@
     <Component class="javax.swing.JLabel" name="jLabel10">
       <Properties>
         <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
-          <Font name="Arial" size="16" style="1"/>
+          <Font name="Arial" size="13" style="1"/>
         </Property>
         <Property name="text" type="java.lang.String" value="Fecha de cierre"/>
       </Properties>
@@ -343,9 +348,9 @@
     <Component class="javax.swing.JLabel" name="jLabel11">
       <Properties>
         <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
-          <Font name="Arial" size="16" style="1"/>
+          <Font name="Arial" size="13" style="1"/>
         </Property>
-        <Property name="text" type="java.lang.String" value="Efectivo apertura de caja"/>
+        <Property name="text" type="java.lang.String" value="Apertura de caja"/>
       </Properties>
     </Component>
     <Component class="javax.swing.JTextField" name="closeDate">
@@ -375,7 +380,7 @@
     <Component class="javax.swing.JLabel" name="jLabel12">
       <Properties>
         <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
-          <Font name="Arial" size="16" style="1"/>
+          <Font name="Arial" size="13" style="1"/>
         </Property>
         <Property name="text" type="java.lang.String" value="Numero de cierre"/>
       </Properties>
@@ -462,9 +467,9 @@
     <Component class="javax.swing.JLabel" name="jLabel13">
       <Properties>
         <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
-          <Font name="Arial" size="16" style="1"/>
+          <Font name="Arial" size="13" style="1"/>
         </Property>
-        <Property name="text" type="java.lang.String" value="Numero de Ajuste"/>
+        <Property name="text" type="java.lang.String" value="N&#xb0; de Ajuste"/>
       </Properties>
     </Component>
     <Component class="javax.swing.JTextField" name="adjustmentNumber">
@@ -478,9 +483,9 @@
     <Component class="javax.swing.JLabel" name="jLabel16">
       <Properties>
         <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
-          <Font name="Arial" size="16" style="1"/>
+          <Font name="Arial" size="13" style="1"/>
         </Property>
-        <Property name="text" type="java.lang.String" value="Efectivo ajustado"/>
+        <Property name="text" type="java.lang.String" value="Ajustado"/>
       </Properties>
     </Component>
     <Component class="javax.swing.JTextField" name="adjustmentCash">
@@ -494,9 +499,9 @@
     <Component class="javax.swing.JLabel" name="jLabel17">
       <Properties>
         <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
-          <Font name="Arial" size="16" style="1"/>
+          <Font name="Arial" size="13" style="1"/>
         </Property>
-        <Property name="text" type="java.lang.String" value="Motivo de Ajuste"/>
+        <Property name="text" type="java.lang.String" value="Motivo Ajuste"/>
       </Properties>
     </Component>
     <Component class="javax.swing.JTextField" name="adjustmentText">
@@ -510,7 +515,7 @@
     <Component class="javax.swing.JLabel" name="jLabel14">
       <Properties>
         <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
-          <Font name="Arial" size="16" style="1"/>
+          <Font name="Arial" size="13" style="1"/>
         </Property>
         <Property name="text" type="java.lang.String" value="Diferencia"/>
       </Properties>

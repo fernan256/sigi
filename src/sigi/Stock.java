@@ -32,7 +32,6 @@ public final class Stock extends javax.swing.JInternalFrame {
 
         jLabel1 = new javax.swing.JLabel();
         jLabel2 = new javax.swing.JLabel();
-        scannign = new javax.swing.JFormattedTextField();
         productName = new javax.swing.JTextField();
         jLabel3 = new javax.swing.JLabel();
         jLabel9 = new javax.swing.JLabel();
@@ -53,6 +52,7 @@ public final class Stock extends javax.swing.JInternalFrame {
         cleanfields = new javax.swing.JButton();
         jLabel7 = new javax.swing.JLabel();
         stockId = new javax.swing.JTextField();
+        getScanningToSearch = new javax.swing.JTextField();
 
         setBackground(new java.awt.Color(255, 255, 255));
         setClosable(true);
@@ -62,14 +62,6 @@ public final class Stock extends javax.swing.JInternalFrame {
 
         jLabel2.setFont(new java.awt.Font("Arial", 1, 16)); // NOI18N
         jLabel2.setText("Nombre");
-
-        scannign.setFocusable(false);
-        scannign.setFont(new java.awt.Font("Arial", 1, 12)); // NOI18N
-        scannign.addKeyListener(new java.awt.event.KeyAdapter() {
-            public void keyReleased(java.awt.event.KeyEvent evt) {
-                scannignKeyReleased(evt);
-            }
-        });
 
         productName.setFont(new java.awt.Font("Arial", 0, 12)); // NOI18N
 
@@ -152,6 +144,12 @@ public final class Stock extends javax.swing.JInternalFrame {
         stockId.setEditable(false);
         stockId.setFont(new java.awt.Font("Arial", 1, 12)); // NOI18N
 
+        getScanningToSearch.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyReleased(java.awt.event.KeyEvent evt) {
+                getScanningToSearchKeyReleased(evt);
+            }
+        });
+
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
@@ -162,29 +160,36 @@ public final class Stock extends javax.swing.JInternalFrame {
                     .addGroup(layout.createSequentialGroup()
                         .addGap(2, 2, 2)
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(jLabel9)
-                            .addComponent(jLabel4)
-                            .addComponent(jLabel8)
-                            .addComponent(jLabel6))
-                        .addGap(43, 43, 43)
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                                    .addComponent(minStock, javax.swing.GroupLayout.PREFERRED_SIZE, 94, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                    .addComponent(addStock, javax.swing.GroupLayout.PREFERRED_SIZE, 94, javax.swing.GroupLayout.PREFERRED_SIZE))
-                                .addGap(50, 50, 50)
+                            .addGroup(layout.createSequentialGroup()
                                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                    .addComponent(addToStock, javax.swing.GroupLayout.PREFERRED_SIZE, 132, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                    .addComponent(updateMinStock))
-                                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                                    .addComponent(jLabel9)
+                                    .addComponent(jLabel4)
+                                    .addComponent(jLabel8)
+                                    .addComponent(jLabel6))
+                                .addGap(43, 43, 43)
+                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
+                                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                                            .addComponent(minStock, javax.swing.GroupLayout.PREFERRED_SIZE, 94, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                            .addComponent(addStock, javax.swing.GroupLayout.PREFERRED_SIZE, 94, javax.swing.GroupLayout.PREFERRED_SIZE))
+                                        .addGap(50, 50, 50)
+                                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                            .addComponent(addToStock, javax.swing.GroupLayout.PREFERRED_SIZE, 132, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                            .addComponent(updateMinStock))
+                                        .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                                    .addGroup(layout.createSequentialGroup()
+                                        .addComponent(fitValue, javax.swing.GroupLayout.PREFERRED_SIZE, 96, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                        .addGap(0, 0, Short.MAX_VALUE))
+                                    .addGroup(layout.createSequentialGroup()
+                                        .addComponent(fitDescription, javax.swing.GroupLayout.PREFERRED_SIZE, 290, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 40, Short.MAX_VALUE)
+                                        .addComponent(fitStock, javax.swing.GroupLayout.PREFERRED_SIZE, 134, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                        .addGap(345, 345, 345))))
                             .addGroup(layout.createSequentialGroup()
-                                .addComponent(fitValue, javax.swing.GroupLayout.PREFERRED_SIZE, 96, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                .addGap(0, 0, Short.MAX_VALUE))
-                            .addGroup(layout.createSequentialGroup()
-                                .addComponent(fitDescription, javax.swing.GroupLayout.PREFERRED_SIZE, 290, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 40, Short.MAX_VALUE)
-                                .addComponent(fitStock, javax.swing.GroupLayout.PREFERRED_SIZE, 134, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                .addGap(345, 345, 345))))
+                                .addComponent(showArticles, javax.swing.GroupLayout.PREFERRED_SIZE, 213, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                                .addComponent(cleanfields)
+                                .addGap(0, 0, Short.MAX_VALUE))))
                     .addGroup(layout.createSequentialGroup()
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addComponent(jLabel7)
@@ -195,21 +200,13 @@ public final class Stock extends javax.swing.JInternalFrame {
                             .addComponent(jLabel2)
                             .addComponent(jLabel5))
                         .addGap(35, 35, 35)
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
                             .addComponent(actualStock, javax.swing.GroupLayout.PREFERRED_SIZE, 94, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                .addComponent(scannign, javax.swing.GroupLayout.PREFERRED_SIZE, 290, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                                    .addComponent(stockId, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.PREFERRED_SIZE, 50, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                    .addComponent(productName, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.PREFERRED_SIZE, 290, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                    .addComponent(brand, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.PREFERRED_SIZE, 290, javax.swing.GroupLayout.PREFERRED_SIZE))))
+                            .addComponent(stockId, javax.swing.GroupLayout.PREFERRED_SIZE, 50, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(productName, javax.swing.GroupLayout.DEFAULT_SIZE, 290, Short.MAX_VALUE)
+                            .addComponent(brand, javax.swing.GroupLayout.DEFAULT_SIZE, 290, Short.MAX_VALUE)
+                            .addComponent(getScanningToSearch))
                         .addContainerGap())))
-            .addGroup(layout.createSequentialGroup()
-                .addGap(226, 226, 226)
-                .addComponent(showArticles, javax.swing.GroupLayout.PREFERRED_SIZE, 213, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                .addComponent(cleanfields)
-                .addGap(0, 0, Short.MAX_VALUE))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -217,7 +214,7 @@ public final class Stock extends javax.swing.JInternalFrame {
                 .addGap(25, 25, 25)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel1)
-                    .addComponent(scannign, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(getScanningToSearch, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addComponent(jLabel7)
@@ -254,11 +251,11 @@ public final class Stock extends javax.swing.JInternalFrame {
                     .addComponent(jLabel6)
                     .addComponent(fitDescription)
                     .addComponent(fitStock, javax.swing.GroupLayout.PREFERRED_SIZE, 28, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addGap(49, 49, 49)
+                .addGap(44, 44, 44)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(showArticles, javax.swing.GroupLayout.PREFERRED_SIZE, 50, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(cleanfields, javax.swing.GroupLayout.PREFERRED_SIZE, 50, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addGap(193, 193, 193))
+                .addGap(202, 202, 202))
         );
 
         pack();
@@ -312,12 +309,6 @@ public final class Stock extends javax.swing.JInternalFrame {
         }
     }//GEN-LAST:event_updateMinStockActionPerformed
 
-    private void scannignKeyReleased(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_scannignKeyReleased
-        if(evt.getKeyCode() == KeyEvent.VK_ENTER){
-            fillFields();
-        }
-    }//GEN-LAST:event_scannignKeyReleased
-
     private void fitStockActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_fitStockActionPerformed
         try {
             con = new Conexion();
@@ -361,10 +352,16 @@ public final class Stock extends javax.swing.JInternalFrame {
         clearStockFields();
     }//GEN-LAST:event_cleanfieldsActionPerformed
 
+    private void getScanningToSearchKeyReleased(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_getScanningToSearchKeyReleased
+        if(evt.getKeyCode() == KeyEvent.VK_ENTER){
+            fillFields();
+        }
+    }//GEN-LAST:event_getScanningToSearchKeyReleased
+
     public void searchScannings(){
         try {
             con = new Conexion();
-            TextAutoCompleter textAutoAcompleter = new TextAutoCompleter(scannign);
+            TextAutoCompleter textAutoAcompleter = new TextAutoCompleter(getScanningToSearch);
             String sql ="SELECT scanning FROM descripcion_articulos";
             rs = con.Consulta(sql);
             while(rs.next()){
@@ -380,7 +377,7 @@ public final class Stock extends javax.swing.JInternalFrame {
     private void fillFields(){
         try {
             con = new Conexion();
-            String scanning = scannign.getText();
+            String scanning = getScanningToSearch.getText();
             String findArticulo ="SELECT t1.*, t2.* FROM descripcion_articulos t1 INNER JOIN stock t2 ON t2.id_articulo = t1.id_articulo WHERE t1.scanning = '"+scanning+"'";
             rs = con.Consulta(findArticulo);
             while(rs.next()){
@@ -398,7 +395,7 @@ public final class Stock extends javax.swing.JInternalFrame {
     }
   
     public void clearStockFields() {
-        scannign.setText("");
+        getScanningToSearch.setText("");
         productName.setText("");
         actualStock.setText("");
         minStock.setText("");
@@ -417,6 +414,7 @@ public final class Stock extends javax.swing.JInternalFrame {
     private javax.swing.JTextField fitDescription;
     private javax.swing.JButton fitStock;
     private javax.swing.JFormattedTextField fitValue;
+    private javax.swing.JTextField getScanningToSearch;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel3;
@@ -428,7 +426,6 @@ public final class Stock extends javax.swing.JInternalFrame {
     private javax.swing.JLabel jLabel9;
     private javax.swing.JFormattedTextField minStock;
     private javax.swing.JTextField productName;
-    private javax.swing.JFormattedTextField scannign;
     private javax.swing.JButton showArticles;
     private javax.swing.JTextField stockId;
     private javax.swing.JButton updateMinStock;

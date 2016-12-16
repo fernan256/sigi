@@ -140,24 +140,36 @@ public class BuscarArticulos extends javax.swing.JDialog {
     private void productNameKeyReleased(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_productNameKeyReleased
         try {
             con = new Conexion();
-            String sql = "SELECT t1.*, t2.stock_min, t2.saldo_stock, t2.id_stock FROM descripcion_articulos AS t1 INNER JOIN stock AS t2 ON t1.id_articulo = t2.id_articulo WHERE t1.nombre_producto LIKE '"+productName.getText()+"%'";
-            rs = con.Consulta(sql);
-            DefaultTableModel temp = (DefaultTableModel)
-            resultTable.getModel();
-            Object nuevo[]= {temp.getRowCount()+1,"",""};
-            while (rs.next()) {
-                temp.addRow(nuevo);
-                resultTable.setValueAt(rs.getString("scanning"), j, 0);
-                resultTable.setValueAt(rs.getString("nombre_producto"), j, 1);
-                resultTable.setValueAt(rs.getString("marca"), j, 2);
-                resultTable.setValueAt(rs.getFloat("precio_costo"), j, 3);
-                resultTable.setValueAt(rs.getInt("saldo_stock"), j, 4);
-                resultTable.setValueAt(rs.getInt("tipo_articulo_id"), j, 5);
-                resultTable.setValueAt(rs.getInt("id_articulo"), j, 6);
-                resultTable.setValueAt(rs.getInt("id_stock"), j, 7);
-                j++;
+            System.out.println(productName.getText());
+            if(productName.getText().length()>= 4) {
+                String sql = "SELECT t1.*, t2.stock_min, t2.saldo_stock, t2.id_stock FROM descripcion_articulos AS t1 INNER JOIN stock AS t2 ON t1.id_articulo = t2.id_articulo WHERE t1.nombre_producto LIKE '"+productName.getText()+"%' OR t1.scanning LIKE '"+productName.getText()+"%'";
+                rs = con.Consulta(sql);
+                DefaultTableModel temp = (DefaultTableModel)
+                resultTable.getModel();
+                Object nuevo[]= {temp.getRowCount()+1,"",""};
+                while (rs.next()) {
+                    temp.addRow(nuevo);
+                    resultTable.setValueAt(rs.getString("scanning"), j, 0);
+                    resultTable.setValueAt(rs.getString("nombre_producto"), j, 1);
+                    resultTable.setValueAt(rs.getString("marca"), j, 2);
+                    resultTable.setValueAt(rs.getFloat("precio_venta"), j, 3);
+                    resultTable.setValueAt(rs.getInt("saldo_stock"), j, 4);
+                    resultTable.setValueAt(rs.getInt("tipo_articulo_id"), j, 5);
+                    resultTable.setValueAt(rs.getInt("id_articulo"), j, 6);
+                    resultTable.setValueAt(rs.getInt("id_stock"), j, 7);
+                    j++;
+                }
+                con.Cerrar();
+            } else {
+                DefaultTableModel temporal = (DefaultTableModel)
+                resultTable.getModel();
+                int rowCount = temporal.getRowCount();
+                //Remove rows one by one from the end of the table
+                for (int i = rowCount - 1; i >= 0; i--) {
+                    temporal.removeRow(i);
+                }
+                j = 0;
             }
-            con.Cerrar();
         } catch (ClassNotFoundException | InstantiationException | IllegalAccessException | SQLException ex) {
             Logger.getLogger(OrdenesCompras.class.getName()).log(Level.SEVERE, null, ex);
         }

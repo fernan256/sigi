@@ -43,35 +43,28 @@
                       </Group>
                       <EmptySpace min="-2" pref="33" max="-2" attributes="0"/>
                       <Group type="103" groupAlignment="0" attributes="0">
+                          <Group type="103" alignment="0" groupAlignment="1" max="-2" attributes="0">
+                              <Component id="newProviderFax" alignment="0" max="32767" attributes="0"/>
+                              <Component id="newProviderCelphone" alignment="0" max="32767" attributes="0"/>
+                              <Component id="newProviderPhone" alignment="0" min="-2" pref="163" max="-2" attributes="0"/>
+                          </Group>
+                          <Component id="newProviderCuilCuit" alignment="0" min="-2" pref="163" max="-2" attributes="0"/>
                           <Group type="102" alignment="0" attributes="0">
-                              <Group type="103" groupAlignment="0" attributes="0">
-                                  <Group type="103" alignment="0" groupAlignment="1" max="-2" attributes="0">
-                                      <Component id="newProviderFax" alignment="0" max="32767" attributes="0"/>
-                                      <Component id="newProviderCelphone" alignment="0" max="32767" attributes="0"/>
-                                      <Component id="newProviderPhone" alignment="0" min="-2" pref="163" max="-2" attributes="0"/>
-                                  </Group>
-                                  <Component id="newProviderCuilCuit" alignment="0" min="-2" pref="163" max="-2" attributes="0"/>
-                                  <Group type="102" alignment="0" attributes="0">
-                                      <Group type="103" groupAlignment="1" attributes="0">
-                                          <Component id="newProviderLastname" min="-2" pref="302" max="-2" attributes="0"/>
-                                          <Component id="newProviderName" min="-2" pref="302" max="-2" attributes="0"/>
-                                          <Component id="newCompanyName" alignment="1" min="-2" pref="302" max="-2" attributes="0"/>
-                                          <Component id="newProviderAddress" alignment="1" min="-2" pref="302" max="-2" attributes="0"/>
-                                      </Group>
-                                      <EmptySpace type="unrelated" max="-2" attributes="0"/>
-                                      <Component id="jLabel12" min="-2" max="-2" attributes="0"/>
-                                      <EmptySpace type="separate" max="-2" attributes="0"/>
-                                      <Component id="searchProvider" min="-2" pref="225" max="-2" attributes="0"/>
-                                  </Group>
-                                  <Component id="newProviderActive" alignment="0" min="-2" max="-2" attributes="0"/>
+                              <Group type="103" groupAlignment="1" max="-2" attributes="0">
+                                  <Component id="newProviderLastname" alignment="0" pref="250" max="32767" attributes="0"/>
+                                  <Component id="newProviderName" alignment="0" max="32767" attributes="0"/>
+                                  <Component id="newCompanyName" alignment="0" max="32767" attributes="0"/>
+                                  <Component id="newProviderAddress" alignment="0" max="32767" attributes="0"/>
+                                  <Component id="newProviderEmail" alignment="0" max="32767" attributes="0"/>
                               </Group>
-                              <EmptySpace pref="110" max="32767" attributes="0"/>
+                              <EmptySpace type="unrelated" max="-2" attributes="0"/>
+                              <Component id="jLabel12" min="-2" max="-2" attributes="0"/>
+                              <EmptySpace type="separate" max="-2" attributes="0"/>
+                              <Component id="searchProvider" min="-2" pref="201" max="-2" attributes="0"/>
                           </Group>
-                          <Group type="102" alignment="0" attributes="0">
-                              <Component id="newProviderEmail" min="-2" pref="302" max="-2" attributes="0"/>
-                              <EmptySpace min="0" pref="0" max="32767" attributes="0"/>
-                          </Group>
+                          <Component id="newProviderActive" alignment="0" min="-2" max="-2" attributes="0"/>
                       </Group>
+                      <EmptySpace pref="217" max="32767" attributes="0"/>
                   </Group>
                   <Group type="102" attributes="0">
                       <Group type="103" groupAlignment="0" attributes="0">
@@ -169,7 +162,7 @@
                   <Component id="modifieProvider" alignment="3" min="-2" max="-2" attributes="0"/>
                   <Component id="exportToXls" alignment="3" min="-2" max="-2" attributes="0"/>
               </Group>
-              <EmptySpace pref="116" max="32767" attributes="0"/>
+              <EmptySpace pref="142" max="32767" attributes="0"/>
           </Group>
       </Group>
     </DimensionLayout>
@@ -178,35 +171,35 @@
     <Component class="javax.swing.JTextField" name="newProviderName">
       <Properties>
         <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
-          <Font name="Arial" size="12" style="0"/>
+          <Font name="Arial" size="10" style="0"/>
         </Property>
       </Properties>
     </Component>
     <Component class="javax.swing.JTextField" name="newProviderLastname">
       <Properties>
         <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
-          <Font name="Arial" size="12" style="0"/>
+          <Font name="Arial" size="10" style="0"/>
         </Property>
       </Properties>
     </Component>
     <Component class="javax.swing.JTextField" name="newCompanyName">
       <Properties>
         <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
-          <Font name="Arial" size="12" style="0"/>
+          <Font name="Arial" size="10" style="0"/>
         </Property>
       </Properties>
     </Component>
     <Component class="javax.swing.JTextField" name="newProviderAddress">
       <Properties>
         <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
-          <Font name="Arial" size="12" style="0"/>
+          <Font name="Arial" size="10" style="0"/>
         </Property>
       </Properties>
     </Component>
     <Component class="javax.swing.JTextField" name="newProviderEmail">
       <Properties>
         <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
-          <Font name="Arial" size="12" style="0"/>
+          <Font name="Arial" size="10" style="0"/>
         </Property>
       </Properties>
     </Component>
@@ -231,7 +224,7 @@
     <Component class="javax.swing.JLabel" name="jLabel1">
       <Properties>
         <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
-          <Font name="Arial" size="16" style="1"/>
+          <Font name="Arial" size="13" style="1"/>
         </Property>
         <Property name="text" type="java.lang.String" value="Descripci&#xf3;n de productos"/>
       </Properties>
@@ -274,7 +267,7 @@
     <Component class="javax.swing.JLabel" name="jLabel3">
       <Properties>
         <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
-          <Font name="Arial" size="16" style="1"/>
+          <Font name="Arial" size="13" style="1"/>
         </Property>
         <Property name="text" type="java.lang.String" value="Nombre"/>
       </Properties>
@@ -282,7 +275,7 @@
     <Component class="javax.swing.JLabel" name="jLabel4">
       <Properties>
         <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
-          <Font name="Arial" size="16" style="1"/>
+          <Font name="Arial" size="13" style="1"/>
         </Property>
         <Property name="text" type="java.lang.String" value="Apellido"/>
       </Properties>
@@ -290,7 +283,7 @@
     <Component class="javax.swing.JLabel" name="jLabel5">
       <Properties>
         <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
-          <Font name="Arial" size="16" style="1"/>
+          <Font name="Arial" size="13" style="1"/>
         </Property>
         <Property name="text" type="java.lang.String" value="Empresa"/>
       </Properties>
@@ -298,7 +291,7 @@
     <Component class="javax.swing.JLabel" name="jLabel6">
       <Properties>
         <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
-          <Font name="Arial" size="16" style="1"/>
+          <Font name="Arial" size="13" style="1"/>
         </Property>
         <Property name="text" type="java.lang.String" value="Direcci&#xf3;n"/>
       </Properties>
@@ -306,7 +299,7 @@
     <Component class="javax.swing.JLabel" name="jLabel7">
       <Properties>
         <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
-          <Font name="Arial" size="16" style="1"/>
+          <Font name="Arial" size="13" style="1"/>
         </Property>
         <Property name="text" type="java.lang.String" value="Telefono"/>
       </Properties>
@@ -314,7 +307,7 @@
     <Component class="javax.swing.JLabel" name="jLabel8">
       <Properties>
         <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
-          <Font name="Arial" size="16" style="1"/>
+          <Font name="Arial" size="13" style="1"/>
         </Property>
         <Property name="text" type="java.lang.String" value="Celular"/>
       </Properties>
@@ -322,7 +315,7 @@
     <Component class="javax.swing.JLabel" name="jLabel9">
       <Properties>
         <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
-          <Font name="Arial" size="16" style="1"/>
+          <Font name="Arial" size="13" style="1"/>
         </Property>
         <Property name="text" type="java.lang.String" value="Fax"/>
       </Properties>
@@ -330,7 +323,7 @@
     <Component class="javax.swing.JLabel" name="jLabel10">
       <Properties>
         <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
-          <Font name="Arial" size="16" style="1"/>
+          <Font name="Arial" size="13" style="1"/>
         </Property>
         <Property name="text" type="java.lang.String" value="Mail"/>
       </Properties>
@@ -338,7 +331,7 @@
     <Component class="javax.swing.JLabel" name="jLabel11">
       <Properties>
         <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
-          <Font name="Arial" size="16" style="1"/>
+          <Font name="Arial" size="13" style="1"/>
         </Property>
         <Property name="text" type="java.lang.String" value="Cuit/Cuil"/>
       </Properties>
@@ -346,7 +339,7 @@
     <Component class="javax.swing.JLabel" name="jLabel12">
       <Properties>
         <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
-          <Font name="Arial" size="16" style="1"/>
+          <Font name="Arial" size="13" style="1"/>
         </Property>
         <Property name="text" type="java.lang.String" value="Buscar"/>
       </Properties>
@@ -354,21 +347,21 @@
     <Component class="javax.swing.JFormattedTextField" name="newProviderPhone">
       <Properties>
         <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
-          <Font name="Arial" size="12" style="0"/>
+          <Font name="Arial" size="10" style="0"/>
         </Property>
       </Properties>
     </Component>
     <Component class="javax.swing.JFormattedTextField" name="newProviderCelphone">
       <Properties>
         <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
-          <Font name="Arial" size="12" style="0"/>
+          <Font name="Arial" size="10" style="0"/>
         </Property>
       </Properties>
     </Component>
     <Component class="javax.swing.JFormattedTextField" name="newProviderFax">
       <Properties>
         <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
-          <Font name="Arial" size="12" style="0"/>
+          <Font name="Arial" size="10" style="0"/>
         </Property>
       </Properties>
     </Component>
@@ -386,7 +379,7 @@
     <Component class="javax.swing.JFormattedTextField" name="newProviderCuilCuit">
       <Properties>
         <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
-          <Font name="Arial" size="12" style="0"/>
+          <Font name="Arial" size="10" style="0"/>
         </Property>
       </Properties>
     </Component>
@@ -404,7 +397,7 @@
     <Component class="javax.swing.JLabel" name="jLabel2">
       <Properties>
         <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
-          <Font name="Arial" size="16" style="1"/>
+          <Font name="Arial" size="13" style="1"/>
         </Property>
         <Property name="text" type="java.lang.String" value="Activo/Inactivo"/>
       </Properties>
@@ -412,7 +405,7 @@
     <Component class="javax.swing.JTextField" name="searchProvider">
       <Properties>
         <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
-          <Font name="Arial" size="12" style="0"/>
+          <Font name="Arial" size="10" style="0"/>
         </Property>
       </Properties>
       <Events>

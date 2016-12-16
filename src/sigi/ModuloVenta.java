@@ -272,7 +272,7 @@ public class ModuloVenta extends javax.swing.JFrame {
             int restarTipo = Integer.parseInt(tablaCompras.getValueAt(fila, 9).toString());
             BigDecimal restarPrecio = new BigDecimal(tablaCompras.getValueAt(fila, 3).toString());
             float restarCantidad;
-            if(restarTipo == 1) {
+            if(restarTipo != 2) {
                 restarCantidad = Float.parseFloat(tablaCompras.getValueAt(fila, 7).toString());
             } else {
                 restarCantidad = Float.parseFloat(tablaCompras.getValueAt(fila, 7).toString()) * 1000;
@@ -286,11 +286,11 @@ public class ModuloVenta extends javax.swing.JFrame {
             if(fila < 0) {
                 JOptionPane.showMessageDialog(null, "Se debe seleccionar la fila a eliminar de la tabla COMPRA ACTUAL");
             } else{
-                eliminarFilaModel.removeRow(fila);           
+                eliminarFilaModel.removeRow(fila);
             }
             scanning.setText("");
             scanning.requestFocus();
-            j = fila - 1;
+            j = j - 1;
         } else {
             JOptionPane.showMessageDialog(null, "Se debe seleccionar la fila a eliminar");
         }
@@ -433,7 +433,11 @@ public class ModuloVenta extends javax.swing.JFrame {
         } else {
             if(saleTypo == 1) {
                 cash = JOptionPane.showInputDialog(null, "Total a Cobrar: $"+getTotalVentas+"\nEfectivo Recibido: ");
-                cash = Utils.formatCurrency(cash.length(), cash);
+                if(cash == null) {
+                    return;
+                } else {
+                    cash = Utils.formatCurrency(cash.length(), cash);
+                }
             }
             if(saleTypo == 2 || cash != null) {
                 try {
@@ -462,7 +466,7 @@ public class ModuloVenta extends javax.swing.JFrame {
                         idArticulos[i] = tablaCompras.getValueAt(i, 10).toString();
                         stockIdToSave[i] = tablaCompras.getValueAt(i, 11).toString();
                         discount[i] = new BigDecimal(tablaCompras.getValueAt(i, 5).toString());
-                        if(tipoArticulo[i] == 1) {
+                        if(tipoArticulo[i] != 2) {
                             cantidadVenta[i] = new BigDecimal(tablaCompras.getValueAt(i, 7).toString());
                         } else {
                             cantidadVenta[i] = new BigDecimal(tablaCompras.getValueAt(i, 7).toString()).multiply(new BigDecimal(1000)).setScale(0);
@@ -542,15 +546,21 @@ public class ModuloVenta extends javax.swing.JFrame {
                     BigDecimal compareDiscount = new BigDecimal(0.00).setScale(2, RoundingMode.CEILING);
                     for (int i=0;i<j;i++){
                         discount[i] = new BigDecimal(tablaCompras.getValueAt(i, 5).toString());
-                        if(tipoArticulo[i] == 1){
-                             price = precioVenta[i].multiply(cantidadVenta[i]).setScale(2, RoundingMode.CEILING);
+                        if(tipoArticulo[i] != 2){
+                            price = precioVenta[i].multiply(cantidadVenta[i]).setScale(2, RoundingMode.CEILING);
                         } else {
                             price = precioVenta[i].multiply(cantidadVenta[i]).divide(new BigDecimal(1000)).setScale(2, RoundingMode.CEILING);
                         }
                         if(discount[i].equals(compareDiscount)) {
-                            ticketBody = ticketBody+salto+cantidadVenta[i]+" x "+precioVenta[i]+
+                            if(nombreProducto[i].length() > 4 && marcaProducto[i].length() > 4) {
+                                ticketBody = ticketBody+salto+cantidadVenta[i]+" x "+precioVenta[i]+
                                 salto+scanningArticulo[i]+" "+nombreProducto[i].substring(0, 4)+" "+marcaProducto[i].substring(0, 4)+"\t"+price+""+
                                 salto+"...";
+                            } else {
+                                ticketBody = ticketBody+salto+cantidadVenta[i]+" x "+precioVenta[i]+
+                                salto+scanningArticulo[i]+" "+nombreProducto[i]+" "+marcaProducto[i]+"\t"+price+""+
+                                salto+"...";
+                            }
                         } else {
                             ticketBody = ticketBody+salto+cantidadVenta[i]+" x "+precioVenta[i]+
                                 salto+scanningArticulo[i]+" "+nombreProducto[i].substring(0, 4)+" "+marcaProducto[i].substring(0, 4)+"\t"+price+""+

@@ -79,22 +79,22 @@ public class Proveedores extends javax.swing.JInternalFrame {
         setBackground(new java.awt.Color(255, 255, 255));
         setClosable(true);
 
-        newProviderName.setFont(new java.awt.Font("Arial", 0, 12)); // NOI18N
+        newProviderName.setFont(new java.awt.Font("Arial", 0, 10)); // NOI18N
 
-        newProviderLastname.setFont(new java.awt.Font("Arial", 0, 12)); // NOI18N
+        newProviderLastname.setFont(new java.awt.Font("Arial", 0, 10)); // NOI18N
 
-        newCompanyName.setFont(new java.awt.Font("Arial", 0, 12)); // NOI18N
+        newCompanyName.setFont(new java.awt.Font("Arial", 0, 10)); // NOI18N
 
-        newProviderAddress.setFont(new java.awt.Font("Arial", 0, 12)); // NOI18N
+        newProviderAddress.setFont(new java.awt.Font("Arial", 0, 10)); // NOI18N
 
-        newProviderEmail.setFont(new java.awt.Font("Arial", 0, 12)); // NOI18N
+        newProviderEmail.setFont(new java.awt.Font("Arial", 0, 10)); // NOI18N
 
         providerArticleDescription.setColumns(20);
         providerArticleDescription.setFont(new java.awt.Font("Arial", 0, 12)); // NOI18N
         providerArticleDescription.setRows(5);
         jScrollPane1.setViewportView(providerArticleDescription);
 
-        jLabel1.setFont(new java.awt.Font("Arial", 1, 16)); // NOI18N
+        jLabel1.setFont(new java.awt.Font("Arial", 1, 13)); // NOI18N
         jLabel1.setText("Descripción de productos");
 
         newProvider.setFont(new java.awt.Font("Arial", 1, 18)); // NOI18N
@@ -121,41 +121,41 @@ public class Proveedores extends javax.swing.JInternalFrame {
             }
         });
 
-        jLabel3.setFont(new java.awt.Font("Arial", 1, 16)); // NOI18N
+        jLabel3.setFont(new java.awt.Font("Arial", 1, 13)); // NOI18N
         jLabel3.setText("Nombre");
 
-        jLabel4.setFont(new java.awt.Font("Arial", 1, 16)); // NOI18N
+        jLabel4.setFont(new java.awt.Font("Arial", 1, 13)); // NOI18N
         jLabel4.setText("Apellido");
 
-        jLabel5.setFont(new java.awt.Font("Arial", 1, 16)); // NOI18N
+        jLabel5.setFont(new java.awt.Font("Arial", 1, 13)); // NOI18N
         jLabel5.setText("Empresa");
 
-        jLabel6.setFont(new java.awt.Font("Arial", 1, 16)); // NOI18N
+        jLabel6.setFont(new java.awt.Font("Arial", 1, 13)); // NOI18N
         jLabel6.setText("Dirección");
 
-        jLabel7.setFont(new java.awt.Font("Arial", 1, 16)); // NOI18N
+        jLabel7.setFont(new java.awt.Font("Arial", 1, 13)); // NOI18N
         jLabel7.setText("Telefono");
 
-        jLabel8.setFont(new java.awt.Font("Arial", 1, 16)); // NOI18N
+        jLabel8.setFont(new java.awt.Font("Arial", 1, 13)); // NOI18N
         jLabel8.setText("Celular");
 
-        jLabel9.setFont(new java.awt.Font("Arial", 1, 16)); // NOI18N
+        jLabel9.setFont(new java.awt.Font("Arial", 1, 13)); // NOI18N
         jLabel9.setText("Fax");
 
-        jLabel10.setFont(new java.awt.Font("Arial", 1, 16)); // NOI18N
+        jLabel10.setFont(new java.awt.Font("Arial", 1, 13)); // NOI18N
         jLabel10.setText("Mail");
 
-        jLabel11.setFont(new java.awt.Font("Arial", 1, 16)); // NOI18N
+        jLabel11.setFont(new java.awt.Font("Arial", 1, 13)); // NOI18N
         jLabel11.setText("Cuit/Cuil");
 
-        jLabel12.setFont(new java.awt.Font("Arial", 1, 16)); // NOI18N
+        jLabel12.setFont(new java.awt.Font("Arial", 1, 13)); // NOI18N
         jLabel12.setText("Buscar");
 
-        newProviderPhone.setFont(new java.awt.Font("Arial", 0, 12)); // NOI18N
+        newProviderPhone.setFont(new java.awt.Font("Arial", 0, 10)); // NOI18N
 
-        newProviderCelphone.setFont(new java.awt.Font("Arial", 0, 12)); // NOI18N
+        newProviderCelphone.setFont(new java.awt.Font("Arial", 0, 10)); // NOI18N
 
-        newProviderFax.setFont(new java.awt.Font("Arial", 0, 12)); // NOI18N
+        newProviderFax.setFont(new java.awt.Font("Arial", 0, 10)); // NOI18N
 
         modifieProvider.setFont(new java.awt.Font("Arial", 1, 18)); // NOI18N
         modifieProvider.setText("Modificar");
@@ -165,7 +165,7 @@ public class Proveedores extends javax.swing.JInternalFrame {
             }
         });
 
-        newProviderCuilCuit.setFont(new java.awt.Font("Arial", 0, 12)); // NOI18N
+        newProviderCuilCuit.setFont(new java.awt.Font("Arial", 0, 10)); // NOI18N
 
         exportToXls.setFont(new java.awt.Font("Arial", 1, 18)); // NOI18N
         exportToXls.setText("A XLS");
@@ -175,10 +175,10 @@ public class Proveedores extends javax.swing.JInternalFrame {
             }
         });
 
-        jLabel2.setFont(new java.awt.Font("Arial", 1, 16)); // NOI18N
+        jLabel2.setFont(new java.awt.Font("Arial", 1, 13)); // NOI18N
         jLabel2.setText("Activo/Inactivo");
 
-        searchProvider.setFont(new java.awt.Font("Arial", 0, 12)); // NOI18N
+        searchProvider.setFont(new java.awt.Font("Arial", 0, 10)); // NOI18N
         searchProvider.addKeyListener(new java.awt.event.KeyAdapter() {
             public void keyReleased(java.awt.event.KeyEvent evt) {
                 searchProviderKeyReleased(evt);
@@ -206,28 +206,24 @@ public class Proveedores extends javax.swing.JInternalFrame {
                             .addComponent(jLabel2))
                         .addGap(33, 33, 33)
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
+                                .addComponent(newProviderFax, javax.swing.GroupLayout.Alignment.LEADING)
+                                .addComponent(newProviderCelphone, javax.swing.GroupLayout.Alignment.LEADING)
+                                .addComponent(newProviderPhone, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.PREFERRED_SIZE, 163, javax.swing.GroupLayout.PREFERRED_SIZE))
+                            .addComponent(newProviderCuilCuit, javax.swing.GroupLayout.PREFERRED_SIZE, 163, javax.swing.GroupLayout.PREFERRED_SIZE)
                             .addGroup(layout.createSequentialGroup()
-                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                    .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
-                                        .addComponent(newProviderFax, javax.swing.GroupLayout.Alignment.LEADING)
-                                        .addComponent(newProviderCelphone, javax.swing.GroupLayout.Alignment.LEADING)
-                                        .addComponent(newProviderPhone, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.PREFERRED_SIZE, 163, javax.swing.GroupLayout.PREFERRED_SIZE))
-                                    .addComponent(newProviderCuilCuit, javax.swing.GroupLayout.PREFERRED_SIZE, 163, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                    .addGroup(layout.createSequentialGroup()
-                                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                                            .addComponent(newProviderLastname, javax.swing.GroupLayout.PREFERRED_SIZE, 302, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                            .addComponent(newProviderName, javax.swing.GroupLayout.PREFERRED_SIZE, 302, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                            .addComponent(newCompanyName, javax.swing.GroupLayout.PREFERRED_SIZE, 302, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                            .addComponent(newProviderAddress, javax.swing.GroupLayout.PREFERRED_SIZE, 302, javax.swing.GroupLayout.PREFERRED_SIZE))
-                                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                                        .addComponent(jLabel12)
-                                        .addGap(18, 18, 18)
-                                        .addComponent(searchProvider, javax.swing.GroupLayout.PREFERRED_SIZE, 225, javax.swing.GroupLayout.PREFERRED_SIZE))
-                                    .addComponent(newProviderActive))
-                                .addContainerGap(110, Short.MAX_VALUE))
-                            .addGroup(layout.createSequentialGroup()
-                                .addComponent(newProviderEmail, javax.swing.GroupLayout.PREFERRED_SIZE, 302, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                .addGap(0, 0, Short.MAX_VALUE))))
+                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
+                                    .addComponent(newProviderLastname, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, 250, Short.MAX_VALUE)
+                                    .addComponent(newProviderName, javax.swing.GroupLayout.Alignment.LEADING)
+                                    .addComponent(newCompanyName, javax.swing.GroupLayout.Alignment.LEADING)
+                                    .addComponent(newProviderAddress, javax.swing.GroupLayout.Alignment.LEADING)
+                                    .addComponent(newProviderEmail, javax.swing.GroupLayout.Alignment.LEADING))
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                                .addComponent(jLabel12)
+                                .addGap(18, 18, 18)
+                                .addComponent(searchProvider, javax.swing.GroupLayout.PREFERRED_SIZE, 201, javax.swing.GroupLayout.PREFERRED_SIZE))
+                            .addComponent(newProviderActive))
+                        .addContainerGap(217, Short.MAX_VALUE))
                     .addGroup(layout.createSequentialGroup()
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 541, javax.swing.GroupLayout.PREFERRED_SIZE)
@@ -304,7 +300,7 @@ public class Proveedores extends javax.swing.JInternalFrame {
                     .addComponent(deleteProvider)
                     .addComponent(modifieProvider)
                     .addComponent(exportToXls))
-                .addContainerGap(116, Short.MAX_VALUE))
+                .addContainerGap(142, Short.MAX_VALUE))
         );
 
         pack();

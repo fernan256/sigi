@@ -48,6 +48,9 @@ public class VerReimprimirTickets extends javax.swing.JInternalFrame {
         jScrollPane1 = new javax.swing.JScrollPane();
         showTicket = new javax.swing.JTextArea();
         printTicket = new javax.swing.JButton();
+        cleanFields = new javax.swing.JButton();
+        jLabel2 = new javax.swing.JLabel();
+        ticketStatus = new javax.swing.JTextField();
 
         setBackground(new java.awt.Color(255, 255, 255));
         setClosable(true);
@@ -76,20 +79,37 @@ public class VerReimprimirTickets extends javax.swing.JInternalFrame {
             }
         });
 
+        cleanFields.setFont(new java.awt.Font("Arial", 1, 18)); // NOI18N
+        cleanFields.setText("Limpiar");
+        cleanFields.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                cleanFieldsActionPerformed(evt);
+            }
+        });
+
+        jLabel2.setFont(new java.awt.Font("Arial", 1, 18)); // NOI18N
+        jLabel2.setText("Estado");
+
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
                 .addGap(25, 25, 25)
-                .addComponent(jLabel1)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(jLabel1)
+                    .addComponent(jLabel2))
                 .addGap(27, 27, 27)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(ticketToSearch, javax.swing.GroupLayout.PREFERRED_SIZE, 131, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 430, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addGroup(layout.createSequentialGroup()
-                        .addGap(90, 90, 90)
-                        .addComponent(printTicket, javax.swing.GroupLayout.PREFERRED_SIZE, 242, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                    .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
+                        .addGroup(layout.createSequentialGroup()
+                            .addComponent(printTicket, javax.swing.GroupLayout.PREFERRED_SIZE, 200, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                            .addComponent(cleanFields, javax.swing.GroupLayout.PREFERRED_SIZE, 200, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 430, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
+                        .addComponent(ticketStatus, javax.swing.GroupLayout.Alignment.LEADING)
+                        .addComponent(ticketToSearch, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, 131, Short.MAX_VALUE)))
                 .addContainerGap(269, Short.MAX_VALUE))
         );
         layout.setVerticalGroup(
@@ -99,11 +119,17 @@ public class VerReimprimirTickets extends javax.swing.JInternalFrame {
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addComponent(ticketToSearch, javax.swing.GroupLayout.PREFERRED_SIZE, 46, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(jLabel1, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, 47, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addGap(23, 23, 23)
-                .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 360, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(18, 18, 18)
-                .addComponent(printTicket, javax.swing.GroupLayout.PREFERRED_SIZE, 40, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(82, Short.MAX_VALUE))
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                    .addComponent(jLabel2, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addComponent(ticketStatus))
+                .addGap(29, 29, 29)
+                .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 360, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 15, Short.MAX_VALUE)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(printTicket, javax.swing.GroupLayout.PREFERRED_SIZE, 40, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(cleanFields, javax.swing.GroupLayout.PREFERRED_SIZE, 40, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGap(72, 72, 72))
         );
 
         pack();
@@ -115,7 +141,7 @@ public class VerReimprimirTickets extends javax.swing.JInternalFrame {
             con = new Conexion();
             conUser = new Conexion_login();
             ticketNumber = ticketToSearch.getText();
-            String getTicket = "SELECT t1.*, lpad(t1.numero_ticket, 6, 0) ticket_number, t2.*, t3.* FROM detalle_venta t1 JOIN ventas t2 ON t2.id_venta = t1.ventas_id_venta JOIN descripcion_articulos t3 ON t3.id_articulo = t1.id_articulo WHERE t1.numero_ticket = '"+ticketNumber+"'";
+            String getTicket = "SELECT t1.*, lpad(t1.numero_ticket, 6, 0) ticket_number, t2.*, t3.*, t4.* FROM detalle_venta t1 JOIN ventas t2 ON t2.id_venta = t1.ventas_id_venta JOIN descripcion_articulos t3 ON t3.id_articulo = t1.id_articulo JOIN estado_venta t4 ON t4.id_estado_venta = t1.estado_venta_id_estado_venta WHERE t1.numero_ticket = '"+ticketNumber+"'";
             rs = con.Consulta(getTicket);
             int numRows = 0;
             while(rs.next()){
@@ -136,6 +162,7 @@ public class VerReimprimirTickets extends javax.swing.JInternalFrame {
                 saleDate = rs.getTimestamp("fecha_venta");
                 articleType = rs.getInt("tipo_articulo_id");
                 currentAccountId = rs.getInt("cuenta_corriente_id");
+                ticketStatus.setText(rs.getString("descripcion"));
             }
             String getSaleUser = "SELECT nombres, apellidos FROM usuarios WHERE id_usuario = '"+saleUserId+"'";
             rs = conUser.Consulta(getSaleUser);
@@ -170,7 +197,7 @@ public class VerReimprimirTickets extends javax.swing.JInternalFrame {
                                 salto+"Descripcion (%IVA)[%BI]\tIMPORTE"+
                                 salto+"--------------------------------";
                 for (int i=0;i<j;i++){
-                    if(articleType == 1){
+                    if(articleType != 2){
                         price = new BigDecimal(salesPrice.get(i)).multiply(new BigDecimal(salesQuantity.get(i))).setScale(2, RoundingMode.CEILING);
                     } else {
                         price = new BigDecimal(salesPrice.get(i)).multiply(new BigDecimal(salesQuantity.get(i))).divide(new BigDecimal(1000)).setScale(2, RoundingMode.CEILING);
@@ -232,18 +259,26 @@ public class VerReimprimirTickets extends javax.swing.JInternalFrame {
             System.out.println(print);
         }
     }//GEN-LAST:event_printTicketActionPerformed
+
+    private void cleanFieldsActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_cleanFieldsActionPerformed
+        clearReprintTicket();
+    }//GEN-LAST:event_cleanFieldsActionPerformed
     
     public void clearReprintTicket(){
         ticketToSearch.setText("");
         showTicket.setText("");
+        ticketStatus.setText("");
         ticket = null;
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.JButton cleanFields;
     private javax.swing.JLabel jLabel1;
+    private javax.swing.JLabel jLabel2;
     private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JButton printTicket;
     private javax.swing.JTextArea showTicket;
+    private javax.swing.JTextField ticketStatus;
     private javax.swing.JTextField ticketToSearch;
     // End of variables declaration//GEN-END:variables
 }
