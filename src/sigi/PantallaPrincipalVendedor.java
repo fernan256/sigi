@@ -64,7 +64,15 @@ public class PantallaPrincipalVendedor extends javax.swing.JFrame {
         treeNode2.add(treeNode3);
         treeNode3 = new javax.swing.tree.DefaultMutableTreeNode("Stock");
         treeNode2.add(treeNode3);
+        treeNode3 = new javax.swing.tree.DefaultMutableTreeNode("Sacar faltante Stock");
+        treeNode2.add(treeNode3);
         treeNode3 = new javax.swing.tree.DefaultMutableTreeNode("Importar/Exportar Articulos");
+        treeNode2.add(treeNode3);
+        treeNode1.add(treeNode2);
+        treeNode2 = new javax.swing.tree.DefaultMutableTreeNode("Servicio Tecnico");
+        treeNode3 = new javax.swing.tree.DefaultMutableTreeNode("Alta Servicio");
+        treeNode2.add(treeNode3);
+        treeNode3 = new javax.swing.tree.DefaultMutableTreeNode("Ver servicios");
         treeNode2.add(treeNode3);
         treeNode1.add(treeNode2);
         treeNode2 = new javax.swing.tree.DefaultMutableTreeNode("Ajustes");
@@ -106,7 +114,6 @@ public class PantallaPrincipalVendedor extends javax.swing.JFrame {
 
         getContentPane().add(jScrollPane2, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 140, 210, 540));
 
-        moduloVentaVendedor.setBackground(new java.awt.Color(255, 255, 255));
         moduloVentaVendedor.setIcon(new javax.swing.ImageIcon(getClass().getResource("/imagenes/carritoVentas.png"))); // NOI18N
         moduloVentaVendedor.setText("Modulo Venta");
         moduloVentaVendedor.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
@@ -119,7 +126,6 @@ public class PantallaPrincipalVendedor extends javax.swing.JFrame {
         });
         getContentPane().add(moduloVentaVendedor, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 5, 400, 65));
 
-        openHelp.setBackground(new java.awt.Color(255, 255, 255));
         openHelp.setIcon(new javax.swing.ImageIcon(getClass().getResource("/imagenes/info.jpg"))); // NOI18N
         openHelp.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
         openHelp.addActionListener(new java.awt.event.ActionListener() {
@@ -182,6 +188,8 @@ public class PantallaPrincipalVendedor extends javax.swing.JFrame {
     VerReimprimirTickets objIC7 = new VerReimprimirTickets();
     ImportarExportarArticulos objIC8 = new ImportarExportarArticulos();
     ImportarExportarClientes objIC9 = new ImportarExportarClientes();
+    FaltantesStock objIC10 = new FaltantesStock();
+    ABMServicioTecnico objIC11 = new ABMServicioTecnico();
     
     private void salesManeTreeMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_salesManeTreeMouseClicked
         
@@ -215,6 +223,22 @@ public class PantallaPrincipalVendedor extends javax.swing.JFrame {
                     objIC6.setSize(desktopPane.getSize());
                 }
                 break;
+            case "Sacar faltante Stock":
+                if(objIC10.isShowing() == true){
+                    try {
+                        objIC10.setSelected(true);
+                    } catch (PropertyVetoException ex) {
+                        Logger.getLogger(PantallaPrincipal.class.getName()).log(Level.SEVERE, null, ex);
+                    }
+                }else{
+                    //objIC24.cle();
+                    desktopPane.add(objIC10);
+                    objIC10.show();
+                    objIC10.setSize(desktopPane.getSize());
+                }
+                //FaltanteStock faltante = new FaltanteStock(this, true);
+                //faltante.setVisible(true);
+                break;
             case "Importar/Exportar Articulos":
                 if(objIC8.isShowing() == true){
                     try {
@@ -227,6 +251,20 @@ public class PantallaPrincipalVendedor extends javax.swing.JFrame {
                     desktopPane.add(objIC8);
                     objIC8.show();
                     objIC8.setSize(desktopPane.getSize());
+                }
+                break;
+            case "Alta Servicio":
+                if(objIC11.isShowing() == true){
+                    try {
+                        objIC11.setSelected(true);
+                    } catch (PropertyVetoException ex) {
+                        Logger.getLogger(PantallaPrincipal.class.getName()).log(Level.SEVERE, null, ex);
+                    }
+                }else{
+                    //objIC25.clearCrudArticlesFields();
+                    desktopPane.add(objIC11);
+                    objIC11.show();
+                    objIC11.setSize(desktopPane.getSize());
                 }
                 break;
             case "ABM Cliente":
@@ -392,7 +430,8 @@ public class PantallaPrincipalVendedor extends javax.swing.JFrame {
             while(rs.next()) {
                 openCash = rs.getInt("caja_inicial");
             }
-            String apertura = "INSERT INTO caja (fecha_apertura, apertura, fecha_cierre, id_usuario, estado) VALUES (CURRENT_TIMESTAMP, '"+openCash+"', 0, '"+Login.userId+"', 1)";
+            //String apertura = "INSERT INTO caja (fecha_apertura, apertura, fecha_cierre, id_usuario, estado) VALUES (CURRENT_TIMESTAMP, '"+openCash+"', 0, '"+Login.userId+"', 1)";
+            String apertura = "INSERT INTO caja (fecha_apertura, apertura, id_usuario, estado) VALUES (CURRENT_TIMESTAMP, '"+openCash+"', '"+Login.userId+"', 1)";
             con.ejecutar(apertura);
 
             moduloVentaVendedor.setEnabled(false);

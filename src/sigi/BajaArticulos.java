@@ -17,6 +17,7 @@ public class BajaArticulos extends javax.swing.JFrame {
     public static String id;
     
     public BajaArticulos() {
+        //this.setLocationRelativeTo(null); HACER QUE SE POSICIONE EN LA MITAD DE LA PANTALLA
         initComponents();
     }
 
@@ -29,8 +30,9 @@ public class BajaArticulos extends javax.swing.JFrame {
         resultTable = new javax.swing.JTable();
         jBeliminar = new javax.swing.JButton();
         jLabel1 = new javax.swing.JLabel();
+        jButton1 = new javax.swing.JButton();
 
-        setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
+        setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
         setBackground(new java.awt.Color(255, 255, 255));
 
         searchScanning.setFont(new java.awt.Font("Arial", 1, 36)); // NOI18N
@@ -72,6 +74,14 @@ public class BajaArticulos extends javax.swing.JFrame {
         jLabel1.setFont(new java.awt.Font("Arial", 1, 16)); // NOI18N
         jLabel1.setText("Ingresar Codigo de producto");
 
+        jButton1.setFont(new java.awt.Font("Arial", 1, 18)); // NOI18N
+        jButton1.setText("Salir");
+        jButton1.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton1ActionPerformed(evt);
+            }
+        });
+
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
@@ -84,8 +94,11 @@ public class BajaArticulos extends javax.swing.JFrame {
                         .addComponent(jLabel1)
                         .addGap(18, 18, 18)
                         .addComponent(searchScanning, javax.swing.GroupLayout.PREFERRED_SIZE, 265, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(0, 106, Short.MAX_VALUE))
-                    .addComponent(jBeliminar, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                        .addGap(0, 0, Short.MAX_VALUE))
+                    .addGroup(layout.createSequentialGroup()
+                        .addComponent(jBeliminar, javax.swing.GroupLayout.PREFERRED_SIZE, 290, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(35, 35, 35)
+                        .addComponent(jButton1, javax.swing.GroupLayout.DEFAULT_SIZE, 290, Short.MAX_VALUE)))
                 .addContainerGap())
         );
         layout.setVerticalGroup(
@@ -98,7 +111,9 @@ public class BajaArticulos extends javax.swing.JFrame {
                 .addGap(28, 28, 28)
                 .addComponent(jScrollPane2, javax.swing.GroupLayout.DEFAULT_SIZE, 250, Short.MAX_VALUE)
                 .addGap(18, 18, 18)
-                .addComponent(jBeliminar)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(jBeliminar)
+                    .addComponent(jButton1))
                 .addGap(48, 48, 48))
         );
 
@@ -107,9 +122,11 @@ public class BajaArticulos extends javax.swing.JFrame {
 
     private void searchScanningKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_searchScanningKeyPressed
         try {
+            
+            //AGREGAR CANTIDAD DE STOCK
             con = new Conexion();
             String nom= searchScanning.getText();
-            String sql ="SELECT * FROM descripcion_articulos WHERE scanning LIKE '"+nom+"%' AND unidad > 0";
+            String sql ="SELECT * FROM descripcion_articulos WHERE scanning LIKE '"+nom+"%'";
             rs = con.Consulta(sql);
 
             DefaultTableModel buscar = new DefaultTableModel(){
@@ -125,11 +142,11 @@ public class BajaArticulos extends javax.swing.JFrame {
             buscar.addColumn("Cantidad");
             int y=0;
             while (rs.next()) {
-                Object[] fila = new Object[4];
+                Object[] fila = new Object[3];
                 fila[0] = rs.getInt("id_articulo");    
                 fila[1] = rs.getString("nombre_producto");
                 fila[2] = rs.getDouble("precio_venta");
-                fila[3] = rs.getInt("unidad");
+                //fila[3] = rs.getInt("unidad");
                 buscar.addRow(fila);
             }
             if(evt.getKeyCode() == KeyEvent.VK_ENTER){
@@ -193,6 +210,12 @@ public class BajaArticulos extends javax.swing.JFrame {
         id =  resultTable.getValueAt(Opcion,0).toString();
     }//GEN-LAST:event_resultTableMouseClicked
 
+    private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
+        searchScanning.setText("");
+        resultTable.setModel(new DefaultTableModel());
+        this.dispose();
+    }//GEN-LAST:event_jButton1ActionPerformed
+
     /**
      * @param args the command line arguments
      */
@@ -237,6 +260,7 @@ public class BajaArticulos extends javax.swing.JFrame {
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton jBeliminar;
+    private javax.swing.JButton jButton1;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JScrollPane jScrollPane2;
     private javax.swing.JTable resultTable;

@@ -97,12 +97,6 @@ public class Configuraciones extends javax.swing.JInternalFrame {
         jLabel31 = new javax.swing.JLabel();
         jLabel34 = new javax.swing.JLabel();
         jLabel35 = new javax.swing.JLabel();
-        jPanel3 = new javax.swing.JPanel();
-        jLabel2 = new javax.swing.JLabel();
-        initialCash = new javax.swing.JTextField();
-        printTicket = new javax.swing.JCheckBox();
-        saveEditGeneralConfig = new javax.swing.JButton();
-        jLabel28 = new javax.swing.JLabel();
         jPanel4 = new javax.swing.JPanel();
         jPanel5 = new javax.swing.JPanel();
         jLabel6 = new javax.swing.JLabel();
@@ -137,6 +131,14 @@ public class Configuraciones extends javax.swing.JInternalFrame {
         userRol = new javax.swing.JComboBox<>();
         jLabel30 = new javax.swing.JLabel();
         serachUser = new javax.swing.JTextField();
+        jPanel3 = new javax.swing.JPanel();
+        jLabel2 = new javax.swing.JLabel();
+        initialCash = new javax.swing.JTextField();
+        printTicket = new javax.swing.JCheckBox();
+        saveEditGeneralConfig = new javax.swing.JButton();
+        jLabel28 = new javax.swing.JLabel();
+        jLabel36 = new javax.swing.JLabel();
+        askMount = new javax.swing.JCheckBox();
 
         setClosable(true);
 
@@ -293,7 +295,7 @@ public class Configuraciones extends javax.swing.JInternalFrame {
                         .addComponent(editCompanyData, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                         .addComponent(saveCompanyData, javax.swing.GroupLayout.PREFERRED_SIZE, 50, javax.swing.GroupLayout.PREFERRED_SIZE))
                     .addComponent(cleanData, javax.swing.GroupLayout.PREFERRED_SIZE, 50, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addContainerGap(191, Short.MAX_VALUE))
+                .addContainerGap(194, Short.MAX_VALUE))
         );
 
         jTabbedPane1.addTab("Datos Empresa", jPanel1);
@@ -442,64 +444,6 @@ public class Configuraciones extends javax.swing.JInternalFrame {
 
         jTabbedPane1.addTab("Datos Fiscales", jPanel2);
 
-        jPanel3.setBackground(new java.awt.Color(255, 255, 255));
-
-        jLabel2.setFont(new java.awt.Font("Arial", 1, 13)); // NOI18N
-        jLabel2.setText("Inicio de caja");
-
-        initialCash.setFont(new java.awt.Font("Arial", 0, 12)); // NOI18N
-
-        printTicket.setBackground(new java.awt.Color(255, 255, 255));
-        printTicket.setFont(new java.awt.Font("Ubuntu", 1, 17)); // NOI18N
-        printTicket.setSelected(true);
-
-        saveEditGeneralConfig.setFont(new java.awt.Font("Arial", 1, 18)); // NOI18N
-        saveEditGeneralConfig.setText("Guardar/Editar");
-        saveEditGeneralConfig.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                saveEditGeneralConfigActionPerformed(evt);
-            }
-        });
-
-        jLabel28.setFont(new java.awt.Font("Arial", 1, 13)); // NOI18N
-        jLabel28.setText("Imprimir ticket");
-
-        javax.swing.GroupLayout jPanel3Layout = new javax.swing.GroupLayout(jPanel3);
-        jPanel3.setLayout(jPanel3Layout);
-        jPanel3Layout.setHorizontalGroup(
-            jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(jPanel3Layout.createSequentialGroup()
-                .addGap(25, 25, 25)
-                .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(saveEditGeneralConfig, javax.swing.GroupLayout.PREFERRED_SIZE, 179, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addGroup(jPanel3Layout.createSequentialGroup()
-                        .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(jLabel2)
-                            .addComponent(jLabel28))
-                        .addGap(33, 33, 33)
-                        .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(printTicket)
-                            .addComponent(initialCash, javax.swing.GroupLayout.PREFERRED_SIZE, 113, javax.swing.GroupLayout.PREFERRED_SIZE))))
-                .addContainerGap(1071, Short.MAX_VALUE))
-        );
-        jPanel3Layout.setVerticalGroup(
-            jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(jPanel3Layout.createSequentialGroup()
-                .addGap(25, 25, 25)
-                .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jLabel2)
-                    .addComponent(initialCash, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addGap(18, 18, 18)
-                .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(printTicket)
-                    .addComponent(jLabel28))
-                .addGap(36, 36, 36)
-                .addComponent(saveEditGeneralConfig, javax.swing.GroupLayout.PREFERRED_SIZE, 51, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(424, Short.MAX_VALUE))
-        );
-
-        jTabbedPane1.addTab("Configuraciones Generales", jPanel3);
-
         jPanel5.setBackground(new java.awt.Color(255, 255, 255));
 
         jLabel6.setFont(new java.awt.Font("Arial", 1, 13)); // NOI18N
@@ -567,7 +511,6 @@ public class Configuraciones extends javax.swing.JInternalFrame {
 
         userCel.setFont(new java.awt.Font("Arial", 0, 12)); // NOI18N
 
-        userActive.setBackground(new java.awt.Color(255, 255, 255));
         userActive.setSelected(true);
         userActive.setMaximumSize(new java.awt.Dimension(50, 50));
         userActive.setMinimumSize(new java.awt.Dimension(50, 50));
@@ -758,6 +701,74 @@ public class Configuraciones extends javax.swing.JInternalFrame {
         );
 
         jTabbedPane1.addTab("Alta-Baja-Modificación Usuarios", jPanel4);
+
+        jPanel3.setBackground(new java.awt.Color(255, 255, 255));
+
+        jLabel2.setFont(new java.awt.Font("Arial", 1, 13)); // NOI18N
+        jLabel2.setText("Inicio de caja");
+
+        initialCash.setFont(new java.awt.Font("Arial", 0, 12)); // NOI18N
+
+        printTicket.setFont(new java.awt.Font("Ubuntu", 1, 17)); // NOI18N
+        printTicket.setSelected(true);
+
+        saveEditGeneralConfig.setFont(new java.awt.Font("Arial", 1, 18)); // NOI18N
+        saveEditGeneralConfig.setText("Guardar/Editar");
+        saveEditGeneralConfig.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                saveEditGeneralConfigActionPerformed(evt);
+            }
+        });
+
+        jLabel28.setFont(new java.awt.Font("Arial", 1, 13)); // NOI18N
+        jLabel28.setText("Imprimir ticket");
+
+        jLabel36.setFont(new java.awt.Font("Arial", 1, 13)); // NOI18N
+        jLabel36.setText("Preguntar con cuanto se inicia la caja al abrir modulo ventas");
+
+        javax.swing.GroupLayout jPanel3Layout = new javax.swing.GroupLayout(jPanel3);
+        jPanel3.setLayout(jPanel3Layout);
+        jPanel3Layout.setHorizontalGroup(
+            jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(jPanel3Layout.createSequentialGroup()
+                .addGap(25, 25, 25)
+                .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(jPanel3Layout.createSequentialGroup()
+                        .addComponent(jLabel36)
+                        .addGap(33, 33, 33)
+                        .addComponent(askMount))
+                    .addComponent(saveEditGeneralConfig, javax.swing.GroupLayout.PREFERRED_SIZE, 179, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addGroup(jPanel3Layout.createSequentialGroup()
+                        .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(jLabel2)
+                            .addComponent(jLabel28))
+                        .addGap(33, 33, 33)
+                        .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(printTicket)
+                            .addComponent(initialCash, javax.swing.GroupLayout.PREFERRED_SIZE, 113, javax.swing.GroupLayout.PREFERRED_SIZE))))
+                .addContainerGap(870, Short.MAX_VALUE))
+        );
+        jPanel3Layout.setVerticalGroup(
+            jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(jPanel3Layout.createSequentialGroup()
+                .addGap(25, 25, 25)
+                .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(jLabel2)
+                    .addComponent(initialCash, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGap(18, 18, 18)
+                .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(printTicket)
+                    .addComponent(jLabel28))
+                .addGap(18, 18, 18)
+                .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(jLabel36)
+                    .addComponent(askMount))
+                .addGap(31, 31, 31)
+                .addComponent(saveEditGeneralConfig, javax.swing.GroupLayout.PREFERRED_SIZE, 51, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addContainerGap(442, Short.MAX_VALUE))
+        );
+
+        jTabbedPane1.addTab("Configuraciones Generales", jPanel3);
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
@@ -1052,6 +1063,7 @@ public class Configuraciones extends javax.swing.JInternalFrame {
     private com.toedter.calendar.JDateChooser activityInitDate;
     private javax.swing.JButton addNewUser;
     private javax.swing.JTextField address;
+    private javax.swing.JCheckBox askMount;
     private com.toedter.calendar.JDateChooser birthDate;
     private javax.swing.JButton cleanData;
     private javax.swing.JTextField companyAddNumner;
@@ -1099,6 +1111,7 @@ public class Configuraciones extends javax.swing.JInternalFrame {
     private javax.swing.JLabel jLabel33;
     private javax.swing.JLabel jLabel34;
     private javax.swing.JLabel jLabel35;
+    private javax.swing.JLabel jLabel36;
     private javax.swing.JLabel jLabel4;
     private javax.swing.JLabel jLabel5;
     private javax.swing.JLabel jLabel6;

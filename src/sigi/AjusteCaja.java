@@ -396,6 +396,9 @@ public class AjusteCaja extends javax.swing.JInternalFrame {
             while(rs.next()){
                 idAjuste = rs.getInt("id_ajuste");
             }
+            if(idAjuste == 0) {
+                System.out.println("Es cero");
+            }
             BigDecimal auxEndDayTotal = new BigDecimal(endDayTotal.getText());
             BigDecimal auxDifferences = new BigDecimal(differences.getText());
             BigDecimal auxAdjustmentAmount = new BigDecimal(adjustmentAmount.getText());

@@ -230,6 +230,9 @@ public class AnularTicket extends javax.swing.JDialog {
     }//GEN-LAST:event_ticketNumberActionPerformed
 
     private void cancelTicketActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_cancelTicketActionPerformed
+        //System.out.println(Login.userRol);
+        //if(Login.userRol != 1) {
+        //}
         j = showArticles.getRowCount();
         if(j==0) {
             JOptionPane.showMessageDialog(null, "No hay ningun elemento  en la Tabla de Venta");

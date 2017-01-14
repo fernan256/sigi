@@ -3,6 +3,8 @@ package sigi;
 import Utils.ImprimirTicket;
 import Utils.Utils;
 import Connection.Conexion;
+import java.awt.Color;
+import java.awt.Dimension;
 import java.awt.Font;
 import java.awt.event.KeyEvent;
 import java.math.BigDecimal;
@@ -46,6 +48,12 @@ public class ModuloVenta extends javax.swing.JFrame {
     public ModuloVenta() {
         initComponents();
         this.setLocationRelativeTo(null);
+        this.getContentPane().setBackground(Color.ORANGE);
+        //this.setMinimumSize(new Dimension(800, 600));
+        int ancho = java.awt.Toolkit.getDefaultToolkit().getScreenSize().width;
+        int alto = java.awt.Toolkit.getDefaultToolkit().getScreenSize().height;
+        System.out.println(ancho);
+        System.out.println(alto);
     }
 
     @SuppressWarnings("unchecked")
@@ -69,10 +77,13 @@ public class ModuloVenta extends javax.swing.JFrame {
         cashWithdrawal = new javax.swing.JButton();
         searchArticles = new javax.swing.JButton();
         printTicketFont = new javax.swing.JLabel();
+        buyWithBoxMoney = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
-        setBackground(new java.awt.Color(255, 255, 255));
+        setTitle("Ventas");
+        setBackground(java.awt.Color.orange);
         setCursor(new java.awt.Cursor(java.awt.Cursor.DEFAULT_CURSOR));
+        setForeground(new java.awt.Color(248, 164, 14));
         setMinimumSize(new java.awt.Dimension(880, 610));
         setUndecorated(true);
         setResizable(false);
@@ -114,7 +125,6 @@ public class ModuloVenta extends javax.swing.JFrame {
         });
         getContentPane().add(printTicket, new org.netbeans.lib.awtextra.AbsoluteConstraints(380, 540, 210, 60));
 
-        closeDay.setBackground(new java.awt.Color(255, 255, 255));
         closeDay.setIcon(new javax.swing.ImageIcon(getClass().getResource("/imagenes/close.png"))); // NOI18N
         closeDay.setBorderPainted(false);
         closeDay.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
@@ -223,7 +233,7 @@ public class ModuloVenta extends javax.swing.JFrame {
                 returnsActionPerformed(evt);
             }
         });
-        getContentPane().add(returns, new org.netbeans.lib.awtextra.AbsoluteConstraints(460, 620, -1, -1));
+        getContentPane().add(returns, new org.netbeans.lib.awtextra.AbsoluteConstraints(350, 620, -1, -1));
 
         cancelTicket.setFont(new java.awt.Font("Arial", 0, 11)); // NOI18N
         cancelTicket.setIcon(new javax.swing.ImageIcon(getClass().getResource("/imagenes/cancelTicket.png"))); // NOI18N
@@ -234,7 +244,7 @@ public class ModuloVenta extends javax.swing.JFrame {
                 cancelTicketActionPerformed(evt);
             }
         });
-        getContentPane().add(cancelTicket, new org.netbeans.lib.awtextra.AbsoluteConstraints(290, 620, -1, -1));
+        getContentPane().add(cancelTicket, new org.netbeans.lib.awtextra.AbsoluteConstraints(180, 620, -1, -1));
 
         cashWithdrawal.setFont(new java.awt.Font("Arial", 0, 11)); // NOI18N
         cashWithdrawal.setIcon(new javax.swing.ImageIcon(getClass().getResource("/imagenes/cahsPayment.png"))); // NOI18N
@@ -245,7 +255,7 @@ public class ModuloVenta extends javax.swing.JFrame {
                 cashWithdrawalActionPerformed(evt);
             }
         });
-        getContentPane().add(cashWithdrawal, new org.netbeans.lib.awtextra.AbsoluteConstraints(160, 620, -1, -1));
+        getContentPane().add(cashWithdrawal, new org.netbeans.lib.awtextra.AbsoluteConstraints(50, 620, -1, -1));
 
         searchArticles.setIcon(new javax.swing.ImageIcon(getClass().getResource("/imagenes/searchArt.png"))); // NOI18N
         searchArticles.setText("Buscar Articulos");
@@ -259,6 +269,17 @@ public class ModuloVenta extends javax.swing.JFrame {
 
         printTicketFont.setFont(new java.awt.Font("Times New Roman", 0, 10)); // NOI18N
         getContentPane().add(printTicketFont, new org.netbeans.lib.awtextra.AbsoluteConstraints(620, 70, 50, 10));
+
+        buyWithBoxMoney.setFont(new java.awt.Font("Open Sans", 0, 11)); // NOI18N
+        buyWithBoxMoney.setIcon(new javax.swing.ImageIcon(getClass().getResource("/imagenes/cahsPayment.png"))); // NOI18N
+        buyWithBoxMoney.setText("Uso de efectivo de caja");
+        buyWithBoxMoney.setBorderPainted(false);
+        buyWithBoxMoney.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                buyWithBoxMoneyActionPerformed(evt);
+            }
+        });
+        getContentPane().add(buyWithBoxMoney, new org.netbeans.lib.awtextra.AbsoluteConstraints(530, 620, -1, -1));
 
         pack();
         setLocationRelativeTo(null);
@@ -417,11 +438,17 @@ public class ModuloVenta extends javax.swing.JFrame {
             BuscarArticulos.fillInTable = 0;
         }
     }//GEN-LAST:event_searchArticlesActionPerformed
+
+    private void buyWithBoxMoneyActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_buyWithBoxMoneyActionPerformed
+        ComprasDesdeCaja compras = new ComprasDesdeCaja(this, true);
+        compras.setVisible(true);
+    }//GEN-LAST:event_buyWithBoxMoneyActionPerformed
       
     public void salesFunction(int saleTypo) {
         String ticket = "";
         String ticketNumber = "";
-        String cash = ""; 
+        String cash = "";
+        String postalCode = "";
         BigDecimal cashPayment = BigDecimal.ZERO;
         BigDecimal exchange = BigDecimal.ZERO;
         BigDecimal totalAccount = BigDecimal.ZERO;
@@ -473,6 +500,9 @@ public class ModuloVenta extends javax.swing.JFrame {
                         }
                         nuevoStock[i] = cantidadStock[i].subtract(cantidadVenta[i]);
                         guardarStock[i] = Integer.parseInt(nuevoStock[i].toString());
+                        System.out.println(nuevoStock[i]);
+                        System.out.println(guardarStock[i]);
+                        System.out.println(idArticulos[i]);
                         String updateStockStatus = "UPDATE stock SET saldo_stock = "+guardarStock[i]+" WHERE id_articulo ="+idArticulos[i]+"";
                         con.ejecutar(updateStockStatus);
                         String insertStockMovement = "INSERT INTO movimiento_stock (fecha_movimiento_stock, salida, stock_id_stock) VALUES (CURRENT_TIMESTAMP, "+cantidadVenta[i]+", "+stockIdToSave[i]+")";
@@ -587,6 +617,7 @@ public class ModuloVenta extends javax.swing.JFrame {
                                             salto+"--------------------------------"+
                                             salto+"FACTURA NO FISCAL";
                         JOptionPane.showMessageDialog(null, "Venta Realizada"+salto+salto+"Total a Cobrar: $ "+getTotalVentas+salto+"Cambio: $ "+exchange);
+                        postalCode = JOptionPane.showInputDialog(null, "Codigo Postal: 0000");
                     } else{
                         //cambiar total de estado cuenta
                         ticket = ticketHeader+ticketBody+
@@ -614,7 +645,7 @@ public class ModuloVenta extends javax.swing.JFrame {
                             System.out.println(print);
                         }
                     }
-                    String salesDone = "UPDATE detalle_venta SET estado_venta_id_estado_venta = 2, pago_con = "+cashPayment+", vuelto = "+exchange+", cuenta_corriente_id = "+ctaCteId+" WHERE ventas_id_venta = "+saleId;
+                    String salesDone = "UPDATE detalle_venta SET estado_venta_id_estado_venta = 2, pago_con = "+cashPayment+", vuelto = "+exchange+", cuenta_corriente_id = "+ctaCteId+", codigo_postal = "+postalCode+" WHERE ventas_id_venta = "+saleId;
                     con.ejecutar(salesDone);
                     total = BigDecimal.ZERO;
                     scanning.setText("");
@@ -707,6 +738,7 @@ public class ModuloVenta extends javax.swing.JFrame {
     
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton borrarTodo;
+    private javax.swing.JButton buyWithBoxMoney;
     private javax.swing.JButton cancelTicket;
     private javax.swing.JButton cashWithdrawal;
     public javax.swing.JButton closeDay;

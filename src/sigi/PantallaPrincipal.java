@@ -23,13 +23,15 @@ public class PantallaPrincipal extends javax.swing.JFrame {
     static int j=0; 
     static float total=0;
     int userId = Login.userId;
-    private Dimension dim;
     
     public PantallaPrincipal() {         
         initComponents();
-        showAdminName.setText("Admin: "+Login.userName);
+        showAdminName.setText(Login.userName);
         this.setLocationRelativeTo(null);
         this.setExtendedState(JFrame.MAXIMIZED_BOTH);
+        //int ancho = java.awt.Toolkit.getDefaultToolkit().getScreenSize().width;
+        //int alto = java.awt.Toolkit.getDefaultToolkit().getScreenSize().height;
+        //this.setBounds(j, j, ancho, alto);
     }
 
     @SuppressWarnings("unchecked")
@@ -44,6 +46,8 @@ public class PantallaPrincipal extends javax.swing.JFrame {
         openHelp = new javax.swing.JButton();
         showAdminName = new javax.swing.JLabel();
         jLabel1 = new javax.swing.JLabel();
+        viewPrices = new javax.swing.JButton();
+        technicServices = new javax.swing.JButton();
         backgroundImage = new javax.swing.JLabel();
         jMenuBar1 = new javax.swing.JMenuBar();
         changePasswordMenu = new javax.swing.JMenu();
@@ -52,7 +56,7 @@ public class PantallaPrincipal extends javax.swing.JFrame {
         exit = new javax.swing.JMenuItem();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
-        setTitle("Principal");
+        setTitle("Principal Administrador");
         setName("pantallaPrincipal"); // NOI18N
         setSize(new java.awt.Dimension(1024, 768));
         getContentPane().setLayout(null);
@@ -84,7 +88,15 @@ public class PantallaPrincipal extends javax.swing.JFrame {
         treeNode2.add(treeNode3);
         treeNode3 = new javax.swing.tree.DefaultMutableTreeNode("Stock");
         treeNode2.add(treeNode3);
+        treeNode3 = new javax.swing.tree.DefaultMutableTreeNode("Sacar faltante Stock");
+        treeNode2.add(treeNode3);
         treeNode3 = new javax.swing.tree.DefaultMutableTreeNode("Importar/Exportar Articulos");
+        treeNode2.add(treeNode3);
+        treeNode1.add(treeNode2);
+        treeNode2 = new javax.swing.tree.DefaultMutableTreeNode("Servicio Tecnico");
+        treeNode3 = new javax.swing.tree.DefaultMutableTreeNode("Alta Servicio");
+        treeNode2.add(treeNode3);
+        treeNode3 = new javax.swing.tree.DefaultMutableTreeNode("Ver servicios");
         treeNode2.add(treeNode3);
         treeNode1.add(treeNode2);
         treeNode2 = new javax.swing.tree.DefaultMutableTreeNode("Ordenes de Compras");
@@ -97,6 +109,10 @@ public class PantallaPrincipal extends javax.swing.JFrame {
         treeNode1.add(treeNode2);
         treeNode2 = new javax.swing.tree.DefaultMutableTreeNode("Ajustes");
         treeNode3 = new javax.swing.tree.DefaultMutableTreeNode("Caja");
+        treeNode2.add(treeNode3);
+        treeNode1.add(treeNode2);
+        treeNode2 = new javax.swing.tree.DefaultMutableTreeNode("Cierres");
+        treeNode3 = new javax.swing.tree.DefaultMutableTreeNode("Ver cierres");
         treeNode2.add(treeNode3);
         treeNode1.add(treeNode2);
         treeNode2 = new javax.swing.tree.DefaultMutableTreeNode("Clientes");
@@ -146,7 +162,6 @@ public class PantallaPrincipal extends javax.swing.JFrame {
         getContentPane().add(jScrollPane2);
         jScrollPane2.setBounds(20, 140, 210, 540);
 
-        moduloVentaAdmin.setBackground(new java.awt.Color(255, 255, 255));
         moduloVentaAdmin.setIcon(new javax.swing.ImageIcon(getClass().getResource("/imagenes/carritoVentas.png"))); // NOI18N
         moduloVentaAdmin.setText("Modulo Ventas");
         moduloVentaAdmin.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
@@ -158,9 +173,8 @@ public class PantallaPrincipal extends javax.swing.JFrame {
             }
         });
         getContentPane().add(moduloVentaAdmin);
-        moduloVentaAdmin.setBounds(20, 5, 400, 65);
+        moduloVentaAdmin.setBounds(20, 5, 245, 65);
 
-        openHelp.setBackground(new java.awt.Color(255, 255, 255));
         openHelp.setIcon(new javax.swing.ImageIcon(getClass().getResource("/imagenes/info.jpg"))); // NOI18N
         openHelp.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
         openHelp.addActionListener(new java.awt.event.ActionListener() {
@@ -174,18 +188,37 @@ public class PantallaPrincipal extends javax.swing.JFrame {
         showAdminName.setFont(new java.awt.Font("Arial", 1, 24)); // NOI18N
         showAdminName.setForeground(new java.awt.Color(255, 255, 255));
         getContentPane().add(showAdminName);
-        showAdminName.setBounds(520, 30, 390, 30);
+        showAdminName.setBounds(760, 20, 140, 30);
 
         jLabel1.setFont(new java.awt.Font("Arial", 1, 24)); // NOI18N
         jLabel1.setForeground(new java.awt.Color(227, 243, 253));
         jLabel1.setText("Modulos");
         getContentPane().add(jLabel1);
-        jLabel1.setBounds(20, 100, 248, 29);
+        jLabel1.setBounds(20, 100, 200, 29);
+
+        viewPrices.setText("VER PRECIOS");
+        viewPrices.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                viewPricesActionPerformed(evt);
+            }
+        });
+        getContentPane().add(viewPrices);
+        viewPrices.setBounds(280, 5, 245, 65);
+
+        technicServices.setText("Servicio Tecnico");
+        technicServices.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                technicServicesActionPerformed(evt);
+            }
+        });
+        getContentPane().add(technicServices);
+        technicServices.setBounds(540, 5, 245, 65);
 
         backgroundImage.setIcon(new javax.swing.ImageIcon(getClass().getResource("/imagenes/blue_3_by_astoyanov.png"))); // NOI18N
+        backgroundImage.setFocusable(false);
         backgroundImage.setPreferredSize(new java.awt.Dimension(1200, 700));
         getContentPane().add(backgroundImage);
-        backgroundImage.setBounds(-60, 0, 1130, 768);
+        backgroundImage.setBounds(0, 0, 1200, 700);
 
         changePasswordMenu.setText("Modificar");
 
@@ -237,6 +270,9 @@ public class PantallaPrincipal extends javax.swing.JFrame {
     ReporteStock objIC21 = new ReporteStock();
     ImportarExportarArticulos objIC22 = new ImportarExportarArticulos();
     ImportarExportarClientes objIC23 = new ImportarExportarClientes();
+    FaltantesStock objIC24 = new FaltantesStock();
+    ABMServicioTecnico objIC25 = new ABMServicioTecnico();
+    ViewClosingInformation objIC26 = new ViewClosingInformation();
 
     private void jTree1MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jTree1MouseClicked
         //Evitar el java.lang.NullPointerException del jtree cuando se hace clic fuera del mismo
@@ -270,6 +306,22 @@ public class PantallaPrincipal extends javax.swing.JFrame {
                     objIC14.setSize(desktopPane.getSize());
                 }
                 break;
+            case "Sacar faltante Stock":
+                if(objIC24.isShowing() == true){
+                    try {
+                        objIC24.setSelected(true);
+                    } catch (PropertyVetoException ex) {
+                        Logger.getLogger(PantallaPrincipal.class.getName()).log(Level.SEVERE, null, ex);
+                    }
+                }else{
+                    //objIC24.cle();
+                    desktopPane.add(objIC24);
+                    objIC24.show();
+                    objIC24.setSize(desktopPane.getSize());
+                }
+                //FaltanteStock faltante = new FaltanteStock(this, true);
+                //faltante.setVisible(true);
+                break;
             case "Importar/Exportar Articulos":
                 if(objIC22.isShowing() == true){
                     try {
@@ -282,6 +334,20 @@ public class PantallaPrincipal extends javax.swing.JFrame {
                     desktopPane.add(objIC22);
                     objIC22.show();
                     objIC22.setSize(desktopPane.getSize());
+                }
+                break;
+            case "Alta Servicio":
+                if(objIC25.isShowing() == true){
+                    try {
+                        objIC25.setSelected(true);
+                    } catch (PropertyVetoException ex) {
+                        Logger.getLogger(PantallaPrincipal.class.getName()).log(Level.SEVERE, null, ex);
+                    }
+                }else{
+                    //objIC25.clearCrudArticlesFields();
+                    desktopPane.add(objIC25);
+                    objIC25.show();
+                    objIC25.setSize(desktopPane.getSize());
                 }
                 break;
             case "Orden de Compra":
@@ -338,6 +404,20 @@ public class PantallaPrincipal extends javax.swing.JFrame {
                     desktopPane.add(objIC5);
                     objIC5.show();
                     objIC5.setSize(desktopPane.getSize());
+                }
+                break;
+            case "Ver cierres":
+                if(objIC26.isShowing() == true){
+                    try {
+                        objIC26.setSelected(true);
+                    } catch (PropertyVetoException ex) {
+                        Logger.getLogger(PantallaPrincipal.class.getName()).log(Level.SEVERE, null, ex);
+                    }
+                }else{
+                    //objIC26.clearAdjustmentPOSFields();
+                    desktopPane.add(objIC26);
+                    objIC26.show();
+                    objIC26.setSize(desktopPane.getSize());
                 }
                 break;
             case "ABM Cliente":
@@ -497,7 +577,8 @@ public class PantallaPrincipal extends javax.swing.JFrame {
             while(rs.next()) {
                 openCash = rs.getInt("caja_inicial");
             }
-            String apertura = "INSERT INTO caja (fecha_apertura, apertura, fecha_cierre, id_usuario, estado) VALUES (CURRENT_TIMESTAMP, '"+openCash+"', 0, '"+Login.userId+"', 1)";
+            //String apertura = "INSERT INTO caja (fecha_apertura, apertura, fecha_cierre, id_usuario, estado) VALUES (CURRENT_TIMESTAMP, '"+openCash+"', CURRENT_TIMESTAMP, '"+Login.userId+"', 1)";
+            String apertura = "INSERT INTO caja (fecha_apertura, apertura, id_usuario, estado) VALUES (CURRENT_TIMESTAMP, '"+openCash+"', '"+Login.userId+"', 1)";
             con.ejecutar(apertura);
             moduloVentaAdmin.setEnabled(false);
             ModuloVenta venta = new ModuloVenta();
@@ -579,6 +660,35 @@ public class PantallaPrincipal extends javax.swing.JFrame {
         help.setVisible(true);
     }//GEN-LAST:event_openHelpActionPerformed
 
+    private void viewPricesActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_viewPricesActionPerformed
+        VerPrecios viewPrices = new VerPrecios(this, true);
+        viewPrices.setVisible(true);
+        //if(VerPrecios.fillInTable == 1){
+//            fillInTableData();
+//            BuscarArticulos.fillInTable = 0;
+//        }
+    }//GEN-LAST:event_viewPricesActionPerformed
+
+    private void technicServicesActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_technicServicesActionPerformed
+        //try {
+            //int openCash = 0;
+            //String getOpeningCash = "SELECT caja_inicial FROM configuracion_inicial WHERE id_configuracion_inicial = 1"; 
+            //rs = con.Consulta(getOpeningCash);
+            //while(rs.next()) {
+//                openCash = rs.getInt("caja_inicial");
+//            }
+            //String apertura = "INSERT INTO caja (fecha_apertura, apertura, fecha_cierre, id_usuario, estado) VALUES (CURRENT_TIMESTAMP, '"+openCash+"', CURRENT_TIMESTAMP, '"+Login.userId+"', 1)";
+//            String apertura = "INSERT INTO caja (fecha_apertura, apertura, id_usuario, estado) VALUES (CURRENT_TIMESTAMP, '"+openCash+"', '"+Login.userId+"', 1)";
+//            con.ejecutar(apertura);
+            //moduloVentaAdmin.setEnabled(false);
+            CRUDServices services = new CRUDServices();
+            services.setVisible(true);
+            //con.Cerrar();
+        //} catch (SQLException ex) {
+//            Logger.getLogger(CRUDServices.class.getName()).log(Level.SEVERE, null, ex);
+//        }   
+    }//GEN-LAST:event_technicServicesActionPerformed
+
     /**
     * @param args the command line arguments
     */
@@ -608,6 +718,8 @@ public class PantallaPrincipal extends javax.swing.JFrame {
     public static javax.swing.JButton moduloVentaAdmin;
     private javax.swing.JButton openHelp;
     private javax.swing.JLabel showAdminName;
+    private javax.swing.JButton technicServices;
+    private javax.swing.JButton viewPrices;
     // End of variables declaration//GEN-END:variables
   
 }

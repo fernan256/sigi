@@ -22,7 +22,7 @@ import jxl.Sheet;
 import jxl.Workbook;
 import jxl.read.biff.BiffException;
 
-public class ImportarExportarArticulos extends javax.swing.JInternalFrame {
+public class ImportarExportarArticulos extends javax.swing.JInternalFrame implements Runnable{
     Conexion con;
     ResultSet rs;
     private int j = 0;
@@ -30,6 +30,10 @@ public class ImportarExportarArticulos extends javax.swing.JInternalFrame {
     private JFileChooser FileChooser = new JFileChooser();
     private Vector columna = new Vector();
     private Vector filas = new Vector();
+    Thread carga;
+    Thread carga2;
+    public int c1 = 0;
+    public int c2 = 0;
     
     public ImportarExportarArticulos() {
         initComponents();
@@ -44,6 +48,7 @@ public class ImportarExportarArticulos extends javax.swing.JInternalFrame {
         exportAll = new javax.swing.JButton();
         importFromExcel = new javax.swing.JButton();
         cleanTable = new javax.swing.JButton();
+        jButton1 = new javax.swing.JButton();
 
         setBackground(new java.awt.Color(255, 255, 255));
         setClosable(true);
@@ -108,6 +113,13 @@ public class ImportarExportarArticulos extends javax.swing.JInternalFrame {
             }
         });
 
+        jButton1.setText("jButton1");
+        jButton1.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton1ActionPerformed(evt);
+            }
+        });
+
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
@@ -121,8 +133,10 @@ public class ImportarExportarArticulos extends javax.swing.JInternalFrame {
                         .addGap(30, 30, 30)
                         .addComponent(importFromExcel, javax.swing.GroupLayout.PREFERRED_SIZE, 203, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addGap(30, 30, 30)
-                        .addComponent(cleanTable)))
-                .addGap(175, 175, 175))
+                        .addComponent(cleanTable)
+                        .addGap(33, 33, 33)
+                        .addComponent(jButton1)))
+                .addGap(151, 151, 151))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -132,7 +146,8 @@ public class ImportarExportarArticulos extends javax.swing.JInternalFrame {
                     .addComponent(exportAll, javax.swing.GroupLayout.DEFAULT_SIZE, 46, Short.MAX_VALUE)
                     .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                         .addComponent(importFromExcel, javax.swing.GroupLayout.DEFAULT_SIZE, 46, Short.MAX_VALUE)
-                        .addComponent(cleanTable, javax.swing.GroupLayout.DEFAULT_SIZE, 42, Short.MAX_VALUE)))
+                        .addComponent(cleanTable, javax.swing.GroupLayout.DEFAULT_SIZE, 42, Short.MAX_VALUE)
+                        .addComponent(jButton1)))
                 .addGap(35, 35, 35)
                 .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 359, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(163, 163, 163))
@@ -200,6 +215,14 @@ public class ImportarExportarArticulos extends javax.swing.JInternalFrame {
         cleanImportExportFields();
     }//GEN-LAST:event_cleanTableActionPerformed
 
+    private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
+        carga = new Thread(this);
+        carga2 = new Thread(this);
+        
+        carga.start();
+        carga2.start();
+    }//GEN-LAST:event_jButton1ActionPerformed
+
     public void CrearTabla(File file) throws IOException {
         Workbook workbook = null;
         importExportModel = new DefaultTableModel();
@@ -250,6 +273,14 @@ public class ImportarExportarArticulos extends javax.swing.JInternalFrame {
                         String insertInToStock;
                         for (int i=0; i<j; i++) {
                             scanning[i] = new BigDecimal(Utils.objectToString(importExportTable.getValueAt(i, 0)));
+                            System.out.println(scanning[i]);
+                            String searchItems = "SELECT * FROM descripcion_articulos WHERE scanning = '"+scanning[i]+"'";
+                            rs = con.Consulta(searchItems);
+                            while(rs.next()){
+                                if(scanning[i] != null) {
+                                    System.out.println("True");
+                                }
+                            }
                             articleName[i] = Utils.objectToString(importExportTable.getValueAt(i, 1));
                             articleBrand[i]= Utils.objectToString(importExportTable.getValueAt(i, 2));
                             costPrice[i] = new BigDecimal(Utils.objectToString(importExportTable.getValueAt(i, 3)));
@@ -257,24 +288,24 @@ public class ImportarExportarArticulos extends javax.swing.JInternalFrame {
                             stock[i] = new BigDecimal(Utils.objectToString(importExportTable.getValueAt(i, 5)));
                             stockMin[i] = new BigDecimal(Utils.objectToString(importExportTable.getValueAt(i, 6)));
                             articleType[i] = Integer.parseInt(Utils.objectToString(importExportTable.getValueAt(i, 7)));
-                            String insertArticulos = "INSERT INTO descripcion_articulos (scanning, nombre_producto, marca, precio_costo, precio_venta, tipo_articulo_id) VALUES ('"+scanning[i]+"', '"+articleName[i]+"', '"+articleBrand[i]+"', '"+costPrice[i]+"','"+salesPrice[i]+"', '"+articleType[i]+"')";
-                            con.ejecutar(insertArticulos);
-                            String getArticuloId = "SELECT LAST_INSERT_ID() AS id_articulo";
-                            rs = con.Consulta(getArticuloId);
-                            while (rs.next()) {
-                                articuloId = rs.getInt("id_articulo");
-                            }
-                            insertInToStock = "INSERT INTO stock(id_articulo, saldo_stock, stock_min) VALUES ('"+articuloId+"','"+stock[i]+"', '"+stockMin[i]+"')";
-                            con.ejecutar(insertInToStock);
-                            String getStockId = "SELECT LAST_INSERT_ID() AS id_stock FROM stock"; 
-                            rs = con.Consulta(getStockId);
-                            while(rs.next()) {
-                                stockId = rs.getInt("id_stock");
-                            }
-                            String updateArticulos = "UPDATE descripcion_articulos SET stock_id_stock = "+stockId+" WHERE id_articulo = "+articuloId+"";
-                            con.ejecutar(updateArticulos);
-                            String insertStockMovement = "INSERT INTO movimiento_stock (fecha_movimiento_stock, entrada, stock_id_stock) VALUES (CURRENT_TIMESTAMP, "+stock[i]+", '"+stockId+"')";
-                            con.ejecutar(insertStockMovement);
+                            //String insertArticulos = "INSERT INTO descripcion_articulos (scanning, nombre_producto, marca, precio_costo, precio_venta, tipo_articulo_id) VALUES ('"+scanning[i]+"', '"+articleName[i]+"', '"+articleBrand[i]+"', '"+costPrice[i]+"','"+salesPrice[i]+"', '"+articleType[i]+"')";
+                            //con.ejecutar(insertArticulos);
+                            //String getArticuloId = "SELECT LAST_INSERT_ID() AS id_articulo";
+                            //rs = con.Consulta(getArticuloId);
+                            //while (rs.next()) {
+//                                articuloId = rs.getInt("id_articulo");
+//                            }
+//                            insertInToStock = "INSERT INTO stock(id_articulo, saldo_stock, stock_min) VALUES ('"+articuloId+"','"+stock[i]+"', '"+stockMin[i]+"')";
+//                            con.ejecutar(insertInToStock);
+//                            String getStockId = "SELECT LAST_INSERT_ID() AS id_stock FROM stock"; 
+//                            rs = con.Consulta(getStockId);
+//                            while(rs.next()) {
+//                                stockId = rs.getInt("id_stock");
+//                            }
+//                            String updateArticulos = "UPDATE descripcion_articulos SET stock_id_stock = "+stockId+" WHERE id_articulo = "+articuloId+"";
+//                            con.ejecutar(updateArticulos);
+//                            String insertStockMovement = "INSERT INTO movimiento_stock (fecha_movimiento_stock, entrada, stock_id_stock) VALUES (CURRENT_TIMESTAMP, "+stock[i]+", '"+stockId+"')";
+//                          con.ejecutar(insertStockMovement);
                         }
                         con.Cerrar();
                     } catch (ClassNotFoundException | SQLException | InstantiationException | IllegalAccessException ex) {
@@ -288,16 +319,51 @@ public class ImportarExportarArticulos extends javax.swing.JInternalFrame {
             e.printStackTrace();
         }
     }
+    //private static updateArticle(){
+       
+    //}
+    //private static createArticle(){
+        
+    //}
     public void cleanImportExportFields(){
         DefaultTableModel deleteTable = (DefaultTableModel) importExportTable.getModel();
         deleteTable.setRowCount(0);
         j = 0;
+    }
+    public void corredor1 (){
+        c1++;
+    }
+    public void corredor2() {
+        c2++;
     }
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton cleanTable;
     private javax.swing.JButton exportAll;
     private javax.swing.JTable importExportTable;
     private javax.swing.JButton importFromExcel;
+    private javax.swing.JButton jButton1;
     private javax.swing.JScrollPane jScrollPane1;
     // End of variables declaration//GEN-END:variables
+
+    @Override
+    public void run() {
+        //throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+        Thread ct = Thread.currentThread();
+ 
+        while (ct == carga) {
+        
+            corredor1();
+    
+            System.out.println("Corredor 1: " + c1);
+            if(c1 == 350000) {
+                JOptionPane.showMessageDialog(null, "Termino proceso carga");
+            }
+ 
+        }
+        
+        while (ct == carga2) {            
+            corredor2();
+            System.out.println("Corredor 2: " + c2);
+        }
+    }
 }

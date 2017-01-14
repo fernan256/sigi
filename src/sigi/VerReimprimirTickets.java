@@ -203,14 +203,27 @@ public class VerReimprimirTickets extends javax.swing.JInternalFrame {
                         price = new BigDecimal(salesPrice.get(i)).multiply(new BigDecimal(salesQuantity.get(i))).divide(new BigDecimal(1000)).setScale(2, RoundingMode.CEILING);
                     }
                     if(discount != new BigDecimal(0.00).setScale(2, RoundingMode.CEILING)) {
-                        ticketBody = ticketBody+salto+salesQuantity.get(i)+" x "+salesPrice.get(i)+
+                        if(articleName.get(i).length() > 4 && articleBrand.get(i).length() > 4) {
+                            ticketBody = ticketBody+salto+salesQuantity.get(i)+" x "+salesPrice.get(i)+
                                    salto+scanning.get(i)+" "+articleName.get(i).substring(0, 4)+" "+articleBrand.get(i).substring(0, 4)+"\t"+price+""+
                                    salto+"...";
+                        } else {
+                            ticketBody = ticketBody+salto+salesQuantity.get(i)+" x "+salesPrice.get(i)+
+                                   salto+scanning.get(i)+" "+articleName.get(i)+" "+articleBrand.get(i)+"\t"+price+""+
+                                   salto+"...";
+                        }
                     } else {
-                        ticketBody = ticketBody+salto+salesQuantity.get(i)+" x "+salesPrice.get(i)+
+                        if(articleName.get(i).length() > 4 && articleBrand.get(i).length() > 4) {
+                            ticketBody = ticketBody+salto+salesQuantity.get(i)+" x "+salesPrice.get(i)+
                                 salto+scanning.get(i)+" "+articleName.get(i).substring(0, 4)+" "+articleBrand.get(i).substring(0, 4)+"\t"+price+""+
                                 salto+"BONIFICACION\t\t-"+discount+
                                 salto+"...";
+                        } else {
+                            ticketBody = ticketBody+salto+salesQuantity.get(i)+" x "+salesPrice.get(i)+
+                                salto+scanning.get(i)+" "+articleName.get(i)+" "+articleBrand.get(i)+"\t"+price+""+
+                                salto+"BONIFICACION\t\t-"+discount+
+                                salto+"...";
+                        }
                     }                 
                 }
                 if(paymentWay == 1) {
@@ -255,6 +268,7 @@ public class VerReimprimirTickets extends javax.swing.JInternalFrame {
         int print = ImprimirTicket.printTicket(ticket);
         if(print == 1) {
             ticket = null;
+            clearReprintTicket();
         } else {
             System.out.println(print);
         }
@@ -269,6 +283,7 @@ public class VerReimprimirTickets extends javax.swing.JInternalFrame {
         showTicket.setText("");
         ticketStatus.setText("");
         ticket = null;
+        ticketToSearch.requestFocus();
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables

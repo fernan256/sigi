@@ -9,13 +9,13 @@ import java.util.logging.Level;
 import java.util.logging.Logger;
 import javax.swing.table.DefaultTableModel;
 
-public class BuscarArticulos extends javax.swing.JDialog {
+public class VerPrecios extends javax.swing.JDialog {
     
     Conexion con;
     ResultSet rs;
     public static int fillInTable = 0;
     private int j = 0;
-    public BuscarArticulos(java.awt.Frame parent, boolean modal) {
+    public VerPrecios(java.awt.Frame parent, boolean modal) {
         super(parent, modal);
         initComponents();
         this.setLocationRelativeTo(null);
@@ -34,10 +34,11 @@ public class BuscarArticulos extends javax.swing.JDialog {
         setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
         setBackground(new java.awt.Color(255, 255, 255));
 
-        jLabel1.setFont(new java.awt.Font("Arial", 1, 16)); // NOI18N
+        jLabel1.setFont(new java.awt.Font("Arial", 1, 24)); // NOI18N
         jLabel1.setText("Nombre Articulo");
 
-        productName.setFont(new java.awt.Font("Arial", 0, 12)); // NOI18N
+        productName.setFont(new java.awt.Font("Arial", 1, 24)); // NOI18N
+        productName.setForeground(new java.awt.Color(246, 17, 17));
         productName.addKeyListener(new java.awt.event.KeyAdapter() {
             public void keyReleased(java.awt.event.KeyEvent evt) {
                 productNameKeyReleased(evt);
@@ -52,6 +53,7 @@ public class BuscarArticulos extends javax.swing.JDialog {
             }
         });
 
+        resultTable.setFont(new java.awt.Font("Arial", 0, 18)); // NOI18N
         resultTable.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
                 {},
@@ -81,7 +83,8 @@ public class BuscarArticulos extends javax.swing.JDialog {
                     .addGroup(layout.createSequentialGroup()
                         .addComponent(jLabel1)
                         .addGap(32, 32, 32)
-                        .addComponent(productName, javax.swing.GroupLayout.PREFERRED_SIZE, 290, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                        .addComponent(productName, javax.swing.GroupLayout.PREFERRED_SIZE, 424, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(0, 0, Short.MAX_VALUE)))
                 .addContainerGap())
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
                 .addContainerGap(429, Short.MAX_VALUE)
@@ -94,12 +97,12 @@ public class BuscarArticulos extends javax.swing.JDialog {
                 .addGap(17, 17, 17)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel1)
-                    .addComponent(productName, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(productName, javax.swing.GroupLayout.PREFERRED_SIZE, 41, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addGap(18, 18, 18)
                 .addComponent(jScrollPane2, javax.swing.GroupLayout.PREFERRED_SIZE, 278, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(18, 18, 18)
                 .addComponent(jButton2, javax.swing.GroupLayout.PREFERRED_SIZE, 56, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(99, Short.MAX_VALUE))
+                .addContainerGap(85, Short.MAX_VALUE))
         );
 
         pack();
@@ -181,7 +184,7 @@ public class BuscarArticulos extends javax.swing.JDialog {
     }//GEN-LAST:event_jButton2ActionPerformed
 
     private void resultTableMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_resultTableMouseClicked
-        int aux = resultTable.getSelectedRow();
+        /*int aux = resultTable.getSelectedRow();
         if (aux != -1) {
             ModuloVenta.codigo = resultTable.getValueAt(aux, 0).toString();
             ModuloVenta.nombre = resultTable.getValueAt(aux, 1).toString();
@@ -193,7 +196,7 @@ public class BuscarArticulos extends javax.swing.JDialog {
             ModuloVenta.stockId = (int) resultTable.getValueAt(aux, 7);
             fillInTable = 1;
             this.dispose();
-        }
+        }*/
     }//GEN-LAST:event_resultTableMouseClicked
 
     /**
@@ -213,20 +216,21 @@ public class BuscarArticulos extends javax.swing.JDialog {
                 }
             }
         } catch (ClassNotFoundException ex) {
-            java.util.logging.Logger.getLogger(BuscarArticulos.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(VerPrecios.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         } catch (InstantiationException ex) {
-            java.util.logging.Logger.getLogger(BuscarArticulos.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(VerPrecios.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         } catch (IllegalAccessException ex) {
-            java.util.logging.Logger.getLogger(BuscarArticulos.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(VerPrecios.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         } catch (javax.swing.UnsupportedLookAndFeelException ex) {
-            java.util.logging.Logger.getLogger(BuscarArticulos.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(VerPrecios.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         }
+        //</editor-fold>
         //</editor-fold>
 
         /* Create and display the dialog */
         java.awt.EventQueue.invokeLater(new Runnable() {
             public void run() {
-                BuscarArticulos dialog = new BuscarArticulos(new javax.swing.JFrame(), true);
+                VerPrecios dialog = new VerPrecios(new javax.swing.JFrame(), true);
                 dialog.addWindowListener(new java.awt.event.WindowAdapter() {
                     @Override
                     public void windowClosing(java.awt.event.WindowEvent e) {

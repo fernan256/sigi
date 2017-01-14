@@ -13,6 +13,7 @@ import javax.print.SimpleDoc;
 public class ImprimirTicket {
     public static int printTicket (String ticket) {
         int result = 0;
+        System.out.println(ticket);
         String ticketToByte;
         //Cogemos el servicio de impresion por defecto (impresora por defecto)
         PrintService service = PrintServiceLookup.lookupDefaultPrintService();

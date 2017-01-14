@@ -46,7 +46,7 @@
                   <Group type="102" attributes="0">
                       <Component id="add" min="-2" pref="125" max="-2" attributes="0"/>
                       <EmptySpace min="18" pref="18" max="-2" attributes="0"/>
-                      <Component id="cleanFields" min="-2" pref="125" max="-2" attributes="0"/>
+                      <Component id="cancel" min="-2" pref="125" max="-2" attributes="0"/>
                       <EmptySpace min="18" pref="18" max="-2" attributes="0"/>
                       <Component id="changeArticule" min="-2" pref="125" max="-2" attributes="0"/>
                       <EmptySpace min="18" pref="18" max="-2" attributes="0"/>
@@ -124,7 +124,7 @@
               <EmptySpace min="-2" pref="38" max="-2" attributes="0"/>
               <Group type="103" groupAlignment="0" attributes="0">
                   <Component id="add" min="-2" pref="50" max="-2" attributes="0"/>
-                  <Component id="cleanFields" min="-2" pref="50" max="-2" attributes="0"/>
+                  <Component id="cancel" min="-2" pref="50" max="-2" attributes="0"/>
                   <Component id="changeArticule" min="-2" pref="50" max="-2" attributes="0"/>
                   <Component id="deleteArticule" min="-2" pref="50" max="-2" attributes="0"/>
               </Group>
@@ -236,7 +236,6 @@
     </Component>
     <Component class="javax.swing.JTextField" name="articuleQuantity">
       <Properties>
-        <Property name="editable" type="boolean" value="false"/>
         <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
           <Font name="Arial" size="12" style="0"/>
         </Property>
@@ -251,7 +250,7 @@
         <Property name="text" type="java.lang.String" value="Marca"/>
       </Properties>
     </Component>
-    <Component class="javax.swing.JButton" name="cleanFields">
+    <Component class="javax.swing.JButton" name="cancel">
       <Properties>
         <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
           <Font name="Arial" size="18" style="1"/>
@@ -259,7 +258,7 @@
         <Property name="text" type="java.lang.String" value="Cancelar"/>
       </Properties>
       <Events>
-        <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="cleanFieldsActionPerformed"/>
+        <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="cancelActionPerformed"/>
       </Events>
     </Component>
     <Component class="javax.swing.JLabel" name="jLabel13">

@@ -22,7 +22,7 @@ public class Login extends javax.swing.JFrame {
     public static int userId;
     public static String userName;
     public static int status = 0, compareIds = 0, cajaId = 0, initialCash = 0, printStatus = 0;
-    public static String fecha = null, companyName = null, companyCuilCuit = null, companyAddress = null, companyProvince = null, companyDepartment = null, companyCp = null, companyIg = null, companyAddressNumber = null;
+    public static String fecha = null, companyName = null, companyCuilCuit = null, companyAddress = null, companyProvince = null, companyDepartment = null, companyCp = null, companyIg = null, companyAddressNumber = null, companyTelephone = null, companyOtherTelephone = null;
     public static Date companyInitActivities = null;
     
     public Login() {
@@ -281,7 +281,7 @@ public class Login extends javax.swing.JFrame {
     public static void companyData() throws ClassNotFoundException{
         try {
             conPub = new Conexion();
-            String getTicketInfo = "select t1.nombre, t1.direccion, t1.direccion_numero, t1.departamento, t1.provincia, t1.codigo_postal, t2.cuit_cuil, t2.ingresos_brutos, t2.fecha_inicio_actividad from empresa t1 inner join datos_fiscales t2 where t1.id_empresa = 1 AND t2.id_datos_fiscales = 1";
+            String getTicketInfo = "select t1.nombre, t1.direccion, t1.direccion_numero, t1.departamento, t1.provincia, t1.codigo_postal, t1.telefono, t1.otro_telefono, t2.cuit_cuil, t2.ingresos_brutos, t2.fecha_inicio_actividad from empresa t1 inner join datos_fiscales t2 where t1.id_empresa = 1 AND t2.id_datos_fiscales = 1";
             rsPub = conPub.Consulta(getTicketInfo);
             while(rsPub.next()) {
                 companyName = rsPub.getString("nombre");
@@ -293,6 +293,8 @@ public class Login extends javax.swing.JFrame {
                 companyIg = rsPub.getString("ingresos_brutos");
                 companyInitActivities = rsPub.getDate("fecha_inicio_actividad");
                 companyAddressNumber = rsPub.getString("direccion_numero");
+                companyTelephone = rsPub.getString("telefono");
+                companyOtherTelephone = rsPub.getString("otro_telefono");
             }
             conPub.Cerrar();
         } catch (SQLException ex) {

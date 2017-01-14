@@ -40,7 +40,7 @@ public class AltaModificaionArticulos extends javax.swing.JInternalFrame {
         changeArticule = new javax.swing.JButton();
         articuleQuantity = new javax.swing.JTextField();
         jLabel17 = new javax.swing.JLabel();
-        cleanFields = new javax.swing.JButton();
+        cancel = new javax.swing.JButton();
         jLabel13 = new javax.swing.JLabel();
         articuleBrand = new javax.swing.JTextField();
         jLabel18 = new javax.swing.JLabel();
@@ -101,18 +101,17 @@ public class AltaModificaionArticulos extends javax.swing.JInternalFrame {
             }
         });
 
-        articuleQuantity.setEditable(false);
         articuleQuantity.setFont(new java.awt.Font("Arial", 0, 12)); // NOI18N
         articuleQuantity.setAutoscrolls(false);
 
         jLabel17.setFont(new java.awt.Font("Arial", 1, 16)); // NOI18N
         jLabel17.setText("Marca");
 
-        cleanFields.setFont(new java.awt.Font("Arial", 1, 18)); // NOI18N
-        cleanFields.setText("Cancelar");
-        cleanFields.addActionListener(new java.awt.event.ActionListener() {
+        cancel.setFont(new java.awt.Font("Arial", 1, 18)); // NOI18N
+        cancel.setText("Cancelar");
+        cancel.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                cleanFieldsActionPerformed(evt);
+                cancelActionPerformed(evt);
             }
         });
 
@@ -150,7 +149,7 @@ public class AltaModificaionArticulos extends javax.swing.JInternalFrame {
                     .addGroup(layout.createSequentialGroup()
                         .addComponent(add, javax.swing.GroupLayout.PREFERRED_SIZE, 125, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addGap(18, 18, 18)
-                        .addComponent(cleanFields, javax.swing.GroupLayout.PREFERRED_SIZE, 125, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addComponent(cancel, javax.swing.GroupLayout.PREFERRED_SIZE, 125, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addGap(18, 18, 18)
                         .addComponent(changeArticule, javax.swing.GroupLayout.PREFERRED_SIZE, 125, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addGap(18, 18, 18)
@@ -210,7 +209,7 @@ public class AltaModificaionArticulos extends javax.swing.JInternalFrame {
                 .addGap(38, 38, 38)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addComponent(add, javax.swing.GroupLayout.PREFERRED_SIZE, 50, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(cleanFields, javax.swing.GroupLayout.PREFERRED_SIZE, 50, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(cancel, javax.swing.GroupLayout.PREFERRED_SIZE, 50, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(changeArticule, javax.swing.GroupLayout.PREFERRED_SIZE, 50, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(deleteArticule, javax.swing.GroupLayout.PREFERRED_SIZE, 50, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
@@ -228,7 +227,9 @@ public class AltaModificaionArticulos extends javax.swing.JInternalFrame {
                 String nombre_producto = articuleName.getText();
                 String marca = articuleBrand.getText();
                 String existencia = articuleQuantity.getText();
+                //Cast string to decimal
                 String precio_costo = costPrice.getText();
+                //Cast string to decimal
                 String precio_venta = salesPrice.getText();
                 String scanning = scanningToSearch.getText();
                 int type = articleType.getSelectedIndex();
@@ -247,6 +248,8 @@ public class AltaModificaionArticulos extends javax.swing.JInternalFrame {
                 while(rs.next()) {
                     stockId = rs.getInt("id_stock");
                 }
+                //String insertInStockMovement = "INSERT INTO `movimiento_stock`(`fecha_movimiento_stock`, `entrada`, `salida`, `stock_id_stock`) VALUES ('','0', '0', '"+stockId+"')";
+                //con.ejecutar(sql);
                 String updateArticulos = "UPDATE `descripcion_articulos` SET `stock_id_stock` = "+stockId+" WHERE `id_articulo` = "+articuloId+"";
                 con.ejecutar(updateArticulos);          
                 JOptionPane.showMessageDialog(null, "Producto: "+nombre_producto+" agregado.");
@@ -295,10 +298,11 @@ public class AltaModificaionArticulos extends javax.swing.JInternalFrame {
         }
     }//GEN-LAST:event_scanningToSearchKeyPressed
 
-    private void cleanFieldsActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_cleanFieldsActionPerformed
+    private void cancelActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_cancelActionPerformed
         clearCrudArticlesFields();
         scanningToSearch.setText("");
-    }//GEN-LAST:event_cleanFieldsActionPerformed
+        scanningToSearch.requestFocus();
+    }//GEN-LAST:event_cancelActionPerformed
 
     private void deleteArticuleActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_deleteArticuleActionPerformed
         BajaArticulos elimin = new BajaArticulos();
@@ -339,8 +343,8 @@ public class AltaModificaionArticulos extends javax.swing.JInternalFrame {
     private javax.swing.JTextField articuleBrand;
     private javax.swing.JTextField articuleName;
     private javax.swing.JTextField articuleQuantity;
+    private javax.swing.JButton cancel;
     private javax.swing.JButton changeArticule;
-    private javax.swing.JButton cleanFields;
     private javax.swing.JTextField costPrice;
     private javax.swing.JButton deleteArticule;
     private javax.swing.JLabel jLabel1;
