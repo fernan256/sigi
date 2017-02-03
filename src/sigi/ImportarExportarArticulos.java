@@ -145,9 +145,9 @@ public class ImportarExportarArticulos extends javax.swing.JInternalFrame implem
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addComponent(exportAll, javax.swing.GroupLayout.DEFAULT_SIZE, 46, Short.MAX_VALUE)
                     .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                        .addComponent(importFromExcel, javax.swing.GroupLayout.DEFAULT_SIZE, 46, Short.MAX_VALUE)
                         .addComponent(cleanTable, javax.swing.GroupLayout.DEFAULT_SIZE, 42, Short.MAX_VALUE)
-                        .addComponent(jButton1)))
+                        .addComponent(jButton1))
+                    .addComponent(importFromExcel, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
                 .addGap(35, 35, 35)
                 .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 359, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(163, 163, 163))
@@ -198,17 +198,19 @@ public class ImportarExportarArticulos extends javax.swing.JInternalFrame implem
     }//GEN-LAST:event_exportAllActionPerformed
 
     private void importFromExcelActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_importFromExcelActionPerformed
-        FileChooser.showDialog(null, "Importar Hoja ");
-        File file = FileChooser.getSelectedFile();
-        if (!file.getName().endsWith("xls")) {
-            JOptionPane.showMessageDialog(null, "Seleccione un archivo excel...", "Error", JOptionPane.ERROR_MESSAGE);
-        } else {
-            try {
-                CrearTabla(file);
-            } catch (IOException ex) {
-                Logger.getLogger(Proveedores.class.getName()).log(Level.SEVERE, null, ex);
-            }
-        }
+        //FileChooser.showDialog(null, "Importar Hoja ");
+        //File file = FileChooser.getSelectedFile();
+        //if (!file.getName().endsWith("xls")) {
+//            JOptionPane.showMessageDialog(null, "Seleccione un archivo excel...", "Error", JOptionPane.ERROR_MESSAGE);
+//        } else {
+            carga = new Thread(this);
+            carga.start();
+//            try {
+//                CrearTabla(file);
+//            } catch (IOException ex) {
+//                Logger.getLogger(Proveedores.class.getName()).log(Level.SEVERE, null, ex);
+//            }
+//        }
     }//GEN-LAST:event_importFromExcelActionPerformed
 
     private void cleanTableActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_cleanTableActionPerformed
@@ -330,8 +332,9 @@ public class ImportarExportarArticulos extends javax.swing.JInternalFrame implem
         deleteTable.setRowCount(0);
         j = 0;
     }
-    public void corredor1 (){
-        c1++;
+    public void importFile (File file) throws IOException{
+        //c1++;
+        CrearTabla(file);
     }
     public void corredor2() {
         c2++;
@@ -350,15 +353,18 @@ public class ImportarExportarArticulos extends javax.swing.JInternalFrame implem
         //throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
         Thread ct = Thread.currentThread();
  
-        while (ct == carga) {
-        
-            corredor1();
-    
-            System.out.println("Corredor 1: " + c1);
-            if(c1 == 350000) {
-                JOptionPane.showMessageDialog(null, "Termino proceso carga");
+        if(ct == carga) {
+            FileChooser.showDialog(null, "Importar Hoja ");
+            File file = FileChooser.getSelectedFile();
+            if (!file.getName().endsWith("xls")) {
+                JOptionPane.showMessageDialog(null, "Seleccione un archivo excel...", "Error", JOptionPane.ERROR_MESSAGE);
+            } else {
+                try {
+                    CrearTabla(file);
+                } catch (IOException ex) {
+                    Logger.getLogger(Proveedores.class.getName()).log(Level.SEVERE, null, ex);
+                }
             }
- 
         }
         
         while (ct == carga2) {            

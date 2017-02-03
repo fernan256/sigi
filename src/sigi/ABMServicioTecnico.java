@@ -5,15 +5,27 @@ import Connection.Conexion;
 import Connection.Conexion_login;
 import Utils.ImprimirTicket;
 import Utils.Utils;
+import java.util.Map;
 import java.awt.event.KeyEvent;
+import java.io.InputStream;
 import java.math.BigDecimal;
 import java.math.BigInteger;
 import java.math.RoundingMode;
 import java.sql.ResultSet;
 import java.sql.SQLException;
+import java.util.HashMap;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 import javax.swing.JOptionPane;
+
+import net.sf.jasperreports.engine.JRException;
+import net.sf.jasperreports.engine.JasperCompileManager;
+import net.sf.jasperreports.engine.util.JRLoader;
+import net.sf.jasperreports.view.JasperViewer;
+import net.sf.jasperreports.engine.JasperFillManager;
+import net.sf.jasperreports.engine.JasperPrint;
+import net.sf.jasperreports.engine.JasperReport;
+import static net.sf.jasperreports.repo.RepositoryUtil.getInputStream;
 
 public class ABMServicioTecnico extends javax.swing.JInternalFrame {
     Conexion con;
@@ -22,6 +34,7 @@ public class ABMServicioTecnico extends javax.swing.JInternalFrame {
     String ticket = "";
     String ticketNumber = "";
     int serviceProcess = 0;
+    public static String OS = null;
     //static float total = 0;
     //static int j = 0, k = 0;
     //static String result = "", ticketNumberFrom = "", ticketNumberTo = "";
@@ -309,30 +322,58 @@ public class ABMServicioTecnico extends javax.swing.JInternalFrame {
             } else if (finish.isSelected()) {
                 serviceProcess = 3;
             }
+
+            Map parameter = new HashMap();
+            
+            OS = System.getProperty("os.name");
+            System.out.println(OS);
+            //parameter.put("fromDate", Utils.formatDate(fromDate.getDate()));
+            //parameter.put("toDate", Utils.formatDate(toDate.getDate()));
+            parameter.put("companyName", Login.companyName);
+            parameter.put("todaysDate", Utils.currentDateWithMonth());
+            JasperReport jr = null;
+            if("Linux".equals(OS)) {
+                //String pathW = "C:\\Users\\Diego\\Documents\\NetBeansProjects\\SIGI\\src\\sigi\\reports\\totalSalesReport.jasper";
+                InputStream resource = getInputStream("/home/diego/NetBeansProjects/sigi/src/sigi/reports/totalSalesReport.jasper");
+                jr = (JasperReport) JRLoader.loadObject(resource);
+            } else {
+                InputStream resource = getInputStream("C:/reports/totalSalesReport.jasper");
+                jr = (JasperReport) JRLoader.loadObject(resource);
+            }
+            //jr = (JasperReport) JRLoader.loadObjectFromFile(pathW);
+            //JasperReport jp = JasperCompileManager.compileReport(getClass().getResourceAsStream("reports/totalSalesReport.jasper"));
+            //JasperReport jr = JasperCompileManager.compileReport( "sigi\\reports\\totalSalesReport.jasper");
+            //JasperPrint jp = JasperFillManager.fillReport(jr, parameter, con.getConextion());
+            //JasperViewer jv = new JasperViewer( jp, false );
+            //jv.viewReport( jp, false );
+            JasperPrint jp = JasperFillManager.fillReport(jr, parameter, con.getConextion());
+            JasperViewer.viewReport(jp, false);
+            con.Cerrar();
+
             String insertService = "INSERT INTO servicio_tecnico (service_order_number, client_name, contact_number, equipment_type, equipment_marc, equipment_model, admission_date, service_detail, serial_number, service_state) "
                                     + "VALUES ('"+orderNumber.getText()+"', '"+customerName.getText()+"', '"+customerContact.getText()+"', '"+deviceType.getSelectedIndex()+"', '"+deviceMarc.getText()+"', '"+deviceModel.getText()+"', '"+inDate.getText()+"', '"+problemDetail.getText()+"', '"+deviceSerialNumber.getText()+"','"+serviceProcess+"') ";
             con.ejecutar(insertService);
-            String salto = System.getProperty("line.separator");
-            String ticketHeader = "REMITO RECEPCION EQUIPO"+
-                                    salto+"--------------------------------"+
-                                    salto+Login.companyName+
-                                    salto+Login.companyAddress+" N° "+Login.companyAddressNumber+
-                                    salto+Login.companyDepartment+" - "+Login.companyProvince+" - "+Login.companyCp+
-                                    salto+"Telefono: "+Login.companyTelephone+ " - "+Login.companyOtherTelephone+
-                                    salto+"--------------------------------"+
-                                    salto+"Remito Nro: 00001"+//++
-                                    salto+"Fecha ingreso: "+Utils.currentDateFormated()+
-                                    salto+"--------------------------------"+
-                                    salto+"--------------------------------";
-            String customerData = salto+"Nombre cliente: "+customerName.getText()+
-                                    salto+"Contacto: "+customerContact.getText()+
-                                    salto+"--------------------------------";
-            String device = salto+"Tipo equipo: "+deviceType.getName()+
-                            salto+"Marca: "+deviceMarc.getText()+
-                            salto+"Modelo: "+deviceModel.getText()+
-                            salto+"Falla: "+problemDetail.getText()+
-                            salto+"--------------------------------";
-                    //String ticketBody="";
+//            String salto = System.getProperty("line.separator");
+//            String ticketHeader = "REMITO RECEPCION EQUIPO"+
+//                                    salto+"--------------------------------"+
+//                                    salto+Login.companyName+
+//                                    salto+Login.companyAddress+" N° "+Login.companyAddressNumber+
+//                                    salto+Login.companyDepartment+" - "+Login.companyProvince+" - "+Login.companyCp+
+//                                    salto+"Telefono: "+Login.companyTelephone+ " - "+Login.companyOtherTelephone+
+//                                    salto+"--------------------------------"+
+//                                    salto+"Remito Nro: 00001"+//++
+//                                    salto+"Fecha ingreso: "+Utils.currentDateFormated()+
+//                                    salto+"--------------------------------"+
+//                                    salto+"--------------------------------";
+//            String customerData = salto+"Nombre cliente: "+customerName.getText()+
+//                                    salto+"Contacto: "+customerContact.getText()+
+//                                    salto+"--------------------------------";
+//            String device = salto+"Tipo equipo: "+deviceType.getName()+
+//                            salto+"Marca: "+deviceMarc.getText()+
+//                            salto+"Modelo: "+deviceModel.getText()+
+//                            salto+"Falla: "+problemDetail.getText()+
+//                            salto+"--------------------------------";
+//                    //String ticketBody="";
                     /*for (int i=0;i<j;i++){
                         discount[i] = new BigDecimal(tablaCompras.getValueAt(i, 5).toString());
                         if(tipoArticulo[i] != 2){
@@ -357,7 +398,7 @@ public class ABMServicioTecnico extends javax.swing.JInternalFrame {
                                 salto+"...";
                         }*/
                     //}
-                        ticket = ticketHeader+customerData+device;
+//                        ticket = ticketHeader+customerData+device;
                         //JOptionPane.showMessageDialog(null, "Venta Realizada"+salto+salto+"Total a Cobrar: $ "+getTotalVentas+salto+"Cambio: $ "+exchange);
                         //cambiar total de estado cuenta
                     //if(Login.printStatus == 1) {
@@ -366,11 +407,13 @@ public class ABMServicioTecnico extends javax.swing.JInternalFrame {
                       //  if(print == 1) {
                         //    ticket = null;
                        // } else {
-                            System.out.println(ticket);
+//                            System.out.println(ticket);
                         //}
                     //}
             con.Cerrar();
         } catch (ClassNotFoundException | SQLException | InstantiationException | IllegalAccessException ex) {
+            Logger.getLogger(ABMServicioTecnico.class.getName()).log(Level.SEVERE, null, ex);
+        } catch (JRException ex) {
             Logger.getLogger(ABMServicioTecnico.class.getName()).log(Level.SEVERE, null, ex);
         }
     }//GEN-LAST:event_saveAndPrintActionPerformed

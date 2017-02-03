@@ -23,6 +23,7 @@ import sigi.Login;
 public class ReportesVentas extends javax.swing.JInternalFrame {
     Conexion con;
     ResultSet rs;
+    public static String OS = null;
     
     public ReportesVentas() {
         initComponents();
@@ -129,16 +130,24 @@ public class ReportesVentas extends javax.swing.JInternalFrame {
         try {
             con = new Conexion();
             Map parameter = new HashMap();
+            
+            OS = System.getProperty("os.name");
+            System.out.println(OS);
             parameter.put("fromDate", Utils.formatDate(fromDate.getDate()));
             parameter.put("toDate", Utils.formatDate(toDate.getDate()));
             parameter.put("companyName", Login.companyName);
             parameter.put("todaysDate", Utils.currentDateWithMonth());
-            //String pathW = "C:\\Users\\Diego\\Documents\\NetBeansProjects\\SIGI\\src\\sigi\\reports\\totalSalesReport.jasper";
             JasperReport jr = null;
-            InputStream resource = getInputStream("C:/reports/totalSalesReport.jasper");
+            if("Linux".equals(OS)) {
+                //String pathW = "C:\\Users\\Diego\\Documents\\NetBeansProjects\\SIGI\\src\\sigi\\reports\\totalSalesReport.jasper";
+                InputStream resource = getInputStream("/home/diego/NetBeansProjects/sigi/src/sigi/reports/totalSalesReport.jasper");
+                jr = (JasperReport) JRLoader.loadObject(resource);
+            } else {
+                InputStream resource = getInputStream("C:/reports/totalSalesReport.jasper");
+                jr = (JasperReport) JRLoader.loadObject(resource);
+            }
             //jr = (JasperReport) JRLoader.loadObjectFromFile(pathW);
             //JasperReport jp = JasperCompileManager.compileReport(getClass().getResourceAsStream("reports/totalSalesReport.jasper"));
-            jr = (JasperReport) JRLoader.loadObject(resource);
             //JasperReport jr = JasperCompileManager.compileReport( "sigi\\reports\\totalSalesReport.jasper");
             //JasperPrint jp = JasperFillManager.fillReport(jr, parameter, con.getConextion());
             //JasperViewer jv = new JasperViewer( jp, false );
