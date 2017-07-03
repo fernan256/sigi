@@ -21,6 +21,7 @@ import static net.sf.jasperreports.repo.RepositoryUtil.getInputStream;
 public class ReporteDetalleVentas extends javax.swing.JInternalFrame {
     Conexion con;
     ResultSet rs;
+    InputStream resource;
     public ReporteDetalleVentas() {
         initComponents();
     }
@@ -126,13 +127,19 @@ public class ReporteDetalleVentas extends javax.swing.JInternalFrame {
             parameter.put("companyName", Login.companyName);
             parameter.put("fromDate", Utils.formatDate(fromDate.getDate()));
             parameter.put("toDate", Utils.formatDate(toDate.getDate()));
-            parameter.put("todaysDate", Utils.currentDateWithMonth());            
+            parameter.put("todaysDate", Utils.currentDateWithMonth());
+            //System.out.println(System.getProperties().list(System.out));            
             //String pathW = "C:\\Users\\Diego\\Documents\\NetBeansProjects\\SIGI\\src\\sigi\\reports\\salesDetail.jasper";
             JasperReport jr = null;
 //            jr = (JasperReport) JRLoader.loadObjectFromFile(pathW);
 //            JasperPrint jp = JasperFillManager.fillReport(jr, parameter, con.getConextion());
 //            JasperViewer.viewReport(jp, false);
-            InputStream resource = getInputStream("C:/reports/salesDetail.jasper");
+            System.out.println(System.getProperty("os.name"));
+            if(System.getProperty("os.name").equals("Linux")) {
+                resource = getInputStream("C:/reports/salesDetail.jasper");
+            } else {
+                resource = getInputStream("C:/reports/salesDetail.jasper");
+            }
             //jr = (JasperReport) JRLoader.loadObjectFromFile(pathW);
             //JasperReport jp = JasperCompileManager.compileReport(getClass().getResourceAsStream("reports/totalSalesReport.jasper"));
             jr = (JasperReport) JRLoader.loadObject(resource);

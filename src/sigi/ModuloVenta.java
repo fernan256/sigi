@@ -48,7 +48,7 @@ public class ModuloVenta extends javax.swing.JFrame {
     public ModuloVenta() {
         initComponents();
         this.setLocationRelativeTo(null);
-        this.getContentPane().setBackground(Color.ORANGE);
+        this.getContentPane().setBackground(Color.decode("#eecda4"));
         //this.setMinimumSize(new Dimension(800, 600));
         int ancho = java.awt.Toolkit.getDefaultToolkit().getScreenSize().width;
         int alto = java.awt.Toolkit.getDefaultToolkit().getScreenSize().height;
@@ -81,9 +81,9 @@ public class ModuloVenta extends javax.swing.JFrame {
 
         setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
         setTitle("Ventas");
-        setBackground(java.awt.Color.orange);
+        setBackground(new java.awt.Color(238, 205, 164));
         setCursor(new java.awt.Cursor(java.awt.Cursor.DEFAULT_CURSOR));
-        setForeground(new java.awt.Color(248, 164, 14));
+        setForeground(new java.awt.Color(238, 205, 164));
         setMinimumSize(new java.awt.Dimension(880, 610));
         setUndecorated(true);
         setResizable(false);

@@ -16,6 +16,7 @@ public final class Conexion {
     }
     public void conectar() throws SQLException{
         String URL_bd="jdbc:mysql://localhost:3306/sigi?useUnicode=true&characterEncoding=utf-8";
+        //String URL_bd="jdbc:mysql://localhost:3306/sigi_08052017?useUnicode=true&characterEncoding=utf-8";
         String user="root";
         String password = "dedox132";
         con=DriverManager.getConnection(URL_bd,user,password);

@@ -4,6 +4,7 @@ package sigi;
 import sigi.reports.ReportesVentas;
 import Connection.Conexion;
 import Connection.Conexion_login;
+import java.awt.Color;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import javax.swing.JFrame;
@@ -29,9 +30,14 @@ public class PantallaPrincipal extends javax.swing.JFrame {
         showAdminName.setText(Login.userName);
         this.setLocationRelativeTo(null);
         this.setExtendedState(JFrame.MAXIMIZED_BOTH);
+        this.setBackground(Color.decode("#eecda4"));
         //int ancho = java.awt.Toolkit.getDefaultToolkit().getScreenSize().width;
         //int alto = java.awt.Toolkit.getDefaultToolkit().getScreenSize().height;
         //this.setBounds(j, j, ancho, alto);
+        Toolkit t = Toolkit.getDefaultToolkit();
+        Dimension screenSize = Toolkit.getDefaultToolkit().getScreenSize();
+        System.out.println("la resolucin es " + screenSize.width + " x " + screenSize.height);
+        desktopPane.setPreferredSize(new java.awt.Dimension(800, 600));
     }
 
     @SuppressWarnings("unchecked")
@@ -40,23 +46,36 @@ public class PantallaPrincipal extends javax.swing.JFrame {
 
         jPopupMenu1 = new javax.swing.JPopupMenu();
         desktopPane = new javax.swing.JDesktopPane();
-        jScrollPane2 = new javax.swing.JScrollPane();
-        jTree1 = new javax.swing.JTree();
         moduloVentaAdmin = new javax.swing.JButton();
         openHelp = new javax.swing.JButton();
         showAdminName = new javax.swing.JLabel();
-        jLabel1 = new javax.swing.JLabel();
         viewPrices = new javax.swing.JButton();
         technicServices = new javax.swing.JButton();
-        backgroundImage = new javax.swing.JLabel();
-        jMenuBar1 = new javax.swing.JMenuBar();
+        jButton1 = new javax.swing.JButton();
+        menuBar = new javax.swing.JMenuBar();
+        exitMenu = new javax.swing.JMenu();
+        jMenuItem2 = new javax.swing.JMenuItem();
+        jMenuItem1 = new javax.swing.JMenuItem();
+        exit = new javax.swing.JMenuItem();
+        jMenu1 = new javax.swing.JMenu();
+        crudArticles = new javax.swing.JMenuItem();
+        jMenu2 = new javax.swing.JMenu();
+        jMenu3 = new javax.swing.JMenu();
+        jMenu4 = new javax.swing.JMenu();
+        jMenu5 = new javax.swing.JMenu();
+        jMenu6 = new javax.swing.JMenu();
+        jMenu7 = new javax.swing.JMenu();
+        jMenu8 = new javax.swing.JMenu();
+        jMenu9 = new javax.swing.JMenu();
+        jMenu10 = new javax.swing.JMenu();
+        jMenu11 = new javax.swing.JMenu();
+        jMenu12 = new javax.swing.JMenu();
         changePasswordMenu = new javax.swing.JMenu();
         changePassword = new javax.swing.JMenuItem();
-        exitMenu = new javax.swing.JMenu();
-        exit = new javax.swing.JMenuItem();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setTitle("Principal Administrador");
+        setBackground(new java.awt.Color(238, 205, 164));
         setName("pantallaPrincipal"); // NOI18N
         setSize(new java.awt.Dimension(1024, 768));
         getContentPane().setLayout(null);
@@ -70,7 +89,7 @@ public class PantallaPrincipal extends javax.swing.JFrame {
         desktopPane.setLayout(desktopPaneLayout);
         desktopPaneLayout.setHorizontalGroup(
             desktopPaneLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 740, Short.MAX_VALUE)
+            .addGap(0, 870, Short.MAX_VALUE)
         );
         desktopPaneLayout.setVerticalGroup(
             desktopPaneLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -78,89 +97,7 @@ public class PantallaPrincipal extends javax.swing.JFrame {
         );
 
         getContentPane().add(desktopPane);
-        desktopPane.setBounds(240, 90, 740, 590);
-
-        jScrollPane2.setFont(new java.awt.Font("Arial", 0, 12)); // NOI18N
-
-        javax.swing.tree.DefaultMutableTreeNode treeNode1 = new javax.swing.tree.DefaultMutableTreeNode("Menu");
-        javax.swing.tree.DefaultMutableTreeNode treeNode2 = new javax.swing.tree.DefaultMutableTreeNode("Articulos");
-        javax.swing.tree.DefaultMutableTreeNode treeNode3 = new javax.swing.tree.DefaultMutableTreeNode("ABM Articulos");
-        treeNode2.add(treeNode3);
-        treeNode3 = new javax.swing.tree.DefaultMutableTreeNode("Stock");
-        treeNode2.add(treeNode3);
-        treeNode3 = new javax.swing.tree.DefaultMutableTreeNode("Sacar faltante Stock");
-        treeNode2.add(treeNode3);
-        treeNode3 = new javax.swing.tree.DefaultMutableTreeNode("Importar/Exportar Articulos");
-        treeNode2.add(treeNode3);
-        treeNode1.add(treeNode2);
-        treeNode2 = new javax.swing.tree.DefaultMutableTreeNode("Servicio Tecnico");
-        treeNode3 = new javax.swing.tree.DefaultMutableTreeNode("Alta Servicio");
-        treeNode2.add(treeNode3);
-        treeNode3 = new javax.swing.tree.DefaultMutableTreeNode("Ver servicios");
-        treeNode2.add(treeNode3);
-        treeNode1.add(treeNode2);
-        treeNode2 = new javax.swing.tree.DefaultMutableTreeNode("Ordenes de Compras");
-        treeNode3 = new javax.swing.tree.DefaultMutableTreeNode("Orden de Compra");
-        treeNode2.add(treeNode3);
-        treeNode3 = new javax.swing.tree.DefaultMutableTreeNode("Recepción Orden de Compra");
-        treeNode2.add(treeNode3);
-        treeNode3 = new javax.swing.tree.DefaultMutableTreeNode("BM Orden de Compra");
-        treeNode2.add(treeNode3);
-        treeNode1.add(treeNode2);
-        treeNode2 = new javax.swing.tree.DefaultMutableTreeNode("Ajustes");
-        treeNode3 = new javax.swing.tree.DefaultMutableTreeNode("Caja");
-        treeNode2.add(treeNode3);
-        treeNode1.add(treeNode2);
-        treeNode2 = new javax.swing.tree.DefaultMutableTreeNode("Cierres");
-        treeNode3 = new javax.swing.tree.DefaultMutableTreeNode("Ver cierres");
-        treeNode2.add(treeNode3);
-        treeNode1.add(treeNode2);
-        treeNode2 = new javax.swing.tree.DefaultMutableTreeNode("Clientes");
-        treeNode3 = new javax.swing.tree.DefaultMutableTreeNode("ABM Cliente");
-        treeNode2.add(treeNode3);
-        treeNode3 = new javax.swing.tree.DefaultMutableTreeNode("Importar/Exportar Clientes");
-        treeNode2.add(treeNode3);
-        treeNode1.add(treeNode2);
-        treeNode2 = new javax.swing.tree.DefaultMutableTreeNode("Proveedores");
-        treeNode3 = new javax.swing.tree.DefaultMutableTreeNode("ABM Proveedor");
-        treeNode2.add(treeNode3);
-        treeNode1.add(treeNode2);
-        treeNode2 = new javax.swing.tree.DefaultMutableTreeNode("Cuentas Corrientes");
-        treeNode3 = new javax.swing.tree.DefaultMutableTreeNode("ABM Cuentas Corrientes");
-        treeNode2.add(treeNode3);
-        treeNode1.add(treeNode2);
-        treeNode2 = new javax.swing.tree.DefaultMutableTreeNode("Tickets");
-        treeNode3 = new javax.swing.tree.DefaultMutableTreeNode("Ver/Reimprimir Ticket");
-        treeNode2.add(treeNode3);
-        treeNode3 = new javax.swing.tree.DefaultMutableTreeNode("Anular Ticket");
-        treeNode2.add(treeNode3);
-        treeNode1.add(treeNode2);
-        treeNode2 = new javax.swing.tree.DefaultMutableTreeNode("Reportes");
-        treeNode3 = new javax.swing.tree.DefaultMutableTreeNode("Reportes Ventas");
-        treeNode2.add(treeNode3);
-        treeNode3 = new javax.swing.tree.DefaultMutableTreeNode("Detalle Ventas");
-        treeNode2.add(treeNode3);
-        treeNode3 = new javax.swing.tree.DefaultMutableTreeNode("Reporte Stock");
-        treeNode2.add(treeNode3);
-        treeNode1.add(treeNode2);
-        treeNode2 = new javax.swing.tree.DefaultMutableTreeNode("Configuraciones");
-        treeNode3 = new javax.swing.tree.DefaultMutableTreeNode("Administrar BD");
-        treeNode2.add(treeNode3);
-        treeNode3 = new javax.swing.tree.DefaultMutableTreeNode("Configuracion Sistema");
-        treeNode2.add(treeNode3);
-        treeNode1.add(treeNode2);
-        jTree1.setModel(new javax.swing.tree.DefaultTreeModel(treeNode1));
-        jTree1.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
-        jTree1.setRootVisible(false);
-        jTree1.addMouseListener(new java.awt.event.MouseAdapter() {
-            public void mouseClicked(java.awt.event.MouseEvent evt) {
-                jTree1MouseClicked(evt);
-            }
-        });
-        jScrollPane2.setViewportView(jTree1);
-
-        getContentPane().add(jScrollPane2);
-        jScrollPane2.setBounds(20, 140, 210, 540);
+        desktopPane.setBounds(20, 100, 870, 590);
 
         moduloVentaAdmin.setIcon(new javax.swing.ImageIcon(getClass().getResource("/imagenes/carritoVentas.png"))); // NOI18N
         moduloVentaAdmin.setText("Modulo Ventas");
@@ -173,7 +110,7 @@ public class PantallaPrincipal extends javax.swing.JFrame {
             }
         });
         getContentPane().add(moduloVentaAdmin);
-        moduloVentaAdmin.setBounds(20, 5, 245, 65);
+        moduloVentaAdmin.setBounds(20, 10, 170, 65);
 
         openHelp.setIcon(new javax.swing.ImageIcon(getClass().getResource("/imagenes/info.jpg"))); // NOI18N
         openHelp.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
@@ -188,13 +125,7 @@ public class PantallaPrincipal extends javax.swing.JFrame {
         showAdminName.setFont(new java.awt.Font("Arial", 1, 24)); // NOI18N
         showAdminName.setForeground(new java.awt.Color(255, 255, 255));
         getContentPane().add(showAdminName);
-        showAdminName.setBounds(760, 20, 140, 30);
-
-        jLabel1.setFont(new java.awt.Font("Arial", 1, 24)); // NOI18N
-        jLabel1.setForeground(new java.awt.Color(227, 243, 253));
-        jLabel1.setText("Modulos");
-        getContentPane().add(jLabel1);
-        jLabel1.setBounds(20, 100, 200, 29);
+        showAdminName.setBounds(850, 70, 140, 30);
 
         viewPrices.setText("VER PRECIOS");
         viewPrices.addActionListener(new java.awt.event.ActionListener() {
@@ -203,7 +134,7 @@ public class PantallaPrincipal extends javax.swing.JFrame {
             }
         });
         getContentPane().add(viewPrices);
-        viewPrices.setBounds(280, 5, 245, 65);
+        viewPrices.setBounds(200, 10, 170, 65);
 
         technicServices.setText("Servicio Tecnico");
         technicServices.addActionListener(new java.awt.event.ActionListener() {
@@ -212,13 +143,81 @@ public class PantallaPrincipal extends javax.swing.JFrame {
             }
         });
         getContentPane().add(technicServices);
-        technicServices.setBounds(540, 5, 245, 65);
+        technicServices.setBounds(380, 10, 170, 65);
 
-        backgroundImage.setIcon(new javax.swing.ImageIcon(getClass().getResource("/imagenes/blue_3_by_astoyanov.png"))); // NOI18N
-        backgroundImage.setFocusable(false);
-        backgroundImage.setPreferredSize(new java.awt.Dimension(1200, 700));
-        getContentPane().add(backgroundImage);
-        backgroundImage.setBounds(0, 0, 1200, 700);
+        jButton1.setText("Presupuesto");
+        getContentPane().add(jButton1);
+        jButton1.setBounds(560, 10, 170, 65);
+
+        menuBar.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseReleased(java.awt.event.MouseEvent evt) {
+                menuBarMouseReleased(evt);
+            }
+        });
+
+        exitMenu.setText("Archivo");
+
+        jMenuItem2.setText("Administrar DB");
+        exitMenu.add(jMenuItem2);
+
+        jMenuItem1.setText("Configuraciones del Sistema");
+        exitMenu.add(jMenuItem1);
+
+        exit.setAccelerator(javax.swing.KeyStroke.getKeyStroke(java.awt.event.KeyEvent.VK_Q, java.awt.event.InputEvent.CTRL_MASK));
+        exit.setText("Cerrar Sesión");
+        exit.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                exitActionPerformed(evt);
+            }
+        });
+        exitMenu.add(exit);
+
+        menuBar.add(exitMenu);
+
+        jMenu1.setText("Articulos");
+
+        crudArticles.setText("Alta/Baja");
+        crudArticles.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                crudArticlesActionPerformed(evt);
+            }
+        });
+        jMenu1.add(crudArticles);
+
+        menuBar.add(jMenu1);
+
+        jMenu2.setText("Servicio Tecnico");
+        menuBar.add(jMenu2);
+
+        jMenu3.setText("Presupuestos");
+        menuBar.add(jMenu3);
+
+        jMenu4.setText("Ordenes Compras");
+        menuBar.add(jMenu4);
+
+        jMenu5.setText("Ajustes");
+        menuBar.add(jMenu5);
+
+        jMenu6.setText("Cierres");
+        menuBar.add(jMenu6);
+
+        jMenu7.setText("Clientes");
+        menuBar.add(jMenu7);
+
+        jMenu8.setText("Proveedores");
+        menuBar.add(jMenu8);
+
+        jMenu9.setText("Cuentas Corrientes");
+        menuBar.add(jMenu9);
+
+        jMenu10.setText("Tickets");
+        menuBar.add(jMenu10);
+
+        jMenu11.setText("Reportes");
+        menuBar.add(jMenu11);
+
+        jMenu12.setText("Configuraciones");
+        menuBar.add(jMenu12);
 
         changePasswordMenu.setText("Modificar");
 
@@ -231,22 +230,9 @@ public class PantallaPrincipal extends javax.swing.JFrame {
         });
         changePasswordMenu.add(changePassword);
 
-        jMenuBar1.add(changePasswordMenu);
+        menuBar.add(changePasswordMenu);
 
-        exitMenu.setText("Salir");
-
-        exit.setAccelerator(javax.swing.KeyStroke.getKeyStroke(java.awt.event.KeyEvent.VK_Q, java.awt.event.InputEvent.CTRL_MASK));
-        exit.setText("Cerrar Sesión");
-        exit.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                exitActionPerformed(evt);
-            }
-        });
-        exitMenu.add(exit);
-
-        jMenuBar1.add(exitMenu);
-
-        setJMenuBar(jMenuBar1);
+        setJMenuBar(menuBar);
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
@@ -273,12 +259,147 @@ public class PantallaPrincipal extends javax.swing.JFrame {
     FaltantesStock objIC24 = new FaltantesStock();
     ABMServicioTecnico objIC25 = new ABMServicioTecnico();
     ViewClosingInformation objIC26 = new ViewClosingInformation();
+        
+    private void openPos () {
+        try {
+            int openCash = 0;
+            String getOpeningCash = "SELECT caja_inicial FROM configuracion_inicial WHERE id_configuracion_inicial = 1"; 
+            rs = con.Consulta(getOpeningCash);
+            while(rs.next()) {
+                openCash = rs.getInt("caja_inicial");
+            }
+            //String apertura = "INSERT INTO caja (fecha_apertura, apertura, fecha_cierre, id_usuario, estado) VALUES (CURRENT_TIMESTAMP, '"+openCash+"', CURRENT_TIMESTAMP, '"+Login.userId+"', 1)";
+            String apertura = "INSERT INTO caja (fecha_apertura, apertura, id_usuario, estado) VALUES (CURRENT_TIMESTAMP, '"+openCash+"', '"+Login.userId+"', 1)";
+            con.ejecutar(apertura);
+            moduloVentaAdmin.setEnabled(false);
+            ModuloVenta venta = new ModuloVenta();
+            venta.setVisible(true);
+            con.Cerrar();
+        } catch (SQLException ex) {
+            Logger.getLogger(ModuloVenta.class.getName()).log(Level.SEVERE, null, ex);
+        }                                                        
+    }
+    private void exitActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_exitActionPerformed
+        if(JOptionPane.showConfirmDialog(rootPane, "Esta seguro de cerrar la sesion actual?","Cerrar sesión",1)==0){
+            this.dispose();
+            Login login = new Login();
+            Dimension pantall = Toolkit.getDefaultToolkit().getScreenSize();  
+            Dimension ventan = login.getSize();  
+            login.setLocation((pantall.width - ventan.width) / 2, (pantall.height - ventan.height) / 2);
+            login.setVisible(true);
+        }
+    }//GEN-LAST:event_exitActionPerformed
 
-    private void jTree1MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jTree1MouseClicked
-        //Evitar el java.lang.NullPointerException del jtree cuando se hace clic fuera del mismo
-        String menu = jTree1.getLastSelectedPathComponent().toString();
+    private void changePasswordActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_changePasswordActionPerformed
+        ModificarContrasenia mod = new ModificarContrasenia();
+        mod.setVisible(true);
+    }//GEN-LAST:event_changePasswordActionPerformed
+
+    private void moduloVentaAdminActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_moduloVentaAdminActionPerformed
+        try {
+            con = new Conexion();
+            con_login = new Conexion_login();
+            Login.getStatus();
+            if(Login.status == 1 || Login.status == 3) {
+                if (userId == Login.compareIds) {
+                    switch (Login.status) {                    
+                        case 1:
+                            JOptionPane.showMessageDialog(null, "La caja ya esta abierta");
+                            CierreCaja cierre = new CierreCaja();
+                            cierre.setVisible(true);
+                            break;
+                        case 3:
+                            PantallaPrincipal.moduloVentaAdmin.setEnabled(false);
+                            int option = JOptionPane.showOptionDialog(null, "Se había hecho un cierre X de la caja, elegir una opción.", "Caja", JOptionPane.YES_NO_OPTION, JOptionPane.INFORMATION_MESSAGE, null, new String[]{"Abrir caja", "Hacer cierre"}, "Abrir caja");
+                            if(option == 0) {
+                                String updateSalesStatus = "UPDATE caja SET estado = 1 WHERE id_caja = "+Login.cajaId+"";
+                                con.ejecutar(updateSalesStatus);
+                                moduloVentaAdmin.setEnabled(false);
+                                ModuloVenta venta = new ModuloVenta();
+                                venta.setVisible(true);
+                            } else {
+                                CierreZ cierreDelDia = new CierreZ(this, true);
+                                cierreDelDia.setVisible(true);
+                            }
+                            break;
+                        default:
+                            openPos();
+                            break;
+                    }
+                } else {
+                    String getUser = "SELECT nombres, apellidos FROM usuarios WHERE id_usuario = "+Login.compareIds+"";
+                    rs = con_login.Consulta(getUser);
+                    String names = null, lastNames = null;
+                    while(rs.next()) {
+                        names = rs.getString("nombres");
+                        lastNames = rs.getString("apellidos");
+                    }
+                    JOptionPane.showMessageDialog(null, "Se ha hecho la apertura de caja con el usuario: " +  names + " " + lastNames);
+                }
+            } else {
+                openPos();
+            }
+            con.Cerrar();
+            con_login.Cerrar();
+        } catch (SQLException | ClassNotFoundException | InstantiationException | IllegalAccessException ex) {
+            Logger.getLogger(PantallaPrincipal.class.getName()).log(Level.SEVERE, null, ex);
+        }
+    }//GEN-LAST:event_moduloVentaAdminActionPerformed
+
+    private void openHelpActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_openHelpActionPerformed
+        AyudaAdmin help = new AyudaAdmin(this, true);
+        help.setVisible(true);
+    }//GEN-LAST:event_openHelpActionPerformed
+
+    private void viewPricesActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_viewPricesActionPerformed
+        VerPrecios viewPrices = new VerPrecios(this, true);
+        viewPrices.setVisible(true);
+        //if(VerPrecios.fillInTable == 1){
+//            fillInTableData();
+//            BuscarArticulos.fillInTable = 0;
+//        }
+    }//GEN-LAST:event_viewPricesActionPerformed
+
+    private void technicServicesActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_technicServicesActionPerformed
+        //try {
+            //int openCash = 0;
+            //String getOpeningCash = "SELECT caja_inicial FROM configuracion_inicial WHERE id_configuracion_inicial = 1"; 
+            //rs = con.Consulta(getOpeningCash);
+            //while(rs.next()) {
+//                openCash = rs.getInt("caja_inicial");
+//            }
+            //String apertura = "INSERT INTO caja (fecha_apertura, apertura, fecha_cierre, id_usuario, estado) VALUES (CURRENT_TIMESTAMP, '"+openCash+"', CURRENT_TIMESTAMP, '"+Login.userId+"', 1)";
+//            String apertura = "INSERT INTO caja (fecha_apertura, apertura, id_usuario, estado) VALUES (CURRENT_TIMESTAMP, '"+openCash+"', '"+Login.userId+"', 1)";
+//            con.ejecutar(apertura);
+            //moduloVentaAdmin.setEnabled(false);
+            CRUDServices services = new CRUDServices();
+            services.setVisible(true);
+            //con.Cerrar();
+        //} catch (SQLException ex) {
+//            Logger.getLogger(CRUDServices.class.getName()).log(Level.SEVERE, null, ex);
+//        }   
+    }//GEN-LAST:event_technicServicesActionPerformed
+
+    private void crudArticlesActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_crudArticlesActionPerformed
+        if(objIC2.isShowing() == true){
+            try {
+                objIC2.setSelected(true);
+            } catch (PropertyVetoException ex) {
+                Logger.getLogger(PantallaPrincipal.class.getName()).log(Level.SEVERE, null, ex);
+            }
+        }else{
+            objIC2.clearCrudArticlesFields();
+            desktopPane.add(objIC2);
+            objIC2.show();
+            objIC2.setSize(desktopPane.getSize());
+        }
+    }//GEN-LAST:event_crudArticlesActionPerformed
+
+    private void menuBarMouseReleased(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_menuBarMouseReleased
+        String menu = menuBar.getName().toString();
+        System.out.println(menu);
         switch(menu) {
-            case "ABM Articulos":
+            case "crudArticles":
                 if(objIC2.isShowing() == true){
                     try {
                         objIC2.setSelected(true);
@@ -567,127 +688,7 @@ public class PantallaPrincipal extends javax.swing.JFrame {
             default:
                 break;
         }
-    }//GEN-LAST:event_jTree1MouseClicked
-        
-    private void openPos () {
-        try {
-            int openCash = 0;
-            String getOpeningCash = "SELECT caja_inicial FROM configuracion_inicial WHERE id_configuracion_inicial = 1"; 
-            rs = con.Consulta(getOpeningCash);
-            while(rs.next()) {
-                openCash = rs.getInt("caja_inicial");
-            }
-            //String apertura = "INSERT INTO caja (fecha_apertura, apertura, fecha_cierre, id_usuario, estado) VALUES (CURRENT_TIMESTAMP, '"+openCash+"', CURRENT_TIMESTAMP, '"+Login.userId+"', 1)";
-            String apertura = "INSERT INTO caja (fecha_apertura, apertura, id_usuario, estado) VALUES (CURRENT_TIMESTAMP, '"+openCash+"', '"+Login.userId+"', 1)";
-            con.ejecutar(apertura);
-            moduloVentaAdmin.setEnabled(false);
-            ModuloVenta venta = new ModuloVenta();
-            venta.setVisible(true);
-            con.Cerrar();
-        } catch (SQLException ex) {
-            Logger.getLogger(ModuloVenta.class.getName()).log(Level.SEVERE, null, ex);
-        }                                                        
-    }
-    private void exitActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_exitActionPerformed
-        if(JOptionPane.showConfirmDialog(rootPane, "Esta seguro de cerrar la sesion actual?","Cerrar sesión",1)==0){
-            this.dispose();
-            Login login = new Login();
-            Dimension pantall = Toolkit.getDefaultToolkit().getScreenSize();  
-            Dimension ventan = login.getSize();  
-            login.setLocation((pantall.width - ventan.width) / 2, (pantall.height - ventan.height) / 2);
-            login.setVisible(true);
-        }
-    }//GEN-LAST:event_exitActionPerformed
-
-    private void changePasswordActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_changePasswordActionPerformed
-        ModificarContrasenia mod = new ModificarContrasenia();
-        mod.setVisible(true);
-    }//GEN-LAST:event_changePasswordActionPerformed
-
-    private void moduloVentaAdminActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_moduloVentaAdminActionPerformed
-        try {
-            con = new Conexion();
-            con_login = new Conexion_login();
-            Login.getStatus();
-            if(Login.status == 1 || Login.status == 3) {
-                if (userId == Login.compareIds) {
-                    switch (Login.status) {                    
-                        case 1:
-                            JOptionPane.showMessageDialog(null, "La caja ya esta abierta");
-                            CierreCaja cierre = new CierreCaja();
-                            cierre.setVisible(true);
-                            break;
-                        case 3:
-                            PantallaPrincipal.moduloVentaAdmin.setEnabled(false);
-                            int option = JOptionPane.showOptionDialog(null, "Se había hecho un cierre X de la caja, elegir una opción.", "Caja", JOptionPane.YES_NO_OPTION, JOptionPane.INFORMATION_MESSAGE, null, new String[]{"Abrir caja", "Hacer cierre"}, "Abrir caja");
-                            if(option == 0) {
-                                String updateSalesStatus = "UPDATE caja SET estado = 1 WHERE id_caja = "+Login.cajaId+"";
-                                con.ejecutar(updateSalesStatus);
-                                moduloVentaAdmin.setEnabled(false);
-                                ModuloVenta venta = new ModuloVenta();
-                                venta.setVisible(true);
-                            } else {
-                                CierreZ cierreDelDia = new CierreZ(this, true);
-                                cierreDelDia.setVisible(true);
-                            }
-                            break;
-                        default:
-                            openPos();
-                            break;
-                    }
-                } else {
-                    String getUser = "SELECT nombres, apellidos FROM usuarios WHERE id_usuario = "+Login.compareIds+"";
-                    rs = con_login.Consulta(getUser);
-                    String names = null, lastNames = null;
-                    while(rs.next()) {
-                        names = rs.getString("nombres");
-                        lastNames = rs.getString("apellidos");
-                    }
-                    JOptionPane.showMessageDialog(null, "Se ha hecho la apertura de caja con el usuario: " +  names + " " + lastNames);
-                }
-            } else {
-                openPos();
-            }
-            con.Cerrar();
-            con_login.Cerrar();
-        } catch (SQLException | ClassNotFoundException | InstantiationException | IllegalAccessException ex) {
-            Logger.getLogger(PantallaPrincipal.class.getName()).log(Level.SEVERE, null, ex);
-        }
-    }//GEN-LAST:event_moduloVentaAdminActionPerformed
-
-    private void openHelpActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_openHelpActionPerformed
-        AyudaAdmin help = new AyudaAdmin(this, true);
-        help.setVisible(true);
-    }//GEN-LAST:event_openHelpActionPerformed
-
-    private void viewPricesActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_viewPricesActionPerformed
-        VerPrecios viewPrices = new VerPrecios(this, true);
-        viewPrices.setVisible(true);
-        //if(VerPrecios.fillInTable == 1){
-//            fillInTableData();
-//            BuscarArticulos.fillInTable = 0;
-//        }
-    }//GEN-LAST:event_viewPricesActionPerformed
-
-    private void technicServicesActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_technicServicesActionPerformed
-        //try {
-            //int openCash = 0;
-            //String getOpeningCash = "SELECT caja_inicial FROM configuracion_inicial WHERE id_configuracion_inicial = 1"; 
-            //rs = con.Consulta(getOpeningCash);
-            //while(rs.next()) {
-//                openCash = rs.getInt("caja_inicial");
-//            }
-            //String apertura = "INSERT INTO caja (fecha_apertura, apertura, fecha_cierre, id_usuario, estado) VALUES (CURRENT_TIMESTAMP, '"+openCash+"', CURRENT_TIMESTAMP, '"+Login.userId+"', 1)";
-//            String apertura = "INSERT INTO caja (fecha_apertura, apertura, id_usuario, estado) VALUES (CURRENT_TIMESTAMP, '"+openCash+"', '"+Login.userId+"', 1)";
-//            con.ejecutar(apertura);
-            //moduloVentaAdmin.setEnabled(false);
-            CRUDServices services = new CRUDServices();
-            services.setVisible(true);
-            //con.Cerrar();
-        //} catch (SQLException ex) {
-//            Logger.getLogger(CRUDServices.class.getName()).log(Level.SEVERE, null, ex);
-//        }   
-    }//GEN-LAST:event_technicServicesActionPerformed
+    }//GEN-LAST:event_menuBarMouseReleased
 
     /**
     * @param args the command line arguments
@@ -704,17 +705,29 @@ public class PantallaPrincipal extends javax.swing.JFrame {
         
     }
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    private javax.swing.JLabel backgroundImage;
     private javax.swing.JMenuItem changePassword;
     private javax.swing.JMenu changePasswordMenu;
+    private javax.swing.JMenuItem crudArticles;
     public static javax.swing.JDesktopPane desktopPane;
     private javax.swing.JMenuItem exit;
     private javax.swing.JMenu exitMenu;
-    private javax.swing.JLabel jLabel1;
-    private javax.swing.JMenuBar jMenuBar1;
+    private javax.swing.JButton jButton1;
+    private javax.swing.JMenu jMenu1;
+    private javax.swing.JMenu jMenu10;
+    private javax.swing.JMenu jMenu11;
+    private javax.swing.JMenu jMenu12;
+    private javax.swing.JMenu jMenu2;
+    private javax.swing.JMenu jMenu3;
+    private javax.swing.JMenu jMenu4;
+    private javax.swing.JMenu jMenu5;
+    private javax.swing.JMenu jMenu6;
+    private javax.swing.JMenu jMenu7;
+    private javax.swing.JMenu jMenu8;
+    private javax.swing.JMenu jMenu9;
+    private javax.swing.JMenuItem jMenuItem1;
+    private javax.swing.JMenuItem jMenuItem2;
     private javax.swing.JPopupMenu jPopupMenu1;
-    private javax.swing.JScrollPane jScrollPane2;
-    private javax.swing.JTree jTree1;
+    private javax.swing.JMenuBar menuBar;
     public static javax.swing.JButton moduloVentaAdmin;
     private javax.swing.JButton openHelp;
     private javax.swing.JLabel showAdminName;
