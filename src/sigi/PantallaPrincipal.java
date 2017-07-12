@@ -36,8 +36,9 @@ public class PantallaPrincipal extends javax.swing.JFrame {
         //this.setBounds(j, j, ancho, alto);
         Toolkit t = Toolkit.getDefaultToolkit();
         Dimension screenSize = Toolkit.getDefaultToolkit().getScreenSize();
-        System.out.println("la resolucin es " + screenSize.width + " x " + screenSize.height);
-        desktopPane.setPreferredSize(new java.awt.Dimension(800, 600));
+        //System.out.println("la resolucin es " + screenSize.width + " x " + screenSize.height);
+        //desktopPane.setPreferredSize(new java.awt.Dimension(800, 600));
+        this.setBounds(0,0,screenSize.width, screenSize.height);
     }
 
     @SuppressWarnings("unchecked")
@@ -53,19 +54,19 @@ public class PantallaPrincipal extends javax.swing.JFrame {
         technicServices = new javax.swing.JButton();
         jButton1 = new javax.swing.JButton();
         menuBar = new javax.swing.JMenuBar();
-        exitMenu = new javax.swing.JMenu();
-        jMenuItem2 = new javax.swing.JMenuItem();
-        jMenuItem1 = new javax.swing.JMenuItem();
+        files = new javax.swing.JMenu();
+        administrateDb = new javax.swing.JMenuItem();
+        systemConfigurations = new javax.swing.JMenuItem();
         exit = new javax.swing.JMenuItem();
-        jMenu1 = new javax.swing.JMenu();
+        articlesMenu = new javax.swing.JMenu();
         crudArticles = new javax.swing.JMenuItem();
-        jMenu2 = new javax.swing.JMenu();
-        jMenu3 = new javax.swing.JMenu();
-        jMenu4 = new javax.swing.JMenu();
-        jMenu5 = new javax.swing.JMenu();
-        jMenu6 = new javax.swing.JMenu();
-        jMenu7 = new javax.swing.JMenu();
-        jMenu8 = new javax.swing.JMenu();
+        technicalServices = new javax.swing.JMenu();
+        budgets = new javax.swing.JMenu();
+        purchaseOrders = new javax.swing.JMenu();
+        adjustments = new javax.swing.JMenu();
+        closes = new javax.swing.JMenu();
+        clients = new javax.swing.JMenu();
+        providers = new javax.swing.JMenu();
         jMenu9 = new javax.swing.JMenu();
         jMenu10 = new javax.swing.JMenu();
         jMenu11 = new javax.swing.JMenu();
@@ -89,7 +90,7 @@ public class PantallaPrincipal extends javax.swing.JFrame {
         desktopPane.setLayout(desktopPaneLayout);
         desktopPaneLayout.setHorizontalGroup(
             desktopPaneLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 870, Short.MAX_VALUE)
+            .addGap(0, 1300, Short.MAX_VALUE)
         );
         desktopPaneLayout.setVerticalGroup(
             desktopPaneLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -97,7 +98,7 @@ public class PantallaPrincipal extends javax.swing.JFrame {
         );
 
         getContentPane().add(desktopPane);
-        desktopPane.setBounds(20, 100, 870, 590);
+        desktopPane.setBounds(20, 100, 1300, 590);
 
         moduloVentaAdmin.setIcon(new javax.swing.ImageIcon(getClass().getResource("/imagenes/carritoVentas.png"))); // NOI18N
         moduloVentaAdmin.setText("Modulo Ventas");
@@ -120,12 +121,12 @@ public class PantallaPrincipal extends javax.swing.JFrame {
             }
         });
         getContentPane().add(openHelp);
-        openHelp.setBounds(920, 10, 61, 58);
+        openHelp.setBounds(1240, 20, 61, 58);
 
         showAdminName.setFont(new java.awt.Font("Arial", 1, 24)); // NOI18N
-        showAdminName.setForeground(new java.awt.Color(255, 255, 255));
+        showAdminName.setForeground(new java.awt.Color(5, 5, 5));
         getContentPane().add(showAdminName);
-        showAdminName.setBounds(850, 70, 140, 30);
+        showAdminName.setBounds(990, 10, 140, 30);
 
         viewPrices.setText("VER PRECIOS");
         viewPrices.addActionListener(new java.awt.event.ActionListener() {
@@ -155,13 +156,13 @@ public class PantallaPrincipal extends javax.swing.JFrame {
             }
         });
 
-        exitMenu.setText("Archivo");
+        files.setText("Archivo");
 
-        jMenuItem2.setText("Administrar DB");
-        exitMenu.add(jMenuItem2);
+        administrateDb.setText("Administrar DB");
+        files.add(administrateDb);
 
-        jMenuItem1.setText("Configuraciones del Sistema");
-        exitMenu.add(jMenuItem1);
+        systemConfigurations.setText("Configuraciones del Sistema");
+        files.add(systemConfigurations);
 
         exit.setAccelerator(javax.swing.KeyStroke.getKeyStroke(java.awt.event.KeyEvent.VK_Q, java.awt.event.InputEvent.CTRL_MASK));
         exit.setText("Cerrar Sesión");
@@ -170,11 +171,11 @@ public class PantallaPrincipal extends javax.swing.JFrame {
                 exitActionPerformed(evt);
             }
         });
-        exitMenu.add(exit);
+        files.add(exit);
 
-        menuBar.add(exitMenu);
+        menuBar.add(files);
 
-        jMenu1.setText("Articulos");
+        articlesMenu.setText("Articulos");
 
         crudArticles.setText("Alta/Baja");
         crudArticles.addActionListener(new java.awt.event.ActionListener() {
@@ -182,30 +183,30 @@ public class PantallaPrincipal extends javax.swing.JFrame {
                 crudArticlesActionPerformed(evt);
             }
         });
-        jMenu1.add(crudArticles);
+        articlesMenu.add(crudArticles);
 
-        menuBar.add(jMenu1);
+        menuBar.add(articlesMenu);
 
-        jMenu2.setText("Servicio Tecnico");
-        menuBar.add(jMenu2);
+        technicalServices.setText("Servicio Tecnico");
+        menuBar.add(technicalServices);
 
-        jMenu3.setText("Presupuestos");
-        menuBar.add(jMenu3);
+        budgets.setText("Presupuestos");
+        menuBar.add(budgets);
 
-        jMenu4.setText("Ordenes Compras");
-        menuBar.add(jMenu4);
+        purchaseOrders.setText("Ordenes Compras");
+        menuBar.add(purchaseOrders);
 
-        jMenu5.setText("Ajustes");
-        menuBar.add(jMenu5);
+        adjustments.setText("Ajustes");
+        menuBar.add(adjustments);
 
-        jMenu6.setText("Cierres");
-        menuBar.add(jMenu6);
+        closes.setText("Cierres");
+        menuBar.add(closes);
 
-        jMenu7.setText("Clientes");
-        menuBar.add(jMenu7);
+        clients.setText("Clientes");
+        menuBar.add(clients);
 
-        jMenu8.setText("Proveedores");
-        menuBar.add(jMenu8);
+        providers.setText("Proveedores");
+        menuBar.add(providers);
 
         jMenu9.setText("Cuentas Corrientes");
         menuBar.add(jMenu9);
@@ -705,33 +706,33 @@ public class PantallaPrincipal extends javax.swing.JFrame {
         
     }
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.JMenu adjustments;
+    private javax.swing.JMenuItem administrateDb;
+    private javax.swing.JMenu articlesMenu;
+    private javax.swing.JMenu budgets;
     private javax.swing.JMenuItem changePassword;
     private javax.swing.JMenu changePasswordMenu;
+    private javax.swing.JMenu clients;
+    private javax.swing.JMenu closes;
     private javax.swing.JMenuItem crudArticles;
     public static javax.swing.JDesktopPane desktopPane;
     private javax.swing.JMenuItem exit;
-    private javax.swing.JMenu exitMenu;
+    private javax.swing.JMenu files;
     private javax.swing.JButton jButton1;
-    private javax.swing.JMenu jMenu1;
     private javax.swing.JMenu jMenu10;
     private javax.swing.JMenu jMenu11;
     private javax.swing.JMenu jMenu12;
-    private javax.swing.JMenu jMenu2;
-    private javax.swing.JMenu jMenu3;
-    private javax.swing.JMenu jMenu4;
-    private javax.swing.JMenu jMenu5;
-    private javax.swing.JMenu jMenu6;
-    private javax.swing.JMenu jMenu7;
-    private javax.swing.JMenu jMenu8;
     private javax.swing.JMenu jMenu9;
-    private javax.swing.JMenuItem jMenuItem1;
-    private javax.swing.JMenuItem jMenuItem2;
     private javax.swing.JPopupMenu jPopupMenu1;
     private javax.swing.JMenuBar menuBar;
     public static javax.swing.JButton moduloVentaAdmin;
     private javax.swing.JButton openHelp;
+    private javax.swing.JMenu providers;
+    private javax.swing.JMenu purchaseOrders;
     private javax.swing.JLabel showAdminName;
+    private javax.swing.JMenuItem systemConfigurations;
     private javax.swing.JButton technicServices;
+    private javax.swing.JMenu technicalServices;
     private javax.swing.JButton viewPrices;
     // End of variables declaration//GEN-END:variables
   

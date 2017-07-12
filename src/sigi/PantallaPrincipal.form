@@ -13,17 +13,17 @@
         <EventHandler event="mouseReleased" listener="java.awt.event.MouseListener" parameters="java.awt.event.MouseEvent" handler="menuBarMouseReleased"/>
       </Events>
       <SubComponents>
-        <Menu class="javax.swing.JMenu" name="exitMenu">
+        <Menu class="javax.swing.JMenu" name="files">
           <Properties>
             <Property name="text" type="java.lang.String" value="Archivo"/>
           </Properties>
           <SubComponents>
-            <MenuItem class="javax.swing.JMenuItem" name="jMenuItem2">
+            <MenuItem class="javax.swing.JMenuItem" name="administrateDb">
               <Properties>
                 <Property name="text" type="java.lang.String" value="Administrar DB"/>
               </Properties>
             </MenuItem>
-            <MenuItem class="javax.swing.JMenuItem" name="jMenuItem1">
+            <MenuItem class="javax.swing.JMenuItem" name="systemConfigurations">
               <Properties>
                 <Property name="text" type="java.lang.String" value="Configuraciones del Sistema"/>
               </Properties>
@@ -41,7 +41,7 @@
             </MenuItem>
           </SubComponents>
         </Menu>
-        <Menu class="javax.swing.JMenu" name="jMenu1">
+        <Menu class="javax.swing.JMenu" name="articlesMenu">
           <Properties>
             <Property name="text" type="java.lang.String" value="Articulos"/>
           </Properties>
@@ -56,37 +56,37 @@
             </MenuItem>
           </SubComponents>
         </Menu>
-        <Menu class="javax.swing.JMenu" name="jMenu2">
+        <Menu class="javax.swing.JMenu" name="technicalServices">
           <Properties>
             <Property name="text" type="java.lang.String" value="Servicio Tecnico"/>
           </Properties>
         </Menu>
-        <Menu class="javax.swing.JMenu" name="jMenu3">
+        <Menu class="javax.swing.JMenu" name="budgets">
           <Properties>
             <Property name="text" type="java.lang.String" value="Presupuestos"/>
           </Properties>
         </Menu>
-        <Menu class="javax.swing.JMenu" name="jMenu4">
+        <Menu class="javax.swing.JMenu" name="purchaseOrders">
           <Properties>
             <Property name="text" type="java.lang.String" value="Ordenes Compras"/>
           </Properties>
         </Menu>
-        <Menu class="javax.swing.JMenu" name="jMenu5">
+        <Menu class="javax.swing.JMenu" name="adjustments">
           <Properties>
             <Property name="text" type="java.lang.String" value="Ajustes"/>
           </Properties>
         </Menu>
-        <Menu class="javax.swing.JMenu" name="jMenu6">
+        <Menu class="javax.swing.JMenu" name="closes">
           <Properties>
             <Property name="text" type="java.lang.String" value="Cierres"/>
           </Properties>
         </Menu>
-        <Menu class="javax.swing.JMenu" name="jMenu7">
+        <Menu class="javax.swing.JMenu" name="clients">
           <Properties>
             <Property name="text" type="java.lang.String" value="Clientes"/>
           </Properties>
         </Menu>
-        <Menu class="javax.swing.JMenu" name="jMenu8">
+        <Menu class="javax.swing.JMenu" name="providers">
           <Properties>
             <Property name="text" type="java.lang.String" value="Proveedores"/>
           </Properties>
@@ -185,14 +185,14 @@
       </AuxValues>
       <Constraints>
         <Constraint layoutClass="org.netbeans.modules.form.compat2.layouts.DesignAbsoluteLayout" value="org.netbeans.modules.form.compat2.layouts.DesignAbsoluteLayout$AbsoluteConstraintsDescription">
-          <AbsoluteConstraints x="20" y="100" width="870" height="590"/>
+          <AbsoluteConstraints x="20" y="100" width="1300" height="590"/>
         </Constraint>
       </Constraints>
 
       <Layout>
         <DimensionLayout dim="0">
           <Group type="103" groupAlignment="0" attributes="0">
-              <EmptySpace min="0" pref="870" max="32767" attributes="0"/>
+              <EmptySpace min="0" pref="1300" max="32767" attributes="0"/>
           </Group>
         </DimensionLayout>
         <DimensionLayout dim="1">
@@ -240,7 +240,7 @@
       </Events>
       <Constraints>
         <Constraint layoutClass="org.netbeans.modules.form.compat2.layouts.DesignAbsoluteLayout" value="org.netbeans.modules.form.compat2.layouts.DesignAbsoluteLayout$AbsoluteConstraintsDescription">
-          <AbsoluteConstraints x="920" y="10" width="61" height="58"/>
+          <AbsoluteConstraints x="1240" y="20" width="61" height="58"/>
         </Constraint>
       </Constraints>
     </Component>
@@ -250,12 +250,12 @@
           <Font name="Arial" size="24" style="1"/>
         </Property>
         <Property name="foreground" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
-          <Color blue="ff" green="ff" red="ff" type="rgb"/>
+          <Color blue="5" green="5" red="5" type="rgb"/>
         </Property>
       </Properties>
       <Constraints>
         <Constraint layoutClass="org.netbeans.modules.form.compat2.layouts.DesignAbsoluteLayout" value="org.netbeans.modules.form.compat2.layouts.DesignAbsoluteLayout$AbsoluteConstraintsDescription">
-          <AbsoluteConstraints x="850" y="70" width="140" height="30"/>
+          <AbsoluteConstraints x="990" y="10" width="140" height="30"/>
         </Constraint>
       </Constraints>
     </Component>
